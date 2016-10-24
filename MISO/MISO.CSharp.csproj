@@ -63,15 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraMgr.cs" />
     <Compile Include="Assets\PlayerCharacterHoldTrigger.cs" />
-    <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Input\MultiInput.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Player.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacterController.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\EnemyCreate\EnemyCreateSystem.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
