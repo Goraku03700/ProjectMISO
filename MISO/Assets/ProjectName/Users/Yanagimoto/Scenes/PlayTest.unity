@@ -520,6 +520,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 962523990}
+  - 65: {fileID: 962523991}
   m_Layer: 8
   m_Name: PlayerCharacter1Building
   m_TagString: Untagged
@@ -540,6 +541,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1683278649}
   m_RootOrder: 1
+--- !u!65 &962523991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962523989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 1, z: 0.25}
+  m_Center: {x: 0, y: 0, z: -0.5}
 --- !u!1 &1008417950
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6682de282914d4da602545a2b2af1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isKeybordPlay: 0
   m_joypadNumber: 0
 --- !u!1 &1121764965
 GameObject:
@@ -814,7 +828,7 @@ GameObject:
   - 64: {fileID: 1700194321}
   - 23: {fileID: 1700194320}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
