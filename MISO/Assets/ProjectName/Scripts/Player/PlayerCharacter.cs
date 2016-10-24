@@ -36,7 +36,10 @@ public class PlayerCharacter : MonoBehaviour {
         
     }
 
-    IEnumerator 
+    //IEnumerator Throw()
+    //{
+
+    //}
 
 	// Use this for initialization
 	void Start ()
