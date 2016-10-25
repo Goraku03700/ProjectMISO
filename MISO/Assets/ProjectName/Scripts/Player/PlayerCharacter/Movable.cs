@@ -14,7 +14,7 @@ public class Movable : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //m_rigidbody.AddForce();
+        m_rigidbody.AddForce(m_direction * m_speed);
     }
 
     private Rigidbody m_rigidbody;
