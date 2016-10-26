@@ -361,7 +361,7 @@ SphereCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0.5}
 --- !u!1 &860522177
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +548,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 962523989}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.75, y: 1, z: 0.25}
@@ -785,7 +785,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &1683278654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,7 +803,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1683278648}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a184392bc747d74408bfe6a49539490e, type: 3}
   m_Name: 
@@ -839,7 +839,7 @@ GameObject:
   - 33: {fileID: 1700194322}
   - 64: {fileID: 1700194321}
   - 23: {fileID: 1700194320}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,6 +1005,10 @@ Prefab:
     - target: {fileID: 400264, guid: dd6ec75974b69a3409711f8110698bbb, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100264, guid: dd6ec75974b69a3409711f8110698bbb, type: 3}
+      propertyPath: m_Name
+      value: PlayerCharacterMesh
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: dd6ec75974b69a3409711f8110698bbb, type: 3}

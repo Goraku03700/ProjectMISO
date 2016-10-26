@@ -12,22 +12,6 @@ using System.Collections;
     typeof(Movable))]
 public class PlayerCharacter : MonoBehaviour {
 
-    //public enum State
-    //{
-    //    Move,
-    //    ThrowSizeAdjust,
-    //    ThrowLengthAdjust,
-    //    ThrowFaild,
-    //    Pull,
-    //    PullFaild,
-    //    PullEnd,
-    //    Tukamaerareta,
-    //    Hold,
-    //    Holding,
-    //    HoldFaild,
-    //    Holded,
-    //}
-
     public struct AnimatorParameters
     {
         public bool isDownStick;
@@ -38,58 +22,26 @@ public class PlayerCharacter : MonoBehaviour {
         public bool isPulled;
     }
 
-    //public bool isDownStick
-    //{
-    //    get { return m_animatorParameters.isDownStick; }
-    //    set { m_animatorParameters.isDownStick = value; }
-    //}
-
-    //public bool isPushThrowKey
-    //{
-    //    get { return m_animatorParameters.isPushThrowKey; }
-    //    set { m_animatorParameters.isPushThrowKey = value; }
-    //}
-
-    //public bool isPushCancelKey
-    //{
-    //    get { return m_animatorParameters.isPushCancelKey; }
-    //    set { m_animatorParameters.isPushCancelKey = value; }
-    //}
-
-    //public bool isPushHoldKey
-    //{
-    //    get { return m_animatorParameters.isPushHoldKey; }
-    //    set { m_animatorParameters.isPushHoldKey = value; }
-    //}
-
-    //public bool isRibbonLanding
-    //{
-    //    get { return m_animatorParameters.isRibbonLanding; }
-    //    set { m_animatorParameters.isRibbonLanding = value; }
-    //}
-
-    //public bool isPulled
-    //{
-    //    get { return m_animatorParameters.isPulled; }
-    //    set { m_animatorParameters.isPulled = value; }
-    //}
-
     public void Move(float horizontal, float vertical)
     {
-        if(horizontal != .0f || vertical != .0f)
+        if (horizontal != .0f || vertical != .0f)
         {
             m_animatorParameters.isDownStick = true;
+
+            if(m_movable.enabled)
+            {
+                Vector3 direction = new Vector3(horizontal, .0f, vertical);
+
+                m_movable.direction = direction;
+                transform.forward   = direction;
+            }
         }
         else
         {
             m_animatorParameters.isDownStick = false;
+
+            m_movable.direction = Vector3.zero;
         }
-
-        Vector3 direction = new Vector3(horizontal, .0f, vertical);
-
-        m_movable.direction = direction;
-
-        transform.forward = Vector3.Lerp(transform.forward, direction, 5.0f * Time.smoothDeltaTime);
     }
 
     private enum AnimatorParametersID
@@ -140,6 +92,8 @@ public class PlayerCharacter : MonoBehaviour {
         m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsRibbonLanding],   m_animatorParameters.isRibbonLanding);
         m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPulled],          m_animatorParameters.isPulled);
     }
+
+    private const float RotationLerpSmooth = 12.5f;
 
     private Animator m_animator;
 
