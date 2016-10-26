@@ -96,10 +96,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ProjectName\Scripts\Editor\AutoSave.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Debug\SceneSharedDataDump.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\InpurManagerGenerator.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputEditorWindow.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputManagerGenerator.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Editor\SceneBackup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
+    <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\readme.txt" />
+    <None Include="Assets\UnityChan\README_SD_UnityChan.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
