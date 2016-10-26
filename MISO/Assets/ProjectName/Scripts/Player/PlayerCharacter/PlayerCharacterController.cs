@@ -2,38 +2,44 @@
 using UnityEngine.Assertions;
 using System.Collections;
 
+/// <summary>
+/// PlayerCharacterオブジェクトに対して操作するオブジェクトです。
+/// </summary>
+/// <remarks>
+/// オブジェクトにつけたタグで
+/// </remarks>
 public class PlayerCharacterController : MonoBehaviour {
 
 	void Start ()
     {
-        string findGameObjectName = "";
+        string findGameObjectName = "PlayerCharacter";
 
         switch(gameObject.tag)
         {
             case "Player1":
                 {
-                    findGameObjectName  = "PlayerCharacter1";
+                    findGameObjectName  += "1";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad1;
                 }
                 break;
 
             case "Player2":
                 {
-                    findGameObjectName = "PlayerCharacter2";
+                    findGameObjectName += "2";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad2;
                 }
                 break;
 
             case "Player3":
                 {
-                    findGameObjectName = "PlayerCharacter3";
+                    findGameObjectName += "3";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad3;
                 }
                 break;
 
             case "Player4":
                 {
-                    findGameObjectName = "PlayerCharacter4";
+                    findGameObjectName += "4";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad4;
                 }
                 break;
@@ -54,31 +60,39 @@ public class PlayerCharacterController : MonoBehaviour {
 	
 	void Update ()
     {
-        _UpdateInput();
-	}
+        _UpdateInputJoypad();
 
-    void FixedUpdate()
-    {
+#if UNITY_EDITOR
 
-    }
+        if (m_isKeybordPlay)
+        {
+            _UpdateInputKeyboard();
+        }
 
-    void _UpdateInput()
-    {
+#endif  // #if UNITY_EDITOR
 
     }
 
     void _UpdateInputJoypad()
     {
-
+        
     }
 
     void _UpdateInputKeyboard()
     {
-
+        
     }
 
     GameObject      m_controlledPlayerCharacterObject;
     PlayerCharacter m_controlledPlayerCharacter;
+
+#if UNITY_EDITOR
+
+    [SerializeField]
+    bool m_isKeybordPlay;
+
+#endif      // #if UNITY_EDITOR
+
 
     [SerializeField]
     MultiInput.JoypadNumber m_joypadNumber;
