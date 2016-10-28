@@ -13,7 +13,7 @@ public class testtitle : MonoBehaviour {
         Finish,             //ロゴとUIが表示されている状態
     }
     TitleState m_titlestate;    //シーンの状態の変数
-    TitleWoman m_woman;
+    TitleGirl m_girl;
     TitleRibbon m_ribbon;
     TitleLogo m_titlelogo;
     TitleLogo m_titleui;
@@ -21,7 +21,7 @@ public class testtitle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_titlestate = TitleState.Start;
-        m_woman = GameObject.Find("Woman").GetComponent<TitleWoman>();
+        m_girl = GameObject.Find("Girl").GetComponent<TitleGirl>();
         m_ribbon = GameObject.Find("ribbon2").GetComponent<TitleRibbon>();
         m_titlelogo = GameObject.Find("TitleLogo").GetComponent<TitleLogo>();
         m_titleui = GameObject.Find("TitleUI").GetComponent<TitleLogo>();
@@ -46,7 +46,7 @@ public class testtitle : MonoBehaviour {
 
             case TitleState.TrailTitleLogo: //リボンを引きずる・女性を移動させる・タイトルロゴを引きずる
                 //所定の位置に着いたら遷移を移動させる
-                if(m_ribbon.TrailFinishFlag && m_woman.TrailWomanFinishFlag 
+                if(m_ribbon.TrailFinishFlag && m_girl.TrailGirlFinishFlag 
                    && m_titlelogo.TrailtitleLogoFinishFlag)
                 {
                     m_titlestate = TitleState.DisplayTitleLogo;
@@ -54,7 +54,7 @@ public class testtitle : MonoBehaviour {
                 else
                 {
                     m_ribbon.TrailRibbon();
-                    m_woman.MoveWoman();
+                    m_girl.MoveGirl();
                     m_titlelogo.TrailTitleLogo();
                 }
                 
