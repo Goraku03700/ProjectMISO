@@ -198,7 +198,7 @@ public class Production : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        /*
+        
         switch(resultState)
         {
             // 会社を置く演出
@@ -216,7 +216,7 @@ public class Production : MonoBehaviour {
                 _Production03();
                 break;
         }
-        */
+        
    
 
 	}
