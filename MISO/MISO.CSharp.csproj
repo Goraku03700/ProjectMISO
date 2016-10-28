@@ -18,7 +18,6 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
-    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -63,18 +62,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\PlayerCharacterHoldTrigger.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Input\MultiInput.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Player.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacterController.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\Movable.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacter.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterController.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterHoldTrigger.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
-    <Compile Include="Assets\ProjectName\Users\Nakao\Script\EnemyCreate\EnemyCreateSystem.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlAppearancePosition.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreateSystem.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreater.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlNoPlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\TitleTest.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
