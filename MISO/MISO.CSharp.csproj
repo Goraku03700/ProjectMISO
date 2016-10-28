@@ -70,7 +70,10 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterHoldTrigger.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
-    <Compile Include="Assets\ProjectName\Users\Nakao\Script\EnemyCreate\EnemyCreateSystem.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlAppearancePosition.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreateSystem.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreater.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlNoPlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
