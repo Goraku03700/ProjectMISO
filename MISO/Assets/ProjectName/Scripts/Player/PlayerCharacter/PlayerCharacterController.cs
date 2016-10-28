@@ -6,7 +6,7 @@ using System.Collections;
 /// PlayerCharacterオブジェクトに対して操作するオブジェクトです。
 /// </summary>
 /// <remarks>
-/// オブジェクトにつけたタグで
+/// オブジェクトにつけたタグでどのPlayerCharacterを操作するか検索しています
 /// </remarks>
 public class PlayerCharacterController : MonoBehaviour {
 
@@ -54,8 +54,8 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controlledPlayerCharacterObject   = GameObject.Find(findGameObjectName);
         m_controlledPlayerCharacter         = m_controlledPlayerCharacterObject.GetComponent<PlayerCharacter>();
 
-        Assert.IsNull(m_controlledPlayerCharacterObject);
-        Assert.IsNull(m_controlledPlayerCharacter);
+        Assert.IsNotNull(m_controlledPlayerCharacterObject);
+        Assert.IsNotNull(m_controlledPlayerCharacter);
     }
 	
 	void Update ()
@@ -75,12 +75,18 @@ public class PlayerCharacterController : MonoBehaviour {
 
     void _UpdateInputJoypad()
     {
-        
+        float horizontal    = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber);
+        float vertical      = MultiInput.GetAxis(MultiInput.Key.Vertical, m_joypadNumber);
+
+        m_controlledPlayerCharacter.Move(horizontal, vertical);
     }
 
     void _UpdateInputKeyboard()
     {
-        
+        float horizontal    = Input.GetAxis("Horizontal");
+        float vertical      = Input.GetAxis("Vertical");
+
+        m_controlledPlayerCharacter.Move(horizontal, vertical);
     }
 
     GameObject      m_controlledPlayerCharacterObject;
