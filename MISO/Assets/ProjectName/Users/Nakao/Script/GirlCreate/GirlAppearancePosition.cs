@@ -25,6 +25,13 @@ public class GirlAppearancePosition : MonoBehaviour
         set { isCreate = value; }
     }
 
+    bool m_isDestroy;
+    public bool IsDestroy
+    {
+        get { return m_isDestroy; }
+        set { m_isDestroy = value; }
+    }
+
 	// Use this for initialization
 	void Start () {
 	
@@ -35,16 +42,19 @@ public class GirlAppearancePosition : MonoBehaviour
         // フラグが立ってるなら汚れ作る
         if (IsCreate)
         {
-            Vector3 pos = new Vector3();
-               
-            pos = this.transform.position;
-            pos.x *= Random.Range(0.9f,1.1f);
-            pos.z *= Random.Range(0.9f,1.1f);
-            pos = transform.rotation * pos;
+            if (girlObject == null)
+            {
+                Vector3 pos = new Vector3();
 
-            girlObject = new GirlNoPlayerCharacter();
+                pos = this.transform.position;
+                pos.x *= Random.Range(0.9f, 1.1f);
+                pos.z *= Random.Range(0.9f, 1.1f);
+                pos = transform.rotation * pos;
 
-            isCreate = false;
+                girlObject = new GirlNoPlayerCharacter();
+
+                isCreate = false;
+            }
         }
 	}
 }

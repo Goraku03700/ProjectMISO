@@ -12,7 +12,9 @@ public class GirlCreater : MonoBehaviour {
     }
 
     [SerializeField, Header("出現場所(GirlAppearancePoint)の管理配列")]
-    public GameObject[] appearancePoints;   // 出現位置管理
+    public GirlAppearancePosition[] appearancePoints;   // 出現位置管理
+
+    
 
     bool isMyGirlGetting;
 
@@ -20,11 +22,28 @@ public class GirlCreater : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+	    
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
 	}
+
+    public bool CreateGirl()
+    {
+        int num = Random.Range(0, appearancePoints.Length - 1);
+        if (appearancePoints[num].IsCreate == false)
+        {
+            appearancePoints[num].IsCreate = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
 }

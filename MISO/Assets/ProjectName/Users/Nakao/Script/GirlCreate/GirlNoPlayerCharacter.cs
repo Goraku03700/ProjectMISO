@@ -42,7 +42,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-	    
+        m_status = State.Generation;
+      //  m_girlMesh.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -52,7 +53,10 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             case State.Generation:
             {
                 //登場演出
-
+                if(Input.GetKeyDown(KeyCode.L))
+                {
+                    m_status = State.None;
+                }
                 break;
             }
             case State.Alive:
@@ -87,7 +91,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             case State.None:
             {
                 //取得をUIに通知
-                Destroy(this);
+                Destroy(m_girlMesh);
                 break;
             }
             default:
