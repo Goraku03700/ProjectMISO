@@ -10,16 +10,11 @@ using System.Collections;
     //typeof(Rigidbody),
     typeof(Animator),
     typeof(Movable))]
-public class PlayerCharacter : MonoBehaviour {
-
-    public struct AnimatorParameters
+public class PlayerCharacter : MonoBehaviour
+{
+    public enum AnimationMainState
     {
-        public bool isDownStick;
-        public bool isPushThrowKey;
-        public bool isPushCancelKey;
-        public bool isPushHoldKey;
-        public bool isRibbonLanding;
-        public bool isPulled;
+        Start,
     }
 
     public void Move(float horizontal, float vertical)
@@ -44,6 +39,21 @@ public class PlayerCharacter : MonoBehaviour {
         }
     }
 
+    public void Charge()
+    {
+        m_animatorParameters.isPushThrowKey = true;
+    }
+
+    public void Throw()
+    {
+        m_animatorParameters.isPushThrowKey = false;
+    }
+
+    public void Hold()
+    {
+        m_animatorParameters.isPushHoldKey = true;
+    }
+
     private enum AnimatorParametersID
     {
         IsDownStick = 0,
@@ -52,6 +62,16 @@ public class PlayerCharacter : MonoBehaviour {
         IsPushHoldKey,
         IsRibbonLanding,
         IsPulled,
+    }
+
+    private struct AnimatorParameters
+    {
+        public bool isDownStick;
+        public bool isPushThrowKey;
+        public bool isPushCancelKey;
+        public bool isPushHoldKey;
+        public bool isRibbonLanding;
+        public bool isPulled;
     }
 
     void Start()
@@ -73,27 +93,25 @@ public class PlayerCharacter : MonoBehaviour {
     {
         int arraySize = Enum.GetValues(typeof(AnimatorParametersID)).Length;
 
-        m_animatorParametersID = new int[arraySize];
+        m_animatorParametersHashs = new int[arraySize];
 
-        m_animatorParametersID[(int)AnimatorParametersID.IsDownStick]       = Animator.StringToHash("isDownStick");
-        m_animatorParametersID[(int)AnimatorParametersID.IsPushThrowKey]    = Animator.StringToHash("isPushThrowKey");
-        m_animatorParametersID[(int)AnimatorParametersID.IsPushCancelKey]   = Animator.StringToHash("isPushCancelKey");
-        m_animatorParametersID[(int)AnimatorParametersID.IsPushHoldKey]     = Animator.StringToHash("isPushHoldKey");
-        m_animatorParametersID[(int)AnimatorParametersID.IsRibbonLanding]   = Animator.StringToHash("isRibbonLanding");
-        m_animatorParametersID[(int)AnimatorParametersID.IsPulled]          = Animator.StringToHash("isPulled");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsDownStick]       = Animator.StringToHash("isDownStick");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPushThrowKey]    = Animator.StringToHash("isPushThrowKey");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey]   = Animator.StringToHash("isPushCancelKey");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPushHoldKey]     = Animator.StringToHash("isPushHoldKey");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]   = Animator.StringToHash("isRibbonLanding");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]          = Animator.StringToHash("isPulled");
     }
 
     private void _UpdateAnimatorParameters()
     {
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsDownStick],       m_animatorParameters.isDownStick);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPushThrowKey],    m_animatorParameters.isPushThrowKey);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPushCancelKey],   m_animatorParameters.isPushCancelKey);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPushHoldKey],     m_animatorParameters.isPushHoldKey);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsRibbonLanding],   m_animatorParameters.isRibbonLanding);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPulled],          m_animatorParameters.isPulled);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsDownStick],       m_animatorParameters.isDownStick);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushThrowKey],    m_animatorParameters.isPushThrowKey);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey],   m_animatorParameters.isPushCancelKey);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushHoldKey],     m_animatorParameters.isPushHoldKey);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding],   m_animatorParameters.isRibbonLanding);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled],          m_animatorParameters.isPulled);
     }
-
-    private const float RotationLerpSmooth = 12.5f;
 
     private Animator m_animator;
 
@@ -101,11 +119,7 @@ public class PlayerCharacter : MonoBehaviour {
 
     private AnimatorParameters m_animatorParameters;
 
-    public AnimatorParameters animatorParameters
-    {
-        get { return m_animatorParameters; }
-        set { m_animatorParameters = value; }
-    }
+    private int[] m_animatorParametersHashs;
 
-    private int[] m_animatorParametersID;
+    private int[] m_mainStateHashs;
 }

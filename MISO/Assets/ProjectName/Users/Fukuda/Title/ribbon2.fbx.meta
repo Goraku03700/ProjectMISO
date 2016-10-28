@@ -1,14 +1,18 @@
 fileFormatVersion: 2
-guid: de14996e1b17b4e468441306f451ca48
-timeCreated: 1477275775
+guid: 312aac1d7ed977e42b8927eb20c1d72f
+timeCreated: 1477362758
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: obj1
-    100002: //RootNode
+    100002: Point
+    100004: //RootNode
+    100006: ribbon2_mqo
     400000: obj1
-    400002: //RootNode
+    400002: Point
+    400004: //RootNode
+    400006: ribbon2_mqo
     2300000: obj1
     3300000: obj1
     4300000: obj1
