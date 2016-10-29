@@ -41,19 +41,27 @@ public class GirlCreateSystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        CreateGirl();
+        m_areaA_GirlCreateArea.m_ParntGirlCreateSystem = this;
+        m_areaA_GirlCreateArea.CreateGirl();
+        
+
+    //    m_areaA_GirlCreateArea.
+    //    CreateGirl();
         time = 0.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
-        if(time>0.5f)
+        if(time>10.5f)
         {
-            CreateCheckPosition();
-            if (createflag && !temporaryCreatePosition.GetComponent<SphereCollider>().isTrigger)
+            if(m_areaA_GirlCreateArea.CreateGirl())
             {
-                CreateGirl();
+                time = 0.0f;
+            }
+            else
+            {
+                time = 5.0f;
             }
         }
 	}
