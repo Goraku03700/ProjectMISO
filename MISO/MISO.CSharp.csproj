@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -81,9 +79,11 @@
     <Compile Include="Assets\ProjectName\Scripts\Result\Score.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\Bezier.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Title\InvisibleRibbon.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Title\TitleGirl.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleLogo.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleRibbon.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Title\TitleGirl.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Title\TitleUI.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlAppearancePosition.cs" />
