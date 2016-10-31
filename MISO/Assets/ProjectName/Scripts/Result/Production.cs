@@ -37,7 +37,6 @@ public class Production : MonoBehaviour {
     const int ConstPlayerMax = 4;    // プレイヤーの人数
     const float ConstPodiumAccel = 0.01f;   // 表彰台の加速度
 
-
     /// <summary>
     /// 変数定義
     /// </summary>
@@ -48,6 +47,17 @@ public class Production : MonoBehaviour {
     private GameObject[,]   m_girl;    // 女性
     private GameObject[]    m_podium;   // 表彰台
     private GameObject[]    m_company;  // 会社
+
+    // 読み込むテキスト
+    private Text[] m_scoreText;      // スコアのテキスト
+    private Text[] m_rankingText;    // ランキングのテキスト
+
+    // 読み込むパーティクル
+    private GameObject     m_confettiParticleParent;
+    private ParticleSystem m_confettiParticle1;
+    private ParticleSystem m_confettiParticle2;
+    private ParticleSystem m_confettiParticle3;
+
 
     // 計算用
     private int[]       m_playerRanking;     // スコアのランキング
@@ -66,7 +76,6 @@ public class Production : MonoBehaviour {
     
     private int i, j, k;       // 添え字
     private int time;       // 経過時間カウント用
-
     
     private float[]     m_podiumSpeed;       // 表彰台の上下の移動速度
     private Vector3[]   m_savePodiumStart;   // 位置を保存 
@@ -75,9 +84,6 @@ public class Production : MonoBehaviour {
     /// <summary>
     /// インスペクタに表示する変数
     /// </summary>
-    
-    [SerializeField]
-    private Text[] scoreText;      // スコアのテキスト
     
     [SerializeField]
     private Transform womenColumnStartMaker;    // 女性の行列のスタート地点
@@ -160,6 +166,35 @@ public class Production : MonoBehaviour {
         m_podium[2] = GameObject.Find("Podium03");
         m_podium[3] = GameObject.Find("Podium04");
 
+        // スコアのテキスト
+        m_scoreText = new Text[ConstPlayerMax];
+        m_scoreText[0] = GameObject.Find("ScoreText01").GetComponent<Text>();
+        m_scoreText[1] = GameObject.Find("ScoreText02").GetComponent<Text>();
+        m_scoreText[2] = GameObject.Find("ScoreText03").GetComponent<Text>();
+        m_scoreText[3] = GameObject.Find("ScoreText04").GetComponent<Text>();
+
+        // ランキングのテキスト
+        m_rankingText = new Text[ConstPlayerMax];
+        m_rankingText[0] = GameObject.Find("RankingText01").GetComponent<Text>();
+        m_rankingText[1] = GameObject.Find("RankingText02").GetComponent<Text>();
+        m_rankingText[2] = GameObject.Find("RankingText03").GetComponent<Text>();
+        m_rankingText[3] = GameObject.Find("RankingText04").GetComponent<Text>();
+
+        // パーティクルシステム
+        m_confettiParticleParent = GameObject.Find("ConfettiParticle");
+        m_confettiParticle1 = GameObject.Find("ConfettiParticle1").GetComponent<ParticleSystem>();
+        m_confettiParticle2 = GameObject.Find("ConfettiParticle2").GetComponent<ParticleSystem>();
+        m_confettiParticle3 = GameObject.Find("ConfettiParticle3").GetComponent<ParticleSystem>();
+        m_confettiParticle1.Stop();
+        m_confettiParticle2.Stop();
+        m_confettiParticle3.Stop();
+
+        // テキストは最初表示しない
+        for (i = 0; i < ConstPlayerMax; i++)
+        {
+            m_scoreText[i].enabled   = false;
+            m_rankingText[i].enabled = false;
+        }
 
         // プレイヤーの順位を判定
         m_playerRanking = new int[ConstPlayerMax];
@@ -212,7 +247,7 @@ public class Production : MonoBehaviour {
         for (i = 0; i < ConstPlayerMax; i++)
         {
             int line_cnt = 1;   // 行の数
-            int column_max = 1; // 現在の行の人数の最大
+            int nowColumn_max = 1; // 現在の行の人数の最大
             int k = 0;          // 現在何番目の列か
 
             // 獲得した人数分だけ
@@ -233,16 +268,16 @@ public class Production : MonoBehaviour {
 
                 // ピラミッドver
                 m_girlGoalPosition[i, j] = womenColumnStartMaker.position;
-                m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (m_player[0].transform.position.x - womenColumnStartMaker.position.x) - (offset_x / 2 * (column_max - 1)) + (k * offset_x);
-                //m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (column_max * k) + (k * offset_x);
-                m_girlGoalPosition[i, j] += new Vector3(0.0f, 0.0f, (line_cnt - 1) * 0.5f);
+                //m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (m_player[0].transform.position.x - womenColumnStartMaker.position.x) - (offset_x / 2 * (column_max - 1)) + (k * offset_x);
+                m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (girlColumnInerver/2 * (nowColumn_max-1)) + (k * girlLineInterval);
+                m_girlGoalPosition[i, j] += new Vector3(0.0f, 0.0f, (line_cnt - 1) * girlLineInterval);
 
                 k++;
-                if (k + 1 > column_max)
+                if (k + 1 > nowColumn_max)
                 {
                     k = 0;
-                    column_max++;
-                    if (column_max > womenColumnMax) column_max = womenColumnMax;
+                    nowColumn_max++;
+                    if (nowColumn_max > womenColumnMax) nowColumn_max = womenColumnMax;
                     line_cnt++;
 
                 }
@@ -271,9 +306,6 @@ public class Production : MonoBehaviour {
             m_podiumLerp[i] = 0.0f;
 
         }
-
-
-
 
 
         // 演出01を初期の状態に設定
@@ -404,7 +436,8 @@ public class Production : MonoBehaviour {
 
                             // スコア加算
                             m_scoreCount[i]++;
-                            scoreText[i].text = "？人";
+                            m_scoreText[i].enabled = true;
+                            m_scoreText[i].text = "？人";
 
                             break;
                         }
@@ -535,7 +568,7 @@ public class Production : MonoBehaviour {
             m_podium[i].transform.Translate(0.0f, m_podiumSpeed[i], 0.0f);
 
             // 数字のランダムで表示
-            scoreText[i].text = Random.Range(10, 99 + 1).ToString() + "人";
+            m_scoreText[i].text = Random.Range(10, 99 + 1).ToString() + "人";
         }
 
         
@@ -570,9 +603,18 @@ public class Production : MonoBehaviour {
             return;
         }
 
-        
-         
-        
+        // パーティクル開始
+        m_confettiParticleParent.transform.position = m_podium[m_saveTopPlayer].transform.position;
+        m_confettiParticleParent.transform.Translate(0.0f, 5.0f, 0.0f, Space.World);
+        if (!m_confettiParticle1.isPlaying) // 開始中じゃなかったら
+        {
+            // パーティクル開始
+            m_confettiParticle1.Play();
+            m_confettiParticle2.Play();
+            m_confettiParticle3.Play();
+        }
+       
+
         for (i = 0; i < ConstPlayerMax; i++)
         {
             // 進める
@@ -591,14 +633,17 @@ public class Production : MonoBehaviour {
             m_podium[i].transform.position = Vector3.Lerp(m_savePodiumStart[i], end_pos, m_podiumLerp[i]);
 
             // スコアを表示する
-            scoreText[i].text = m_score[i].ToString() + "人"; 
+            m_scoreText[i].text = m_score[i].ToString() + "人";
 
+            // 順位を表示する
+            m_rankingText[i].enabled = true;
+            m_rankingText[i].text = m_playerRanking[i]+1 + "位";
         }
 
 
     }
      
-
+   
 
 
 
