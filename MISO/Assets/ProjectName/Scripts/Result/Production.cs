@@ -83,6 +83,12 @@ public class Production : MonoBehaviour {
     private Transform womenColumnStartMaker;    // 女性の行列のスタート地点
 
     [SerializeField]
+    private float girlLineInterval;            // 女性の間隔(行)
+
+    [SerializeField]
+    private float girlColumnInerver;            // 女性の間隔(列)
+
+    [SerializeField]
     private GameObject womenPrefab; // 女性のオブジェクトのプレハブ
 
     [SerializeField]
@@ -95,7 +101,7 @@ public class Production : MonoBehaviour {
     private float womenMoveSpeed;   // 女性の移動速度
 
     [SerializeField]
-    private int womenColumnIntervalTime;
+    private int womenLineIntervalTime;
 
     [SerializeField]
     private int womenColumnMax;     // 女性の列の最大数
@@ -376,7 +382,7 @@ public class Production : MonoBehaviour {
         time++;
         
         // 一定時間ごとに女性を会社から出す
-        if (time > womenColumnIntervalTime)
+        if (time > womenLineIntervalTime)
         {
             time = 0;
 
