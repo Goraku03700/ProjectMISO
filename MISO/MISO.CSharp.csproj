@@ -61,6 +61,12 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MovableState.cs" />
@@ -76,9 +82,11 @@
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\ExitMovable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\OnMovable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\Bezier.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Title\InvisibleRibbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleGirl.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleLogo.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleRibbon.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Title\TitleUI.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlAppearancePosition.cs" />

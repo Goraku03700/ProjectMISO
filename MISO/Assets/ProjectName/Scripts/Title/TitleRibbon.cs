@@ -7,7 +7,8 @@ public class TitleRibbon : MonoBehaviour {
     private Vector3 m_limit = new Vector3(0.0f,1.0f,0.0f);
     private GameObject m_ribbon; //タイトルに登場するリボン
     private GameObject m_logo;   //タイトルロゴの位置保管用
-    private Bezier myBezier;
+    private Bezier m_bezier;
+    
 
     private Vector3 m_startpos; //初期位置の確保
     private Vector3 m_nowpos;      //リボンの位置を確保する
@@ -24,6 +25,7 @@ public class TitleRibbon : MonoBehaviour {
 	void Start () {
         m_ribbon = GameObject.Find("ribbon2"); //オブジェクトのロード
         m_logo = GameObject.Find("TitleLogo");     //オブジェクトのロード
+        
 
         //挙動計算のため、初期値を格納する。
         m_startpos = this.transform.position;
@@ -35,10 +37,10 @@ public class TitleRibbon : MonoBehaviour {
         m_throwfinishflg = false;
         m_trailfinishflg = false;
         m_time = 0.0f;
-
-        //myBezier = new Bezier(new Vector3(5.5f, 0.0f, 0.0f), Random.insideUnitSphere * 2.0f,
+        
+        //m_bezier = new Bezier(new Vector3(5.5f, 0.0f, 0.0f), Random.insideUnitSphere * 2.0f,
         //                    Random.insideUnitSphere * 2.0f, new Vector3(-25.5f, 1.0f, 0.0f));
-        myBezier = new Bezier(new Vector3(5.5f, 0.0f, 0.0f), new Vector3(-15.5f, 30.5f, 0.0f),
+        m_bezier = new Bezier(new Vector3(5.5f, 0.0f, 0.0f), new Vector3(-15.5f, 30.5f, 0.0f),
                             new Vector3(-22.0f, -19.5f, 0.0f), new Vector3(-35.5f, 1.0f, 0.0f));
 	}
 	
@@ -61,17 +63,21 @@ public class TitleRibbon : MonoBehaviour {
             this.transform.localScale = m_startscale;
             this.transform.position = m_logo.transform.position;
             m_nowpos = this.transform.position;
-            myBezier.ResetBezier(new Vector3(-35.5f, 1.0f, 0.0f), new Vector3(-22.0f, -30.5f, 0.0f),
-                            new Vector3(-15.5f, 19.5f, 0.0f), new Vector3(0.0f, 1.0f, 0.0f));
+            
         }
         else
         {
-            //this.transform.position = Vector3.Lerp(m_startpos, m_logo.transform.position, Time.time);
-            this.transform.position = myBezier.GetPointAtTime(m_time);
+            this.transform.position = m_bezier.GetPointAtTime(m_time);
             transform.Rotate(-60.0f * Time.deltaTime, 0, 0);
             this.transform.localScale += m_startscale * (0.5f * Time.deltaTime);
             m_time += 0.35f * Time.deltaTime;
         }
+    }
+
+    public void ResetBezierRibbon()
+    {
+        m_bezier.ResetBezier(new Vector3(-35.5f, 1.0f, 0.0f), new Vector3(-25.0f, -30.5f, 0.0f),
+                            new Vector3(-18.5f, 19.5f, 0.0f), new Vector3(0.0f, 1.0f, 0.0f));
     }
 
     /// <summary>
@@ -81,7 +87,7 @@ public class TitleRibbon : MonoBehaviour {
     {
         if(this.transform.position.x < m_limit.x)
         {
-            this.transform.position = myBezier.GetPointAtTime(m_time);
+            this.transform.position = m_bezier.GetPointAtTime(m_time);
             transform.Rotate(30.0f * Time.deltaTime, 0, 0);
             m_time += 0.35f * Time.deltaTime;
         }
@@ -92,17 +98,6 @@ public class TitleRibbon : MonoBehaviour {
             this.transform.position = m_nowpos;
         }
 
-        //if(m_nowpos.x < m_limit_x)
-        //{
-        //    m_nowpos.x += 4.0f * Time.deltaTime;
-        //    this.transform.position = m_nowpos;
-        //}
-        //else
-        //{
-        //    m_trailfinishflg = true;
-        //    m_nowpos.x = m_limit_x;
-        //    this.transform.position = m_nowpos;
-        //}
     }
 
     /// <summary>
