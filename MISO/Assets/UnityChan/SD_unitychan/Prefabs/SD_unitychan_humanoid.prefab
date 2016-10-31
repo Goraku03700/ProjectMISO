@@ -4962,6 +4962,7 @@ MonoBehaviour:
   dynamicRatio: 1
   stiffnessForce: 0.01
   stiffnessCurve:
+    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0.010707155
@@ -4975,8 +4976,10 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   dragForce: 0.4
   dragCurve:
+    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0.40000004
@@ -4990,6 +4993,7 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   springBones:
   - {fileID: 11400086}
   - {fileID: 11400078}

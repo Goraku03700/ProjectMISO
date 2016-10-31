@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TitleWoman : MonoBehaviour {
+public class TitleGirl : MonoBehaviour {
 
     const float m_limit_x = 25.0f;  //女性が引きずる限界
-    private GameObject m_woman; //タイトルに登場する女性
+    private GameObject m_girl; //タイトルに登場する女性
     private Vector3 m_startpos; //初期位置の確保
     private Vector3 m_nowpos;      //女性の位置を確保する
 
@@ -12,7 +12,7 @@ public class TitleWoman : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        m_woman = GameObject.Find("Woman"); //オブジェクトのロード
+        m_girl = GameObject.Find("Girl"); //オブジェクトのロード
         m_startpos = this.transform.position;
         m_nowpos = m_startpos; 
 	}
@@ -21,25 +21,16 @@ public class TitleWoman : MonoBehaviour {
 	void Update () {
 	    
 	}
-
-    /// <summary>
-    /// 女性がタイトルで行動する関数
-    /// </summary>
-    public void MoveWoman()
-    {
-        //本当はここにリボンをまわす動き・投げる動きを入れる
-        TrailWoman();
-    }
-
+    
     /// <summary>
     /// 女性がリボンを持ってロゴを引きずる
     /// </summary>
-    void TrailWoman()
+    public void TrailGirl()
     {
         //今現在は右に動くだけ。
         if (m_nowpos.x < m_limit_x)
         {
-            m_nowpos.x += 4.0f * Time.deltaTime;
+            m_nowpos.x += 20.0f * Time.deltaTime;
             this.transform.position = m_nowpos;
         }
         else
@@ -54,7 +45,7 @@ public class TitleWoman : MonoBehaviour {
     /// <summary>
     /// 女性が移動終了した合図（フラグ）を送る
     /// </summary>
-    public bool TrailWomanFinishFlag
+    public bool TrailGirlFinishFlag
     {
         get { return m_finishflg; }
     }

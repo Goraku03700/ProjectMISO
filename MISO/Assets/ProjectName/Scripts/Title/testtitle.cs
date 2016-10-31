@@ -9,22 +9,25 @@ public class testtitle : MonoBehaviour {
         Start,              //最初の状態
         Ribbon,             //リボンの挙動
         TrailTitleLogo,     //リボンでロゴを引きずる
-        DisplayTitleLogo,   //所定の位置にロゴが来てUIも表示する
+        BoundTitleLogo,     //所定の位置にロゴが来てバウンドの処理
+        DisplaytitleLogo,   //バウンド処理終了後UIを表示する
         Finish,             //ロゴとUIが表示されている状態
     }
     TitleState m_titlestate;    //シーンの状態の変数
-    TitleWoman m_woman;
+    TitleGirl m_girl;
     TitleRibbon m_ribbon;
+    InvisibleRibbon m_invisibleribbon;
     TitleLogo m_titlelogo;
-    TitleLogo m_titleui;
+    TitleUI m_titleui;
 
 	// Use this for initialization
 	void Start () {
         m_titlestate = TitleState.Start;
-        m_woman = GameObject.Find("Woman").GetComponent<TitleWoman>();
+        m_girl = GameObject.Find("Girl").GetComponent<TitleGirl>();
         m_ribbon = GameObject.Find("ribbon2").GetComponent<TitleRibbon>();
         m_titlelogo = GameObject.Find("TitleLogo").GetComponent<TitleLogo>();
-        m_titleui = GameObject.Find("TitleUI").GetComponent<TitleLogo>();
+        m_titleui = GameObject.Find("TitleUI").GetComponent<TitleUI>();
+        m_invisibleribbon = GameObject.Find("ribbon2/obj1").GetComponent<InvisibleRibbon>();
 	}
 	
 	// Update is called once per frame
@@ -39,29 +42,40 @@ public class testtitle : MonoBehaviour {
                 m_ribbon.ThrowRibbon();
                 if(m_ribbon.ThrowFinishFlag)    //リボンが所定の位置に着いたら遷移を移動させる
                 {
-                    m_titlelogo.Activate(true);
+                    m_ribbon.ResetBezierRibbon();
                     m_titlestate = TitleState.TrailTitleLogo;
                 }
                 break;
 
             case TitleState.TrailTitleLogo: //リボンを引きずる・女性を移動させる・タイトルロゴを引きずる
                 //所定の位置に着いたら遷移を移動させる
-                if(m_ribbon.TrailFinishFlag && m_woman.TrailWomanFinishFlag 
+                if(m_ribbon.TrailFinishFlag && m_girl.TrailGirlFinishFlag 
                    && m_titlelogo.TrailtitleLogoFinishFlag)
                 {
-                    m_titlestate = TitleState.DisplayTitleLogo;
+                    m_invisibleribbon.ActiveRibbon(false);
+                    m_titlestate = TitleState.BoundTitleLogo;
                 }
                 else
                 {
                     m_ribbon.TrailRibbon();
-                    m_woman.MoveWoman();
+                    m_girl.TrailGirl();
                     m_titlelogo.TrailTitleLogo();
                 }
                 
                 break;
 
-            case TitleState.DisplayTitleLogo:   //UIを表示。
-                m_titleui.Activate(true);
+            case TitleState.BoundTitleLogo:     //ロゴをバウンドさせる
+                m_titlelogo.BoundTitleLogo();
+                if (m_titlelogo.TitleLogoBoundFinishFlag &&
+                    m_titlelogo.TitleLogoTime() >= 5.0f)    //入力で次の遷移に
+                {
+                    m_titleui.Activate(true);
+                    m_titlestate = TitleState.DisplaytitleLogo;
+                }
+                break;
+
+            case TitleState.DisplaytitleLogo:   //UIを表示。
+                m_titleui.ScaleTitleUI();
                 if (Input.GetKeyDown(KeyCode.A))    //入力で次の遷移に。
                 {
                     m_titlestate = TitleState.Finish;

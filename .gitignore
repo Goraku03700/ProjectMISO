@@ -12,7 +12,7 @@
 /*.booproj
 /.vs/CaseSoap/v14/*.suo
 /.vs/ProjectSoap/v14/*.suo
-/UnityProject/*.csproj
-/UnityProject/*.sln
-/UnityProject/*.userprefs
+/MISO/*.csproj
+/MISO/*.sln
+/MISO/*.userprefs
 *.suo
