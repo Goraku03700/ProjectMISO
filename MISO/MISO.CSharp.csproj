@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MovableState.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameObject\Movable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Input\MultiInput.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Player.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="Assets\ProjectName\Scripts\Result\Production.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Result\Score.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\ExitMovable.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\OnMovable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\Bezier.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\InvisibleRibbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleGirl.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\TitleTest.cs" />
+    <Compile Include="Assets\Ribbon.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
     <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />
@@ -122,5 +126,5 @@
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\readme.txt" />
     <None Include="Assets\UnityChan\README_SD_UnityChan.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

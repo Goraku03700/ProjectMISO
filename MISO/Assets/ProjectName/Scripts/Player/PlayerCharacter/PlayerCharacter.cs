@@ -10,86 +10,77 @@ using System.Collections;
     //typeof(Rigidbody),
     typeof(Animator),
     typeof(Movable))]
-public class PlayerCharacter : MonoBehaviour {
-
-    //public enum State
-    //{
-    //    Move,
-    //    ThrowSizeAdjust,
-    //    ThrowLengthAdjust,
-    //    ThrowFaild,
-    //    Pull,
-    //    PullFaild,
-    //    PullEnd,
-    //    Tukamaerareta,
-    //    Hold,
-    //    Holding,
-    //    HoldFaild,
-    //    Holded,
-    //}
-
-    public struct AnimatorParameters
+public class PlayerCharacter : MonoBehaviour
+{
+    public enum MainState
     {
-        public bool isDownStick;
-        public bool isPushThrowKey;
-        public bool isPushCancelKey;
-        public bool isPushHoldKey;
-        public bool isRibbonLanding;
-        public bool isPulled;
+        Start = 0,
+        Movable,
+        Throw,
+        Hold,
+        Caught,
     }
 
-    //public bool isDownStick
-    //{
-    //    get { return m_animatorParameters.isDownStick; }
-    //    set { m_animatorParameters.isDownStick = value; }
-    //}
-
-    //public bool isPushThrowKey
-    //{
-    //    get { return m_animatorParameters.isPushThrowKey; }
-    //    set { m_animatorParameters.isPushThrowKey = value; }
-    //}
-
-    //public bool isPushCancelKey
-    //{
-    //    get { return m_animatorParameters.isPushCancelKey; }
-    //    set { m_animatorParameters.isPushCancelKey = value; }
-    //}
-
-    //public bool isPushHoldKey
-    //{
-    //    get { return m_animatorParameters.isPushHoldKey; }
-    //    set { m_animatorParameters.isPushHoldKey = value; }
-    //}
-
-    //public bool isRibbonLanding
-    //{
-    //    get { return m_animatorParameters.isRibbonLanding; }
-    //    set { m_animatorParameters.isRibbonLanding = value; }
-    //}
-
-    //public bool isPulled
-    //{
-    //    get { return m_animatorParameters.isPulled; }
-    //    set { m_animatorParameters.isPulled = value; }
-    //}
-
-    public void Move(float horizontal, float vertical)
+    public enum MovableState
     {
-        if(horizontal != .0f || vertical != .0f)
+        Wait = 0,
+        Move,
+        Exit
+    }
+
+    public enum ThrowState
+    {
+        SizeAdjust = 0,
+        LengthAdjust,
+        Pull,
+        Collect,
+    }
+
+    public void InputStick(float horizontal, float vertical)
+    {
+        if (horizontal != .0f || vertical != .0f)
         {
             m_animatorParameters.isDownStick = true;
+
+            if(m_movable.enabled)
+            {
+                Vector3 direction = new Vector3(horizontal, .0f, vertical);
+
+                m_movable.direction = direction;
+                transform.forward   = direction;
+            }
         }
         else
         {
             m_animatorParameters.isDownStick = false;
+
+            m_movable.direction = Vector3.zero;
         }
+    }
 
-        Vector3 direction = new Vector3(horizontal, .0f, vertical);
+    public void InputCharge()
+    {
+        m_animatorParameters.isPushThrowKey = true;
+    }
 
-        m_movable.direction = direction;
+    public void InputThrow()
+    {
+        m_animatorParameters.isPushThrowKey = false;
+    }
 
-        transform.forward = Vector3.Lerp(transform.forward, direction, 5.0f * Time.smoothDeltaTime);
+    public void InputHold()
+    {
+        m_animatorParameters.isPushHoldKey = true;
+    }
+
+    private void CreateRibbon()
+    {
+        //instantiate
+    }
+
+    private void Charge()
+    {
+        m_ribbonSize = Mathf.PingPong(Time.time / 1.0f, 10.0f);
     }
 
     private enum AnimatorParametersID
@@ -102,6 +93,23 @@ public class PlayerCharacter : MonoBehaviour {
         IsPulled,
     }
 
+    private struct AnimatorParameters
+    {
+        public bool isDownStick;
+        public bool isPushThrowKey;
+        public bool isPushCancelKey;
+        public bool isPushHoldKey;
+        public bool isRibbonLanding;
+        public bool isPulled;
+    }
+
+    void Awake()
+    {
+        m_playerCharacterData = Resources.Load(m_playerCharacterDataPath) as PlayerCharacterData;
+
+        Assert.IsNotNull(m_playerCharacterData);
+    }
+
     void Start()
     {
         m_animator  = GetComponent<Animator>();
@@ -110,10 +118,13 @@ public class PlayerCharacter : MonoBehaviour {
         Assert.IsNotNull(m_animator);
 
         _InitializeAnimatorParametersID();
+        _InitializeAnimationState();
     }
 
     void Update()
     {
+        m_animatorStateInfo = m_animator.GetCurrentAnimatorStateInfo(0);
+
         _UpdateAnimatorParameters();
     }
 
@@ -121,37 +132,78 @@ public class PlayerCharacter : MonoBehaviour {
     {
         int arraySize = Enum.GetValues(typeof(AnimatorParametersID)).Length;
 
-        m_animatorParametersID = new int[arraySize];
+        m_animatorParametersHashs = new int[arraySize];
 
-        m_animatorParametersID[(int)AnimatorParametersID.IsDownStick]       = Animator.StringToHash("isDownStick");
-        m_animatorParametersID[(int)AnimatorParametersID.IsPushThrowKey]    = Animator.StringToHash("isPushThrowKey");
-        m_animatorParametersID[(int)AnimatorParametersID.IsPushCancelKey]   = Animator.StringToHash("isPushCancelKey");
-        m_animatorParametersID[(int)AnimatorParametersID.IsPushHoldKey]     = Animator.StringToHash("isPushHoldKey");
-        m_animatorParametersID[(int)AnimatorParametersID.IsRibbonLanding]   = Animator.StringToHash("isRibbonLanding");
-        m_animatorParametersID[(int)AnimatorParametersID.IsPulled]          = Animator.StringToHash("isPulled");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsDownStick]       = Animator.StringToHash("isDownStick");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPushThrowKey]    = Animator.StringToHash("isPushThrowKey");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey]   = Animator.StringToHash("isPushCancelKey");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPushHoldKey]     = Animator.StringToHash("isPushHoldKey");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]   = Animator.StringToHash("isRibbonLanding");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]          = Animator.StringToHash("isPulled");
+    }
+
+    private void _InitializeAnimationState()
+    {
+        int arraySize = Enum.GetValues(typeof(MainState)).Length;
+
+        m_mainStateHashs = new int[arraySize];
+
+        m_mainStateHashs[(int)MainState.Start]      = Animator.StringToHash("Base Layer.Start");
+        m_mainStateHashs[(int)MainState.Movable]    = Animator.StringToHash("Base Layer.Movable");
+        m_mainStateHashs[(int)MainState.Throw]      = Animator.StringToHash("Base Layer.Throw");
+        m_mainStateHashs[(int)MainState.Hold]       = Animator.StringToHash("Base Layer.Hold");
+        m_mainStateHashs[(int)MainState.Caught]     = Animator.StringToHash("Base Layer.Caught");
+
+        arraySize = Enum.GetValues(typeof(MovableState)).Length;
+
+        m_movableStateHashs = new int[arraySize];
+
+        m_movableStateHashs[(int)MovableState.Wait] = Animator.StringToHash("Base Layer.Movable.Wait");
+        m_movableStateHashs[(int)MovableState.Move] = Animator.StringToHash("Base Layer.Movable.Move");
+        m_movableStateHashs[(int)MovableState.Exit] = Animator.StringToHash("Base Layer.Movable.Exit");
+
+        arraySize = Enum.GetValues(typeof(ThrowState)).Length;
+
+        m_throwStateHashs = new int[arraySize];
+
+        m_throwStateHashs[(int)ThrowState.SizeAdjust]     = Animator.StringToHash("Base Layer.Movable.SizeAdjust");
+        m_throwStateHashs[(int)ThrowState.LengthAdjust]   = Animator.StringToHash("Base Layer.Movable.LengthAdjust");
+        m_throwStateHashs[(int)ThrowState.Pull]           = Animator.StringToHash("Base Layer.Movable.Pull");
+        m_throwStateHashs[(int)ThrowState.Collect]        = Animator.StringToHash("Base Layer.Movable.Collect");
     }
 
     private void _UpdateAnimatorParameters()
     {
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsDownStick],       m_animatorParameters.isDownStick);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPushThrowKey],    m_animatorParameters.isPushThrowKey);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPushCancelKey],   m_animatorParameters.isPushCancelKey);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPushHoldKey],     m_animatorParameters.isPushHoldKey);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsRibbonLanding],   m_animatorParameters.isRibbonLanding);
-        m_animator.SetBool(m_animatorParametersID[(int)AnimatorParametersID.IsPulled],          m_animatorParameters.isPulled);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsDownStick],       m_animatorParameters.isDownStick);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushThrowKey],    m_animatorParameters.isPushThrowKey);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey],   m_animatorParameters.isPushCancelKey);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushHoldKey],     m_animatorParameters.isPushHoldKey);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding],   m_animatorParameters.isRibbonLanding);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled],          m_animatorParameters.isPulled);
     }
 
-    private Animator m_animator;
+    [SerializeField, Tooltip("")]
+    private string m_playerCharacterDataPath;
 
     private Movable m_movable;
 
+    private Ribbon m_controlledRibbon;
+
+    private float m_ribbonSize;
+
+    private PlayerCharacterData m_playerCharacterData;
+
+    private Animator m_animator;
+
     private AnimatorParameters m_animatorParameters;
 
-    public AnimatorParameters animatorParameters
-    {
-        get { return m_animatorParameters; }
-        set { m_animatorParameters = value; }
-    }
+    private AnimatorStateInfo m_animatorStateInfo;
 
-    private int[] m_animatorParametersID;
+    private int[] m_animatorParametersHashs;
+
+    private int[] m_mainStateHashs;
+
+    private int[] m_movableStateHashs;
+
+    private int[] m_throwStateHashs;
 }

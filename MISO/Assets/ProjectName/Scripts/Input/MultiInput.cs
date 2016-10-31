@@ -21,7 +21,7 @@ public class MultiInput
     }
 
     /// <summary>
-    /// 取得したいキーの名前です。
+    /// 取得したいボタンの名前です。
     /// </summary>
     public enum Key
     {
@@ -50,75 +50,75 @@ public class MultiInput
     }
 
     /// <summary>
-    /// キーの押下を取得
+    /// ボタンの押下を取得
     /// </summary>
-    /// <param name="keyName">取得するキーの名前</param>
+    /// <param name="keyName">取得するボタンの名前</param>
     /// <param name="joypadNumber">取得するジョイパッドの番号</param>
     /// <returns>押されているかを返す</returns>
-    public static bool GetKey(string keyName, JoypadNumber joypadNumber)
+    public static bool GetButton(string keyName, JoypadNumber joypadNumber)
     {
-        return Input.GetKey(padNames[(int)joypadNumber] + keyName);
+        return Input.GetButton(padNames[(int)joypadNumber] + keyName);
     }
 
     /// <summary>
-    /// キーの押下を取得
+    /// ボタンの押下を取得
     /// </summary>
-    /// <param name="key">取得するキーのenum</param>
+    /// <param name="key">取得するボタンのenum</param>
     /// <param name="joypadNumber">取得するジョイパッドの番号</param>
     /// <returns>押されているかを返す</returns>
-    public static bool GetKey(Key key, JoypadNumber joypadNumber)
+    public static bool GetButton(Key key, JoypadNumber joypadNumber)
     {
-        return Input.GetKey(padNames[(int)joypadNumber] + keyNames[(int)key]);
+        return Input.GetButton(padNames[(int)joypadNumber] + keyNames[(int)key]);
     }
 
     /// <summary>
-    /// キーの押下を取得
+    /// ボタンの押下を取得
     /// </summary>
-    /// <param name="keyName">取得するキーの名前</param>
+    /// <param name="keyName">取得するボタンの名前</param>
     /// <param name="joypadNumber">取得するジョイパッドの番号</param>
     /// <returns>押されたかを返す</returns>
-    public static bool GetKeyDown(string keyName, JoypadNumber joypadNumber)
+    public static bool GetButtonDown(string keyName, JoypadNumber joypadNumber)
     {
-        return Input.GetKeyDown(padNames[(int)joypadNumber] + keyName);
+        return Input.GetButtonDown(padNames[(int)joypadNumber] + keyName);
     }
 
     /// <summary>
-    /// キーの押下を取得
+    /// ボタンの押下を取得
     /// </summary>
-    /// <param name="key">取得するキーのenum</param>
+    /// <param name="key">取得するボタンのenum</param>
     /// <param name="joypadNumber">取得するジョイパッドの番号</param>
     /// <returns>押されたかを返す</returns>
-    public static bool GetKeyDown(Key key, JoypadNumber joypadNumber)
+    public static bool GetButtonDown(Key key, JoypadNumber joypadNumber)
     {
-        return Input.GetKeyDown(padNames[(int)joypadNumber] + keyNames[(int)key]);
+        return Input.GetButtonDown(padNames[(int)joypadNumber] + keyNames[(int)key]);
     }
 
     /// <summary>
-    /// キーが離されたかを取得
+    /// ボタンが離されたかを取得
     /// </summary>
-    /// <param name="keyName">取得するキーの名前</param>
+    /// <param name="keyName">取得するボタンの名前</param>
     /// <param name="joypadNumber">取得するジョイパッドの番号</param>
-    /// <returns>キーが離された</returns>
-    public static bool GetKeyUp(string keyName, JoypadNumber joypadNumber)
+    /// <returns>ボタンが離された</returns>
+    public static bool GetButtonUp(string keyName, JoypadNumber joypadNumber)
     {
-        return Input.GetKeyUp(padNames[(int)joypadNumber] + keyName);
+        return Input.GetButtonUp(padNames[(int)joypadNumber] + keyName);
     }
 
     /// <summary>
-    /// キーが離されたかを取得
+    /// ボタンが離されたかを取得
     /// </summary>
-    /// <param name="key">取得するキーのenum</param>
+    /// <param name="key">取得するボタンのenum</param>
     /// <param name="joypadNumber">取得するジョイパッドの番号</param>
-    /// <returns>キーが離された</returns>
-    public static bool GetKeyUp(Key key, JoypadNumber joypadNumber)
+    /// <returns>ボタンが離された</returns>
+    public static bool GetButtonUp(Key key, JoypadNumber joypadNumber)
     {
-        return Input.GetKeyUp(padNames[(int)joypadNumber] + keyNames[(int)key]);
+        return Input.GetButtonUp(padNames[(int)joypadNumber] + keyNames[(int)key]);
     }
 
     /// <summary>
     /// 軸を取得
     /// </summary>
-    /// <param name="keyName">取得するキーの名前</param>
+    /// <param name="keyName">取得するボタンの名前</param>
     /// <param name="joypadNumber">取得するジョイパッドの番号</param>
     /// <returns>軸の値を取得</returns>
     public static float GetAxis(string keyName, JoypadNumber joypadNumber)
@@ -129,7 +129,7 @@ public class MultiInput
     /// <summary>
     /// 軸を取得
     /// </summary>
-    /// <param name="key">取得するキーのenum</param>
+    /// <param name="key">取得するボタンのenum</param>
     /// <param name="joypadNumber">取得するジョイパッドの番号</param>
     /// <returns>軸の値を取得</returns>
     public static float GetAxis(Key key, JoypadNumber joypadNumber)
@@ -143,7 +143,7 @@ public class MultiInput
     private static string[] padNames;
 
     /// <summary>
-    /// キー名配列
+    /// ボタン名配列
     /// </summary>
     private static string[] keyNames;
 }
