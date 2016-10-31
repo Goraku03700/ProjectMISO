@@ -49,9 +49,9 @@ public class GirlAppearancePosition : MonoBehaviour
                 pos = this.transform.position;
                 pos.x *= Random.Range(0.9f, 1.1f);
                 pos.z *= Random.Range(0.9f, 1.1f);
-                pos = transform.rotation * pos;
-
-                girlObject = new GirlNoPlayerCharacter();
+                Transform girlTransform = this.transform;
+                girlTransform.position = pos;
+                girlObject = (GirlNoPlayerCharacter)Instantiate(girlObject,pos,this.transform.rotation);
 
                 isCreate = false;
             }

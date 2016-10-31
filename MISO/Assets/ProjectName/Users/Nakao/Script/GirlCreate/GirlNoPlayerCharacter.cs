@@ -37,13 +37,13 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     State m_status;
 
 
-    [SerializeField]
-    GameObject m_girlMesh;
+    
+    public GameObject m_girlMesh;
 
 	// Use this for initialization
 	void Start () {
         m_status = State.Generation;
-      //  m_girlMesh.SetActive(true);
+        //m_girlMesh.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -91,7 +91,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             case State.None:
             {
                 //取得をUIに通知
-                Destroy(m_girlMesh);
+                //m_girlMesh.SetActive(false);
+                Destroy(this);
                 break;
             }
             default:
