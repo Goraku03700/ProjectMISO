@@ -19,6 +19,8 @@ public class testtitle : MonoBehaviour {
     InvisibleRibbon m_invisibleribbon;
     TitleLogo m_titlelogo;
     TitleUI m_titleui;
+    
+
 
 	// Use this for initialization
 	void Start () {
