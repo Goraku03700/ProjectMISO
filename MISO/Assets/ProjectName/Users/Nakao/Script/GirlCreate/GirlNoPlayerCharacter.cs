@@ -3,8 +3,10 @@ using System.Collections;
 
 public class GirlNoPlayerCharacter : MonoBehaviour 
 {
-
-    enum State
+    /// <summary>
+    /// NPCの状態
+    /// </summary>
+    public enum State
     {
         Generation,
         Alive,
@@ -34,6 +36,14 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         set { m_isAbsorption = value; }
     }
 
+    GirlAppearancePosition m_parntGirlAppearancePosition;
+
+    public GirlAppearancePosition m_ParntGirlAppearancePosition
+    {
+        get { return m_parntGirlAppearancePosition; }
+        set { m_parntGirlAppearancePosition = value; }
+    }
+
     State m_status;
 
 
@@ -45,6 +55,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_status = State.Generation;
         //m_girlMesh.SetActive(false);
 	}
+
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -57,6 +69,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 {
                     m_status = State.None;
                 }
+                //m_status = State.Alive;
                 break;
             }
             case State.Alive:
@@ -92,6 +105,9 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             {
                 //取得をUIに通知
                 //m_girlMesh.SetActive(false);
+                //m_parntGirlAppearancePosition.IsDestroy = true;
+                m_parntGirlAppearancePosition.m_ParntGirlCreater.m_CreateGirlNumber--;
+                Destroy(m_girlMesh);
                 Destroy(this);
                 break;
             }
