@@ -15,9 +15,9 @@ namespace Test
         // Update is called once per frame
         void Update()
         {
-            int hp = (int)m_sceneSharedData.Get("Title", "HP");
-            hp = (int)m_sceneSharedData.Get("Stage", "HP");
-            TitleTest.State state = (TitleTest.State)m_sceneSharedData.Get("Title", "State");
+            //int hp = (int)m_sceneSharedData.Get("Title", "HP");
+            //hp = (int)m_sceneSharedData.Get("Stage", "HP");
+            //TitleTest.State state = (TitleTest.State)m_sceneSharedData.Get("Title", "State");
         }
 
         SceneSharedData m_sceneSharedData;

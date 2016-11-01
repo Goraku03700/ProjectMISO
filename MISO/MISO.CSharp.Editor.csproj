@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ProjectName\Scripts\Editor\AutoSave.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Editor\CreateRulePrefabs.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Debug\SceneSharedDataDump.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\InpurManagerGenerator.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputEditorWindow.cs" />
@@ -129,5 +130,5 @@
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\readme.txt" />
     <None Include="Assets\UnityChan\README_SD_UnityChan.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

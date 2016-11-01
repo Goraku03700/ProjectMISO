@@ -76,9 +76,9 @@ public class PlayerCharacterController : MonoBehaviour {
     void _UpdateInputJoypad()
     {
         float horizontal    = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber);
-        float vertical      = MultiInput.GetAxis(MultiInput.Key.Vertical, m_joypadNumber);
+        float vertical      = MultiInput.GetAxis(MultiInput.Key.Vertical,   m_joypadNumber);
 
-        m_controlledPlayerCharacter.Move(horizontal, vertical);
+        m_controlledPlayerCharacter.InputStick(horizontal, vertical);
     }
 
     void _UpdateInputKeyboard()
@@ -86,7 +86,21 @@ public class PlayerCharacterController : MonoBehaviour {
         float horizontal    = Input.GetAxis("Horizontal");
         float vertical      = Input.GetAxis("Vertical");
 
-        m_controlledPlayerCharacter.Move(horizontal, vertical);
+        m_controlledPlayerCharacter.InputStick(horizontal, vertical);
+
+        if(Input.GetButton("OK"))
+        {
+            m_controlledPlayerCharacter.InputCharge();
+        }
+        else if(Input.GetButton("OK"))
+        {
+            m_controlledPlayerCharacter.InputThrow();
+        }
+
+        if(Input.GetButton("Cancel"))
+        {
+            m_controlledPlayerCharacter.InputHold();
+        }
     }
 
     GameObject      m_controlledPlayerCharacterObject;
