@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: de14996e1b17b4e468441306f451ca48
-timeCreated: 1477275775
+guid: 12d9b5a48e16610408e79acb197378b7
+timeCreated: 1477555700
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: obj1
-    100002: //RootNode
-    400000: obj1
-    400002: //RootNode
-    2300000: obj1
-    3300000: obj1
-    4300000: obj1
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Torus.001
   materials:
     importMaterials: 1
     materialName: 0
