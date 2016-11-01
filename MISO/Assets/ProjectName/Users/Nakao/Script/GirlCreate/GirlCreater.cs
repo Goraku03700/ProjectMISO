@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class GirlCreater : MonoBehaviour {
 
@@ -12,38 +15,71 @@ public class GirlCreater : MonoBehaviour {
     }
 
     [SerializeField, Header("出現場所(GirlAppearancePoint)の管理配列")]
-    public GirlAppearancePosition[] appearancePoints;   // 出現位置管理
+    List <GirlAppearancePosition> m_appearancePoints;   // 出現位置管理
 
-    
+    int m_createGirlNumber;
 
-    bool isMyGirlGetting;
-
+    public int m_CreateGirlNumber
+    {
+        get { return m_createGirlNumber; }
+        set { m_createGirlNumber = value; }
+    }
 
 
 	// Use this for initialization
 	void Start () {
-	    
+        foreach(Transform child in this.transform)
+        {
+            if(child.GetComponent<GirlAppearancePosition>() !=null)
+            {
+                m_appearancePoints.Add(child.GetComponent<GirlAppearancePosition>());
+            }
+        }
+ //       m_appearancePoints = Array.FindAll(transform.GetComponentsInChildren<GirlAppearancePosition>(),);
 
+	    for(int i = 0 ; i < m_appearancePoints.Count ; ++i)
+        {
+            m_appearancePoints[i].m_ParntGirlCreater = this;
+        }
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    
+        
 	}
 
-    public bool CreateGirl()
+    public bool CreateGirl(int createCount)
     {
-        int num = Random.Range(0, appearancePoints.Length - 1);
-        if (appearancePoints[num].IsCreate == false)
+        for (int i = 0; i < createCount; ++i)
         {
-            appearancePoints[num].IsCreate = true;
-            return true;
+            int num = UnityEngine.Random.Range(0, m_appearancePoints.Count - 1);
+            /*
+            for (int i = 0; i < appearancePoints.Length - 1; ++i)
+            {
+                if (appearancePoints[num].IsCreate == false)
+                {
+                    appearancePoints[num].IsCreate = true;
+                    m_createGirlNumber++;
+                    return true;
+                }
+                else
+                {
+                    num++;
+                    if(num > appearancePoints.Length - 1)
+                    {
+                        num = 0;
+                    }
+                }
+            }
+            */
+
+            m_appearancePoints[num].CreateNoPlayerCharacter();
+            m_createGirlNumber++;
         }
-        else
-        {
-            return false;
-        }
-        
+        return true;
+
+        return false;
     }
 
 }

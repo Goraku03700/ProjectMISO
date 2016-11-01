@@ -18,7 +18,6 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
-    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,12 +60,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MovableState.cs" />
@@ -90,6 +83,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlAppearancePosition.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreateRule.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreateSystem.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreater.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlNoPlayerCharacter.cs" />

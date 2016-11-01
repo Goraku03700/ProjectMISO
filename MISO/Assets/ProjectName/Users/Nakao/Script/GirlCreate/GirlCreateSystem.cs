@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class GirlCreateSystem : MonoBehaviour {
 
-    [SerializeField]
-    GameObject temporaryCreatePosition;
-
     [SerializeField, Tooltip("女性生成エリアA")]
     GirlCreater m_areaA_GirlCreateArea;
     [SerializeField, Tooltip("女性生成エリアB")]
@@ -31,41 +28,122 @@ public class GirlCreateSystem : MonoBehaviour {
     GirlCreater m_feverAreaE_GirlCreateArea;
 
 
+//    [SerializeField]
+  //  GameObject m_girlPrefabs;
+    //[SerializeField]
+    //List<GameObject> m_Girls;
+
     [SerializeField]
-    GameObject m_girlPrefabs;
-    [SerializeField]
-    List<GameObject> m_Girls;
     float time;
 
-    bool createflag;
+    public List<GirlCreateRule> m_createRules;
+
+    public List<GirlCreateRule> m_createRules_Normal;
+    public List<GirlCreateRule> m_createRules_Fever;
+    public List<GirlCreateRule> m_createRules_Continue;
+
+    [SerializeField]
+    int m_girl_Count;
+
+    public int m_GirlCount
+    {
+        get {return m_girl_Count ;}
+        set {m_girl_Count = value ;}
+    }
+
 
 	// Use this for initialization
 	void Start () {
         m_areaA_GirlCreateArea.m_ParntGirlCreateSystem = this;
-        m_areaA_GirlCreateArea.CreateGirl();
-        
+        for (int i = 0; i < m_createRules.Count ; ++i )
+        {
+            if (m_createRules[i].continuePattern)
+            {
+                m_createRules_Continue.Add((GirlCreateRule)Instantiate(m_createRules[i]));
+            }
+            else if (m_createRules[i].fever)
+            {
+                m_createRules_Fever.Add((GirlCreateRule)Instantiate(m_createRules[i]));
+            }
+            else
+            {
+                m_createRules_Normal.Add((GirlCreateRule)Instantiate(m_createRules[i]));
+            }
+        }
 
-    //    m_areaA_GirlCreateArea.
-    //    CreateGirl();
-        time = 0.0f;
+         //   time = 0.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        time += Time.deltaTime;
-        if(time>10.5f)
+        time -= Time.deltaTime;
+        m_girl_Count = 0;
+        for (int i = 0; i < m_createRules_Continue.Count; ++i)
         {
-            if(m_areaA_GirlCreateArea.CreateGirl())
+            if(m_createRules_Continue[i].createTime>time && m_createRules_Continue[i].validTime < time)
             {
-                time = 0.0f;
-            }
-            else
-            {
-                time = 5.0f;
+                if(m_areaA_GirlCreateArea.m_CreateGirlNumber <= 0)
+                {
+                    m_areaA_GirlCreateArea.CreateGirl(m_createRules_Continue[i].generationCount);
+                }
+                if (m_areaB_GirlCreateArea.m_CreateGirlNumber <= 0)
+                {
+                    m_areaB_GirlCreateArea.CreateGirl(m_createRules_Continue[i].generationCount);
+                }
+                if (m_areaC_GirlCreateArea.m_CreateGirlNumber <= 0)
+                {
+                    m_areaC_GirlCreateArea.CreateGirl(m_createRules_Continue[i].generationCount);
+                }
+                if (m_areaD_GirlCreateArea.m_CreateGirlNumber <= 0)
+                {
+                    m_areaD_GirlCreateArea.CreateGirl(m_createRules_Continue[i].generationCount);
+                }
+                if (m_areaE_GirlCreateArea.m_CreateGirlNumber <= 0)
+                {
+                    m_areaE_GirlCreateArea.CreateGirl(m_createRules_Continue[i].generationCount);
+                }
             }
         }
-	}
 
+        for (int i = 0; i < m_createRules_Fever.Count; ++i)
+        {
+            if (m_createRules_Fever[i].createTime >= time && m_createRules_Fever[i].fever)
+            {
+
+                m_feverAreaA_GirlCreateArea.CreateGirl(m_createRules_Fever[i].generationCount);
+
+                m_feverAreaB_GirlCreateArea.CreateGirl(m_createRules_Fever[i].generationCount);
+
+                m_feverAreaC_GirlCreateArea.CreateGirl(m_createRules_Fever[i].generationCount);
+
+                m_feverAreaD_GirlCreateArea.CreateGirl(m_createRules_Fever[i].generationCount);
+
+                m_feverAreaE_GirlCreateArea.CreateGirl(m_createRules_Fever[i].generationCount);
+
+                m_createRules_Fever[i].fever = false;
+            }
+        }
+
+        for (int i = 0; i < m_createRules_Normal.Count; ++i)
+        {
+            m_girl_Count = m_areaA_GirlCreateArea.m_CreateGirlNumber + m_areaB_GirlCreateArea.m_CreateGirlNumber + m_areaC_GirlCreateArea.m_CreateGirlNumber + m_areaD_GirlCreateArea.m_CreateGirlNumber + m_areaE_GirlCreateArea.m_CreateGirlNumber + m_feverAreaA_GirlCreateArea.m_CreateGirlNumber + m_feverAreaB_GirlCreateArea.m_CreateGirlNumber + m_feverAreaC_GirlCreateArea.m_CreateGirlNumber + m_feverAreaD_GirlCreateArea.m_CreateGirlNumber + m_feverAreaE_GirlCreateArea.m_CreateGirlNumber;
+            if (m_girl_Count < m_createRules_Normal[i].decisionCount && m_createRules_Normal[i].normal && m_createRules_Normal[i].createTime >= time)
+            {
+                m_areaA_GirlCreateArea.CreateGirl(m_createRules_Normal[i].generationCount);
+           
+                m_areaB_GirlCreateArea.CreateGirl(m_createRules_Normal[i].generationCount);
+           
+                m_areaC_GirlCreateArea.CreateGirl(m_createRules_Normal[i].generationCount);
+           
+                m_areaD_GirlCreateArea.CreateGirl(m_createRules_Normal[i].generationCount);
+           
+                m_areaE_GirlCreateArea.CreateGirl(m_createRules_Normal[i].generationCount);
+                m_createRules_Normal[i].normal = false;
+            }
+        }
+
+	}
+    /*
     void CreateGirl()
     {
         GameObject newGirl = Instantiate(m_girlPrefabs);
@@ -73,13 +151,8 @@ public class GirlCreateSystem : MonoBehaviour {
         //newGirl.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));
         m_Girls.Add(newGirl);
         time = 0.0f;
-    }
+    }*/
 
-    void CreateCheckPosition()
-    {
-        Instantiate(temporaryCreatePosition);
-        temporaryCreatePosition.transform.position = new Vector3(Random.Range(-4.0f, 4.0f), 0.37f, Random.Range(-4.0f, 4.0f));
-        createflag = true;
-    }
+    
 
 }
