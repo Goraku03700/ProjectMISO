@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\LengthAdjust.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameObject\Movable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Input\MultiInput.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Player.cs" />
@@ -71,7 +70,6 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterController.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterHoldTrigger.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Player\Ribbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Result\Production.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\EntryMovable.cs" />
@@ -86,14 +84,16 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlAppearancePosition.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreateRule.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreateSystem.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreater.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlNoPlayerCharacter.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\ScoreManager.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\TitleTest.cs" />
-    <Compile Include="Assets\Throw.cs" />
+    <Compile Include="Assets\Ribbon.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
     <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />

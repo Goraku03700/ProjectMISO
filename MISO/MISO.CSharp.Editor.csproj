@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ProjectName\Scripts\Editor\AutoSave.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Editor\CreateRulePrefabs.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Debug\SceneSharedDataDump.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\InpurManagerGenerator.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputEditorWindow.cs" />
