@@ -7,6 +7,10 @@ public class PlayerCharacterData : ScriptableObject
     [Tooltip("リボンプレハブへのパス")]
     public string ribbonPrefabPath;
 
+    public Vector3 ribbonDefaultScale;
+
+    public float ribbonMaxScale;
+
     [Tooltip("リボンサイズ変更時間間隔")]
     public float ribbonSizeScailingTime;
 }

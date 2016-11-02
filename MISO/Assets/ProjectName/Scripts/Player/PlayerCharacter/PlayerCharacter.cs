@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 using System;
+using Ribbons;
 using System.Collections;
 
 /// <summary>
@@ -73,14 +74,47 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParameters.isPushHoldKey = true;
     }
 
-    private void CreateRibbon()
+    public void InputPull()
     {
-        //instantiate
+
     }
 
-    private void Charge()
+    public void CreateRibbon()
     {
-        m_ribbonSize = Mathf.PingPong(Time.time / 1.0f, 10.0f);
+        GameObject ribbonObject = Instantiate(m_ribbonObject, transform) as GameObject;
+
+        ribbonObject.tag    = tag;
+        m_controlledRibbon  = ribbonObject.GetComponent<Ribbons.Ribbon>();
+
+        m_lengthAdjustTime = .0f;
+
+        //m_controlledRibbon.Throw(transform.position, transform.forward, 1.0f, 1.0f);
+
+        Assert.IsNotNull(ribbonObject);
+        Assert.IsNotNull(m_controlledRibbon);
+    }
+
+    public void SizeAdjustUpdate()
+    {
+        m_lengthAdjustTime += Time.deltaTime;
+
+        float t = m_lengthAdjustTime / m_playerCharacterData.ribbonSizeScailingTime;
+
+        float ribbonSize = Mathf.PingPong(t, m_playerCharacterData.ribbonMaxScale);
+
+        m_controlledRibbon.transform.localScale = Vector3.one * ribbonSize;
+
+        Assert.IsNotNull(controlledRibbon);
+    }
+
+    public void LengthAdjustUpdate()
+    {
+        m_controlledRibbon.Move();
+    }
+
+    public void OnRibbonLanding()
+    {
+        m_animatorParameters.isRibbonLanding = true;
     }
 
     private enum AnimatorParametersID
@@ -105,9 +139,11 @@ public class PlayerCharacter : MonoBehaviour
 
     void Awake()
     {
-        m_playerCharacterData = Resources.Load(m_playerCharacterDataPath) as PlayerCharacterData;
+        m_playerCharacterData   = Resources.Load(m_playerCharacterDataPath)                 as PlayerCharacterData;
+        m_ribbonObject          = Resources.Load(m_playerCharacterData.ribbonPrefabPath)    as GameObject;
 
         Assert.IsNotNull(m_playerCharacterData);
+        Assert.IsNotNull(m_ribbonObject);
     }
 
     void Start()
@@ -116,6 +152,7 @@ public class PlayerCharacter : MonoBehaviour
         m_movable   = GetComponent<Movable>();
 
         Assert.IsNotNull(m_animator);
+        Assert.IsNotNull(m_movable);
 
         _InitializeAnimatorParametersID();
         _InitializeAnimationState();
@@ -187,9 +224,26 @@ public class PlayerCharacter : MonoBehaviour
 
     private Movable m_movable;
 
-    private Ribbon m_controlledRibbon;
+    private GameObject m_ribbonObject;
 
-    private float m_ribbonSize;
+    private Ribbons.Ribbon m_controlledRibbon;
+
+    public Ribbons.Ribbon controlledRibbon
+    {
+        get
+        {
+            return m_controlledRibbon;
+        }
+
+        set
+        {
+            m_controlledRibbon = value;
+        }
+    }
+
+    //private float m_ribbonSize;
+
+    private float m_lengthAdjustTime;
 
     private PlayerCharacterData m_playerCharacterData;
 
@@ -206,4 +260,6 @@ public class PlayerCharacter : MonoBehaviour
     private int[] m_movableStateHashs;
 
     private int[] m_throwStateHashs;
+
+    
 }

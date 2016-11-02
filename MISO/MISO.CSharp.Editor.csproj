@@ -102,6 +102,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputEditorWindow.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputManagerGenerator.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\SceneBackup.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Editor\ScriptableObjectToAsset.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
