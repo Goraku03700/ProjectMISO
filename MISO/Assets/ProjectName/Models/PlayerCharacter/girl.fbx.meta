@@ -1,15 +1,33 @@
 fileFormatVersion: 2
-guid: 12d9b5a48e16610408e79acb197378b7
-timeCreated: 1477555700
+guid: 0ea34d5d91252e14a86a98f9c248991f
+timeCreated: 1478066214
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Torus.001
+    100000: body
+    100002: //RootNode
+    100004: pasted__pasted__polySurface4
+    100006: pasted__polySurface8
+    100008: pPlane5
+    400000: body
+    400002: //RootNode
+    400004: pasted__pasted__polySurface4
+    400006: pasted__polySurface8
+    400008: pPlane5
+    2300000: body
+    2300002: pasted__pasted__polySurface4
+    2300004: pasted__polySurface8
+    2300006: pPlane5
+    3300000: body
+    3300002: pasted__pasted__polySurface4
+    3300004: pasted__polySurface8
+    3300006: pPlane5
+    4300000: body
+    4300002: pasted__polySurface8
+    4300004: pasted__pasted__polySurface4
+    4300006: pPlane5
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -68,7 +86,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SizeAdjust : StateMachineBehaviour {
+public class LengthAdjust : StateMachineBehaviour {
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         m_playerCharacter = animator.gameObject.GetComponent<PlayerCharacter>();
-
-        m_playerCharacter.CreateRibbon();
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        m_playerCharacter.SizeAdjustUpdate();
-    }
+        m_playerCharacter.LengthAdjustUpdate();   
+	}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -32,5 +30,5 @@ public class SizeAdjust : StateMachineBehaviour {
     //
     //}
 
-    PlayerCharacter m_playerCharacter;
+    private PlayerCharacter m_playerCharacter;
 }
