@@ -17,6 +17,14 @@ public class GirlCreater : MonoBehaviour {
     [SerializeField, Header("出現場所(GirlAppearancePoint)の管理配列")]
     List <GirlAppearancePosition> m_appearancePoints;   // 出現位置管理
 
+    [SerializeField]
+    bool m_fever;
+    public bool m_Fever
+    {
+        get { return m_fever; }
+        set { m_fever = value; }
+    }
+
     int m_createGirlNumber;
 
     public int m_CreateGirlNumber
@@ -53,7 +61,7 @@ public class GirlCreater : MonoBehaviour {
     {
         for (int i = 0; i < createCount; ++i)
         {
-            int num = UnityEngine.Random.Range(0, m_appearancePoints.Count - 1);
+            int num = UnityEngine.Random.Range(0, m_appearancePoints.Count);
             /*
             for (int i = 0; i < appearancePoints.Length - 1; ++i)
             {

@@ -8,8 +8,9 @@ public class GirlAppearancePosition : MonoBehaviour
 
     [SerializeField]
     List<GirlNoPlayerCharacter> m_girlObjects;
-    //[SerializeField]
-   
+    [SerializeField, Header("生成位置の範囲設定(生成位置からrangeの値で生成)"),Tooltip("0.1なら生成位置から-0.1～0.1の範囲で生成")]
+    float m_range;
+    
 
     bool isCreate;
     public bool IsCreate
@@ -89,15 +90,10 @@ public class GirlAppearancePosition : MonoBehaviour
         Vector3 pos = new Vector3();
 
         pos = this.transform.position;
-        pos.x *= Random.Range(0.9f, 1.1f);
-        pos.z *= Random.Range(0.9f, 1.1f);
-        Transform girlTransform = this.transform;
-        girlTransform.position = pos;
+        pos.x += Random.Range(-m_range, m_range);
+        pos.z += Random.Range(-m_range, m_range);
         isCreate = false;
         m_girlObjects.Add((GirlNoPlayerCharacter)Instantiate(girlObject, pos, this.transform.rotation));
-        //m_girlObject.Add(girlObject);
         m_girlObjects[m_girlObjects.Count - 1].m_ParntGirlAppearancePosition = this;
-        isCreate = false;
-
     }
 }
