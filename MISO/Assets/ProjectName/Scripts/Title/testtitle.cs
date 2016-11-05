@@ -27,11 +27,11 @@ public class testtitle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_titlestate = TitleState.Start;
-        m_girl = GameObject.Find("Girl").GetComponent<TitleGirl>();
+        m_girl = GameObject.Find("girl").GetComponent<TitleGirl>();
         m_ribbon = GameObject.Find("ribbon2").GetComponent<TitleRibbon>();
         m_titlelogo = GameObject.Find("TitleLogo").GetComponent<TitleLogo>();
         m_titleui = GameObject.Find("TitleUI").GetComponent<TitleUI>();
-        m_invisibleribbon = GameObject.Find("ribbon2/RibbonCollider").GetComponent<InvisibleRibbon>();
+        m_invisibleribbon = GameObject.Find("ribbon2/obj1").GetComponent<InvisibleRibbon>();
 	}
 	
 	// Update is called once per frame
@@ -47,6 +47,7 @@ public class testtitle : MonoBehaviour {
                 if(m_ribbon.ThrowFinishFlag)    //リボンが所定の位置に着いたら遷移を移動させる
                 {
                     m_ribbon.ResetBezierRibbon();
+                    m_girl.RotationGirl();
                     m_titlestate = TitleState.TrailTitleLogo;
                 }
                 break;
