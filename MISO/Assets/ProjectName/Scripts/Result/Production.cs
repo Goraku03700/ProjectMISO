@@ -81,6 +81,11 @@ public class Production : MonoBehaviour {
     private Vector3[]   m_savePodiumStart;   // 位置を保存 
     private float[]     m_podiumLerp;        // 線形補間用
 
+    private bool se023_startFlag;
+    private bool se024_startFlag;
+    private bool bgm003_startFlag;
+
+
     /// <summary>
     /// インスペクタに表示する変数
     /// </summary>
@@ -122,12 +127,15 @@ public class Production : MonoBehaviour {
     private int podiumProdcutionTime;
 
     [SerializeField]
+    private int prodiumProductionWaitTime;
+
+    [SerializeField]
     private Transform rank1PodiumPos;
 
     [SerializeField]
     private Transform rank4PodiumPos;
 
-
+    private int test;
 
 
     // Use this for initialization
@@ -313,13 +321,19 @@ public class Production : MonoBehaviour {
         time = 0;
 
         m_girlColumnCnt = 1;
+
+        se023_startFlag = false;
+        se024_startFlag = false;
+        bgm003_startFlag = false;
+    
     }
 
     // Update is called once per frame
     void Update () {
 
-        
-        switch(resultState)
+
+
+        switch (resultState)
         {
             // 会社を置く演出
             case ResultState.PutCompanyProduction:
@@ -376,7 +390,14 @@ public class Production : MonoBehaviour {
     /// </summary>
     private void _MovePlayerProduction()
     {
+        /*
+        if (test == 0)
+        {
+            BGMManager.instance.PlaySE("se_000", 1.0f);
+            test = 1;
+        }
 
+        */
         // 線形補間の比率を上げる
         m_playerLerpRate += playerMoveSpeed;
 
@@ -411,7 +432,9 @@ public class Production : MonoBehaviour {
     private void _MoveGirlProduction()
     {
         time++;
-        
+
+
+
         // 一定時間ごとに女性を会社から出す
         if (time > girlLineIntervalTime)
         {
@@ -493,10 +516,17 @@ public class Production : MonoBehaviour {
     /// </summary>
     void _UpPodiumProduction()
     {
+        // ドラムロールSE再生
+        if(!se023_startFlag)
+        {
+            BGMManager.instance.PlaySE("se023_BeforeDecideRank", 1.0f);
+            se023_startFlag = true;
+        }
+
         // 時間経過
         time++;
 
-
+        
         for (i = 0; i < ConstPlayerMax; i++)
         {
             // 一定時間経過すると停止する
@@ -590,8 +620,19 @@ public class Production : MonoBehaviour {
         // 時間経過
         time++;
 
+        // スコアを表示する
+        for (i = 0; i < ConstPlayerMax; i++)
+        {
+            m_scoreText[i].text = m_score[i].ToString() + "人";
+
+            // 順位を表示する
+            m_rankingText[i].enabled = true;
+            m_rankingText[i].text = m_playerRanking[i] + 1 + "位";
+        }
+
+
         // 一定時間待ってから演出を開始する
-        if(time < 10)
+        if (time < prodiumProductionWaitTime)
         {
             // オブジェクトの位置を保存しておく
             for (i = 0; i < ConstPlayerMax; i++)
@@ -602,6 +643,23 @@ public class Production : MonoBehaviour {
             return;
         }
 
+        // 順位決定音鳴らす
+        if(!se024_startFlag)
+        {
+            BGMManager.instance.PlaySE("se024_DecideRank");
+            se024_startFlag = true;
+        }
+
+        // BGM鳴らす
+        if(time > 200)
+        {
+            if(!bgm003_startFlag)
+            {
+                BGMManager.instance.PlayBGM("bgm003_Confetti", 0.1f);
+                bgm003_startFlag = true;
+            }
+        }
+ 
         // パーティクル開始
         m_confettiParticleParent.transform.position = m_podium[m_saveTopPlayer].transform.position;
         m_confettiParticleParent.transform.Translate(0.0f, 5.0f, 0.0f, Space.World);
@@ -631,13 +689,9 @@ public class Production : MonoBehaviour {
             // 線形補間で移動する
             m_podium[i].transform.position = Vector3.Lerp(m_savePodiumStart[i], end_pos, m_podiumLerp[i]);
 
-            // スコアを表示する
-            m_scoreText[i].text = m_score[i].ToString() + "人";
-
-            // 順位を表示する
-            m_rankingText[i].enabled = true;
-            m_rankingText[i].text = m_playerRanking[i]+1 + "位";
         }
+
+
 
 
     }

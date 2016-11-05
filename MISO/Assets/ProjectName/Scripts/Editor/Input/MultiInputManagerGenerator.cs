@@ -89,7 +89,7 @@ public class MultiInputManagerGenarator {
         string upKey = "", downKey = "", leftKey = "", rightKey = "", attackKey = "";
 		GetAxisKey(out upKey, out downKey, out leftKey, out rightKey, out attackKey, playerIndex);
 
-		int joystickNum = playerIndex + 1;
+		int joystickNum = playerIndex;
 		
 		// 横方向
 		{

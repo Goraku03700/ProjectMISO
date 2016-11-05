@@ -11,4 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbddd30c7eb3774c828688f336f2304, type: 3}
   m_Name: PlayerCharacterData
   m_EditorClassIdentifier: 
-  ribbonSizeScailingTime: 0
+  ribbonPrefabPath: Prefabs/Ribbon
+  ribbonDefaultScale: {x: 1, y: 1, z: 1}
+  ribbonMaxScale: 2
+  ribbonSizeScailingTime: 1
