@@ -406,7 +406,7 @@ Canvas:
   m_GameObject: {fileID: 309826518}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2614,7 +2614,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 128
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3381,16 +3381,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccc9bc57987ebe429ff22813c4570a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  womenColumnStartMaker: {fileID: 1794165395}
+  girlColumnStartMaker: {fileID: 1794165395}
   girlLineInterval: 0.5
   girlColumnInerver: 0.5
-  womenPrefab: {fileID: 1000013476116324, guid: 25a409766c8f02d468b3ac373fc34e21,
-    type: 2}
-  endMaker: {fileID: 1926425524}
+  girlPrefab: {fileID: 1000013476116324, guid: 25a409766c8f02d468b3ac373fc34e21, type: 2}
+  playerEndMaker: {fileID: 1926425524}
   playerMoveSpeed: 0.01
-  womenMoveSpeed: 0.02
-  womenLineIntervalTime: 10
-  womenColumnMax: 999
+  girlMoveSpeed: 0.02
+  girlLineIntervalTime: 20
+  girlColumnMax: 99
   podiumPrefab: {fileID: 1000011079253128, guid: 2789639f3153e394e9504d9b94fb1320,
     type: 2}
   podiumSeedMax:
@@ -5377,7 +5376,7 @@ GameObject:
   - 65: {fileID: 1794165397}
   - 23: {fileID: 1794165396}
   m_Layer: 0
-  m_Name: WomenColumStartMaker
+  m_Name: GirlColumStartMaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5690,7 +5689,7 @@ GameObject:
   - 65: {fileID: 1926425526}
   - 23: {fileID: 1926425525}
   m_Layer: 0
-  m_Name: EndMaker
+  m_Name: PlayerEndMaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -86,7 +86,7 @@ public class Production : MonoBehaviour {
     /// </summary>
     
     [SerializeField]
-    private Transform womenColumnStartMaker;    // 女性の行列のスタート地点
+    private Transform girlColumnStartMaker;    // 女性の行列のスタート地点
 
     [SerializeField]
     private float girlLineInterval;            // 女性の間隔(行)
@@ -95,22 +95,22 @@ public class Production : MonoBehaviour {
     private float girlColumnInerver;            // 女性の間隔(列)
 
     [SerializeField]
-    private GameObject womenPrefab; // 女性のオブジェクトのプレハブ
+    private GameObject girlPrefab; // 女性のオブジェクトのプレハブ
 
     [SerializeField]
-    private Transform endMaker;     // プレイヤーの移動する終着点
+    private Transform playerEndMaker;     // プレイヤーの移動する終着点
 
     [SerializeField]
     private float playerMoveSpeed;  // プレイヤーの移動速度
 
     [SerializeField]
-    private float womenMoveSpeed;   // 女性の移動速度
+    private float girlMoveSpeed;   // 女性の移動速度
 
     [SerializeField]
-    private int womenLineIntervalTime;
+    private int girlLineIntervalTime;
 
     [SerializeField]
-    private int womenColumnMax;     // 女性の列の最大数
+    private int girlColumnMax;     // 女性の列の最大数
 
     [SerializeField]
     private GameObject podiumPrefab;   
@@ -241,7 +241,6 @@ public class Production : MonoBehaviour {
         m_girlGoalPosition = new Vector3[ConstPlayerMax, max];
         m_girlLerpRate     = new float[ConstPlayerMax, max];
 
-        float offset_x = 0.3f;
 
         // 女性の目標地点を決める
         for (i = 0; i < ConstPlayerMax; i++)
@@ -254,7 +253,7 @@ public class Production : MonoBehaviour {
             for (j = 0; j < m_score[i]; j++)
             {
                 // 女性のオブジェクトを生成
-                m_girl[i, j] = Instantiate(womenPrefab);
+                m_girl[i, j] = Instantiate(girlPrefab);
 
                 // 非アクティブ状態
                 m_girl[i, j].SetActive(false);
@@ -267,7 +266,7 @@ public class Production : MonoBehaviour {
                 //m_womenGoalPosition[i, j] += new Vector3(0.0f, 0.0f, j%8 * 0.5f);
 
                 // ピラミッドver
-                m_girlGoalPosition[i, j] = womenColumnStartMaker.position;
+                m_girlGoalPosition[i, j] = girlColumnStartMaker.position;
                 //m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (m_player[0].transform.position.x - womenColumnStartMaker.position.x) - (offset_x / 2 * (column_max - 1)) + (k * offset_x);
                 m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (girlColumnInerver/2 * (nowColumn_max-1)) + (k * girlLineInterval);
                 m_girlGoalPosition[i, j] += new Vector3(0.0f, 0.0f, (line_cnt - 1) * girlLineInterval);
@@ -277,7 +276,7 @@ public class Production : MonoBehaviour {
                 {
                     k = 0;
                     nowColumn_max++;
-                    if (nowColumn_max > womenColumnMax) nowColumn_max = womenColumnMax;
+                    if (nowColumn_max > girlColumnMax) nowColumn_max = girlColumnMax;
                     line_cnt++;
 
                 }
@@ -387,7 +386,7 @@ public class Production : MonoBehaviour {
             // 終着点設定
             Vector3 end = new Vector3(m_podium[i].transform.position.x,
                                       m_podium[i].transform.position.y,
-                                      endMaker.position.z);
+                                      playerEndMaker.position.z);
 
             // 線形補間で前に移動する
             
@@ -414,7 +413,7 @@ public class Production : MonoBehaviour {
         time++;
         
         // 一定時間ごとに女性を会社から出す
-        if (time > womenLineIntervalTime)
+        if (time > girlLineIntervalTime)
         {
             time = 0;
 
@@ -448,9 +447,9 @@ public class Production : MonoBehaviour {
             m_girlColumnCnt++;
 
             // 列の最大人数になったら人数を固定
-            if (m_girlColumnCnt > womenColumnMax)
+            if (m_girlColumnCnt > girlColumnMax)
             {
-               m_girlColumnCnt = womenColumnMax;
+               m_girlColumnCnt = girlColumnMax;
             }
         }
         
@@ -465,7 +464,7 @@ public class Production : MonoBehaviour {
                 if (m_girlMoveFlag[i, j])
                 {
                     // 進める
-                    m_girlLerpRate[i, j] += womenMoveSpeed;
+                    m_girlLerpRate[i, j] += girlMoveSpeed;
 
                     // 目的地まで到達したらそこに固定
                     if (m_girlLerpRate[i, j] >= 1.0f)

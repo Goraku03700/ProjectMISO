@@ -18,7 +18,6 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
-    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,15 +60,14 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ProjectName\Scripts\GameObject\Movable.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlAppearancePosition.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlCreateRule.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlCreateSystem.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlCreater.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlNoPlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Input\MultiInput.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Player.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacter.cs" />
@@ -78,6 +76,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterHoldTrigger.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Result\Production.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Sound\BGMManager.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\EntryMovable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\ExitMovable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\SizeAdjust.cs" />
@@ -87,14 +86,8 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleLogo.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleRibbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleUI.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
-    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlAppearancePosition.cs" />
-    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreateRule.cs" />
-    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreateSystem.cs" />
-    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlCreater.cs" />
-    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GirlCreate\GirlNoPlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
