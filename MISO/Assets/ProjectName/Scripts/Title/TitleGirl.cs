@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// タイトルでの女性の動きのクラス
+/// </summary>
 public class TitleGirl : MonoBehaviour {
 
     const float m_limit_x = 25.0f;  //女性が引きずる限界
@@ -14,7 +17,7 @@ public class TitleGirl : MonoBehaviour {
 	void Start () {
         m_girl = GameObject.Find("Girl"); //オブジェクトのロード
         m_startpos = this.transform.position;
-        m_nowpos = m_startpos; 
+        m_nowpos = m_startpos;
 	}
 	
 	// Update is called once per frame
@@ -40,6 +43,14 @@ public class TitleGirl : MonoBehaviour {
             this.transform.position = m_nowpos;
         }
 
+    }
+
+    /// <summary>
+    /// α版のみ。じょせいを回転させる
+    /// </summary>
+    public void RotationGirl()
+    {
+        transform.Rotate(0, 180, 0);
     }
 
     /// <summary>

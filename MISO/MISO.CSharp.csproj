@@ -61,6 +61,12 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\LengthAdjust.cs" />
@@ -89,6 +95,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleLogo.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleRibbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleUI.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\ScoreManager.cs" />

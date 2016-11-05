@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// タイトルで使用するリボンの表示クラス
+/// </summary>
 public class InvisibleRibbon : MonoBehaviour {
 
     private MeshRenderer m_meshrender;

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 主なタイトルのクラス
+/// </summary>
 public class testtitle : MonoBehaviour {
 
     //タイトルの演出シーンの状態
@@ -19,13 +22,12 @@ public class testtitle : MonoBehaviour {
     InvisibleRibbon m_invisibleribbon;
     TitleLogo m_titlelogo;
     TitleUI m_titleui;
-    
 
 
 	// Use this for initialization
 	void Start () {
         m_titlestate = TitleState.Start;
-        m_girl = GameObject.Find("Girl").GetComponent<TitleGirl>();
+        m_girl = GameObject.Find("girl").GetComponent<TitleGirl>();
         m_ribbon = GameObject.Find("ribbon2").GetComponent<TitleRibbon>();
         m_titlelogo = GameObject.Find("TitleLogo").GetComponent<TitleLogo>();
         m_titleui = GameObject.Find("TitleUI").GetComponent<TitleUI>();
@@ -45,6 +47,7 @@ public class testtitle : MonoBehaviour {
                 if(m_ribbon.ThrowFinishFlag)    //リボンが所定の位置に着いたら遷移を移動させる
                 {
                     m_ribbon.ResetBezierRibbon();
+                    m_girl.RotationGirl();
                     m_titlestate = TitleState.TrailTitleLogo;
                 }
                 break;
