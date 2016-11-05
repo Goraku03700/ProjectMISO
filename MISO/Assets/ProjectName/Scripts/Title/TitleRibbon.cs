@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// タイトルのリボンのクラス
+/// 
+/// </summary>
 public class TitleRibbon : MonoBehaviour {
 
     const float m_limit_x = 0.0f;   //タイトルロゴが引きずる限界

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 主なタイトルのクラス
+/// </summary>
 public class testtitle : MonoBehaviour {
 
     //タイトルの演出シーンの状態
@@ -19,7 +22,6 @@ public class testtitle : MonoBehaviour {
     InvisibleRibbon m_invisibleribbon;
     TitleLogo m_titlelogo;
     TitleUI m_titleui;
-    
 
 
 	// Use this for initialization
@@ -29,7 +31,7 @@ public class testtitle : MonoBehaviour {
         m_ribbon = GameObject.Find("ribbon2").GetComponent<TitleRibbon>();
         m_titlelogo = GameObject.Find("TitleLogo").GetComponent<TitleLogo>();
         m_titleui = GameObject.Find("TitleUI").GetComponent<TitleUI>();
-        m_invisibleribbon = GameObject.Find("ribbon2/obj1").GetComponent<InvisibleRibbon>();
+        m_invisibleribbon = GameObject.Find("ribbon2/RibbonCollider").GetComponent<InvisibleRibbon>();
 	}
 	
 	// Update is called once per frame

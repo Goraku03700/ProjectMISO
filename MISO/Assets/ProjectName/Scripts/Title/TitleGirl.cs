@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// タイトルでの女性の動きのクラス
+/// </summary>
 public class TitleGirl : MonoBehaviour {
 
     const float m_limit_x = 25.0f;  //女性が引きずる限界

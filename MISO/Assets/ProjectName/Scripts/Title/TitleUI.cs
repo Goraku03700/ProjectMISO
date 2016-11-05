@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// タイトルのUIに関するクラス
+/// ここでは表示の切り替え・拡縮の動きを管理しています
+/// </summary>
 public class TitleUI : MonoBehaviour {
 
     private const float ScaleLimit_x = 2.0f;
