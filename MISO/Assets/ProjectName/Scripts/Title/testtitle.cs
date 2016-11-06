@@ -23,6 +23,10 @@ public class testtitle : MonoBehaviour {
     TitleLogo m_titlelogo;
     TitleUI m_titleui;
 
+    // BGM・SE用
+    private bool bgm000_startFlag;
+    private bool se001_startFlag;
+    private bool se017_startFlag;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +36,10 @@ public class testtitle : MonoBehaviour {
         m_titlelogo = GameObject.Find("TitleLogo").GetComponent<TitleLogo>();
         m_titleui = GameObject.Find("TitleUI").GetComponent<TitleUI>();
         m_invisibleribbon = GameObject.Find("ribbon2/obj1").GetComponent<InvisibleRibbon>();
+
+        bgm000_startFlag = false;
+        se001_startFlag = false;
+        se017_startFlag = false;
 	}
 	
 	// Update is called once per frame
@@ -44,6 +52,14 @@ public class testtitle : MonoBehaviour {
 
             case TitleState.Ribbon: //リボンを投げる
                 m_ribbon.ThrowRibbon();
+
+                // 投げるSE鳴らす
+                if(!se001_startFlag)
+                {
+                    BGMManager.instance.PlaySE("se001_ThrowJustRibbon");
+                    se001_startFlag = true;
+                }
+                
                 if(m_ribbon.ThrowFinishFlag)    //リボンが所定の位置に着いたら遷移を移動させる
                 {
                     m_ribbon.ResetBezierRibbon();
@@ -81,9 +97,24 @@ public class testtitle : MonoBehaviour {
 
             case TitleState.DisplaytitleLogo:   //UIを表示。
                 m_titleui.ScaleTitleUI();
+
+                // BGM鳴らす
+                if(!bgm000_startFlag)
+                {
+                    BGMManager.instance.PlayBGM("bgm000_Title", 0.1f);
+                    bgm000_startFlag = true;
+                }
+
                 if (Input.GetKeyDown(KeyCode.A))    //入力で次の遷移に。
                 {
                     m_titlestate = TitleState.Finish;
+                
+                    // 遷移SE鳴らす
+                    if(!se017_startFlag)
+                    {
+                        BGMManager.instance.PlaySE("se017_DecideButton");
+                        se017_startFlag = true;
+                    }
                 }
                 break;
 

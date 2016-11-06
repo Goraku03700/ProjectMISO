@@ -376,7 +376,7 @@ public class Production : MonoBehaviour {
         // 親子関係を解除する(その場に置く)
         for (i = 0; i < ConstPlayerMax; i++)
         {
-            m_player[i].transform.DetachChildren();
+            //m_player[i].transform.DetachChildren();
         }
         
         // 演出02に遷移する
