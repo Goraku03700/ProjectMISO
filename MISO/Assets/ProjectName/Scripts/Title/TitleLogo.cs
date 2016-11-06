@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// タイトルのロゴに関するクラス
+/// ここで行われているのは、ロゴの演出をしている。
+/// </summary>
 public class TitleLogo : MonoBehaviour {
 
     private const float Limit_x = 0.0f;   //ベジェの動きの限界値
