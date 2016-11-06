@@ -11,6 +11,8 @@ public class PlayerCharacterData : ScriptableObject
 
     public float ribbonMaxScale;
 
+    public float ribbonMinScale;
+
     [Tooltip("リボンサイズ変更時間間隔")]
     public float ribbonSizeScailingTime;
 }

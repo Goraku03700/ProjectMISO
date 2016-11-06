@@ -79,6 +79,61 @@ public class PlayerCharacterController : MonoBehaviour {
         float vertical      = MultiInput.GetAxis(MultiInput.Key.Vertical,   m_joypadNumber);
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
+
+        if (MultiInput.GetButton("OK", m_joypadNumber))
+        {
+            m_controlledPlayerCharacter.InputCharge();
+        }
+        else if (MultiInput.GetButtonUp("OK", m_joypadNumber))
+        {
+            m_controlledPlayerCharacter.InputThrow();
+        }
+
+        if (MultiInput.GetButtonDown("Cancel", m_joypadNumber))
+        {
+            //m_controlledPlayerCharacter.InputHold();
+            m_controlledPlayerCharacter.InputPull();
+        }
+
+        switch (m_releaseInputState)
+        {
+            case ReleaseInputState.CheckHorizontal:
+
+                if (horizontal != .0f)
+                {
+                    m_releaseInputState = ReleaseInputState.CheckVertical;
+                    m_releaseInputCheck++;
+                }
+
+                break;
+
+            case ReleaseInputState.CheckVertical:
+
+                if (vertical != .0f)
+                {
+                    m_releaseInputState = ReleaseInputState.CheckHorizontal;
+                    m_releaseInputCheck++;
+                }
+
+                break;
+
+            default:
+                break;
+        }
+
+        if (m_releaseInputCheck >= 4)
+        {
+            m_releaseInput++;
+
+            m_releaseInputCheck = 0;
+        }
+
+        if (m_releaseInput >= 2)
+        {
+            m_releaseInput = 0;
+
+            m_controlledPlayerCharacter.InputRelease();
+        }
     }
 
     void _UpdateInputKeyboard()
@@ -92,28 +147,84 @@ public class PlayerCharacterController : MonoBehaviour {
         {
             m_controlledPlayerCharacter.InputCharge();
         }
-        else if(Input.GetButton("OK"))
+        else if(Input.GetButtonUp("OK"))
         {
             m_controlledPlayerCharacter.InputThrow();
         }
 
-        if(Input.GetButton("Cancel"))
+        if(Input.GetButtonDown("Cancel"))
         {
-            m_controlledPlayerCharacter.InputHold();
+            //m_controlledPlayerCharacter.InputHold();
+            m_controlledPlayerCharacter.InputPull();
+        }
+
+        switch (m_releaseInputState)
+        {
+            case ReleaseInputState.CheckHorizontal:
+
+                if(horizontal != .0f)
+                {
+                    m_releaseInputState = ReleaseInputState.CheckVertical;
+                    m_releaseInputCheck ++;
+                }
+
+                break;
+
+            case ReleaseInputState.CheckVertical:
+
+                if(vertical != .0f)
+                {
+                    m_releaseInputState = ReleaseInputState.CheckHorizontal;
+                    m_releaseInputCheck ++;
+                }
+
+                break;
+
+            default:
+                break;
+        }
+
+        if(m_releaseInputCheck >= 4)
+        {
+            m_releaseInput++;
+
+            m_releaseInputCheck = 0;
+        }
+
+        if(m_releaseInput >= 2)
+        {
+            m_releaseInput = 0;
+
+            m_controlledPlayerCharacter.InputRelease();
         }
     }
 
-    GameObject      m_controlledPlayerCharacterObject;
-    PlayerCharacter m_controlledPlayerCharacter;
+    enum ReleaseInputState
+    {
+        CheckHorizontal,
+        CheckVertical,
+    }
+
+    private GameObject m_controlledPlayerCharacterObject;
+    private PlayerCharacter m_controlledPlayerCharacter;
+
+    [SerializeField]
+    private ReleaseInputState m_releaseInputState;
+
+    [SerializeField]
+    private int m_releaseInputCheck;
+
+    [SerializeField]
+    private int m_releaseInput;
 
 #if UNITY_EDITOR
 
     [SerializeField]
-    bool m_isKeybordPlay;
+    private bool m_isKeybordPlay;
 
 #endif      // #if UNITY_EDITOR
 
 
     [SerializeField]
-    MultiInput.JoypadNumber m_joypadNumber;
+    private MultiInput.JoypadNumber m_joypadNumber;
 }
