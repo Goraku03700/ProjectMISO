@@ -91,6 +91,10 @@ public class GirlCreateSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            BGMManager.instance.PlaySE("Soap_Jump");
+        }
         m_limit -= Time.deltaTime;
         m_girl_Count = 0;
         for (int i = 0; i < m_createRules_Continue.Count; ++i)
