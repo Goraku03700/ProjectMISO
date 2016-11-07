@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Ribbons
+namespace Players
 {
-    public class Throw : StateMachineBehaviour
+    public class Pull : StateMachineBehaviour
     {
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            m_ribbon = animator.gameObject.GetComponent<Ribbon>();
+            m_playerCharacter = animator.gameObject.GetComponent<PlayerCharacter>();
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            m_ribbon.ThrowUpdate();
+            m_playerCharacter.PullUpdate();
         }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -32,6 +32,7 @@ namespace Ribbons
         //
         //}
 
-        private Ribbon m_ribbon;
+        private PlayerCharacter m_playerCharacter;
     }
+
 }
