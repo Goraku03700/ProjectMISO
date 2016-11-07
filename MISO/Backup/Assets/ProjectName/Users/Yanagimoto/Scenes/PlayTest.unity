@@ -3528,6 +3528,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013982750102, guid: b60c367430f004d468feeb9ae758d6a8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b60c367430f004d468feeb9ae758d6a8, type: 2}
   m_IsPrefabParent: 0
@@ -4521,6 +4525,16 @@ Prefab:
       propertyPath: m_LimitTimeUI
       value: 
       objectReference: {fileID: 820324505}
+    - target: {fileID: 114000010045568256, guid: 3d43b61d2cd61b346b5789575f4a0eb4,
+        type: 2}
+      propertyPath: m_Score1
+      value: 
+      objectReference: {fileID: 1438044096}
+    - target: {fileID: 114000010045568256, guid: 3d43b61d2cd61b346b5789575f4a0eb4,
+        type: 2}
+      propertyPath: m_Score2
+      value: 
+      objectReference: {fileID: 1173367130}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d43b61d2cd61b346b5789575f4a0eb4, type: 2}
   m_IsPrefabParent: 0
