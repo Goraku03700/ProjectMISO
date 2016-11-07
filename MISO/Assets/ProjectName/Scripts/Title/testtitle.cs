@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 /// <summary>
 /// 主なタイトルのクラス
 /// </summary>
@@ -121,6 +121,7 @@ public class testtitle : MonoBehaviour {
             case TitleState.Finish: //終了。ここで他の遷移に移動する
                 m_titleui.Activate(false);
                 Debug.Log("終了");
+                SceneManager.LoadScene("PlayTest");
                 break;
         }
 	}

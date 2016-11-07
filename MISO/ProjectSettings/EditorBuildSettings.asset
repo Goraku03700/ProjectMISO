@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ProjectName/Users/Yanagimoto/Scenes/TitleTest.unity
+    path: Assets/ProjectName/Scenes/Title/Title.unity
   - enabled: 1
-    path: Assets/ProjectName/Users/Yanagimoto/Scenes/ScriptTest.unity
+    path: Assets/ProjectName/Users/Yanagimoto/Scenes/PlayTest.unity
+  - enabled: 1
+    path: Assets/ProjectName/Scenes/Result/Result.unity
