@@ -76,7 +76,7 @@ public class PlayerCharacterController : MonoBehaviour {
     void _UpdateInputJoypad()
     {
         float horizontal    = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber);
-        float vertical      = -MultiInput.GetAxis(MultiInput.Key.Vertical,   m_joypadNumber);
+        float vertical      = MultiInput.GetAxis(MultiInput.Key.Vertical,   m_joypadNumber);
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 

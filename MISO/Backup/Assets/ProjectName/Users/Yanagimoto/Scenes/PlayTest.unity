@@ -4512,7 +4512,7 @@ Prefab:
     - target: {fileID: 114000010045568256, guid: 3d43b61d2cd61b346b5789575f4a0eb4,
         type: 2}
       propertyPath: m_limit
-      value: 180
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 114000010045568256, guid: 3d43b61d2cd61b346b5789575f4a0eb4,
         type: 2}

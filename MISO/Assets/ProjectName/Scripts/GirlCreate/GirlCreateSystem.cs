@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GirlCreateSystem : MonoBehaviour {
     /*
@@ -159,7 +160,10 @@ public class GirlCreateSystem : MonoBehaviour {
                 m_createRules_Normal[i].m_normal = false;
             }
         }
-
+        if(m_limit <0.0f)
+        {
+            SceneManager.LoadScene("Result");
+        }
 	}
 
     public void GetNPC_Player(int i)
