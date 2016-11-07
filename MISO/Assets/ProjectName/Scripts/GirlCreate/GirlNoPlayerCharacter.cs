@@ -58,9 +58,26 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 	void Start () {
         m_status = State.Generation;
         m_time = 0.0f;
+        m_targetPosition = GetRandomPositionOnLevel();
 	}
 
-    
+    [SerializeField]
+    float m_speed = 0.15f;
+    [SerializeField]
+    float m_rotationSmooth = 40f;
+
+    public Vector3 m_targetPosition;
+
+    private float m_changeTargetSqrDistance = 0.5f;
+
+    [SerializeField]
+    float m_levelSize;
+
+    public Vector3 GetRandomPositionOnLevel()
+    {
+        m_levelSize = 15f;
+        return new Vector3(Random.Range(-m_levelSize, m_levelSize), 0, Random.Range(-m_levelSize, m_levelSize));
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -91,8 +108,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 {
                     m_status = State.Alive;
                     m_girlMesh.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
-                    m_movable.direction = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
-                    m_movable.speed = 1.0f;
+                    m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
+                    //m_movable.speed = 4.0f;
                     m_time = 0.0f;
                 }
                 //m_status = State.Alive;
@@ -100,11 +117,22 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             case State.Alive:
             {
-                
+                float sqrDistanceToTarget = Vector3.SqrMagnitude(this.transform.position - m_targetPosition);
+                if (sqrDistanceToTarget < m_changeTargetSqrDistance)
+                {
+                    m_targetPosition = GetRandomPositionOnLevel();
+                }
+
+                // 目標地点の方向を向く
+                Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * m_rotationSmooth);
+
+                // 前方に進む
+                transform.Translate(Vector3.forward * m_speed * Time.deltaTime);
                 //ここに移動を実装予定
                 if (m_time > 4.0f)
                 {
-                    m_movable.direction = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
+                    //m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
                     m_time = 0.0f;
                 }
 
