@@ -376,7 +376,7 @@ public class Production : MonoBehaviour {
         // 親子関係を解除する(その場に置く)
         for (i = 0; i < ConstPlayerMax; i++)
         {
-            m_player[i].transform.DetachChildren();
+            //m_player[i].transform.DetachChildren();
         }
         
         // 演出02に遷移する
@@ -598,6 +598,9 @@ public class Production : MonoBehaviour {
 
             // 数字のランダムで表示
             m_scoreText[i].text = Random.Range(10, 99 + 1).ToString() + "人";
+
+            // テスト
+            m_scoreText[0].text = time.ToString();
         }
 
         
@@ -655,7 +658,7 @@ public class Production : MonoBehaviour {
         {
             if(!bgm003_startFlag)
             {
-                BGMManager.instance.PlayBGM("bgm003_Confetti", 0.1f);
+                BGMManager.instance.PlayBGM("bgm002_Result", 0.1f);
                 bgm003_startFlag = true;
             }
         }
