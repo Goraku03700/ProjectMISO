@@ -785,10 +785,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_status: 0
   m_time: 0
-  m_scale: 5
+  m_scale: 18
   m_movable: {fileID: 114000014286938260}
   m_girlMesh: {fileID: 1000011533978290}
-  m_speed: 0.25
+  m_speed: 2
   m_rotationSmooth: 40
   m_targetPosition: {x: 0, y: 0, z: 0}
   m_levelSize: 0

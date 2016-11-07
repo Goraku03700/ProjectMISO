@@ -75,7 +75,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 
     public Vector3 GetRandomPositionOnLevel()
     {
-        m_levelSize = 5f;
+        m_levelSize = 15f;
         return new Vector3(Random.Range(-m_levelSize, m_levelSize), 0, Random.Range(-m_levelSize, m_levelSize));
     }
 	
