@@ -165,6 +165,14 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             case State.None:
             {
+                if (this.gameObject.tag == "Player1")
+                {
+                    m_parntGirlAppearancePosition.m_ParntGirlCreater.m_ParntGirlCreateSystem.GetNPC_Player(0);
+                }
+                if (this.gameObject.tag == "Player2")
+                {
+                    m_parntGirlAppearancePosition.m_ParntGirlCreater.m_ParntGirlCreateSystem.GetNPC_Player(1);
+                }
                 //取得をUIに通知
                 //m_girlMesh.SetActive(false);
                 //m_parntGirlAppearancePosition.IsDestroy = true;
@@ -188,8 +196,16 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         int i = LayerMask.NameToLayer("Ribbon");
         if(collision.gameObject.layer == i)
         {
+            if(collision.gameObject.tag == "Player1")
+            {
+                this.gameObject.tag = collision.gameObject.tag;
+            }
+            if (collision.gameObject.tag == "Player2")
+            {
+                this.gameObject.tag = collision.gameObject.tag;
+            }
             m_isCaught = true;
-            //this.m_status = State.None;
+            this.m_status = State.None;
         }
     }
 
