@@ -95,6 +95,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\ScoreManager.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\TimeUIScript.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
