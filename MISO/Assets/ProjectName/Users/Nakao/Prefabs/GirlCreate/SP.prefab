@@ -874,7 +874,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 1
+      scalar: 0.8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1025,7 +1025,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
     startSize:
-      scalar: 0.18
+      scalar: 2.52
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1041,7 +1041,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.9444444
+          value: 0.9444445
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1236,9 +1236,9 @@ ParticleSystem:
     radius: 0.25
     angle: 25
     length: 5
-    boxX: 0.15
-    boxY: 0.15
-    boxZ: 0.15
+    boxX: 1
+    boxY: 5
+    boxZ: 1
     arc: 360
     placementMode: 0
     m_Mesh: {fileID: 0}
@@ -1254,7 +1254,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 30
+      scalar: 40
       maxCurve:
         serializedVersion: 2
         m_Curve:
