@@ -496,7 +496,10 @@ public class Production : MonoBehaviour {
                     }
 
                     // 女性の移動
-                    m_girl[i, j].transform.position = Vector3.Lerp(m_company[i].transform.position,
+                    Vector3 startPos = new Vector3(m_company[i].transform.position.x,
+                                                   m_player[i].transform.position.y,
+                                                   m_company[i].transform.position.z);
+                    m_girl[i, j].transform.position = Vector3.Lerp(startPos,//m_company[i].transform.position,
                                                                    m_girlGoalPosition[i, j],
                                                                    m_girlLerpRate[i, j]);
                 }
