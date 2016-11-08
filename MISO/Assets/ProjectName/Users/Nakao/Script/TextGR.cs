@@ -11,10 +11,11 @@ namespace UnityEngine.UI
         public float Offset = 0f; 
  
         [SerializeField] 
-        private Color32 TopColor = Color.white; 
+        public Color32 TopColor = Color.white; 
  
         [SerializeField] 
-        private Color32 BottomColor = Color.black; 
+        public Color32 BottomColor = Color.black; 
+
  
         protected TextGR() 
         { } 

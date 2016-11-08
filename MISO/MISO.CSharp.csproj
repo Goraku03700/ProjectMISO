@@ -102,6 +102,7 @@
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\TitleTest.cs" />
     <Compile Include="Assets\Pull.cs" />
     <Compile Include="Assets\RibbonTriggerCollider.cs" />
+    <Compile Include="Assets\TextGradation.cs" />
     <Compile Include="Assets\Throw.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
