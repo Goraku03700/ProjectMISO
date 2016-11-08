@@ -81,6 +81,8 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\Ribbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Result\Production.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Select\InfoText.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Select\SelectScene.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Sound\BGMManager.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\EntryMovable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\ExitMovable.cs" />
