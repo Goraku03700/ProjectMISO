@@ -4,7 +4,7 @@ using System.Collections;
 namespace UnityEngine.UI 
 { 
     [AddComponentMenu("UI/Effects/Custom/Gradient", 14)] 
-    public class TextGR : BaseMeshEffect 
+    public class TextGradationEffect : BaseMeshEffect 
     { 
         [SerializeField] 
         [Range(-1.5f, 1.5f)] 
@@ -14,10 +14,10 @@ namespace UnityEngine.UI
         public Color32 TopColor = Color.white; 
  
         [SerializeField] 
-        public Color32 BottomColor = Color.black; 
+        public Color32 BottomColor = Color.black;
 
- 
-        protected TextGR() 
+
+        protected TextGradationEffect() 
         { } 
  
         //------------------------------------------------------------- 
