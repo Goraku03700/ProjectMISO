@@ -17,6 +17,8 @@ public class TextGradation : MonoBehaviour {
     float m_limit;
     float m_time;
 
+    
+
     [SerializeField]
     int m_iterator;
 
@@ -44,7 +46,6 @@ public class TextGradation : MonoBehaviour {
             {
                 m_iterator = 0;
             }
-            
         }
         for (int i = 0; i < m_topColors.Length; ++i)
         {
@@ -66,5 +67,6 @@ public class TextGradation : MonoBehaviour {
             m_Texts[i].enabled = false;
             m_Texts[i].enabled = true;
         }
+
     }
 }

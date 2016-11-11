@@ -475,6 +475,10 @@ Prefab:
       propertyPath: m_Name
       value: GirlCreateSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013819393060, guid: 3d5277bb534e9cf45871165cbf71e209, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d5277bb534e9cf45871165cbf71e209, type: 2}
   m_IsPrefabParent: 0
@@ -1515,7 +1519,7 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 4290969855
   m_Texts: []
-  m_time: 0
+  m_limit: 0.1
   m_iterator: 0
 --- !u!1 &1291606617
 GameObject:

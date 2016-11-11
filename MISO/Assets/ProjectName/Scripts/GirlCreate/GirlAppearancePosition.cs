@@ -33,6 +33,19 @@ public class GirlAppearancePosition : MonoBehaviour
         get { return m_parntGirlCreater; }
         set { m_parntGirlCreater = value; }
     }
+
+    Vector2 m_movementAreaX; //xに最小値yに最大値
+    public Vector2 m_MovementAreaX
+    {
+        get { return m_movementAreaX; }
+        set { m_movementAreaX = value; }
+    }
+    Vector2 m_movementAreaZ;
+    public Vector2 m_MovementAreaZ
+    {
+        get { return m_movementAreaZ; }
+        set { m_movementAreaZ = value; }
+    }
     
 
 	// Use this for initialization
@@ -95,5 +108,8 @@ public class GirlAppearancePosition : MonoBehaviour
         isCreate = false;
         m_girlObjects.Add((GirlNoPlayerCharacter)Instantiate(girlObject, pos, this.transform.rotation));
         m_girlObjects[m_girlObjects.Count - 1].m_ParntGirlAppearancePosition = this;
+        m_girlObjects[m_girlObjects.Count - 1].m_MovementAreaX = m_movementAreaX;
+        m_girlObjects[m_girlObjects.Count - 1].m_MovementAreaZ = m_movementAreaZ;
+        m_girlObjects[m_girlObjects.Count - 1].GetRandomPositionOnLevel();
     }
 }
