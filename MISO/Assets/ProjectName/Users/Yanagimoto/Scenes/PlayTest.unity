@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9c188b0dc5fee48971b9a12edcc807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerCharacterDataPath: ScriptableObject/PlayerCharacterData
+  m_playerCharacterDataPath: ScriptableObjects/PlayerCharacterData
 --- !u!95 &25219416
 Animator:
   serializedVersion: 3
@@ -236,7 +236,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 25219411}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 5
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_releaseInputState: 0
   m_releaseInputCheck: 0
   m_releaseInput: 0
-  m_isKeybordPlay: 0
+  m_isKeybordPlay: 1
   m_joypadNumber: 1
 --- !u!1 &820324503
 GameObject:
@@ -1464,9 +1464,9 @@ GameObject:
   - 54: {fileID: 1683278650}
   - 135: {fileID: 1683278653}
   - 95: {fileID: 1683278656}
-  - 114: {fileID: 1683278654}
   - 114: {fileID: 1683278655}
   - 114: {fileID: 1683278651}
+  - 114: {fileID: 1683278654}
   m_Layer: 8
   m_Name: PlayerCharacter1
   m_TagString: Player1
@@ -1497,7 +1497,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1683278648}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 5
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -1543,7 +1543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9c188b0dc5fee48971b9a12edcc807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerCharacterDataPath: ScriptableObject/PlayerCharacterData
+  m_playerCharacterDataPath: ScriptableObjects/PlayerCharacterData
 --- !u!114 &1683278655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_direction: {x: 0, y: 0, z: 0}
-  m_speed: 30
+  m_speed: 5
   m_forceMode: 2
 --- !u!95 &1683278656
 Animator:

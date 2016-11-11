@@ -60,7 +60,7 @@ public class PlayerCharacterController : MonoBehaviour {
 	
 	void Update ()
     {
-        _UpdateInputJoypad();
+        //_UpdateInputJoypad();
 
 #if UNITY_EDITOR
 
@@ -80,7 +80,7 @@ public class PlayerCharacterController : MonoBehaviour {
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
-        if (MultiInput.GetButton("OK", m_joypadNumber))
+        if (MultiInput.GetButton("Attack", m_joypadNumber))
         {
             m_controlledPlayerCharacter.InputCharge();
         }
