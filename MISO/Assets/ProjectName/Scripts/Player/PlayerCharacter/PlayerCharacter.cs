@@ -70,7 +70,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught"))
         {
-            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRelease]);
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
 
             gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
@@ -188,7 +188,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]);
 
-            Destroy(m_controlledRibbon.gameObject);
+            //Destroy(m_controlledRibbon.gameObject);
             m_controlledRibbon = null;
         }
     }
@@ -209,6 +209,13 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public void CatchRelease()
+    {
+        m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
+
+        gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
+    }
+
     public void Collect()
     {
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsCollect]);
@@ -224,7 +231,7 @@ public class PlayerCharacter : MonoBehaviour
         IsPushHoldKey,
         IsRibbonLanding,
         IsPulled,
-        IsRelease,
+        InputRelease,
         IsCollect,
         IsBreak,
         Velocity,
@@ -254,6 +261,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animator  = GetComponent<Animator>();
         m_movable   = GetComponent<Movable>();
         m_collider  = GetComponent<SphereCollider>();   
+        m_player    = transform.parent.GetComponent<Player>();
 
         Assert.IsNotNull(m_animator);
         Assert.IsNotNull(m_movable);
@@ -281,7 +289,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParametersHashs[(int)AnimatorParametersID.IsPushHoldKey]      = Animator.StringToHash("isPushHoldKey");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]    = Animator.StringToHash("isRibbonLanding");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]           = Animator.StringToHash("isPulled");
-        m_animatorParametersHashs[(int)AnimatorParametersID.IsRelease]          = Animator.StringToHash("isRelease");
+        m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]       = Animator.StringToHash("inputRelease");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsCollect]          = Animator.StringToHash("isCollect");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]            = Animator.StringToHash("isBreak");
         m_animatorParametersHashs[(int)AnimatorParametersID.Velocity]           = Animator.StringToHash("velocity");
@@ -370,14 +378,27 @@ public class PlayerCharacter : MonoBehaviour
 
     private float m_lengthAdjustTime;
 
+    private Player m_player;
+
+    public Player player
+    {
+        get
+        {
+            return m_player;
+        }
+
+        set
+        {
+            m_player = value;
+        }
+    }
+
     private PlayerCharacterData m_playerCharacterData;
     
     public PlayerCharacterData playerCharacterData
     {
         get { return m_playerCharacterData; }
     }
-
-
 
     private SphereCollider m_collider;
 

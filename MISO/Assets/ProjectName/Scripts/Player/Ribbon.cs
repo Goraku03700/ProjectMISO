@@ -69,6 +69,8 @@ namespace Ribbons
 
         public void Pull(Vector3 position, float power)
         {
+            m_triggerColliderObject.SetActive(false);
+
             Vector3 direction = position - transform.position;
 
             m_rigidbody.AddForce(direction.normalized * power);
@@ -88,20 +90,16 @@ namespace Ribbons
         {
             m_animatorParameters.isPulled = true;
 
-            foreach(var coughtObject in m_triggerCollider.coughtObjects)
+            foreach(var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
-                // todo layermask
-                if(coughtObject.layer == LayerMask.NameToLayer("CaughtPlayerCharacter"))
-                {
-                    PlayerCharacter playerCharacter = coughtObject.GetComponent<PlayerCharacter>();
+                playerCharacter.Collect();
+            }
 
-                    playerCharacter.Collect();
-                }
+            foreach (var girl in m_triggerCollider.coughtGirls)
+            {
+                girl.Collect();
 
-                if(coughtObject.layer == LayerMask.NameToLayer("Girl"))
-                {
-                    
-                }
+                m_playerCharacter.player.score++;
             }
 
             Destroy(gameObject);
@@ -109,7 +107,17 @@ namespace Ribbons
 
         public void Breake()
         {
-            playerCharacter.BreakeRibbon();
+            foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
+            {
+                playerCharacter.CatchRelease();
+            }
+
+            foreach (var girl in m_triggerCollider.coughtGirls)
+            {
+                girl.CatchRibbonRelease();
+            }
+
+            m_playerCharacter.BreakeRibbon();
         }
 
         private enum AnimatorParametersID
