@@ -102,6 +102,10 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\girl_sample.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\particle_sample.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\sample.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\SimpleParticlePack\Scripts\ParticleTester.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\ScoreManager.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\TimeUIScript.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
@@ -139,5 +143,5 @@
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\readme.txt" />
     <None Include="Assets\UnityChan\README_SD_UnityChan.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
