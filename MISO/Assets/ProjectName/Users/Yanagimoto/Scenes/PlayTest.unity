@@ -553,7 +553,7 @@ MonoBehaviour:
   m_releaseInputState: 0
   m_releaseInputCheck: 0
   m_releaseInput: 0
-  m_isKeybordPlay: 0
+  m_isKeybordPlay: 1
   m_joypadNumber: 1
 --- !u!1 &860522177
 GameObject:
@@ -998,10 +998,6 @@ Prefab:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1000010432293650, guid: b60c367430f004d468feeb9ae758d6a8, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011550867262, guid: b60c367430f004d468feeb9ae758d6a8, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
