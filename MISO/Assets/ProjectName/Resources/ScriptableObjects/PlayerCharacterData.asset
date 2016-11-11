@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: PlayerCharacterData
   m_EditorClassIdentifier: 
   ribbonPrefabPath: Prefabs/Ribbon
-  ribbonDefaultScale: {x: 1, y: 1, z: 1}
   ribbonMaxScale: 1
   ribbonMinScale: 0.5
-  ribbonSizeScailingTime: 10
+  ribbonSizeScailingTime: 3
+  throwPower: 300
+  throwSpeed: 300

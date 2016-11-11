@@ -68,11 +68,13 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputRelease()
     {
-        if(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon"))
+        if(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught"))
         {
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRelease]);
 
+            gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
+            m_caughtRibbon.Breake();
         }        
     }
 
@@ -98,9 +100,14 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputPull()
     {
-        if(m_controlledRibbon != null)
+        if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.Pull"))
         {
-            m_controlledRibbon.Pull(transform.position, 50.0f);
+
+            if (m_controlledRibbon != null)
+            {
+                m_controlledRibbon.Pull(transform.position, m_playerCharacterData.ribbonPullPower);
+            }
+
         }
     }
 
@@ -111,9 +118,12 @@ public class PlayerCharacter : MonoBehaviour
         ribbonObject.tag                        = tag;
         m_controlledRibbon                      = ribbonObject.GetComponent<Ribbons.Ribbon>();
         m_controlledRibbon.transform.position   = transform.position;
-        m_lengthAdjustTime                      = m_playerCharacterData.ribbonSizeScailingTime / 2.0f;
+        m_lengthAdjustTime                      = .0f;
 
-        //m_controlledRibbon.Throw(transform.position, transform.forward, 1.0f, 1.0f);
+        // 念のためリセット
+        m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
+        m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
+        m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]);
 
         Assert.IsNotNull(ribbonObject);
         Assert.IsNotNull(m_controlledRibbon);
@@ -125,16 +135,27 @@ public class PlayerCharacter : MonoBehaviour
 
         float t = m_lengthAdjustTime / m_playerCharacterData.ribbonSizeScailingTime;
 
-        float ribbonSize = Mathf.PingPong(t, m_playerCharacterData.ribbonMaxScale) + m_playerCharacterData.ribbonMinScale;
+        float ribbonSize = Mathf.PingPong(t, m_playerCharacterData.ribbonMaxScale - m_playerCharacterData.ribbonMinScale) + m_playerCharacterData.ribbonMinScale;
 
-        m_controlledRibbon.transform.localScale = new Vector3(ribbonSize, 1.0f, ribbonSize);
+        m_controlledRibbon.transform.localScale = new Vector3(ribbonSize, m_controlledRibbon.transform.localScale.y, ribbonSize);
 
         Assert.IsNotNull(controlledRibbon);
     }
 
     public void SizeAdjustExit()
     {
-        m_controlledRibbon.Throw(transform.position + new Vector3(.0f, 1.0f, 1.0f), transform.rotation, 1000.0f, 1000.0f);
+        if(m_animatorParameters.isPushThrowKey == false)
+        {
+            m_controlledRibbon.Throw(
+                transform.position + new Vector3(.0f, 1.0f, 1.0f),
+                transform.rotation,
+                m_playerCharacterData.throwPower,
+                m_playerCharacterData.throwSpeed);
+        }
+        else
+        {
+
+        }
     }
 
     public void LengthAdjustUpdate()
@@ -144,8 +165,6 @@ public class PlayerCharacter : MonoBehaviour
 
     public void OnRibbonLanding()
     {
-        m_animatorParameters.isRibbonLanding = true;
-
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
     }
 
@@ -153,30 +172,48 @@ public class PlayerCharacter : MonoBehaviour
     {
         Vector3 vector = transform.position - m_controlledRibbon.transform.position;
             
-        if(vector.magnitude < 3.5f)
+        if(vector.magnitude < m_playerCharacterData.ribbonCollectLength)
         {
-            m_animatorParameters.isPulled = true;
-
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
 
             m_controlledRibbon.Pulled();
 
-            m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
-            //m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
+            m_controlledRibbon = null;
         }
     }
 
-    public void CaughtRibbon()
+    public void BreakeRibbon()
+    {
+        if(m_controlledRibbon)
+        {
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]);
+
+            Destroy(m_controlledRibbon.gameObject);
+            m_controlledRibbon = null;
+        }
+    }
+
+    public void CaughtRibbon(Ribbon caughtRibbon)
     {
         //m_animator.Play(m_mainStateHashs[(int)MainState.CaughtRibbon], 1, .0f);
         m_animator.Play("Base Layer.CaughtRibbon.Caught");
+
+        gameObject.layer    = LayerMask.NameToLayer("CaughtPlayerCharacter");
+        m_caughtRibbon      = caughtRibbon;
+
+        if(m_controlledRibbon)
+        {
+            Destroy(m_controlledRibbon.gameObject);
+
+            m_controlledRibbon = null;
+        }
     }
 
     public void Collect()
     {
-        m_animatorParameters.isCollect = true;
-
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsCollect]);
+
+        gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
     }
 
     private enum AnimatorParametersID
@@ -189,6 +226,8 @@ public class PlayerCharacter : MonoBehaviour
         IsPulled,
         IsRelease,
         IsCollect,
+        IsBreak,
+        Velocity,
     }
 
     private struct AnimatorParameters
@@ -197,10 +236,7 @@ public class PlayerCharacter : MonoBehaviour
         public bool isPushThrowKey;
         public bool isPushCancelKey;
         public bool isPushHoldKey;
-        public bool isRibbonLanding;
-        public bool isPulled;
-        public bool isRelease;
-        public bool isCollect;
+        public float velocity;
     }
 
     void Awake()
@@ -214,8 +250,10 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
+        m_rigidbody = GetComponent<Rigidbody>();
         m_animator  = GetComponent<Animator>();
         m_movable   = GetComponent<Movable>();
+        m_collider  = GetComponent<SphereCollider>();   
 
         Assert.IsNotNull(m_animator);
         Assert.IsNotNull(m_movable);
@@ -245,6 +283,8 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]           = Animator.StringToHash("isPulled");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsRelease]          = Animator.StringToHash("isRelease");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsCollect]          = Animator.StringToHash("isCollect");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]            = Animator.StringToHash("isBreak");
+        m_animatorParametersHashs[(int)AnimatorParametersID.Velocity]           = Animator.StringToHash("velocity");
     }
 
     private void _InitializeAnimationState()
@@ -253,12 +293,12 @@ public class PlayerCharacter : MonoBehaviour
 
         m_mainStateHashs = new int[arraySize];
 
-        m_mainStateHashs[(int)MainState.Start]          = Animator.StringToHash("Base Layer.Start");
-        m_mainStateHashs[(int)MainState.Movable]        = Animator.StringToHash("Base Layer.Movable");
-        m_mainStateHashs[(int)MainState.Throw]          = Animator.StringToHash("Base Layer.Throw");
-        m_mainStateHashs[(int)MainState.Hold]           = Animator.StringToHash("Base Layer.Hold");
-        m_mainStateHashs[(int)MainState.CaughtRibbon]   = Animator.StringToHash("Base Layer.CaughtRibbon");
-        m_mainStateHashs[(int)MainState.CaughtHold]     = Animator.StringToHash("Base Layer.CaughtHold");
+        m_mainStateHashs[(int)MainState.Start]          = Animator.StringToHash("Start");
+        m_mainStateHashs[(int)MainState.Movable]        = Animator.StringToHash("Movable");
+        m_mainStateHashs[(int)MainState.Throw]          = Animator.StringToHash("Throw");
+        m_mainStateHashs[(int)MainState.Hold]           = Animator.StringToHash("Hold");
+        m_mainStateHashs[(int)MainState.CaughtRibbon]   = Animator.StringToHash("CaughtRibbon");
+        m_mainStateHashs[(int)MainState.CaughtHold]     = Animator.StringToHash("CaughtHold");
 
         arraySize = Enum.GetValues(typeof(MovableState)).Length;
 
@@ -280,26 +320,27 @@ public class PlayerCharacter : MonoBehaviour
 
     private void _UpdateAnimatorParameters()
     {
+        m_animatorParameters.velocity = m_rigidbody.velocity.magnitude;
+
         m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsDownStick],        m_animatorParameters.isDownStick);
         m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushThrowKey],     m_animatorParameters.isPushThrowKey);
         m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey],    m_animatorParameters.isPushCancelKey);
         m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushHoldKey],      m_animatorParameters.isPushHoldKey);
-        //m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding],    m_animatorParameters.isRibbonLanding);
-        //m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled],           m_animatorParameters.isPulled);
-        //m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsRelease],          m_animatorParameters.isRelease);
-        //m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsCollect],          m_animatorParameters.isCollect);
+        m_animator.SetFloat(m_animatorParametersHashs[(int)AnimatorParametersID.Velocity],          m_animatorParameters.velocity);
     }
 
     [SerializeField, Tooltip("")]
     private string m_playerCharacterDataPath;
 
+    private Rigidbody m_rigidbody;
+
     private Movable m_movable;
 
     private GameObject m_ribbonObject;
 
-    private Ribbons.Ribbon m_controlledRibbon;
+    private Ribbon m_controlledRibbon;
 
-    public Ribbons.Ribbon controlledRibbon
+    public Ribbon controlledRibbon
     {
         get
         {
@@ -312,11 +353,33 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    //private float m_ribbonSize;
+    public Ribbon caughtRibbon
+    {
+        get
+        {
+            return m_caughtRibbon;
+        }
+
+        set
+        {
+            m_caughtRibbon = value;
+        }
+    }
+
+    private Ribbon m_caughtRibbon;
 
     private float m_lengthAdjustTime;
 
     private PlayerCharacterData m_playerCharacterData;
+    
+    public PlayerCharacterData playerCharacterData
+    {
+        get { return m_playerCharacterData; }
+    }
+
+
+
+    private SphereCollider m_collider;
 
     private Animator m_animator;
 

@@ -54,7 +54,7 @@ namespace Ribbons
                     m_colliderObject.SetActive(true);
                     m_triggerColliderObject.SetActive(true);
 
-                    m_playerCharacter.OnRibbonLanding();
+                    playerCharacter.OnRibbonLanding();
                 }
             }
         }
@@ -69,7 +69,14 @@ namespace Ribbons
 
         public void Pull(Vector3 position, float power)
         {
-            m_rigidbody.AddForce((position - transform.position) * power);
+            Vector3 direction = position - transform.position;
+
+            m_rigidbody.AddForce(direction.normalized * power);
+        }
+
+        public void PullEnter()
+        {
+            m_triggerColliderObject.SetActive(false);
         }
 
         public void PullUpdate()
@@ -81,24 +88,29 @@ namespace Ribbons
         {
             m_animatorParameters.isPulled = true;
 
-            foreach(var gameObject in m_triggerCollider.coughtObjects)
+            foreach(var coughtObject in m_triggerCollider.coughtObjects)
             {
                 // todo layermask
-                if(gameObject.layer == LayerMask.NameToLayer("PlayerCharacter"))
+                if(coughtObject.layer == LayerMask.NameToLayer("CaughtPlayerCharacter"))
                 {
-                    gameObject.GetComponent<PlayerCharacter>().Collect();
+                    PlayerCharacter playerCharacter = coughtObject.GetComponent<PlayerCharacter>();
+
+                    playerCharacter.Collect();
                 }
 
-                if(gameObject.layer == LayerMask.NameToLayer("Girl"))
+                if(coughtObject.layer == LayerMask.NameToLayer("Girl"))
                 {
                     
                 }
             }
 
-            GameObject.Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
-        //public void 
+        public void Breake()
+        {
+            playerCharacter.BreakeRibbon();
+        }
 
         private enum AnimatorParametersID
         {
@@ -133,7 +145,7 @@ namespace Ribbons
 
             m_triggerCollider = m_triggerColliderObject.GetComponent<RibbonTriggerCollider>();
 
-            m_playerCharacter = transform.parent.GetComponent<PlayerCharacter>();
+            playerCharacter = transform.parent.GetComponent<PlayerCharacter>();
 
             _InitializeAnimatorParametersID();
         }
@@ -182,6 +194,19 @@ namespace Ribbons
 
         private PlayerCharacter m_playerCharacter;
 
+        public PlayerCharacter playerCharacter
+        {
+            get
+            {
+                return m_playerCharacter;
+            }
+
+            set
+            {
+                m_playerCharacter = value;
+            }
+        }
+
         private AnimatorParameters m_animatorParameters;
 
         private int[] m_animatorParametersHashs;
@@ -198,6 +223,8 @@ namespace Ribbons
                 m_rigidbody = value;
             }
         }
+
+        
     }
 
 }

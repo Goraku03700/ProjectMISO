@@ -8,6 +8,7 @@ namespace Ribbons
     {
         void Start()
         {
+            m_parentRibbon  = transform.parent.GetComponent<Ribbon>();
             m_coughtObjects = new List<GameObject>();
         }
 
@@ -18,11 +19,13 @@ namespace Ribbons
             { 
                 coughtObjects.Add(collider.gameObject);
 
-                collider.gameObject.GetComponent<PlayerCharacter>().CaughtRibbon();
+                collider.gameObject.GetComponent<PlayerCharacter>().CaughtRibbon(m_parentRibbon);
             }
         }
 
-        List<GameObject> m_coughtObjects;
+        private Ribbon m_parentRibbon;
+
+        private List<GameObject> m_coughtObjects;
 
         public List<GameObject> coughtObjects
         {
