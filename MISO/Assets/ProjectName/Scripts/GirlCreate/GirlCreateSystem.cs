@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GirlCreateSystem : MonoBehaviour {
     /*
@@ -32,7 +34,16 @@ public class GirlCreateSystem : MonoBehaviour {
      */
     [SerializeField, Tooltip("フィーバー用女性生成エリアのリスト")]
     List<GirlCreater> m_girlFeverCreateAreaList;
-    
+
+    [SerializeField]
+    Text m_LimitTimeUI;
+    [SerializeField]
+    Text m_Score1;
+    [SerializeField]
+    Text m_Score2;
+
+    int m_player1 = 0;
+    int m_player2 = 0;
 
     [SerializeField]
     float m_limit;
@@ -91,6 +102,7 @@ public class GirlCreateSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        m_LimitTimeUI.text = "TIME\n" + (int)m_limit;
         if (Input.GetKeyDown(KeyCode.L))
         {
             BGMManager.instance.PlaySE("Soap_Jump");
@@ -148,9 +160,32 @@ public class GirlCreateSystem : MonoBehaviour {
                 m_createRules_Normal[i].m_normal = false;
             }
         }
-
+        if(m_limit <0.0f)
+        {
+            SceneManager.LoadScene("Result");
+        }
 	}
 
+    public void GetNPC_Player(int i)
+    {
+        switch(i)
+        {
+            case 0:
+                {
+                    m_player1++;
+                    m_Score1.text = "Player1\nScore" + m_player1;
+                    break;
+                }
+            case 1:
+                {
+                    m_player2++;
+                    m_Score2.text = "Player2\nScore" + m_player2;
+                    break;
+                }
+            default:
+                break;
+        }
+    }
     
 
 }
