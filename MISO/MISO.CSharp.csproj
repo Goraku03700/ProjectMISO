@@ -96,8 +96,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushParticle.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestParticle.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\TextGR.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\ScoreManager.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\TimeUIScript.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
@@ -106,6 +105,7 @@
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\TitleTest.cs" />
     <Compile Include="Assets\Pull.cs" />
     <Compile Include="Assets\RibbonTriggerCollider.cs" />
+    <Compile Include="Assets\TextGradation.cs" />
     <Compile Include="Assets\Throw.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
