@@ -96,6 +96,8 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushParticle.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestParticle.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\ScoreManager.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\TimeUIScript.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
