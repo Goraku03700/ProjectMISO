@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class DushParticle : MonoBehaviour
 {
-    const float speed = 0.05f;
+    const float speed = 0.03f;
 
     ParticleSystem[] particle;
     int time;
@@ -74,6 +74,10 @@ public class DushParticle : MonoBehaviour
             if (!particle[i].isPlaying)
             {
                 particle[i].transform.position = this.transform.position;
+                
+                // ちょっと下に、ちょっと奥に描画
+                particle[i].transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.08f, this.transform.position.z + 0.1f);
+                
                 particle[i].Play();
 
                 break;
