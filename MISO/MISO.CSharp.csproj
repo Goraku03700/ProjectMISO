@@ -63,9 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Charge.cs" />
-    <Compile Include="Assets\Collect.cs" />
-    <Compile Include="Assets\LengthAdjust.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameObject\Movable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlAppearancePosition.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlCreateRule.cs" />
@@ -79,14 +76,21 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterHoldTrigger.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Ribbon.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Player\RibbonTriggerCollider.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Result\Production.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\InfoText.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Select\PlayerControl.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\SelectScene.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Sound\BGMManager.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\EntryMovable.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\ExitMovable.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Player\SizeAdjust.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\EntryMovable.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\ExitMovable.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\LengthAdjust.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\Pull.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\SizeAdjust.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Ribbons\Charge.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Ribbons\Pull.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Ribbons\Throw.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\Bezier.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\InvisibleRibbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleGirl.cs" />
@@ -96,6 +100,10 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\girl_sample.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\particle_sample.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\sample.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\SimpleParticlePack\Scripts\ParticleTester.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\TextGR.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushParticle.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestParticle.cs" />
@@ -105,10 +113,7 @@
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\TitleTest.cs" />
-    <Compile Include="Assets\Pull.cs" />
-    <Compile Include="Assets\RibbonTriggerCollider.cs" />
     <Compile Include="Assets\TextGradation.cs" />
-    <Compile Include="Assets\Throw.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
     <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />

@@ -13,7 +13,7 @@ public class SelectScene : MonoBehaviour {
 
     private bool[] m_readyFlag;
 
-  
+    
 
 	// Use this for initialization
 	void Start () {
