@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 //using System;
 
 public class Production : MonoBehaviour {
@@ -19,8 +20,9 @@ public class Production : MonoBehaviour {
         MoveGirlProduction,
         UpPodiumProduction,
         DecideRankProducution,
+        WaitKey,
     };
-    ResultState resultState; 
+    ResultState resultState;
 
     // 表彰台の状態
     private enum PodiumState
@@ -43,43 +45,46 @@ public class Production : MonoBehaviour {
     private int[] m_score;           // 4人のプレイヤーの得点を格納(受け取る)
 
     // 読み込むゲームオブジェクト
-    private GameObject[]    m_player;   // プレイヤー
-    private GameObject[,]   m_girl;    // 女性
-    private GameObject[]    m_podium;   // 表彰台
-    private GameObject[]    m_company;  // 会社
+    private GameObject[] m_player;   // プレイヤー
+    private GameObject[,] m_girl;    // 女性
+    private GameObject[] m_podium;   // 表彰台
+    private GameObject[] m_company;  // 会社
 
     // 読み込むテキスト
     private Text[] m_scoreText;      // スコアのテキスト
     private Text[] m_rankingText;    // ランキングのテキスト
 
     // 読み込むパーティクル
-    private GameObject     m_confettiParticleParent;
+    private GameObject m_confettiParticleParent;
     private ParticleSystem m_confettiParticle1;
     private ParticleSystem m_confettiParticle2;
     private ParticleSystem m_confettiParticle3;
 
+    // 読み込むマテリアル
+    private Material[] m_podiumMaterial;
+
 
     // 計算用
-    private int[]       m_playerRanking;     // スコアのランキング
-    private int         m_saveTopPlayer;     // 1位のプレイヤーは誰か
+    private int[] m_playerRanking;     // スコアのランキング
+    private int m_saveTopPlayer;     // 1位のプレイヤーは誰か
 
-    private float       m_playerLerpRate;    // 線形補間の比率
-    private Vector3[]   m_playerStartPos;    // 開始位置保存用
+    private float m_playerLerpRate;    // 線形補間の比率
+    private Vector3[] m_playerStartPos;    // 開始位置保存用
 
-    private Vector3[,]  m_girlGoalPosition; // 女性の目標地点
-    private bool[,]     m_girlMoveFlag;  // 女性が前に進むフラグ
-    private float[,]    m_girlLerpRate;  // 線形補間用
-    private int         m_girlColumnCnt;    // 女性が会社から出てくる人数
+    private Vector3[,] m_girlGoalPosition; // 女性の目標地点
+    private bool[,] m_girlMoveFlag;  // 女性が前に進むフラグ
+    private float[,] m_girlLerpRate;  // 線形補間用
+    private int m_girlColumnCnt;    // 女性が会社から出てくる人数
 
 
-    private int[]       m_scoreCount;       // スコアカウント用
-    
+    private int[] m_scoreCount;       // スコアカウント用
+
     private int i, j, k;       // 添え字
     private int time;       // 経過時間カウント用
-    
-    private float[]     m_podiumSpeed;       // 表彰台の上下の移動速度
-    private Vector3[]   m_savePodiumStart;   // 位置を保存 
-    private float[]     m_podiumLerp;        // 線形補間用
+
+    private float[] m_podiumSpeed;       // 表彰台の上下の移動速度
+    private Vector3[] m_savePodiumStart;   // 位置を保存 
+    private float[] m_podiumLerp;        // 線形補間用
 
     private bool se023_startFlag;
     private bool se024_startFlag;
@@ -89,7 +94,7 @@ public class Production : MonoBehaviour {
     /// <summary>
     /// インスペクタに表示する変数
     /// </summary>
-    
+
     [SerializeField]
     private Transform girlColumnStartMaker;    // 女性の行列のスタート地点
 
@@ -118,7 +123,7 @@ public class Production : MonoBehaviour {
     private int girlColumnMax;     // 女性の列の最大数
 
     [SerializeField]
-    private GameObject podiumPrefab;   
+    private GameObject podiumPrefab;
 
     [SerializeField]
     private float[] podiumSeedMax;
@@ -135,7 +140,8 @@ public class Production : MonoBehaviour {
     [SerializeField]
     private Transform rank4PodiumPos;
 
-    private int test;
+    [SerializeField]
+    private Color[] rankColor;
 
 
     // Use this for initialization
@@ -197,10 +203,11 @@ public class Production : MonoBehaviour {
         m_confettiParticle2.Stop();
         m_confettiParticle3.Stop();
 
+
         // テキストは最初表示しない
         for (i = 0; i < ConstPlayerMax; i++)
         {
-            m_scoreText[i].enabled   = false;
+            m_scoreText[i].enabled = false;
             m_rankingText[i].enabled = false;
         }
 
@@ -244,10 +251,10 @@ public class Production : MonoBehaviour {
 
 
         // 女性関係の初期化
-        m_girl             = new GameObject[ConstPlayerMax, max];
-        m_girlMoveFlag     = new bool[ConstPlayerMax, max];
+        m_girl = new GameObject[ConstPlayerMax, max];
+        m_girlMoveFlag = new bool[ConstPlayerMax, max];
         m_girlGoalPosition = new Vector3[ConstPlayerMax, max];
-        m_girlLerpRate     = new float[ConstPlayerMax, max];
+        m_girlLerpRate = new float[ConstPlayerMax, max];
 
 
         // 女性の目標地点を決める
@@ -276,7 +283,8 @@ public class Production : MonoBehaviour {
                 // ピラミッドver
                 m_girlGoalPosition[i, j] = girlColumnStartMaker.position;
                 //m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (m_player[0].transform.position.x - womenColumnStartMaker.position.x) - (offset_x / 2 * (column_max - 1)) + (k * offset_x);
-                m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (girlColumnInerver/2 * (nowColumn_max-1)) + (k * girlLineInterval);
+                m_girlGoalPosition[i, j].y = m_player[i].transform.position.y;
+                m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (girlColumnInerver / 2 * (nowColumn_max - 1)) + (k * girlLineInterval);
                 m_girlGoalPosition[i, j] += new Vector3(0.0f, 0.0f, (line_cnt - 1) * girlLineInterval);
 
                 k++;
@@ -301,11 +309,11 @@ public class Production : MonoBehaviour {
 
         // 表彰台関係の初期化
         m_savePodiumStart = new Vector3[ConstPlayerMax];
-        m_podiumSpeed     = new float[ConstPlayerMax];
-        podiumState       = new PodiumState[ConstPlayerMax];
-        m_podiumLerp      = new float[ConstPlayerMax];
+        m_podiumSpeed = new float[ConstPlayerMax];
+        podiumState = new PodiumState[ConstPlayerMax];
+        m_podiumLerp = new float[ConstPlayerMax];
 
-        for (i = 0; i< ConstPlayerMax; i++)
+        for (i = 0; i < ConstPlayerMax; i++)
         {
             m_podiumSpeed[i] = 0.0f;
             podiumState[i] = PodiumState.Up;
@@ -325,11 +333,11 @@ public class Production : MonoBehaviour {
         se023_startFlag = false;
         se024_startFlag = false;
         bgm003_startFlag = false;
-    
+
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
 
 
 
@@ -349,21 +357,26 @@ public class Production : MonoBehaviour {
             case ResultState.MoveGirlProduction:
                 _MoveGirlProduction();
                 break;
-            
+
             // 表彰台が上下する演出
             case ResultState.UpPodiumProduction:
                 _UpPodiumProduction();
                 break;
-            
+
             // 順位が確定する演出
             case ResultState.DecideRankProducution:
                 _DecideRankProduction();
                 break;
-        }
-        
-   
 
-	}
+            // 入力待ち
+            case ResultState.WaitKey:
+                _WaitKey();
+                break;
+        }
+
+
+
+    }
 
 
     /// <summary>
@@ -372,17 +385,17 @@ public class Production : MonoBehaviour {
     /// </summary>
     private void PutCompanyProduction()
     {
-        
+
         // 親子関係を解除する(その場に置く)
         for (i = 0; i < ConstPlayerMax; i++)
         {
             //m_player[i].transform.DetachChildren();
         }
-        
+
         // 演出02に遷移する
         resultState = ResultState.MovePlayerProduction;
     }
-            
+
 
     /// <summary>
     /// 演出02
@@ -404,24 +417,37 @@ public class Production : MonoBehaviour {
         // 4キャラ全員を前に移動させる
         for (i = 0; i < ConstPlayerMax; i++)
         {
+
+            // 歩きモーションにする
+            if(!m_player[i].GetComponent<Animator>().GetBool("isWalk"))
+            {
+                m_player[i].GetComponent<Animator>().SetBool("isWalk", true);
+            }
+
             // 終着点設定
             Vector3 end = new Vector3(m_podium[i].transform.position.x,
                                       m_podium[i].transform.position.y,
                                       playerEndMaker.position.z);
 
             // 線形補間で前に移動する
-            
-            m_podium[i].transform.position = Vector3.Lerp(m_playerStartPos[i], end, m_playerLerpRate);
+            Vector3 start = m_playerStartPos[i];
+            m_podium[i].transform.position = Vector3.Lerp(start, end, m_playerLerpRate);
         }
 
         // 終着点に着いたら次の演出に遷移
         if (m_playerLerpRate >= 1.0f)
         {
             resultState = ResultState.MoveGirlProduction;
-        }
-        
 
-        
+            // 全員のモーション止める
+            for (i = 0; i < ConstPlayerMax; i++)
+            {
+                m_player[i].GetComponent<Animator>().SetBool("isWalk", false);
+            }
+        }
+
+
+
 
     }
 
@@ -432,8 +458,6 @@ public class Production : MonoBehaviour {
     private void _MoveGirlProduction()
     {
         time++;
-
-
 
         // 一定時間ごとに女性を会社から出す
         if (time > girlLineIntervalTime)
@@ -461,6 +485,9 @@ public class Production : MonoBehaviour {
                             m_scoreText[i].enabled = true;
                             m_scoreText[i].text = "？人";
 
+                            // アニメーション開始
+                            m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", true);
+
                             break;
                         }
                     }
@@ -472,16 +499,16 @@ public class Production : MonoBehaviour {
             // 列の最大人数になったら人数を固定
             if (m_girlColumnCnt > girlColumnMax)
             {
-               m_girlColumnCnt = girlColumnMax;
+                m_girlColumnCnt = girlColumnMax;
             }
         }
-        
 
-        
+
+
         // 女性を動かす
         for (i = 0; i < ConstPlayerMax; i++)
         {
-            for (j = 0; j <m_score[i]; j++)
+            for (j = 0; j < m_score[i]; j++)
             {
                 // 動かすフラグが立っていたら
                 if (m_girlMoveFlag[i, j])
@@ -491,15 +518,19 @@ public class Production : MonoBehaviour {
 
                     // 目的地まで到達したらそこに固定
                     if (m_girlLerpRate[i, j] >= 1.0f)
-                    { 
+                    {
                         m_girlLerpRate[i, j] = 1.0f;
+
+                        // モーション止める
+                        m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", false);
+
                     }
 
                     // 女性の移動
-                    Vector3 startPos = new Vector3(m_company[i].transform.position.x,
+                    Vector3 start = new Vector3(m_company[i].transform.position.x,
                                                    m_player[i].transform.position.y,
                                                    m_company[i].transform.position.z);
-                    m_girl[i, j].transform.position = Vector3.Lerp(startPos,//m_company[i].transform.position,
+                    m_girl[i, j].transform.position = Vector3.Lerp(start,//m_company[i].transform.position,
                                                                    m_girlGoalPosition[i, j],
                                                                    m_girlLerpRate[i, j]);
                 }
@@ -507,7 +538,7 @@ public class Production : MonoBehaviour {
         }
 
         // 最後の女性の移動が完了したら次の状態に遷移
-        if(m_girlLerpRate[m_saveTopPlayer, m_score[m_saveTopPlayer]-1] >= 1.0f)
+        if (m_girlLerpRate[m_saveTopPlayer, m_score[m_saveTopPlayer] - 1] >= 1.0f)
         {
             resultState = ResultState.UpPodiumProduction;
             time = 0;
@@ -520,7 +551,7 @@ public class Production : MonoBehaviour {
     void _UpPodiumProduction()
     {
         // ドラムロールSE再生
-        if(!se023_startFlag)
+        if (!se023_startFlag)
         {
             BGMManager.instance.PlaySE("se023_BeforeDecideRank", 1.0f);
             se023_startFlag = true;
@@ -529,11 +560,11 @@ public class Production : MonoBehaviour {
         // 時間経過
         time++;
 
-        
+
         for (i = 0; i < ConstPlayerMax; i++)
         {
             // 一定時間経過すると停止する
-            if(time > podiumProdcutionTime)
+            if (time > podiumProdcutionTime)
             {
                 podiumState[i] = PodiumState.Stop;
             }
@@ -545,7 +576,7 @@ public class Production : MonoBehaviour {
                 case PodiumState.Up:
                     // だんだん早くする
                     m_podiumSpeed[i] += ConstPodiumAccel;
-                    if(m_podiumSpeed[i] > podiumSeedMax[i])
+                    if (m_podiumSpeed[i] > podiumSeedMax[i])
                     {
                         m_podiumSpeed[i] = podiumSeedMax[i];
                     }
@@ -563,7 +594,7 @@ public class Production : MonoBehaviour {
                 // 停止
                 case PodiumState.Stop:
                     // 速度を0に近づける
-                    if(m_podiumSpeed[i] > 0.0f)
+                    if (m_podiumSpeed[i] > 0.0f)
                     {
                         m_podiumSpeed[i] -= ConstPodiumAccel;
                         if (m_podiumSpeed[i] < 0.0f)
@@ -583,10 +614,10 @@ public class Production : MonoBehaviour {
             }
 
             // 一定の地点まで到達したら移動方向を変える
-            if ( (m_podium[i].transform.position.y > 0.2f && podiumState[i] == PodiumState.Up) || (m_podium[i].transform.position.y < -1.0f && podiumState[i] == PodiumState.Down))
+            if ((m_podium[i].transform.position.y > 0.2f && podiumState[i] == PodiumState.Up) || (m_podium[i].transform.position.y < -1.0f && podiumState[i] == PodiumState.Down))
             {
                 // 動きの反転
-                if(podiumState[i] == PodiumState.Up)
+                if (podiumState[i] == PodiumState.Up)
                 {
                     podiumState[i] = PodiumState.Down;
                 }
@@ -606,7 +637,7 @@ public class Production : MonoBehaviour {
             m_scoreText[0].text = time.ToString();
         }
 
-        
+
 
         if (time > podiumProdcutionTime + 10)
         {
@@ -650,22 +681,22 @@ public class Production : MonoBehaviour {
         }
 
         // 順位決定音鳴らす
-        if(!se024_startFlag)
+        if (!se024_startFlag)
         {
             BGMManager.instance.PlaySE("se024_DecideRank");
             se024_startFlag = true;
         }
 
         // BGM鳴らす
-        if(time > 200)
+        if (time > 200)
         {
-            if(!bgm003_startFlag)
+            if (!bgm003_startFlag)
             {
                 BGMManager.instance.PlayBGM("bgm002_Result", 0.1f);
                 bgm003_startFlag = true;
             }
         }
- 
+
         // パーティクル開始
         m_confettiParticleParent.transform.position = m_podium[m_saveTopPlayer].transform.position;
         m_confettiParticleParent.transform.Translate(0.0f, 5.0f, 0.0f, Space.World);
@@ -676,13 +707,13 @@ public class Production : MonoBehaviour {
             m_confettiParticle2.Play();
             m_confettiParticle3.Play();
         }
-       
 
+        // 順位別の高さに移動
         for (i = 0; i < ConstPlayerMax; i++)
         {
             // 進める
             m_podiumLerp[i] += 0.02f;
-            if(m_podiumLerp[i] > 1.0f)
+            if (m_podiumLerp[i] > 1.0f)
             {
                 m_podiumLerp[i] = 1.0f;
             }
@@ -695,14 +726,37 @@ public class Production : MonoBehaviour {
             // 線形補間で移動する
             m_podium[i].transform.position = Vector3.Lerp(m_savePodiumStart[i], end_pos, m_podiumLerp[i]);
 
+            // 表彰台の色の変更
+            m_podium[i].GetComponent<Renderer>().material.color = rankColor[m_playerRanking[i]];
+
+
+        }
+
+        if (time > 500)
+        {
+            resultState = ResultState.WaitKey;
         }
 
 
 
 
     }
-     
-   
+
+    /// <summary>
+    /// キーの入力待ち状態
+    /// </summary>
+    private void _WaitKey()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            SceneManager.LoadScene("Title");
+
+        }
+       
+    }
+
+      
+
 
 
 

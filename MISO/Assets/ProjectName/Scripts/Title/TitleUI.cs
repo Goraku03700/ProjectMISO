@@ -63,15 +63,15 @@ public class TitleUI : MonoBehaviour {
         //UIを拡大
         if(m_scalebigflg)
         {
-            m_nowscale.x += 1.5f * Time.deltaTime;
-            m_nowscale.z += 1.0f * Time.deltaTime;
+            m_nowscale.x += 1.0f * Time.deltaTime;
+            m_nowscale.z += 0.5f * Time.deltaTime;
             this.transform.localScale = m_nowscale;
         }
         //UIを縮小
         if(m_scalesmallflg)
         {
-            m_nowscale.x -= 1.5f * Time.deltaTime;
-            m_nowscale.z -= 1.0f * Time.deltaTime;
+            m_nowscale.x -= 1.0f * Time.deltaTime;
+            m_nowscale.z -= 0.5f * Time.deltaTime;
             this.transform.localScale = m_nowscale;
         }
     }

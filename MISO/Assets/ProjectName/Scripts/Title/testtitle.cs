@@ -70,8 +70,7 @@ public class testtitle : MonoBehaviour {
 
             case TitleState.TrailTitleLogo: //リボンを引きずる・女性を移動させる・タイトルロゴを引きずる
                 //所定の位置に着いたら遷移を移動させる
-                if(m_ribbon.TrailFinishFlag && m_girl.TrailGirlFinishFlag 
-                   && m_titlelogo.TrailtitleLogoFinishFlag)
+                if(m_ribbon.TrailFinishFlag && m_titlelogo.TrailtitleLogoFinishFlag)
                 {
                     m_invisibleribbon.ActiveRibbon(false);
                     m_titlestate = TitleState.BoundTitleLogo;

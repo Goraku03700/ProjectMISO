@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbddd30c7eb3774c828688f336f2304, type: 3}
+  m_Name: PlayerCharacterData
+  m_EditorClassIdentifier: 
+  ribbonPrefabPath: Prefabs/Ribbon
+  ribbonMaxScale: 1
+  ribbonMinScale: 0.5
+  ribbonSizeScailingTime: 3
+  ribbonPullPower: 500
+  ribbonCollectLength: 1
+  throwPower: 300
+  throwSpeed: 300
