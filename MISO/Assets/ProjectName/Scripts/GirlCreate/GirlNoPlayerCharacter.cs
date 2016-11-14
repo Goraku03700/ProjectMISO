@@ -64,7 +64,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     float m_speed = 0.15f;
     [SerializeField]
-    float m_rotationSmooth = 10f;
+    float m_rotationSmooth = 1f;
 
     public Vector3 m_targetPosition;
 
@@ -215,7 +215,6 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 this.gameObject.tag = collision.gameObject.tag;
             }
             m_isCaught = true;
-            this.m_status = State.None;
         }
     }
 

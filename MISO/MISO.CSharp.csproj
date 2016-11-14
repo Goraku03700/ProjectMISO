@@ -95,7 +95,9 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\Fade\Fade.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\FeverTextControl.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\GameStartEffect.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\TextGradation.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\TextGradationEffect.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\ScoreManager.cs" />
@@ -122,6 +124,9 @@
     <Compile Include="Assets\UnityChan\Scripts\UnityChanControlScriptWithRgidBody.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ProjectName\Users\Nakao\Sprite\Fade.shader" />
+    <None Include="Assets\ProjectName\Users\Nakao\Sprite\Sprite.shader" />
+    <None Include="Assets\ProjectName\Users\Nakao\Sprite\SpriteMask.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />

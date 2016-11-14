@@ -12,7 +12,8 @@ public class FeverTextControl : MonoBehaviour {
         Slide,
         Roll,
         Color,
-        Fade
+        Fade,
+        None
     }
 
     State m_state;
@@ -23,9 +24,9 @@ public class FeverTextControl : MonoBehaviour {
     Vector3 m_endSlidePosition;
 
     [SerializeField]
-    Quaternion m_startRollRotation;
+    RectTransform m_startRollRotation;
     [SerializeField]
-    Quaternion m_endRollRotation;
+    RectTransform m_endRollRotation;
 
     [SerializeField]
     Vector3 m_startFadePosition;
@@ -51,6 +52,8 @@ public class FeverTextControl : MonoBehaviour {
     [SerializeField]
     float m_textBetweenPerSecond;
 
+    [SerializeField]
+    RectTransform m_thisRectTransform;
 
 	// Use this for initialization
 	void Start () {
@@ -59,43 +62,44 @@ public class FeverTextControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        m_time += Time.deltaTime;
         switch(m_state)
         {
             case State.Slide:
                 {
-                    m_time += Time.deltaTime;
+                    
                     if (m_time > m_slideEndTime)
                     {
                         m_time = 0.0f;
                         m_state = State.Roll;
-                        this.gameObject.transform.position = Vector3.Lerp(m_startSlidePosition, m_endSlidePosition, 1.0f);
+                        m_thisRectTransform.localPosition = Vector3.Lerp(m_startSlidePosition, m_endSlidePosition, 1.0f);
 
                     }
                     else
                     {
-                        this.gameObject.transform.position = Vector3.Lerp(m_startSlidePosition, m_endSlidePosition, m_time / m_slideEndTime);
+                        m_thisRectTransform.localPosition = Vector3.Lerp(m_startSlidePosition, m_endSlidePosition, m_time / m_slideEndTime);
                     }
                     break;
                 }
             case State.Roll:
                 {
-                    m_time += Time.deltaTime;
+                    
                     if (m_time > m_rollEndTime)
                     {
                         m_time = 0.0f;
                         m_state = State.Color;
-                        this.gameObject.transform.rotation = Quaternion.Lerp(m_startRollRotation, m_endRollRotation, 1.0f);
+                        m_thisRectTransform.localRotation = Quaternion.Euler(0, 0, 0);
                         m_textGradation.enabled = true;
                     }
                     else
                     {
-                        this.gameObject.transform.rotation = Quaternion.Lerp(m_startRollRotation, m_endRollRotation, m_time / m_rollEndTime);
+                        m_thisRectTransform.localRotation = Quaternion.Euler(0,0, - m_time / m_rollEndTime * 360.0f);
                     }
                     break;
                 }
             case State.Color:
                 {
-                    m_time += Time.deltaTime;
+                    
                     if (m_time > m_colorEndTime)
                     {
                         m_time = 0.0f;
@@ -105,22 +109,30 @@ public class FeverTextControl : MonoBehaviour {
                 }
             case State.Fade:
                 {
-                    m_time += Time.deltaTime;
+                    
                     if (m_time > m_fadeEndTime)
                     {
                         m_time = m_fadeEndTime;
-                        this.gameObject.transform.position = Vector3.Lerp(m_startFadePosition, m_endFadePosition, 1.0f);
+                        m_thisRectTransform.localPosition = Vector3.Lerp(m_startFadePosition, m_endFadePosition, 1.0f);
                     }
                     else
                     {
-                        this.gameObject.transform.position = Vector3.Lerp(m_startFadePosition, m_endFadePosition, m_time / m_fadeEndTime);
-                        Vector3 thisPosition = this.gameObject.transform.position;
-                        m_texts[0].transform.position = new Vector3(thisPosition.x - m_time * m_textBetweenPerSecond  * 2, thisPosition.y);
-                        m_texts[1].transform.position = new Vector3(thisPosition.x - m_time * m_textBetweenPerSecond, thisPosition.y);
-                        m_texts[2].transform.position = new Vector3(thisPosition.x , thisPosition.y);
-                        m_texts[3].transform.position = new Vector3(thisPosition.x + m_time * m_textBetweenPerSecond * 1, thisPosition.y);
-                        m_texts[4].transform.position = new Vector3(thisPosition.x + m_time * m_textBetweenPerSecond * 2, thisPosition.y);
+                        m_thisRectTransform.localPosition = Vector3.Lerp(m_startFadePosition, m_endFadePosition, m_time / m_fadeEndTime);
+                        Vector3 thisPosition = m_thisRectTransform.localPosition;
+                        m_texts[0].rectTransform.localPosition = new Vector3(thisPosition.x - m_time * m_textBetweenPerSecond  * 2 - m_textBetweenPerSecond * 2, 0);
+                        m_texts[1].rectTransform.localPosition = new Vector3(thisPosition.x - m_time * m_textBetweenPerSecond - m_textBetweenPerSecond, 0);
+                        m_texts[2].rectTransform.localPosition = new Vector3(thisPosition.x, 0);
+                        m_texts[3].rectTransform.localPosition = new Vector3(thisPosition.x + m_time * m_textBetweenPerSecond + m_textBetweenPerSecond, 0);
+                        m_texts[4].rectTransform.localPosition = new Vector3(thisPosition.x + m_time * m_textBetweenPerSecond * 2 + m_textBetweenPerSecond * 2, 0);
                     }
+                    break;
+                }
+            case State.None:
+                {
+                    break;
+                }
+            default:
+                {
                     break;
                 }
         }

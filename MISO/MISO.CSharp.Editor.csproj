@@ -105,6 +105,9 @@
     <Compile Include="Assets\ProjectName\Scripts\Editor\ScriptableObjectToAsset.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ProjectName\Users\Nakao\Sprite\Fade.shader" />
+    <None Include="Assets\ProjectName\Users\Nakao\Sprite\Sprite.shader" />
+    <None Include="Assets\ProjectName\Users\Nakao\Sprite\SpriteMask.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
