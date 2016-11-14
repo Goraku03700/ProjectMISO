@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: badb7c57a8961ef49a9f50172e57cb9a
+timeCreated: 1478672513
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 24
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Corporate Logo Medium
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

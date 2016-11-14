@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: road1
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: sp
+  m_Shader: {fileID: 4800000, guid: 79a1bd57c93569f4e8c6d80dbe23c1dc, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -46,9 +46,21 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _MainBump
+      second:
+        m_Texture: {fileID: 2800000, guid: 9ee3baffcb4752b49a5a628bc398fe05, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 7ec7e795273daa34c8d780b769f50dd4, type: 3}
+        m_Texture: {fileID: 2800000, guid: f7f145d17400a554fb1625ed3e4c3a7b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MaskTex
+      second:
+        m_Texture: {fileID: 2800000, guid: f7f145d17400a554fb1625ed3e4c3a7b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -71,11 +83,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: PixelSnap
-      second: 0
-    - first:
         name: _BumpScale
       second: 1
+    - first:
+        name: _ColorMask
+      second: 15
     - first:
         name: _Cutoff
       second: 0.5
@@ -107,6 +119,9 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _Shininess
+      second: 1
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -116,7 +131,25 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
+        name: _Stencil
+      second: 0
+    - first:
+        name: _StencilComp
+      second: 8
+    - first:
+        name: _StencilOp
+      second: 0
+    - first:
+        name: _StencilReadMask
+      second: 0
+    - first:
+        name: _StencilWriteMask
+      second: 0
+    - first:
         name: _UVSec
+      second: 0
+    - first:
+        name: _UseUIAlphaClip
       second: 0
     - first:
         name: _ZWrite
@@ -124,7 +157,10 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 1, g: 0, b: 0, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _Specular
+      second: {r: 0, g: 0, b: 0, a: 0}

@@ -64,19 +64,29 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     float m_speed = 0.15f;
     [SerializeField]
-    float m_rotationSmooth = 40f;
+    float m_rotationSmooth = 1f;
 
     public Vector3 m_targetPosition;
 
     private float m_changeTargetSqrDistance = 0.5f;
 
-    [SerializeField]
-    float m_levelSize;
+
+    Vector2 m_movementAreaX; //xに最小値yに最大値
+    public Vector2 m_MovementAreaX
+    {
+        get { return m_movementAreaX; }
+        set { m_movementAreaX = value; }
+    }
+    Vector2 m_movementAreaZ;
+    public Vector2 m_MovementAreaZ
+    {
+        get { return m_movementAreaZ; }
+        set { m_movementAreaZ = value; }
+    }
 
     public Vector3 GetRandomPositionOnLevel()
     {
-        m_levelSize = 15f;
-        return new Vector3(Random.Range(-m_levelSize, m_levelSize), 0, Random.Range(-m_levelSize, m_levelSize));
+        return new Vector3(Random.Range(m_movementAreaX.x, m_movementAreaX.y), 0, Random.Range(m_movementAreaZ.x, m_movementAreaZ.y));
     }
 	
 	// Update is called once per frame
@@ -205,7 +215,6 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 this.gameObject.tag = collision.gameObject.tag;
             }
             m_isCaught = true;
-            this.m_status = State.None;
         }
     }
 
