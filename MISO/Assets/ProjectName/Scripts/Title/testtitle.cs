@@ -53,7 +53,7 @@ public class testtitle : MonoBehaviour {
             case TitleState.Ribbon: //リボンを投げる
                 m_ribbon.ThrowRibbon();
 
-                // 投げるSE鳴らす
+                // 投げるSE鳴らすse001_ThrowJustRibbon
                 if(!se001_startFlag)
                 {
                     BGMManager.instance.PlaySE("se001_ThrowJustRibbon");
@@ -120,7 +120,8 @@ public class testtitle : MonoBehaviour {
             case TitleState.Finish: //終了。ここで他の遷移に移動する
                 m_titleui.Activate(false);
                 Debug.Log("終了");
-                SceneManager.LoadScene("PlayTest");
+              //  BGMManager.instance.StopBGM(0.0f);
+                SceneManager.LoadScene("Select");
                 break;
         }
 	}

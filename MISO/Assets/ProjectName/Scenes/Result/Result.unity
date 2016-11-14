@@ -3414,6 +3414,11 @@ Prefab:
       propertyPath: BGMList.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: 89091428bac64564bb373be112f18c23, type: 3}
+    - target: {fileID: 114000012320420594, guid: eed1f23ad9a613343b18a8a65bb1fadf,
+        type: 2}
+      propertyPath: BGMList.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 89091428bac64564bb373be112f18c23, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eed1f23ad9a613343b18a8a65bb1fadf, type: 2}
   m_IsPrefabParent: 0
@@ -3456,10 +3461,10 @@ MonoBehaviour:
   podiumPrefab: {fileID: 1000011079253128, guid: 2789639f3153e394e9504d9b94fb1320,
     type: 2}
   podiumSeedMax:
-  - 0.04
-  - 0.02
-  - 0.03
-  - 0.05
+  - 1.6
+  - 0.8
+  - 1.2
+  - 2
   podiumProdcutionTime: 220
   prodiumProductionWaitTime: 60
   rank1PodiumPos: {fileID: 1165641292}
@@ -5847,6 +5852,10 @@ Prefab:
     - target: {fileID: 4000012245733672, guid: 74eb3f3e8206a6246aa0a5c27f099453, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.036705635
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011376781364, guid: 74eb3f3e8206a6246aa0a5c27f099453, type: 2}
+      propertyPath: m_Name
+      value: Player01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74eb3f3e8206a6246aa0a5c27f099453, type: 2}

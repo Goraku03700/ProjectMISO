@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
 
+    const int ConstPlayerMax = 4;
 
     // プレイヤーの状態
     enum PlayerState
@@ -12,27 +13,45 @@ public class PlayerControl : MonoBehaviour {
         Catch,
         Aim,
     };
-    PlayerState[] playerState;
+    
+    // プレイヤーの状態
+    private PlayerState[] playerState;
 
+    // パッドの番号
+    private MultiInput.JoypadNumber[] m_joypadNumber;
+
+    // プレイヤーオブジェクト
     private GameObject[] m_player;
 
+    // アニメータ
     private Animator[] m_animator;
+
+
+  
         
 
 	// Use this for initialization
 	void Start () {
 
-        playerState = new PlayerState[4];
-        for (int i = 0; i < 4; i++)
+        m_joypadNumber = new MultiInput.JoypadNumber[ConstPlayerMax];
+        m_joypadNumber[0] = MultiInput.JoypadNumber.Pad1;
+        m_joypadNumber[1] = MultiInput.JoypadNumber.Pad2;
+        m_joypadNumber[2] = MultiInput.JoypadNumber.Pad3;
+        m_joypadNumber[3] = MultiInput.JoypadNumber.Pad4;
+
+
+
+        playerState = new PlayerState[ConstPlayerMax];
+        for (int i = 0; i < ConstPlayerMax; i++)
             playerState[i] = PlayerState.Default;
 
-        m_animator = new Animator[4];
+        m_animator = new Animator[ConstPlayerMax];
         m_animator[0] = GameObject.Find("Player01").GetComponent<Animator>();
         m_animator[1] = GameObject.Find("Player02").GetComponent<Animator>();
         m_animator[2] = GameObject.Find("Player03").GetComponent<Animator>();
         m_animator[3] = GameObject.Find("Player04").GetComponent<Animator>();
 
-        m_player = new GameObject[4];
+        m_player = new GameObject[ConstPlayerMax];
         m_player[0] = GameObject.Find("Player01");
         m_player[1] = GameObject.Find("Player02");
         m_player[2] = GameObject.Find("Player03");
@@ -43,51 +62,47 @@ public class PlayerControl : MonoBehaviour {
     void Update()
     {
 
-        // フラグ初期化
-        //m_animator[0].SetBool("isWalk", false);
-        //m_animator[0].SetBool("isCatch", false);
-        //m_animator[0].GetComponent<Animator>().SetBool("isAim", false);
-        //playerState[0] = PlayerState.Default;
-
-        AnimatorStateInfo stateInfo = m_animator[0].GetCurrentAnimatorStateInfo(0);
-
-
-            switch (playerState[0])
+        // 4プレイヤー分
+        for (int i = 0; i < ConstPlayerMax; i++)
         {
-            case PlayerState.Default:
-                _Walk(0);
-                _Catch(0);
-                _Aim(0);
-                break;
+            AnimatorStateInfo stateInfo = m_animator[0].GetCurrentAnimatorStateInfo(0);
 
-            case PlayerState.Walk:
-                _Walk(0);
-                _Catch(0);
-                _Aim(0);
-                break;
+            switch (playerState[i])
+            {
+                case PlayerState.Default:
+                    _Walk(i);
+                    _Catch(i);
+                    _Aim(i);
+                    break;
+
+                case PlayerState.Walk:
+                    _Walk(i);
+                    _Catch(i);
+                    _Aim(i);
+                    break;
 
 
-            case PlayerState.Catch:
-                if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Default"))
-                {
-                    playerState[0] = PlayerState.Default;
-                    m_animator[0].SetBool("isCatch", false);
-                }
+                case PlayerState.Catch:
+                    if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Default"))
+                    {
+                        playerState[i] = PlayerState.Default;
+                        m_animator[i].SetBool("isCatch", false);
+                    }
 
-                break;
+                    break;
 
-            case PlayerState.Aim:
-                if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Default"))
-                {
-                    playerState[0] = PlayerState.Default;
-                    m_animator[0].SetBool("isAim", false);
-                }
+                case PlayerState.Aim:
+                    if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Default"))
+                    {
+                        playerState[i] = PlayerState.Default;
+                        m_animator[i].SetBool("isAim", false);
+                    }
 
-                _Aim(0);
+                    _Aim(i);
 
-                break;
+                    break;
+            }
         }
-
 
     }
 
@@ -130,6 +145,18 @@ public class PlayerControl : MonoBehaviour {
             playerState[playerNo] = PlayerState.Walk;
         }
 
+        float horizontal = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber[playerNo]);
+        float vertical = MultiInput.GetAxis(MultiInput.Key.Vertical, m_joypadNumber[playerNo]);
+        if (horizontal != .0f || vertical != .0f)
+        {
+            Vector3 direction = new Vector3(horizontal, .0f, vertical);
+            m_player[playerNo].transform.forward = direction;
+            Debug.Log(vertical);
+            Debug.Log(horizontal);
+            m_animator[playerNo].SetBool("isWalk", true);
+            playerState[playerNo] = PlayerState.Walk;
+
+        }
     }
 
     /// <summary>
@@ -143,6 +170,13 @@ public class PlayerControl : MonoBehaviour {
             m_animator[playerNo].SetBool("isCatch", true);
             playerState[playerNo] = PlayerState.Catch;
         }
+
+        if (MultiInput.GetButton("Attack", m_joypadNumber[playerNo]))
+        {
+            m_animator[playerNo].SetBool("isCatch", true);
+            playerState[playerNo] = PlayerState.Catch;
+        }
+
     }
 
     /// <summary>
@@ -159,6 +193,9 @@ public class PlayerControl : MonoBehaviour {
             m_animator[playerNo].SetBool("isAim", true);
             playerState[playerNo] = PlayerState.Aim;
         }
+
+
+
     }
 
 

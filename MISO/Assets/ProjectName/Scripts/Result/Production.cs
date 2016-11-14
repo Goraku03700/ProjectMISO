@@ -37,7 +37,7 @@ public class Production : MonoBehaviour {
     /// 定数定義
     /// </summary>
     const int ConstPlayerMax = 4;    // プレイヤーの人数
-    const float ConstPodiumAccel = 0.01f;   // 表彰台の加速度
+    const float ConstPodiumAccel = 0.8f;   // 表彰台の加速度
 
     /// <summary>
     /// 変数定義
@@ -530,7 +530,7 @@ public class Production : MonoBehaviour {
                     Vector3 start = new Vector3(m_company[i].transform.position.x,
                                                    m_player[i].transform.position.y,
                                                    m_company[i].transform.position.z);
-                    m_girl[i, j].transform.position = Vector3.Lerp(start,//m_company[i].transform.position,
+                    m_girl[i, j].transform.position = Vector3.Lerp(start,
                                                                    m_girlGoalPosition[i, j],
                                                                    m_girlLerpRate[i, j]);
                 }
@@ -628,7 +628,7 @@ public class Production : MonoBehaviour {
             }
 
             // オブジェクトの移動
-            m_podium[i].transform.Translate(0.0f, m_podiumSpeed[i], 0.0f);
+            m_podium[i].transform.Translate(0.0f, m_podiumSpeed[i] * Time.deltaTime, 0.0f);
 
             // 数字のランダムで表示
             m_scoreText[i].text = Random.Range(10, 99 + 1).ToString() + "人";
@@ -764,7 +764,7 @@ public class Production : MonoBehaviour {
 
 
 
-
+// deltatime使う
 
 // コルーチン
 // unityチュートリアル　シューティング
