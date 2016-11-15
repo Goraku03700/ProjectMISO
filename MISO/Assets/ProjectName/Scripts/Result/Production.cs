@@ -203,9 +203,6 @@ public class Production : MonoBehaviour {
         m_confettiParticle2.Stop();
         m_confettiParticle3.Stop();
 
-        // マテリアル
-        //m_podiumMaterial = new Material[ConstPlayerMax];
-        //m_podiumMaterial = GameObject.
 
         // テキストは最初表示しない
         for (i = 0; i < ConstPlayerMax; i++)
@@ -286,6 +283,7 @@ public class Production : MonoBehaviour {
                 // ピラミッドver
                 m_girlGoalPosition[i, j] = girlColumnStartMaker.position;
                 //m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (m_player[0].transform.position.x - womenColumnStartMaker.position.x) - (offset_x / 2 * (column_max - 1)) + (k * offset_x);
+                m_girlGoalPosition[i, j].y = m_player[i].transform.position.y;
                 m_girlGoalPosition[i, j].x = m_player[i].transform.position.x - (girlColumnInerver / 2 * (nowColumn_max - 1)) + (k * girlLineInterval);
                 m_girlGoalPosition[i, j] += new Vector3(0.0f, 0.0f, (line_cnt - 1) * girlLineInterval);
 
@@ -419,20 +417,33 @@ public class Production : MonoBehaviour {
         // 4キャラ全員を前に移動させる
         for (i = 0; i < ConstPlayerMax; i++)
         {
+
+            // 歩きモーションにする
+            if(!m_player[i].GetComponent<Animator>().GetBool("isWalk"))
+            {
+                m_player[i].GetComponent<Animator>().SetBool("isWalk", true);
+            }
+
             // 終着点設定
             Vector3 end = new Vector3(m_podium[i].transform.position.x,
                                       m_podium[i].transform.position.y,
                                       playerEndMaker.position.z);
 
             // 線形補間で前に移動する
-
-            m_podium[i].transform.position = Vector3.Lerp(m_playerStartPos[i], end, m_playerLerpRate);
+            Vector3 start = m_playerStartPos[i];
+            m_podium[i].transform.position = Vector3.Lerp(start, end, m_playerLerpRate);
         }
 
         // 終着点に着いたら次の演出に遷移
         if (m_playerLerpRate >= 1.0f)
         {
             resultState = ResultState.MoveGirlProduction;
+
+            // 全員のモーション止める
+            for (i = 0; i < ConstPlayerMax; i++)
+            {
+                m_player[i].GetComponent<Animator>().SetBool("isWalk", false);
+            }
         }
 
 
@@ -447,8 +458,6 @@ public class Production : MonoBehaviour {
     private void _MoveGirlProduction()
     {
         time++;
-
-
 
         // 一定時間ごとに女性を会社から出す
         if (time > girlLineIntervalTime)
@@ -475,6 +484,9 @@ public class Production : MonoBehaviour {
                             m_scoreCount[i]++;
                             m_scoreText[i].enabled = true;
                             m_scoreText[i].text = "？人";
+
+                            // アニメーション開始
+                            m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", true);
 
                             break;
                         }
@@ -508,13 +520,17 @@ public class Production : MonoBehaviour {
                     if (m_girlLerpRate[i, j] >= 1.0f)
                     {
                         m_girlLerpRate[i, j] = 1.0f;
+
+                        // モーション止める
+                        m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", false);
+
                     }
 
                     // 女性の移動
-                    Vector3 startPos = new Vector3(m_company[i].transform.position.x,
+                    Vector3 start = new Vector3(m_company[i].transform.position.x,
                                                    m_player[i].transform.position.y,
                                                    m_company[i].transform.position.z);
-                    m_girl[i, j].transform.position = Vector3.Lerp(startPos,//m_company[i].transform.position,
+                    m_girl[i, j].transform.position = Vector3.Lerp(start,//m_company[i].transform.position,
                                                                    m_girlGoalPosition[i, j],
                                                                    m_girlLerpRate[i, j]);
                 }

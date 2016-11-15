@@ -16,6 +16,16 @@ namespace Ribbons
             //Physics.SphereCastAll()
         }
 
+        void FixedUpdate()
+        {
+            if (m_isOneFrameDuration)
+            {
+                gameObject.SetActive(false);
+            }
+
+            m_isOneFrameDuration = true;
+        }
+
         void OnTriggerEnter(Collider collider)
         {
             // Todo layermask
@@ -43,6 +53,8 @@ namespace Ribbons
                 coughtGirls.Add(girl);
             }
         }
+
+        private bool m_isOneFrameDuration;
 
         private Ribbon m_parentRibbon;
 

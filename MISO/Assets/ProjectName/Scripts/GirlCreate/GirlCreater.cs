@@ -32,7 +32,10 @@ public class GirlCreater : MonoBehaviour {
         get { return m_createGirlNumber; }
         set { m_createGirlNumber = value; }
     }
-
+    [SerializeField,Tooltip("xに最小値yに最大値")]
+    Vector2 m_movementAreaX; //xに最小値yに最大値
+    [SerializeField, Tooltip("xに最小値yに最大値")]
+    Vector2 m_movementAreaZ;
 
 	// Use this for initialization
 	void Start () {
@@ -44,10 +47,15 @@ public class GirlCreater : MonoBehaviour {
             }
         }
  //       m_appearancePoints = Array.FindAll(transform.GetComponentsInChildren<GirlAppearancePosition>(),);
-
+        m_movementAreaX.x = this.gameObject.transform.position.x - m_movementAreaX.x;
+        m_movementAreaX.y = this.gameObject.transform.position.x + m_movementAreaX.y;
+        m_movementAreaZ.x = this.gameObject.transform.position.z - m_movementAreaZ.x;
+        m_movementAreaZ.y = this.gameObject.transform.position.z + m_movementAreaZ.y;
 	    for(int i = 0 ; i < m_appearancePoints.Count ; ++i)
-        {
+        {;
             m_appearancePoints[i].m_ParntGirlCreater = this;
+            m_appearancePoints[i].m_MovementAreaX = m_movementAreaX;
+            m_appearancePoints[i].m_MovementAreaZ = m_movementAreaZ;
         }
         
 	}

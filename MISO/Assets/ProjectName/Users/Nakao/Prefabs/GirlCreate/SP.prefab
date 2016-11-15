@@ -747,13 +747,13 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011533978290}
   serializedVersion: 2
-  m_Mass: 0.0001
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &95000012486734674
 Animator:
@@ -785,13 +785,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_status: 0
   m_time: 0
-  m_scale: 18
+  m_scale: 5
   m_movable: {fileID: 114000014286938260}
   m_girlMesh: {fileID: 1000011533978290}
   m_speed: 2
   m_rotationSmooth: 40
   m_targetPosition: {x: 0, y: 0, z: 0}
-  m_levelSize: 0
 --- !u!114 &114000014286938260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -815,7 +814,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 3cedf9786163c794aa1203d7bf417491, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.025
+  m_Radius: 0.05
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0.05, z: 0}

@@ -1,0 +1,286 @@
+fileFormatVersion: 2
+guid: 5222814dd64611a49ac878bd5786cef6
+timeCreated: 1478845647
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: body_npc
+    100002: chest
+    100004: fuku_npc1
+    100006: hair_npc
+    100008: head
+    100010: L_arm
+    100012: L_hiza
+    100014: L_hizi
+    100016: L_kakato
+    100018: L_leg
+    100020: L_tekubi
+    100022: L_tumasaki
+    100024: neck
+    100026: npc
+    100028: //RootNode
+    100030: plbone
+    100032: R_arm
+    100034: R_hiza
+    100036: R_hizi
+    100038: R_kakato
+    100040: R_leg
+    100042: R_tekubi
+    100044: R_tumasaki
+    100046: root
+    100048: Up_body
+    400000: body_npc
+    400002: chest
+    400004: fuku_npc1
+    400006: hair_npc
+    400008: head
+    400010: L_arm
+    400012: L_hiza
+    400014: L_hizi
+    400016: L_kakato
+    400018: L_leg
+    400020: L_tekubi
+    400022: L_tumasaki
+    400024: neck
+    400026: npc
+    400028: //RootNode
+    400030: plbone
+    400032: R_arm
+    400034: R_hiza
+    400036: R_hizi
+    400038: R_kakato
+    400040: R_leg
+    400042: R_tekubi
+    400044: R_tumasaki
+    400046: root
+    400048: Up_body
+    4300000: body_npc
+    4300002: fuku_npc1
+    4300004: hair_npc
+    7400000: walk
+    7400002: default
+    9500000: //RootNode
+    13700000: body_npc
+    13700002: fuku_npc1
+    13700004: hair_npc
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      firstFrame: 1
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: npc
+        weight: 1
+      - path: npc/body_npc
+        weight: 1
+      - path: npc/fuku_npc1
+        weight: 1
+      - path: npc/hair_npc
+        weight: 1
+      - path: plbone
+        weight: 1
+      - path: plbone/root
+        weight: 1
+      - path: plbone/root/L_leg
+        weight: 1
+      - path: plbone/root/L_leg/L_hiza
+        weight: 1
+      - path: plbone/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: plbone/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: plbone/root/R_leg
+        weight: 1
+      - path: plbone/root/R_leg/R_hiza
+        weight: 1
+      - path: plbone/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: plbone/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: plbone/root/Up_body
+        weight: 1
+      - path: plbone/root/Up_body/chest
+        weight: 1
+      - path: plbone/root/Up_body/chest/L_arm
+        weight: 1
+      - path: plbone/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: plbone/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: plbone/root/Up_body/chest/neck
+        weight: 1
+      - path: plbone/root/Up_body/chest/neck/head
+        weight: 1
+      - path: plbone/root/Up_body/chest/R_arm
+        weight: 1
+      - path: plbone/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: plbone/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: default
+      takeName: default
+      firstFrame: 1
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: npc
+        weight: 1
+      - path: npc/body_npc
+        weight: 1
+      - path: npc/fuku_npc1
+        weight: 1
+      - path: npc/hair_npc
+        weight: 1
+      - path: plbone
+        weight: 1
+      - path: plbone/root
+        weight: 1
+      - path: plbone/root/L_leg
+        weight: 1
+      - path: plbone/root/L_leg/L_hiza
+        weight: 1
+      - path: plbone/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: plbone/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: plbone/root/R_leg
+        weight: 1
+      - path: plbone/root/R_leg/R_hiza
+        weight: 1
+      - path: plbone/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: plbone/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: plbone/root/Up_body
+        weight: 1
+      - path: plbone/root/Up_body/chest
+        weight: 1
+      - path: plbone/root/Up_body/chest/L_arm
+        weight: 1
+      - path: plbone/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: plbone/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: plbone/root/Up_body/chest/neck
+        weight: 1
+      - path: plbone/root/Up_body/chest/neck/head
+        weight: 1
+      - path: plbone/root/Up_body/chest/R_arm
+        weight: 1
+      - path: plbone/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: plbone/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

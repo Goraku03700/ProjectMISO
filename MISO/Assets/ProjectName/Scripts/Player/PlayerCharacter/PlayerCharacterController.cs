@@ -80,19 +80,14 @@ public class PlayerCharacterController : MonoBehaviour {
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
-        if (MultiInput.GetButton("Attack", m_joypadNumber))
+        if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
         {
             m_controlledPlayerCharacter.InputCharge();
+            m_controlledPlayerCharacter.InputPull();
         }
-        else if (MultiInput.GetButtonUp("OK", m_joypadNumber))
+        else if (MultiInput.GetButtonUp("Throw", m_joypadNumber))
         {
             m_controlledPlayerCharacter.InputThrow();
-        }
-
-        if (MultiInput.GetButtonDown("Cancel", m_joypadNumber))
-        {
-            //m_controlledPlayerCharacter.InputHold();
-            m_controlledPlayerCharacter.InputPull();
         }
 
         switch (m_releaseInputState)
@@ -143,20 +138,58 @@ public class PlayerCharacterController : MonoBehaviour {
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
-        if(Input.GetButton("OK"))
+        //bool isPushThrowKey     = Input.GetKey(KeyCode.Z);
+        bool isPushCancelKey    = Input.GetKeyDown(KeyCode.X); 
+
+        //m_controlledPlayerCharacter.InputThrow(isPushThrowKey);
+        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    m_controlledPlayerCharacter.InputCancel(true);
+        //}
+        //else if(Input.GetKeyUp(KeyCode.X))
+        //{
+        //    m_controlledPlayerCharacter.InputCancel(false);
+        //}
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            m_controlledPlayerCharacter.InputPull();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             m_controlledPlayerCharacter.InputCharge();
         }
-        else if(Input.GetButtonUp("OK"))
+        else if (Input.GetKeyUp(KeyCode.Z))
         {
             m_controlledPlayerCharacter.InputThrow();
         }
 
-        if(Input.GetButtonDown("Cancel"))
-        {
-            //m_controlledPlayerCharacter.InputHold();
-            m_controlledPlayerCharacter.InputPull();
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    m_controlledPlayerCharacter.InputCancel(true);
+        //}
+        //else
+        //{
+        //    m_controlledPlayerCharacter.InputCancel(false);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    m_controlledPlayerCharacter.InputCharge();
+        //}
+        //else if (Input.GetKeyUp(KeyCode.Z))
+        //{
+        //    m_controlledPlayerCharacter.InputThrow();
+        //    m_controlledPlayerCharacter.InputPull();
+        //}
+
+        //if (Input.GetKeyUp(KeyCode.Z))
+        //{
+        //    m_controlledPlayerCharacter.InputThrow();
+        //    m_controlledPlayerCharacter.InputPull();
+        //}
 
         switch (m_releaseInputState)
         {
