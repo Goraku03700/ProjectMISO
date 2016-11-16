@@ -19,3 +19,5 @@ MonoBehaviour:
   ribbonCollectLength: 1
   throwPower: 300
   throwSpeed: 300
+  collectTime: 3
+  inBuildingTime: 3

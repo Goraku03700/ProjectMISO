@@ -21,4 +21,8 @@ public class PlayerCharacterData : ScriptableObject
     public float throwPower;
 
     public float throwSpeed;
+
+    public float collectTime;
+
+    public float inBuildingTime;
 }

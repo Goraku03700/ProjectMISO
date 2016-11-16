@@ -747,13 +747,13 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013056375246}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 0.0001
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.025
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &65000011729872938
 BoxCollider:
@@ -814,6 +814,10 @@ MonoBehaviour:
   m_scale: 10
   m_movable: {fileID: 114000013325413956}
   m_girlMesh: {fileID: 1000013526768462}
+  m_speed: 0.15
+  m_rotationSmooth: 40
+  m_targetPosition: {x: 0, y: 0, z: 0}
+  m_levelSize: 0
 --- !u!198 &198000010264228406
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -21,23 +21,25 @@ namespace Ribbons
         {
             m_animatorParameters.isThrow = true;
 
-            transform.position  = position;
+            transform.position      = position;
             //transform.forward   = direction;
-            transform.rotation  = rotation;
+            transform.rotation      = rotation;
 
-            m_speed = speed;
+            m_speed                 = speed;
+            m_upPower               = upPower;
 
-            rigidbody.useGravity = true;
+            rigidbody.useGravity    = true;
 
-            rigidbody.AddForce(Vector3.up * upPower + transform.forward * speed);
+            m_isDoThrow             = true;
+            //rigidbody.AddForce(Vector3.up * upPower + transform.forward * speed);
 
             //UnityEditor.EditorApplication.isPaused = true;
         }
 
-        public void Move()
-        {
-            transform.Translate((transform.forward * m_speed) * Time.deltaTime);
-        }
+        //public void Move()
+        //{
+        //    transform.Translate((transform.forward * m_speed) * Time.deltaTime);
+        //}
 
         public void ThrowUpdate()
         {
@@ -69,6 +71,8 @@ namespace Ribbons
 
         public void Pull(Vector3 position, float power)
         {
+            //m_triggerColliderObject.SetActive(false);
+
             Vector3 direction = position - transform.position;
 
             m_rigidbody.AddForce(direction.normalized * power);
@@ -76,7 +80,7 @@ namespace Ribbons
 
         public void PullEnter()
         {
-            m_triggerColliderObject.SetActive(false);
+            //m_triggerColliderObject.SetActive(false);
         }
 
         public void PullUpdate()
@@ -88,20 +92,16 @@ namespace Ribbons
         {
             m_animatorParameters.isPulled = true;
 
-            foreach(var coughtObject in m_triggerCollider.coughtObjects)
+            foreach(var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
-                // todo layermask
-                if(coughtObject.layer == LayerMask.NameToLayer("CaughtPlayerCharacter"))
-                {
-                    PlayerCharacter playerCharacter = coughtObject.GetComponent<PlayerCharacter>();
+                playerCharacter.Collect();
+            }
 
-                    playerCharacter.Collect();
-                }
+            foreach (var girl in m_triggerCollider.coughtGirls)
+            {
+                girl.Collect();
 
-                if(coughtObject.layer == LayerMask.NameToLayer("Girl"))
-                {
-                    
-                }
+                m_playerCharacter.player.score++;
             }
 
             Destroy(gameObject);
@@ -109,7 +109,17 @@ namespace Ribbons
 
         public void Breake()
         {
-            playerCharacter.BreakeRibbon();
+            foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
+            {
+                playerCharacter.CatchRelease();
+            }
+
+            foreach (var girl in m_triggerCollider.coughtGirls)
+            {
+                girl.CatchRibbonRelease();
+            }
+
+            m_playerCharacter.BreakeRibbon();
         }
 
         private enum AnimatorParametersID
@@ -155,6 +165,16 @@ namespace Ribbons
             _UpdateAnimatorParameters();
         }
 
+        void FixedUpdate()
+        {
+            if(m_isDoThrow)
+            {
+                rigidbody.AddForce(Vector3.up * m_upPower + transform.forward * m_speed);
+
+                m_isDoThrow = false;
+            }
+        }
+
         private void _InitializeAnimatorParametersID()
         {
             int arraySize = Enum.GetValues(typeof(AnimatorParametersID)).Length;
@@ -178,8 +198,6 @@ namespace Ribbons
         [SerializeField]
         private float m_raycastLength;
 
-        private float m_speed;
-
         private Animator m_animator;
 
         private Movable m_movable;
@@ -191,6 +209,12 @@ namespace Ribbons
         private GameObject m_triggerColliderObject;
 
         private RibbonTriggerCollider m_triggerCollider;
+
+        private float m_upPower;
+
+        private float m_speed;
+
+        private bool m_isDoThrow;
 
         private PlayerCharacter m_playerCharacter;
 
