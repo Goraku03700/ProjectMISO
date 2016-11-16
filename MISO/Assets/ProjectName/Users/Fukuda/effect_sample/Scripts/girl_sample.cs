@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class girl_sample : MonoBehaviour {
+
+    [SerializeField]
+    private float speed = 0.05f;
     private Vector3 pos;
     private Quaternion rotation;
+
 	// Use this for initialization
 	void Start () {
         pos = this.transform.position;
