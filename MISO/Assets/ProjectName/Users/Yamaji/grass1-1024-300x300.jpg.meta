@@ -1,0 +1,283 @@
+fileFormatVersion: 2
+guid: 6ed2b3108c57e824c8ee2ecdedd24781
+timeCreated: 1479108268
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: grass1-1024-300x300_0
+    21300002: grass1-1024-300x300_1
+    21300004: grass1-1024-300x300_2
+    21300006: grass1-1024-300x300_3
+    21300008: grass1-1024-300x300_4
+    21300010: grass1-1024-300x300_5
+    21300012: grass1-1024-300x300_6
+    21300014: grass1-1024-300x300_7
+    21300016: grass1-1024-300x300_8
+    21300018: grass1-1024-300x300_9
+    21300020: grass1-1024-300x300_10
+    21300022: grass1-1024-300x300_11
+    21300024: grass1-1024-300x300_12
+    21300026: grass1-1024-300x300_13
+    21300028: grass1-1024-300x300_14
+    21300030: grass1-1024-300x300_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 1
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 0
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: grass1-1024-300x300_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 236
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 236
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 236
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 236
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 172
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 172
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 172
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 172
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 108
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 108
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 108
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 44
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 44
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 44
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass1-1024-300x300_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 44
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

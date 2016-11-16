@@ -40,7 +40,6 @@ public class MultiInputManagerGenarator {
 	/// <param name="inputManagerGenerator">Input manager generator.</param>
 	private static void AddGlobalInputSettings(InputManagerGenerator inputManagerGenerator)
 	{
-
 		// 横方向
 		{
 			var name = "Horizontal";
@@ -74,46 +73,88 @@ public class MultiInputManagerGenarator {
 		}
 	}
 
-	/// <summary>
-	/// プレイヤーごとの入力設定を追加する
-	/// </summary>
-	/// <param name="inputManagerGenerator">Input manager generator.</param>
-	/// <param name="playerIndex">Player index.</param>
-	private static void AddPlayerInputSettings(InputManagerGenerator inputManagerGenerator, int playerIndex)
-	{
-		if (playerIndex < 1 || playerIndex > 4)
-        { 
+    /// <summary>
+    /// プレイヤーごとの入力設定を追加する
+    /// </summary>
+    /// <param name="inputManagerGenerator">Input manager generator.</param>
+    /// <param name="playerIndex">Player index.</param>
+    private static void AddPlayerInputSettings(InputManagerGenerator inputManagerGenerator, int playerIndex)
+    {
+        if (playerIndex < 1 || playerIndex > 4)
+        {
             Debug.LogError("プレイヤーインデックスの値が不正です。");
         }
 
         string upKey = "", downKey = "", leftKey = "", rightKey = "", attackKey = "";
-		GetAxisKey(out upKey, out downKey, out leftKey, out rightKey, out attackKey, playerIndex);
+        GetAxisKey(out upKey, out downKey, out leftKey, out rightKey, out attackKey, playerIndex);
 
-		int joystickNum = playerIndex;
-		
-		// 横方向
-		{
-			var name = string.Format("Player{0} Horizontal", playerIndex);
-			inputManagerGenerator.AddAxis(InputAxis.CreatePadAxis(name, joystickNum, 1));
-			inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, leftKey, rightKey, "", ""));
-		}
+        int joystickNum = playerIndex;
 
-		// 縦方向
-		{
-			var name = string.Format("Player{0} Vertical", playerIndex);
-			inputManagerGenerator.AddAxis(InputAxis.CreatePadAxis(name, joystickNum, 2));
-			inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, downKey, upKey, "", ""));
-		}
+        // 横方向
+        {
+            var name = string.Format("Player{0} Horizontal", playerIndex);
+            inputManagerGenerator.AddAxis(InputAxis.CreatePadAxis(name, joystickNum, 1));
+            inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, leftKey, rightKey, "", ""));
+        }
+
+        // 縦方向
+        {
+            var name = string.Format("Player{0} Vertical", playerIndex);
+
+            inputManagerGenerator.AddAxis(InputAxis.CreatePadAxis(name, joystickNum, 2));
+            inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, downKey, upKey, "", ""));
+        }
 
 
-		// 攻撃
-		{
-			var axis = new InputAxis();
-			var name = string.Format("Player{0} Attack", playerIndex);
-			var button = string.Format("joystick {0} button 0", joystickNum);
-			inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
-		}
-	}
+        // 攻撃
+        {
+            var axis = new InputAxis();
+            var name = string.Format("Player{0} Attack", playerIndex);
+            var button = string.Format("joystick {0} button 0", joystickNum);
+            inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
+        }
+
+        
+        // Cancel
+        {
+            var axis = new InputAxis();
+            var name = string.Format("Player{0} Cancel", playerIndex);
+            var button = string.Format("joystick {0} button 1", joystickNum);
+            inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
+        }
+
+        // Item
+        {
+            var axis = new InputAxis();
+            var name = string.Format("Player{0} Item", playerIndex);
+            var button = string.Format("joystick {0} button 2", joystickNum);
+            inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
+        }
+
+        // Throw
+        {
+            var axis = new InputAxis();
+            var name = string.Format("Player{0} Throw", playerIndex);
+            var button = string.Format("joystick {0} button 3", joystickNum);
+            inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
+        }
+
+        //Hold
+        {
+            var axis = new InputAxis();
+            var name = string.Format("Player{0} Hold", playerIndex);
+            var button = string.Format("joystick {0} button 4", joystickNum);
+            inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
+        }
+
+        // Dash
+        {
+            var axis = new InputAxis();
+            var name = string.Format("Player{0} Dash", playerIndex);
+            var button = string.Format("joystick {0} button 6", joystickNum);
+            inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
+        }
+    }
 
 	/// <summary>
 	/// キーボードでプレイした場合、割り当たっているキーを取得する

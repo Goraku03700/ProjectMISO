@@ -13,10 +13,19 @@ public class SelectScene : MonoBehaviour {
 
     private bool[] m_readyFlag;
 
-  
+    private bool bgm004_startFlag;
+    private bool[] se026_startFlag;
 
 	// Use this for initialization
 	void Start () {
+
+        bgm004_startFlag = false;
+        se026_startFlag = new bool[ConstPlayerMax];
+
+        for (int i = 0; i < ConstPlayerMax; i++)
+        {
+            se026_startFlag[i] = false;
+        }
 
         m_readyFlag = new bool[ConstPlayerMax];
         for(int i=0; i<ConstPlayerMax; i++)
@@ -39,13 +48,19 @@ public class SelectScene : MonoBehaviour {
 
         m_time = 0;
 
-       
     }
 
     // Update is called once per frame
     void Update () {
 
-        if(Input.GetKeyDown(KeyCode.Z))
+        // BGM鳴らす
+        if(!bgm004_startFlag)
+        {
+            BGMManager.instance.PlayBGM("bgm004_GameSelect", 0.01f);
+            bgm004_startFlag = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             m_readyFlag[0] = true;
             readyText[0].text = "OK!";
@@ -55,7 +70,6 @@ public class SelectScene : MonoBehaviour {
         {
             m_readyFlag[1] = true;
             readyText[1].text = "OK!";
-
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -77,6 +91,13 @@ public class SelectScene : MonoBehaviour {
             // レディーが押されていたら            
             if(m_readyFlag[i])
             {
+                // SE鳴らす
+                if(!se026_startFlag[i])
+                {
+                    BGMManager.instance.PlaySE("se026_PlayerPrepareFinish");
+                    se026_startFlag[i] = true;
+                }
+
                 // だんだん大きくする
                 readyText[i].transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
                 if(readyText[i].transform.localScale.x > 1.0f)

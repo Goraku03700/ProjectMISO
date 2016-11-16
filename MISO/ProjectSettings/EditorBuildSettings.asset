@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/ProjectName/Users/Yanagimoto/Scenes/PlayTest.unity
   - enabled: 1
     path: Assets/ProjectName/Scenes/Result/Result.unity
+  - enabled: 1
+    path: Assets/ProjectName/Scenes/Select/Select.unity
