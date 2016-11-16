@@ -3449,24 +3449,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccc9bc57987ebe429ff22813c4570a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tex: {fileID: 2800000, guid: a4f52be7c0ab2474fa5ab01d82cd303c, type: 3}
   girlColumnStartMaker: {fileID: 26738618}
   girlLineInterval: 0.4
   girlColumnInerver: 0.4
   girlPrefab: {fileID: 1000012023957304, guid: 07d811fc45308b94397caf9d9a16db34, type: 2}
   playerEndMaker: {fileID: 1926425524}
-  playerMoveSpeed: 0.01
-  girlMoveSpeed: 0.01
+  playerMoveSpeed: 0.5
+  girlMoveSpeed: 0.5
   girlLineIntervalTime: 20
   girlColumnMax: 99
   podiumPrefab: {fileID: 1000011079253128, guid: 2789639f3153e394e9504d9b94fb1320,
     type: 2}
   podiumSeedMax:
-  - 1.6
+  - 1
+  - 0.6
   - 0.8
-  - 1.2
-  - 2
-  podiumProdcutionTime: 220
-  prodiumProductionWaitTime: 60
+  - 1.5
+  podiumUpDownProdcutionTime: 4
+  podiumProductionWaitTime: 5
+  podiumDecideRankWaitTime: 1
+  podiumDecideRankSpeed: 0.5
   rank1PodiumPos: {fileID: 1165641292}
   rank4PodiumPos: {fileID: 393839931}
   rankColor:
