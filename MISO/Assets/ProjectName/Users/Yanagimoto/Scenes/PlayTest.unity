@@ -1166,9 +1166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6682de282914d4da602545a2b2af1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_releaseInputState: 0
   m_releaseInputCheck: 0
   m_releaseInput: 0
+  m_releaseInputState: 0
+  m_releaseInputCheckCount: 0
+  m_releaseInputCount: 0
   m_isKeybordPlay: 0
   m_joypadNumber: 1
 --- !u!1001 &919404968
@@ -1502,9 +1504,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6682de282914d4da602545a2b2af1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_releaseInputCheck: 2
+  m_releaseInput: 1
   m_releaseInputState: 0
-  m_releaseInputCheck: 0
-  m_releaseInput: 0
+  m_releaseInputCheckCount: 0
+  m_releaseInputCount: 0
   m_isKeybordPlay: 0
   m_joypadNumber: 0
 --- !u!1001 &1039634804
@@ -1732,9 +1736,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6682de282914d4da602545a2b2af1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_releaseInputState: 0
   m_releaseInputCheck: 0
   m_releaseInput: 0
+  m_releaseInputState: 0
+  m_releaseInputCheckCount: 0
+  m_releaseInputCount: 0
   m_isKeybordPlay: 0
   m_joypadNumber: 2
 --- !u!4 &1275722392 stripped
@@ -1943,9 +1949,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6682de282914d4da602545a2b2af1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_releaseInputState: 0
   m_releaseInputCheck: 0
   m_releaseInput: 0
+  m_releaseInputState: 0
+  m_releaseInputCheckCount: 0
+  m_releaseInputCount: 0
   m_isKeybordPlay: 0
   m_joypadNumber: 3
 --- !u!1 &1438044094

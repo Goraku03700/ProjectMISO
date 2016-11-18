@@ -45,12 +45,14 @@ public class PlayerCharacter : MonoBehaviour
         {
             m_animatorParameters.isDownStick = true;
 
-            if(m_movable.enabled)
-            {
-                Vector3 direction = new Vector3(horizontal, .0f, vertical);
+            Vector3 direction = new Vector3(horizontal, .0f, vertical);
 
-                m_movable.direction = direction;
-                transform.forward   = direction;
+            m_movable.direction = direction;
+
+            if (m_movable.enabled ||
+                m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.SizeAdjust"))
+            {
+                transform.forward = direction;
             }
         }
         else
@@ -131,11 +133,12 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SizeAdjustEnter()
     {
-        GameObject ribbonObject = Instantiate(m_ribbonObject, transform) as GameObject;
+        GameObject ribbonObject = Instantiate(m_ribbonObject, transform.position, transform.rotation) as GameObject;
 
         ribbonObject.tag                        = tag;
         m_controlledRibbon                      = ribbonObject.GetComponent<Ribbons.Ribbon>();
-        m_controlledRibbon.transform.position   = transform.position;
+        //m_controlledRibbon.transform.position   = transform.position;
+        m_controlledRibbon.playerCharacter      = this;
         m_lengthAdjustTime                      = .0f;
 
         // 念のためリセット
@@ -269,6 +272,20 @@ public class PlayerCharacter : MonoBehaviour
         if(m_inBuildingTime > m_playerCharacterData.inBuildingTime)
         {
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.OutBuilding]);
+        }
+    }
+
+    public void OnHoldEnter()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        int layerMask = LayerMask.GetMask(new string[] {"PlayerCharacterBuilding","Girl" });
+
+        var rayCastHits = Physics.SphereCastAll(ray, m_collider.radius, 0.5f, layerMask);
+
+        foreach(var rayCast in rayCastHits)
+        {
+
         }
     }
 

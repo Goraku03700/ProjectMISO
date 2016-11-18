@@ -14,7 +14,7 @@ namespace Ribbons
         public void SizeAdjustUpdate()
         {
             // test code
-            transform.RotateAround(transform.parent.position, Vector3.up, 180.0f * Time.deltaTime);
+            transform.RotateAround(m_playerCharacter.transform.position, Vector3.up, 180.0f * Time.deltaTime);
         }
 
         public void Throw(Vector3 position, Quaternion rotation, float upPower, float speed)
@@ -31,15 +31,7 @@ namespace Ribbons
             rigidbody.useGravity    = true;
 
             m_isDoThrow             = true;
-            //rigidbody.AddForce(Vector3.up * upPower + transform.forward * speed);
-
-            //UnityEditor.EditorApplication.isPaused = true;
         }
-
-        //public void Move()
-        //{
-        //    transform.Translate((transform.forward * m_speed) * Time.deltaTime);
-        //}
 
         public void ThrowUpdate()
         {
@@ -157,7 +149,7 @@ namespace Ribbons
 
             m_triggerCollider = m_triggerColliderObject.GetComponent<RibbonTriggerCollider>();
 
-            playerCharacter = transform.parent.GetComponent<PlayerCharacter>();
+            //playerCharacter = transform.parent.GetComponent<PlayerCharacter>();
 
             _InitializeAnimatorParametersID();
         }
