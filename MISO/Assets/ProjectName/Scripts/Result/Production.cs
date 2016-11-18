@@ -37,7 +37,7 @@ public class Production : MonoBehaviour {
     /// 定数定義
     /// </summary>
     const int ConstPlayerMax = 4;    // プレイヤーの人数
-    const float ConstPodiumAccel = 0.01f;   // 表彰台の加速度
+    const float ConstPodiumAccel = 0.5f;   // 表彰台の加速度
 
     /// <summary>
     /// 変数定義
@@ -76,11 +76,12 @@ public class Production : MonoBehaviour {
     private float[,] m_girlLerpRate;  // 線形補間用
     private int m_girlColumnCnt;    // 女性が会社から出てくる人数
 
-
     private int[] m_scoreCount;       // スコアカウント用
 
     private int i, j, k;       // 添え字
     private int time;       // 経過時間カウント用
+
+    private float m_intervalTime;
 
     private float[] m_podiumSpeed;       // 表彰台の上下の移動速度
     private Vector3[] m_savePodiumStart;   // 位置を保存 
@@ -90,6 +91,8 @@ public class Production : MonoBehaviour {
     private bool se024_startFlag;
     private bool bgm003_startFlag;
 
+    [SerializeField]
+    Texture tex;
 
     /// <summary>
     /// インスペクタに表示する変数
@@ -117,28 +120,34 @@ public class Production : MonoBehaviour {
     private float girlMoveSpeed;   // 女性の移動速度
 
     [SerializeField]
-    private int girlLineIntervalTime;
+    private int girlLineIntervalTime;   // 行の間隔
 
     [SerializeField]
     private int girlColumnMax;     // 女性の列の最大数
 
     [SerializeField]
-    private GameObject podiumPrefab;
+    private GameObject podiumPrefab;    // 表彰台のプレハブ
 
     [SerializeField]
-    private float[] podiumSeedMax;
+    private float[] podiumSeedMax;      // 上下するスピード
 
     [SerializeField]
-    private int podiumProdcutionTime;
+    private float podiumUpDownProdcutionTime;   // 上下する時間
 
     [SerializeField]
-    private int prodiumProductionWaitTime;
+    private float podiumProductionWaitTime;     // 上下してから少し待つ時間
 
     [SerializeField]
-    private Transform rank1PodiumPos;
+    private float podiumDecideRankWaitTime;     // 順位が表示されてから待つ時間
 
     [SerializeField]
-    private Transform rank4PodiumPos;
+    private float podiumDecideRankSpeed;        // 順位決定後の上下する速度
+
+    [SerializeField]
+    private Transform rank1PodiumPos;       // 1位の位置
+
+    [SerializeField]
+    private Transform rank4PodiumPos;       // 最下位の位置
 
     [SerializeField]
     private Color[] rankColor;
@@ -179,7 +188,7 @@ public class Production : MonoBehaviour {
         m_podium[1] = GameObject.Find("Podium02");
         m_podium[2] = GameObject.Find("Podium03");
         m_podium[3] = GameObject.Find("Podium04");
-
+        
         // スコアのテキスト
         m_scoreText = new Text[ConstPlayerMax];
         m_scoreText[0] = GameObject.Find("ScoreText01").GetComponent<Text>();
@@ -330,6 +339,8 @@ public class Production : MonoBehaviour {
 
         m_girlColumnCnt = 1;
 
+        m_intervalTime = 0.0f;
+
         se023_startFlag = false;
         se024_startFlag = false;
         bgm003_startFlag = false;
@@ -403,16 +414,9 @@ public class Production : MonoBehaviour {
     /// </summary>
     private void _MovePlayerProduction()
     {
-        /*
-        if (test == 0)
-        {
-            BGMManager.instance.PlaySE("se_000", 1.0f);
-            test = 1;
-        }
 
-        */
         // 線形補間の比率を上げる
-        m_playerLerpRate += playerMoveSpeed;
+        m_playerLerpRate += playerMoveSpeed * Time.deltaTime;
 
         // 4キャラ全員を前に移動させる
         for (i = 0; i < ConstPlayerMax; i++)
@@ -514,7 +518,7 @@ public class Production : MonoBehaviour {
                 if (m_girlMoveFlag[i, j])
                 {
                     // 進める
-                    m_girlLerpRate[i, j] += girlMoveSpeed;
+                    m_girlLerpRate[i, j] += girlMoveSpeed * Time.deltaTime;
 
                     // 目的地まで到達したらそこに固定
                     if (m_girlLerpRate[i, j] >= 1.0f)
@@ -530,7 +534,7 @@ public class Production : MonoBehaviour {
                     Vector3 start = new Vector3(m_company[i].transform.position.x,
                                                    m_player[i].transform.position.y,
                                                    m_company[i].transform.position.z);
-                    m_girl[i, j].transform.position = Vector3.Lerp(start,//m_company[i].transform.position,
+                    m_girl[i, j].transform.position = Vector3.Lerp(start,
                                                                    m_girlGoalPosition[i, j],
                                                                    m_girlLerpRate[i, j]);
                 }
@@ -558,13 +562,12 @@ public class Production : MonoBehaviour {
         }
 
         // 時間経過
-        time++;
-
+        m_intervalTime += Time.deltaTime;
 
         for (i = 0; i < ConstPlayerMax; i++)
         {
             // 一定時間経過すると停止する
-            if (time > podiumProdcutionTime)
+            if(m_intervalTime > podiumUpDownProdcutionTime)
             {
                 podiumState[i] = PodiumState.Stop;
             }
@@ -628,21 +631,25 @@ public class Production : MonoBehaviour {
             }
 
             // オブジェクトの移動
-            m_podium[i].transform.Translate(0.0f, m_podiumSpeed[i], 0.0f);
+            m_podium[i].transform.Translate(0.0f, m_podiumSpeed[i] * Time.deltaTime, 0.0f);
 
             // 数字のランダムで表示
             m_scoreText[i].text = Random.Range(10, 99 + 1).ToString() + "人";
-
-            // テスト
-            m_scoreText[0].text = time.ToString();
         }
 
 
-
-        if (time > podiumProdcutionTime + 10)
+        
+        if(m_intervalTime > podiumProductionWaitTime)
         {
             resultState = ResultState.DecideRankProducution;
             time = 0;
+            m_intervalTime = 0.0f;
+
+            // オブジェクトの位置を保存しておく
+            for (i = 0; i < ConstPlayerMax; i++)
+            {
+                m_savePodiumStart[i] = m_podium[i].transform.position;
+            }
         }
 
 
@@ -655,7 +662,7 @@ public class Production : MonoBehaviour {
     private void _DecideRankProduction()
     {
         // 時間経過
-        time++;
+        m_intervalTime += Time.deltaTime;
 
         // スコアを表示する
         for (i = 0; i < ConstPlayerMax; i++)
@@ -667,19 +674,22 @@ public class Production : MonoBehaviour {
             m_rankingText[i].text = m_playerRanking[i] + 1 + "位";
         }
 
-
+        
         // 一定時間待ってから演出を開始する
-        if (time < prodiumProductionWaitTime)
+        if (m_intervalTime < podiumDecideRankWaitTime)
         {
+            /*
             // オブジェクトの位置を保存しておく
             for (i = 0; i < ConstPlayerMax; i++)
             {
                 m_savePodiumStart[i] = m_podium[i].transform.position;
             }
+            */
+            
 
             return;
         }
-
+        
         // 順位決定音鳴らす
         if (!se024_startFlag)
         {
@@ -712,7 +722,7 @@ public class Production : MonoBehaviour {
         for (i = 0; i < ConstPlayerMax; i++)
         {
             // 進める
-            m_podiumLerp[i] += 0.02f;
+            m_podiumLerp[i] += podiumDecideRankSpeed * Time.deltaTime;
             if (m_podiumLerp[i] > 1.0f)
             {
                 m_podiumLerp[i] = 1.0f;
@@ -732,7 +742,7 @@ public class Production : MonoBehaviour {
 
         }
 
-        if (time > 500)
+        if (m_intervalTime > 500)
         {
             resultState = ResultState.WaitKey;
         }
@@ -764,7 +774,7 @@ public class Production : MonoBehaviour {
 
 
 
-
+// deltatime使う
 
 // コルーチン
 // unityチュートリアル　シューティング

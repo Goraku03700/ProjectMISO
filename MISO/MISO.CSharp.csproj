@@ -77,15 +77,16 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterHoldTrigger.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Ribbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\RibbonTriggerCollider.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Result\BackUp.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Result\PlayerProduction.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Result\Production.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\InfoText.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Select\PlayerControl.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\SelectScene.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Sound\BGMManager.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\Collect.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\EntryMovable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\ExitMovable.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\InBuilding.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\LengthAdjust.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\Pull.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\SizeAdjust.cs" />
@@ -100,7 +101,6 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleUI.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Utility\FPSPresenter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\girl_sample.cs" />
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\particle_sample.cs" />
@@ -115,6 +115,10 @@
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestParticle.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\ScoreManager.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\TimeUIScript.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIcon.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIconOld.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerScore.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TestUI.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
