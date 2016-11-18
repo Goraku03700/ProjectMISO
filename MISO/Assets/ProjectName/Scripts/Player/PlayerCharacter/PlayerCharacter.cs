@@ -45,12 +45,14 @@ public class PlayerCharacter : MonoBehaviour
         {
             m_animatorParameters.isDownStick = true;
 
-            if(m_movable.enabled)
-            {
-                Vector3 direction = new Vector3(horizontal, .0f, vertical);
+            Vector3 direction = new Vector3(horizontal, .0f, vertical);
 
-                m_movable.direction = direction;
-                transform.forward   = direction;
+            m_movable.direction = direction;
+
+            if (m_movable.enabled ||
+                m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.SizeAdjust"))
+            {
+                transform.forward = direction;
             }
         }
         else
@@ -70,7 +72,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught"))
         {
-            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRelease]);
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
 
             gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
@@ -88,6 +90,11 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParameters.isPushThrowKey = false;
     }
 
+    public void InputThrow(bool isPush)
+    {
+        m_animatorParameters.isPushThrowKey = isPush;
+    }
+
     public void InputHold()
     {
         m_animatorParameters.isPushHoldKey = true;
@@ -102,28 +109,43 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.Pull"))
         {
-
             if (m_controlledRibbon != null)
             {
                 m_controlledRibbon.Pull(transform.position, m_playerCharacterData.ribbonPullPower);
             }
-
         }
+    }
+
+    public void InputCancel()
+    {
+        if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.SizeAdjust"))
+        {
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]);
+
+            m_animatorParameters.isPushThrowKey = false;
+        }
+    }
+
+    public void InputCancel(bool isPush)
+    {
+        m_animatorParameters.isPushCancelKey = isPush;
     }
 
     public void SizeAdjustEnter()
     {
-        GameObject ribbonObject = Instantiate(m_ribbonObject, transform) as GameObject;
+        GameObject ribbonObject = Instantiate(m_ribbonObject, transform.position, transform.rotation) as GameObject;
 
         ribbonObject.tag                        = tag;
         m_controlledRibbon                      = ribbonObject.GetComponent<Ribbons.Ribbon>();
-        m_controlledRibbon.transform.position   = transform.position;
+        //m_controlledRibbon.transform.position   = transform.position;
+        m_controlledRibbon.playerCharacter      = this;
         m_lengthAdjustTime                      = .0f;
 
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]);
+        m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]);
 
         Assert.IsNotNull(ribbonObject);
         Assert.IsNotNull(m_controlledRibbon);
@@ -144,18 +166,24 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SizeAdjustExit()
     {
-        if(m_animatorParameters.isPushThrowKey == false)
+        if(m_animatorParameters.isPushCancelKey)
         {
-            m_controlledRibbon.Throw(
+            m_animatorParameters.isPushThrowKey = false;
+
+            if(m_controlledRibbon)
+            {
+                Destroy(m_controlledRibbon.gameObject);
+            }
+        }
+    }
+
+    public void LengthAdjustEnter()
+    {
+        m_controlledRibbon.Throw(
                 transform.position + new Vector3(.0f, 1.0f, 1.0f),
                 transform.rotation,
                 m_playerCharacterData.throwPower,
                 m_playerCharacterData.throwSpeed);
-        }
-        else
-        {
-
-        }
     }
 
     public void LengthAdjustUpdate()
@@ -188,14 +216,14 @@ public class PlayerCharacter : MonoBehaviour
         {
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]);
 
-            Destroy(m_controlledRibbon.gameObject);
+            //Destroy(m_controlledRibbon.gameObject);
             m_controlledRibbon = null;
         }
     }
 
     public void CaughtRibbon(Ribbon caughtRibbon)
     {
-        //m_animator.Play(m_mainStateHashs[(int)MainState.CaughtRibbon], 1, .0f);
+        //@todo Change SetTrigger
         m_animator.Play("Base Layer.CaughtRibbon.Caught");
 
         gameObject.layer    = LayerMask.NameToLayer("CaughtPlayerCharacter");
@@ -209,33 +237,81 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public void CatchRelease()
+    {
+        m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
+
+        gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
+    }
+
     public void Collect()
     {
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsCollect]);
 
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
+
+        m_collectTime = .0f;
+    }
+
+    public void CollectUpdate()
+    {
+        m_collectTime += Time.deltaTime;
+
+        if(m_collectTime > m_playerCharacterData.collectTime)
+        {
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InBuilding]);
+
+            m_inBuildingTime = .0f;
+        }
+    }
+
+    public void InBuildingUpdate()
+    {
+        m_inBuildingTime += Time.deltaTime;
+
+        if(m_inBuildingTime > m_playerCharacterData.inBuildingTime)
+        {
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.OutBuilding]);
+        }
+    }
+
+    public void OnHoldEnter()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        int layerMask = LayerMask.GetMask(new string[] {"PlayerCharacterBuilding","Girl" });
+
+        var rayCastHits = Physics.SphereCastAll(ray, m_collider.radius, 0.5f, layerMask);
+
+        foreach(var rayCast in rayCastHits)
+        {
+
+        }
     }
 
     private enum AnimatorParametersID
     {
         IsDownStick = 0,
         IsPushThrowKey,
-        IsPushCancelKey,
         IsPushHoldKey,
+        IsPushCancelKey,
         IsRibbonLanding,
         IsPulled,
-        IsRelease,
+        InputRelease,
         IsCollect,
         IsBreak,
         Velocity,
+        InBuilding,
+        OutBuilding,
+        InputCancel,
     }
 
     private struct AnimatorParameters
     {
         public bool isDownStick;
         public bool isPushThrowKey;
-        public bool isPushCancelKey;
         public bool isPushHoldKey;
+        public bool isPushCancelKey;
         public float velocity;
     }
 
@@ -254,6 +330,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animator  = GetComponent<Animator>();
         m_movable   = GetComponent<Movable>();
         m_collider  = GetComponent<SphereCollider>();   
+        m_player    = transform.parent.GetComponent<Player>();
 
         Assert.IsNotNull(m_animator);
         Assert.IsNotNull(m_movable);
@@ -277,14 +354,17 @@ public class PlayerCharacter : MonoBehaviour
 
         m_animatorParametersHashs[(int)AnimatorParametersID.IsDownStick]        = Animator.StringToHash("isDownStick");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsPushThrowKey]     = Animator.StringToHash("isPushThrowKey");
-        m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey]    = Animator.StringToHash("isPushCancelKey");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsPushHoldKey]      = Animator.StringToHash("isPushHoldKey");
+        m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey]    = Animator.StringToHash("isPushCancelKey");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]    = Animator.StringToHash("isRibbonLanding");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]           = Animator.StringToHash("isPulled");
-        m_animatorParametersHashs[(int)AnimatorParametersID.IsRelease]          = Animator.StringToHash("isRelease");
+        m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]       = Animator.StringToHash("inputRelease");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsCollect]          = Animator.StringToHash("isCollect");
         m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]            = Animator.StringToHash("isBreak");
         m_animatorParametersHashs[(int)AnimatorParametersID.Velocity]           = Animator.StringToHash("velocity");
+        m_animatorParametersHashs[(int)AnimatorParametersID.InBuilding]         = Animator.StringToHash("inBuilding");
+        m_animatorParametersHashs[(int)AnimatorParametersID.OutBuilding]        = Animator.StringToHash("outBuilding");
+        m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]        = Animator.StringToHash("inputCancel");
     }
 
     private void _InitializeAnimationState()
@@ -324,8 +404,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsDownStick],        m_animatorParameters.isDownStick);
         m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushThrowKey],     m_animatorParameters.isPushThrowKey);
-        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey],    m_animatorParameters.isPushCancelKey);
         m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushHoldKey],      m_animatorParameters.isPushHoldKey);
+        m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPushCancelKey],    m_animatorParameters.isPushCancelKey);
         m_animator.SetFloat(m_animatorParametersHashs[(int)AnimatorParametersID.Velocity],          m_animatorParameters.velocity);
     }
 
@@ -370,14 +450,31 @@ public class PlayerCharacter : MonoBehaviour
 
     private float m_lengthAdjustTime;
 
+    private float m_collectTime;
+
+    private float m_inBuildingTime;
+
+    private Player m_player;
+
+    public Player player
+    {
+        get
+        {
+            return m_player;
+        }
+
+        set
+        {
+            m_player = value;
+        }
+    }
+
     private PlayerCharacterData m_playerCharacterData;
     
     public PlayerCharacterData playerCharacterData
     {
         get { return m_playerCharacterData; }
     }
-
-
 
     private SphereCollider m_collider;
 
@@ -395,5 +492,13 @@ public class PlayerCharacter : MonoBehaviour
 
     private int[] m_throwStateHashs;
 
-    
+    public bool isCaught
+    {
+        get
+        {
+            return 
+                m_animatorStateInfo.shortNameHash == Animator.StringToHash("CaughtRibbon.Caught") ||
+                m_animatorStateInfo.shortNameHash == Animator.StringToHash("CaughtRibbon.Collect");
+        }
+    }
 }

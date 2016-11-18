@@ -60,7 +60,7 @@ public class PlayerCharacterController : MonoBehaviour {
 	
 	void Update ()
     {
-        //_UpdateInputJoypad();
+        _UpdateInputJoypad();
 
 #if UNITY_EDITOR
 
@@ -75,64 +75,28 @@ public class PlayerCharacterController : MonoBehaviour {
 
     void _UpdateInputJoypad()
     {
-        float horizontal    = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber);
-        float vertical      = MultiInput.GetAxis(MultiInput.Key.Vertical,   m_joypadNumber);
+        float horizontal    = MultiInput.GetAxis("Horizontal", m_joypadNumber);
+        float vertical      = MultiInput.GetAxis("Vertical",   m_joypadNumber);
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
-        if (MultiInput.GetButton("Attack", m_joypadNumber))
+        bool isPushCancelKey = MultiInput.GetButtonDown("Cancel", m_joypadNumber);
+
+        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+
+        if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
         {
             m_controlledPlayerCharacter.InputCharge();
         }
-        else if (MultiInput.GetButtonUp("OK", m_joypadNumber))
+        else if (MultiInput.GetButtonUp("Throw", m_joypadNumber))
         {
             m_controlledPlayerCharacter.InputThrow();
         }
 
-        if (MultiInput.GetButtonDown("Cancel", m_joypadNumber))
+        if (_CheckStickRotation(vertical, horizontal))
         {
-            //m_controlledPlayerCharacter.InputHold();
-            m_controlledPlayerCharacter.InputPull();
-        }
-
-        switch (m_releaseInputState)
-        {
-            case ReleaseInputState.CheckHorizontal:
-
-                if (horizontal != .0f)
-                {
-                    m_releaseInputState = ReleaseInputState.CheckVertical;
-                    m_releaseInputCheck++;
-                }
-
-                break;
-
-            case ReleaseInputState.CheckVertical:
-
-                if (vertical != .0f)
-                {
-                    m_releaseInputState = ReleaseInputState.CheckHorizontal;
-                    m_releaseInputCheck++;
-                }
-
-                break;
-
-            default:
-                break;
-        }
-
-        if (m_releaseInputCheck >= 4)
-        {
-            m_releaseInput++;
-
-            m_releaseInputCheck = 0;
-        }
-
-        if (m_releaseInput >= 2)
-        {
-            m_releaseInput = 0;
-
             m_controlledPlayerCharacter.InputRelease();
+            m_controlledPlayerCharacter.InputPull();
         }
     }
 
@@ -143,39 +107,55 @@ public class PlayerCharacterController : MonoBehaviour {
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
-        if(Input.GetButton("OK"))
+        //bool isPushThrowKey     = Input.GetKey(KeyCode.Z);
+        bool isPushCancelKey    = Input.GetKeyDown(KeyCode.X); 
+
+        //m_controlledPlayerCharacter.InputThrow(isPushThrowKey);
+        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    m_controlledPlayerCharacter.InputPull();
+        //}
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             m_controlledPlayerCharacter.InputCharge();
         }
-        else if(Input.GetButtonUp("OK"))
+        else if (Input.GetKeyUp(KeyCode.Z))
         {
             m_controlledPlayerCharacter.InputThrow();
         }
 
-        if(Input.GetButtonDown("Cancel"))
+        if(_CheckStickRotation(vertical, horizontal))
         {
-            //m_controlledPlayerCharacter.InputHold();
+            m_controlledPlayerCharacter.InputRelease();
             m_controlledPlayerCharacter.InputPull();
         }
+    }
 
+    bool _CheckStickRotation(float vertical, float horizontal)
+    {
         switch (m_releaseInputState)
         {
             case ReleaseInputState.CheckHorizontal:
 
-                if(horizontal != .0f)
+                if (Mathf.Abs(horizontal) > 0.75f &&
+                    Mathf.Abs(vertical) < 0.1f)
                 {
                     m_releaseInputState = ReleaseInputState.CheckVertical;
-                    m_releaseInputCheck ++;
+                    m_releaseInputCheckCount++;
                 }
 
                 break;
 
             case ReleaseInputState.CheckVertical:
 
-                if(vertical != .0f)
+                if (Mathf.Abs(vertical) > 0.75f &&
+                    Mathf.Abs(horizontal) < 0.1f)
                 {
                     m_releaseInputState = ReleaseInputState.CheckHorizontal;
-                    m_releaseInputCheck ++;
+                    m_releaseInputCheckCount++;
                 }
 
                 break;
@@ -184,19 +164,21 @@ public class PlayerCharacterController : MonoBehaviour {
                 break;
         }
 
-        if(m_releaseInputCheck >= 4)
+        if (m_releaseInputCheckCount >= m_releaseInputCheck)
         {
-            m_releaseInput++;
+            m_releaseInputCount++;
 
-            m_releaseInputCheck = 0;
+            m_releaseInputCheckCount = 0;
         }
 
-        if(m_releaseInput >= 2)
+        if (m_releaseInputCount >= m_releaseInput)
         {
-            m_releaseInput = 0;
+            m_releaseInputCount = 0;
 
-            m_controlledPlayerCharacter.InputRelease();
+            return true;
         }
+
+        return false;
     }
 
     enum ReleaseInputState
@@ -205,6 +187,12 @@ public class PlayerCharacterController : MonoBehaviour {
         CheckVertical,
     }
 
+    [SerializeField]
+    private int m_releaseInputCheck;
+
+    [SerializeField]
+    private int m_releaseInput;
+
     private GameObject m_controlledPlayerCharacterObject;
     private PlayerCharacter m_controlledPlayerCharacter;
 
@@ -212,10 +200,10 @@ public class PlayerCharacterController : MonoBehaviour {
     private ReleaseInputState m_releaseInputState;
 
     [SerializeField]
-    private int m_releaseInputCheck;
+    private int m_releaseInputCheckCount;
 
     [SerializeField]
-    private int m_releaseInput;
+    private int m_releaseInputCount;
 
 #if UNITY_EDITOR
 

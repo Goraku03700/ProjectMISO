@@ -7,6 +7,8 @@ public class LengthAdjust : StateMachineBehaviour {
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         m_playerCharacter = animator.gameObject.GetComponent<PlayerCharacter>();
+
+        m_playerCharacter.LengthAdjustEnter();
     }
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

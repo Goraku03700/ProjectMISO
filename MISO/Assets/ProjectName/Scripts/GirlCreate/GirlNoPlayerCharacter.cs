@@ -203,7 +203,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        int i = LayerMask.NameToLayer("Ribbon");
+        int i = LayerMask.NameToLayer("RibbonTrigger");
         if(collision.gameObject.layer == i)
         {
             if(collision.gameObject.tag == "Player1")
@@ -215,8 +215,26 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 this.gameObject.tag = collision.gameObject.tag;
             }
             m_isCaught = true;
-        }
+            this.m_status = State.None;			gameObject.layer = LayerMask.NameToLayer("CaughtGirl");        }
     }
 
+    public void CatchRibbon(PlayerCharacter playerCharacter)
+    {
+        gameObject.tag      = playerCharacter.gameObject.tag;
+        m_isCaught          = true;
+        gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
+        m_status            = State.Caught;
+    }
 
+    public void CatchRibbonRelease()
+    {
+        m_isCaught          = false;
+        gameObject.layer    = LayerMask.NameToLayer("Girl");
+        m_status            = State.Alive;
+    }
+
+    public void Collect()
+    {
+        m_status = State.None;
+    }
 }

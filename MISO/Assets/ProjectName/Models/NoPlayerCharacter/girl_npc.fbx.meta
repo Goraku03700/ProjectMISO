@@ -24,6 +24,30 @@ ModelImporter:
     100032: transform7
     100034: transform8
     100036: transform9
+    100038: body_npc
+    100040: chest
+    100042: fuku_npc1
+    100044: hair_npc
+    100046: head
+    100048: L_arm
+    100050: L_hiza
+    100052: L_hizi
+    100054: L_kakato
+    100056: L_leg
+    100058: L_tekubi
+    100060: L_tumasaki
+    100062: neck
+    100064: npc
+    100066: plbone
+    100068: R_arm
+    100070: R_hiza
+    100072: R_hizi
+    100074: R_kakato
+    100076: R_leg
+    100078: R_tekubi
+    100080: R_tumasaki
+    100082: root
+    100084: Up_body
     400000: body
     400002: //RootNode
     400004: group2
@@ -43,6 +67,30 @@ ModelImporter:
     400032: transform7
     400034: transform8
     400036: transform9
+    400038: body_npc
+    400040: chest
+    400042: fuku_npc1
+    400044: hair_npc
+    400046: head
+    400048: L_arm
+    400050: L_hiza
+    400052: L_hizi
+    400054: L_kakato
+    400056: L_leg
+    400058: L_tekubi
+    400060: L_tumasaki
+    400062: neck
+    400064: npc
+    400066: plbone
+    400068: R_arm
+    400070: R_hiza
+    400072: R_hizi
+    400074: R_kakato
+    400076: R_leg
+    400078: R_tekubi
+    400080: R_tumasaki
+    400082: root
+    400084: Up_body
     2300000: pasted__polySurface8
     2300002: polySurface3
     2300004: polySurface5
@@ -52,7 +100,15 @@ ModelImporter:
     4300000: polySurface5
     4300002: pasted__polySurface8
     4300004: polySurface3
+    4300006: body_npc
+    4300008: fuku_npc1
+    4300010: hair_npc
+    7400000: default
+    7400002: walk
     9500000: //RootNode
+    13700000: body_npc
+    13700002: fuku_npc1
+    13700004: hair_npc
   materials:
     importMaterials: 1
     materialName: 0
