@@ -57,11 +57,17 @@ public class GirlCreateSystem : MonoBehaviour {
     [SerializeField]
     int m_girl_Count;
 
+    [SerializeField]
+    float m_countDownTime;
+
     public int m_GirlCount
     {
         get {return m_girl_Count ;}
         set {m_girl_Count = value ;}
     }
+
+    [SerializeField]
+    GameEndEffect m_endEffect;
 
 
 	// Use this for initialization
@@ -102,11 +108,6 @@ public class GirlCreateSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        m_LimitTimeUI.text = "TIME\n" + (int)m_limit;
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            BGMManager.instance.PlaySE("Soap_Jump");
-        }
         m_limit -= Time.deltaTime;
         m_girl_Count = 0;
         for (int i = 0; i < m_createRules_Continue.Count; ++i)
@@ -160,9 +161,19 @@ public class GirlCreateSystem : MonoBehaviour {
                 m_createRules_Normal[i].m_normal = false;
             }
         }
-        if(m_limit <0.0f)
+
+        m_LimitTimeUI.text = "TIME\n" + (int)m_limit;
+
+        if(m_limit < 5.0f)
         {
-            SceneManager.LoadScene("Result");
+            if (m_limit > 0.0f)
+            {
+                if (m_endEffect.StartEndEffect())
+                {
+                    m_endEffect.m_CountDownTime = m_countDownTime;
+                }
+                m_LimitTimeUI.text = "";
+            }
         }
 	}
 
