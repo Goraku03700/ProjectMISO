@@ -57,7 +57,7 @@ public class FeverTextControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        m_state = State.Slide;
+        m_state = State.None;
 	}
 	
 	// Update is called once per frame
@@ -139,4 +139,10 @@ public class FeverTextControl : MonoBehaviour {
 	    
 
 	}
+
+    public void StartFever()
+    {
+        m_state = State.Slide;
+        m_time = 0.0f;
+    }
 }

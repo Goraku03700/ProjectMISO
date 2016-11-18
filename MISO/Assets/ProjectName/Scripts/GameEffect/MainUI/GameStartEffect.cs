@@ -52,6 +52,8 @@ public class GameStartEffect : MonoBehaviour {
     [SerializeField]
     RectTransform m_thisRectTransform;
 
+    [SerializeField]
+    TimeCount m_timeCount;
 
 	// Use this for initialization
 	void Start () {
@@ -91,6 +93,7 @@ public class GameStartEffect : MonoBehaviour {
                     {
                         m_time = 0.0f;
                         m_state = State.Go;
+                        m_goTexts.text = "Go!!";
                         for (int i = 0; i < m_texts.Length; ++i)
                         {
                             m_texts[i].color = lerpColors[1];
@@ -116,7 +119,7 @@ public class GameStartEffect : MonoBehaviour {
                 {
                     m_goTexts.enabled = true;
                     m_state = State.FadeGo;
-
+                    m_timeCount.StartTime();
                     break;
                 }
             case State.FadeGo:

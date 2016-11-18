@@ -175,14 +175,6 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             case State.None:
             {
-                if (this.gameObject.tag == "Player1")
-                {
-                    m_parntGirlAppearancePosition.m_ParntGirlCreater.m_ParntGirlCreateSystem.GetNPC_Player(0);
-                }
-                if (this.gameObject.tag == "Player2")
-                {
-                    m_parntGirlAppearancePosition.m_ParntGirlCreater.m_ParntGirlCreateSystem.GetNPC_Player(1);
-                }
                 //取得をUIに通知
                 //m_girlMesh.SetActive(false);
                 //m_parntGirlAppearancePosition.IsDestroy = true;
