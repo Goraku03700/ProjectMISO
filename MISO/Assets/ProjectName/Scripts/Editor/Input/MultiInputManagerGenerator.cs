@@ -101,7 +101,11 @@ public class MultiInputManagerGenarator {
         {
             var name = string.Format("Player{0} Vertical", playerIndex);
 
-            inputManagerGenerator.AddAxis(InputAxis.CreatePadAxis(name, joystickNum, 2));
+            var padAxis = InputAxis.CreatePadAxis(name, joystickNum, 2);
+
+            padAxis.invert = true;
+
+            inputManagerGenerator.AddAxis(padAxis);
             inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, downKey, upKey, "", ""));
         }
 

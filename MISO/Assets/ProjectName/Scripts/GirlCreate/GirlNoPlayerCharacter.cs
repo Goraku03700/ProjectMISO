@@ -223,12 +223,14 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         gameObject.tag      = playerCharacter.gameObject.tag;
         m_isCaught          = true;
         gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
+        m_status            = State.Caught;
     }
 
     public void CatchRibbonRelease()
     {
         m_isCaught          = false;
         gameObject.layer    = LayerMask.NameToLayer("Girl");
+        m_status            = State.Alive;
     }
 
     public void Collect()

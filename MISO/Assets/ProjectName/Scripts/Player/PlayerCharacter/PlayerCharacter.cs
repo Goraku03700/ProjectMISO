@@ -221,7 +221,6 @@ public class PlayerCharacter : MonoBehaviour
     public void CaughtRibbon(Ribbon caughtRibbon)
     {
         //@todo Change SetTrigger
-        //m_animator.Play(m_mainStateHashs[(int)MainState.CaughtRibbon], 1, .0f);
         m_animator.Play("Base Layer.CaughtRibbon.Caught");
 
         gameObject.layer    = LayerMask.NameToLayer("CaughtPlayerCharacter");
@@ -476,5 +475,13 @@ public class PlayerCharacter : MonoBehaviour
 
     private int[] m_throwStateHashs;
 
-    
+    public bool isCaught
+    {
+        get
+        {
+            return 
+                m_animatorStateInfo.shortNameHash == Animator.StringToHash("CaughtRibbon.Caught") ||
+                m_animatorStateInfo.shortNameHash == Animator.StringToHash("CaughtRibbon.Collect");
+        }
+    }
 }

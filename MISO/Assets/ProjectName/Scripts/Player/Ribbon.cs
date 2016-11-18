@@ -119,6 +119,8 @@ namespace Ribbons
                 girl.CatchRibbonRelease();
             }
 
+            Destroy(gameObject);
+
             m_playerCharacter.BreakeRibbon();
         }
 
