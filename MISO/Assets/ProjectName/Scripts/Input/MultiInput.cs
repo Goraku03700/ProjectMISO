@@ -123,7 +123,9 @@ public class MultiInput
     /// <returns>軸の値を取得</returns>
     public static float GetAxis(string keyName, JoypadNumber joypadNumber)
     {
-        return Input.GetAxis(keyName + padNames[(int)joypadNumber]);
+        string axisName = padNames[(int)joypadNumber] + keyName;
+
+        return Input.GetAxis(axisName);     //Player1 Horizontal
     }
 
     /// <summary>

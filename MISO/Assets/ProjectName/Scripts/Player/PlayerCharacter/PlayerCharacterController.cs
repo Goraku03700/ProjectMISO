@@ -60,7 +60,7 @@ public class PlayerCharacterController : MonoBehaviour {
 	
 	void Update ()
     {
-        //_UpdateInputJoypad();
+        _UpdateInputJoypad();
 
 #if UNITY_EDITOR
 
@@ -75,8 +75,8 @@ public class PlayerCharacterController : MonoBehaviour {
 
     void _UpdateInputJoypad()
     {
-        float horizontal    = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber);
-        float vertical      = MultiInput.GetAxis(MultiInput.Key.Vertical,   m_joypadNumber);
+        float horizontal    = MultiInput.GetAxis("Horizontal", m_joypadNumber);
+        float vertical      = MultiInput.GetAxis("Vertical",   m_joypadNumber);
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
@@ -93,7 +93,7 @@ public class PlayerCharacterController : MonoBehaviour {
         {
             m_controlledPlayerCharacter.InputCharge();
         }
-        else if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
+        else if (MultiInput.GetButtonUp("Throw", m_joypadNumber))
         {
             m_controlledPlayerCharacter.InputThrow();
         }
