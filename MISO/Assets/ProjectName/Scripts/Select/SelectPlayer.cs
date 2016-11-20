@@ -16,7 +16,7 @@ public class SelectPlayer: MonoBehaviour
     };
 
     // プレイヤーの状態
-    private PlayerState playerState;
+    private PlayerState m_playerState;
 
     // パッドの番号
     private MultiInput.JoypadNumber m_joypadNumber;
@@ -64,16 +64,20 @@ public class SelectPlayer: MonoBehaviour
 
         m_animator = this.GetComponent<Animator>();
 
-        playerState = PlayerState.Default;
+        m_playerState = PlayerState.Default;
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         // 現在のアニメーションの状態を取得
         AnimatorStateInfo stateInfo = m_animator.GetCurrentAnimatorStateInfo(0);
 
-        switch (playerState)
+        switch (m_playerState)
         {
             case PlayerState.Default:
                 _Walk();
@@ -99,7 +103,7 @@ public class SelectPlayer: MonoBehaviour
                 // アニメーションが終了していたら状態を戻す
                 if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Default"))
                 {
-                    playerState = PlayerState.Default;
+                    m_playerState = PlayerState.Default;
                     m_animator.SetBool("isCatch", false);
                 }
 
@@ -109,7 +113,7 @@ public class SelectPlayer: MonoBehaviour
                 // アニメーションが終了していたら状態を戻す
                 if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Default"))
                 {
-                    playerState = PlayerState.Default;
+                    m_playerState = PlayerState.Default;
                     m_animator.SetBool("isAim", false);
                 }
 
@@ -129,10 +133,11 @@ public class SelectPlayer: MonoBehaviour
     private void _Walk()
     {
         // 何も押されていなかったら止めるため
-        playerState = PlayerState.Default;
+        m_playerState = PlayerState.Default;
         m_animator.SetBool("isWalk", false);
        
         // キーボード用-------------
+        /*
         if (Input.GetKey(KeyCode.UpArrow))
         {
             this.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
@@ -160,6 +165,7 @@ public class SelectPlayer: MonoBehaviour
             m_animator.SetBool("isWalk", true);
             playerState = PlayerState.Walk;
         }
+        */
 
         float horizontal = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber);
         float vertical = MultiInput.GetAxis(MultiInput.Key.Vertical, m_joypadNumber);
@@ -168,7 +174,7 @@ public class SelectPlayer: MonoBehaviour
             Vector3 direction = new Vector3(horizontal, .0f, vertical);
             this.transform.forward = direction;
             m_animator.SetBool("isWalk", true);
-            playerState = PlayerState.Walk;
+            m_playerState = PlayerState.Walk;
 
         }
     }
@@ -179,10 +185,11 @@ public class SelectPlayer: MonoBehaviour
     private void _Run()
     {
         // 何も押されていなかったらやめるため
-        playerState = PlayerState.Default;
+        m_playerState = PlayerState.Default;
         m_animator.SetBool("isRun", false);
 
-        if (Input.GetKey(KeyCode.Space))
+        //if (Input.GetKey(KeyCode.Space))
+        if(MultiInput.GetButton("Dash", m_joypadNumber))
         {
             float horizontal = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber);
             float vertical = MultiInput.GetAxis(MultiInput.Key.Vertical, m_joypadNumber);
@@ -190,7 +197,7 @@ public class SelectPlayer: MonoBehaviour
             {
                 Vector3 direction = new Vector3(horizontal, .0f, vertical);
                 this.transform.forward = direction;
-                playerState = PlayerState.Run;
+                m_playerState = PlayerState.Run;
                 m_animator.SetBool("isRun", true);
             }
         }
@@ -203,16 +210,18 @@ public class SelectPlayer: MonoBehaviour
     /// <param name="playerNo">プレイヤー番号</param>
     private void _Catch()
     {
+        /*
         if (Input.GetKey(KeyCode.A))
         {
             m_animator.SetBool("isCatch", true);
             playerState = PlayerState.Catch;
         }
+        */
 
-        if (MultiInput.GetButton("Attack", m_joypadNumber))
+        if (MultiInput.GetButton("Throw", m_joypadNumber))
         {
             m_animator.SetBool("isCatch", true);
-            playerState = PlayerState.Catch;
+            m_playerState = PlayerState.Catch;
         }
 
     }
@@ -226,10 +235,11 @@ public class SelectPlayer: MonoBehaviour
         // 離したか確認できるようにするため
         m_animator.SetBool("isAim", false);
 
-        if (Input.GetKey(KeyCode.S))
+        //if (Input.GetKey(KeyCode.S))
+        if(MultiInput.GetButton("Attack", m_joypadNumber))
         {
             m_animator.SetBool("isAim", true);
-            playerState = PlayerState.Aim;
+            m_playerState = PlayerState.Aim;
         }
 
 
