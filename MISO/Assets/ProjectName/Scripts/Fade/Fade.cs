@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class Fade : MonoBehaviour{
+public class Fade : SingletonMonoBehaviour<Fade>{
     private enum State { Out, In, End };
-    static State m_state = State.End;
+    static State m_state;
 
     [SerializeField]
     float m_time;
@@ -32,7 +32,10 @@ public class Fade : MonoBehaviour{
     public Material m_rend;
     void Start()
     {
-        DontDestroyOnLoad(this);
+        this._InitializeSingleton();
+        
+        m_state = State.End;
+        DontDestroyOnLoad(this.gameObject);
         //m_rend = sprites[1].GetComponent<CanvasRenderer>().GetMaterial(0);
       //  m_rends[0].GetMaterial(0).shader = Shader.Find("UI/Mask");
        // m_rends[1].material.shader = Shader.Find("UI/Mask");
@@ -47,7 +50,7 @@ public class Fade : MonoBehaviour{
                     sprites[0].color = Color32.Lerp(m_lerpColors[0], m_lerpColors[1], m_time / m_colorTime);
                     sprites[1].color = Color32.Lerp(m_lerpColors[0], m_lerpColors[1], m_time / m_colorTime);
 
-                    float shininess = Mathf.Lerp(0.45f, 0.0f, m_time / fadeouttime);
+                    float shininess = Mathf.Lerp(0.43f, 0.0f, m_time / fadeouttime);
                     sprites[0].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * 360.0f);
                     sprites[1].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * 360.0f);
                     m_ribbon.rectTransform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, m_time / fadeouttime);
@@ -56,7 +59,7 @@ public class Fade : MonoBehaviour{
                     {
                         m_state = State.In;
                         m_time = 0.0f;
-                        SceneManager.LoadScene("Result");
+                        SceneManager.LoadScene(SceneName);
                     }
 
                     break;
@@ -69,7 +72,7 @@ public class Fade : MonoBehaviour{
                     {
                         sprites[1].color = Color32.Lerp(m_lerpColors[1], m_lerpColors[0], (m_time - m_colorTime) / m_colorTime);
                     }
-                    float shininess = Mathf.Lerp(0.0f, 0.45f, m_time / fadeintime);
+                    float shininess = Mathf.Lerp(0.0f, 0.43f, m_time / fadeintime);
                     if(m_time > fadeintime)
                     {
                         shininess = 1.0f;
@@ -125,13 +128,23 @@ public class Fade : MonoBehaviour{
     
     public static void ChangeScene(string nextScene)
     {
-        m_state = State.Out;
+        if (m_state == State.End)
+        {
+            m_state = State.Out;
+        }
         SceneName = nextScene;
     }
 
-    public static bool FadeEnd()
+    public bool FadeEnd()
     {
-        return !fadeflg;
+        if (m_state == State.End)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

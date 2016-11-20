@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class testtitle : MonoBehaviour {
 
+    [SerializeField]
+    Canvas m_fadeCanvas;
+
     //タイトルの演出シーンの状態
     enum TitleState
     {
@@ -36,7 +39,7 @@ public class testtitle : MonoBehaviour {
         m_titlelogo = GameObject.Find("TitleLogo").GetComponent<TitleLogo>();
         m_titleui = GameObject.Find("TitleUI").GetComponent<TitleUI>();
         m_invisibleribbon = GameObject.Find("ribbon2/obj1").GetComponent<InvisibleRibbon>();
-
+        m_fadeCanvas.gameObject.SetActive(true);
         bgm000_startFlag = false;
         se001_startFlag = false;
         se017_startFlag = false;
@@ -48,11 +51,12 @@ public class testtitle : MonoBehaviour {
         {
             case TitleState.Start:  //タイトル開始時
                 m_titlestate = TitleState.Ribbon;
+                BGMManager.instance.StopBGM(0.0f);
                 break;
 
             case TitleState.Ribbon: //リボンを投げる
                 m_ribbon.ThrowRibbon();
-
+                
                 // 投げるSE鳴らすse001_ThrowJustRibbon
                 if(!se001_startFlag)
                 {
@@ -107,7 +111,8 @@ public class testtitle : MonoBehaviour {
                 if (Input.GetKeyDown(KeyCode.A))    //入力で次の遷移に。
                 {
                     m_titlestate = TitleState.Finish;
-                
+                    m_titleui.Activate(false);
+                    Fade.ChangeScene("Select");
                     // 遷移SE鳴らす
                     if(!se017_startFlag)
                     {
@@ -118,10 +123,10 @@ public class testtitle : MonoBehaviour {
                 break;
 
             case TitleState.Finish: //終了。ここで他の遷移に移動する
-                m_titleui.Activate(false);
                 Debug.Log("終了");
               //  BGMManager.instance.StopBGM(0.0f);
-                SceneManager.LoadScene("Select");
+                
+//                SceneManager.LoadScene("Select");
                 break;
         }
 	}

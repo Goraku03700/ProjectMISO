@@ -9,7 +9,7 @@ public class SelectScene : MonoBehaviour {
 
     private Text[] readyText;
 
-    private float m_time;
+    private int m_time;
 
     private bool[] m_readyFlag;
 
@@ -46,7 +46,7 @@ public class SelectScene : MonoBehaviour {
             readyText[i].transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         }
 
-        m_time = 0.0f;
+        m_time = 0;
 
     }
 
@@ -115,13 +115,12 @@ public class SelectScene : MonoBehaviour {
             GameObject.Find("InfoText").GetComponent<InfoText>().FlashText();
 
             // 時間経過
-            m_time += Time.deltaTime;
+            m_time++;
 
             // 1秒たったら遷移
-            if (m_time > 1.0f)
+            if (m_time > 60)
             {
-                BGMManager.instance.StopBGM(0.0f);
-                SceneManager.LoadScene("PlayTest");
+                Fade.ChangeScene("PlayTest");
             }
         }
         

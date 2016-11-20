@@ -55,14 +55,20 @@ public class GameStartEffect : MonoBehaviour {
     [SerializeField]
     TimeCount m_timeCount;
 
+    private Fade m_fadeObject;
+
 	// Use this for initialization
 	void Start () {
         m_goTexts.enabled = false;
+        m_fadeObject = GameObject.FindObjectOfType<Fade>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        m_time += Time.deltaTime;
+        if (m_fadeObject.FadeEnd() || m_fadeObject == null)
+        {
+            m_time += Time.deltaTime;
+        }
         switch (m_state)
         {
             case State.Slide:
