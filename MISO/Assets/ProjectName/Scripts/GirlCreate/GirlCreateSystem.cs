@@ -36,16 +36,6 @@ public class GirlCreateSystem : MonoBehaviour {
     List<GirlCreater> m_girlFeverCreateAreaList;
 
     [SerializeField]
-    Text m_LimitTimeUI;
-    [SerializeField]
-    Text m_Score1;
-    [SerializeField]
-    Text m_Score2;
-
-    int m_player1 = 0;
-    int m_player2 = 0;
-
-    [SerializeField]
     float m_limit;
 
     public List<GirlCreateRule> m_createRules;
@@ -57,11 +47,16 @@ public class GirlCreateSystem : MonoBehaviour {
     [SerializeField]
     int m_girl_Count;
 
+    [SerializeField]
+    float m_countDownTime;
+
     public int m_GirlCount
     {
         get {return m_girl_Count ;}
         set {m_girl_Count = value ;}
     }
+
+    
 
 
 	// Use this for initialization
@@ -102,11 +97,6 @@ public class GirlCreateSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        m_LimitTimeUI.text = "TIME\n" + (int)m_limit;
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            BGMManager.instance.PlaySE("Soap_Jump");
-        }
         m_limit -= Time.deltaTime;
         m_girl_Count = 0;
         for (int i = 0; i < m_createRules_Continue.Count; ++i)
@@ -160,32 +150,7 @@ public class GirlCreateSystem : MonoBehaviour {
                 m_createRules_Normal[i].m_normal = false;
             }
         }
-        if(m_limit <0.0f)
-        {
-            SceneManager.LoadScene("Result");
-        }
 	}
 
-    public void GetNPC_Player(int i)
-    {
-        switch(i)
-        {
-            case 0:
-                {
-                    m_player1++;
-                    m_Score1.text = "Player1\nScore" + m_player1;
-                    break;
-                }
-            case 1:
-                {
-                    m_player2++;
-                    m_Score2.text = "Player2\nScore" + m_player2;
-                    break;
-                }
-            default:
-                break;
-        }
-    }
-    
 
 }

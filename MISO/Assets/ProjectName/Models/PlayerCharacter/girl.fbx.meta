@@ -10,11 +10,95 @@ ModelImporter:
     100004: pasted__pasted__polySurface4
     100006: pasted__polySurface8
     100008: pPlane5
+    100010: body_pl
+    100012: chest
+    100014: fuku_pl
+    100016: group1
+    100018: hair_pl1
+    100020: hair_pl2
+    100022: head
+    100024: imagePlane2
+    100026: imagePlane3
+    100028: L_arm
+    100030: L_hiza
+    100032: L_hizi
+    100034: L_kakato
+    100036: L_leg
+    100038: L_tekubi
+    100040: L_tumasaki
+    100042: neck
+    100044: pasted__group
+    100046: pasted__pasted__body
+    100048: pCube2
+    100050: player
+    100052: polySurface2
+    100054: pPlane1
+    100056: pPlane2
+    100058: R_arm
+    100060: R_hiza
+    100062: R_hizi
+    100064: R_kakato
+    100066: R_leg
+    100068: R_tekubi
+    100070: R_tumasaki
+    100072: root
+    100074: transform1
+    100076: transform3
+    100078: transform4
+    100080: transform5
+    100082: transform6
+    100084: transform7
+    100086: Up_body
+    100088: walk_01_npc:npc
+    100090: walk_01_npc:player
+    100092: walk_01_npc:plbone
     400000: body
     400002: //RootNode
     400004: pasted__pasted__polySurface4
     400006: pasted__polySurface8
     400008: pPlane5
+    400010: body_pl
+    400012: chest
+    400014: fuku_pl
+    400016: group1
+    400018: hair_pl1
+    400020: hair_pl2
+    400022: head
+    400024: imagePlane2
+    400026: imagePlane3
+    400028: L_arm
+    400030: L_hiza
+    400032: L_hizi
+    400034: L_kakato
+    400036: L_leg
+    400038: L_tekubi
+    400040: L_tumasaki
+    400042: neck
+    400044: pasted__group
+    400046: pasted__pasted__body
+    400048: pCube2
+    400050: player
+    400052: polySurface2
+    400054: pPlane1
+    400056: pPlane2
+    400058: R_arm
+    400060: R_hiza
+    400062: R_hizi
+    400064: R_kakato
+    400066: R_leg
+    400068: R_tekubi
+    400070: R_tumasaki
+    400072: root
+    400074: transform1
+    400076: transform3
+    400078: transform4
+    400080: transform5
+    400082: transform6
+    400084: transform7
+    400086: Up_body
+    400088: walk_01_npc:npc
+    400090: walk_01_npc:player
+    400092: walk_01_npc:plbone
     2300000: body
     2300002: pasted__pasted__polySurface4
     2300004: pasted__polySurface8
@@ -27,7 +111,27 @@ ModelImporter:
     4300002: pasted__polySurface8
     4300004: pasted__pasted__polySurface4
     4300006: pPlane5
+    4300008: body_pl
+    4300010: fuku_pl
+    4300012: hair_pl1
+    4300014: hair_pl2
+    7400000: tired
+    7400002: catch1
+    7400004: aim
+    7400006: walk
+    7400008: pull
+    7400010: default
+    7400012: shot
+    7400014: grasp2
+    7400016: grasp1
+    7400018: fulful
+    7400020: catch2
+    7400022: run
     9500000: //RootNode
+    13700000: body_pl
+    13700002: fuku_pl
+    13700004: hair_pl1
+    13700006: hair_pl2
   materials:
     importMaterials: 1
     materialName: 0

@@ -175,14 +175,6 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             case State.None:
             {
-                if (this.gameObject.tag == "Player1")
-                {
-                    m_parntGirlAppearancePosition.m_ParntGirlCreater.m_ParntGirlCreateSystem.GetNPC_Player(0);
-                }
-                if (this.gameObject.tag == "Player2")
-                {
-                    m_parntGirlAppearancePosition.m_ParntGirlCreater.m_ParntGirlCreateSystem.GetNPC_Player(1);
-                }
                 //取得をUIに通知
                 //m_girlMesh.SetActive(false);
                 //m_parntGirlAppearancePosition.IsDestroy = true;
@@ -223,12 +215,14 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         gameObject.tag      = playerCharacter.gameObject.tag;
         m_isCaught          = true;
         gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
+        m_status            = State.Caught;
     }
 
     public void CatchRibbonRelease()
     {
         m_isCaught          = false;
         gameObject.layer    = LayerMask.NameToLayer("Girl");
+        m_status            = State.Alive;
     }
 
     public void Collect()
