@@ -152,6 +152,7 @@ public class Production : MonoBehaviour {
     [SerializeField]
     private Color[] rankColor;
 
+    private Fade m_fadeObject;
 
     // Use this for initialization
     void Start() {
@@ -345,6 +346,8 @@ public class Production : MonoBehaviour {
         se024_startFlag = false;
         bgm003_startFlag = false;
 
+        m_fadeObject = GameObject.FindObjectOfType<Fade>();
+
     }
 
     // Update is called once per frame
@@ -356,7 +359,10 @@ public class Production : MonoBehaviour {
         {
             // 会社を置く演出
             case ResultState.PutCompanyProduction:
-                PutCompanyProduction();
+                if (m_fadeObject.FadeEnd() || m_fadeObject == null)
+                {
+                    PutCompanyProduction();
+                }
                 break;
 
             // プレイヤーが前に走ってくる演出
@@ -742,7 +748,7 @@ public class Production : MonoBehaviour {
 
         }
 
-        if (m_intervalTime > 500)
+        if (m_intervalTime > 5)
         {
             resultState = ResultState.WaitKey;
         }
@@ -759,7 +765,7 @@ public class Production : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            SceneManager.LoadScene("Title");
+            Fade.ChangeScene("Title");
 
         }
        
