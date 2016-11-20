@@ -1868,6 +1868,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010911008166, guid: 80f52204a4aa3d647863f2b913eb9f08,
+        type: 2}
+      propertyPath: fadeouttime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010911008166, guid: 80f52204a4aa3d647863f2b913eb9f08,
+        type: 2}
+      propertyPath: fadeintime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010911008166, guid: 80f52204a4aa3d647863f2b913eb9f08,
+        type: 2}
+      propertyPath: m_inRotationPerSecond
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010911008166, guid: 80f52204a4aa3d647863f2b913eb9f08,
+        type: 2}
+      propertyPath: m_outRotationPerSecond
+      value: 720
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80f52204a4aa3d647863f2b913eb9f08, type: 2}
   m_IsPrefabParent: 0
