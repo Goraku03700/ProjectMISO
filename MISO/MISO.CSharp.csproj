@@ -18,6 +18,7 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
+    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,6 +60,12 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +119,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Utility\FPSPresenter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\TextGradationEffect.cs" />
+    <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\animation_test.cs" />
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\girl_sample.cs" />
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\particle_sample.cs" />
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\sample.cs" />
