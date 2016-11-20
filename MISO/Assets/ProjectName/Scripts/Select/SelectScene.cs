@@ -120,7 +120,7 @@ public class SelectScene : MonoBehaviour {
             // 1秒たったら遷移
             if (m_time > 60)
             {
-                SceneManager.LoadScene("PlayTest");
+                Fade.ChangeScene("PlayTest");
             }
         }
         

@@ -31,13 +31,9 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
 
     public void Awake()
     {
-        if (this != this._InitializeSingleton())
-        {
-            Destroy(this);
-            return;
-        }
+        this._InitializeSingleton();
 
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this);
 
         //create listener
         if (FindObjectsOfType(typeof(AudioListener)).All(o => !((AudioListener)o).enabled))
@@ -413,7 +409,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     public void PlayBGM(string bgmName , float time)
     {
         if (!this.bgmDict.ContainsKey(bgmName)) throw new ArgumentException(bgmName + " not found", "bgmName");
-        if (this.bgmSource.clip == this.bgmDict[bgmName]) return;
+        //if (this.bgmSource.clip == this.bgmDict[bgmName]) return;
         if ( this.bgmSource != null)
         {
             PlayBGM();
@@ -428,7 +424,10 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
             nowTime = 0.0f;
             fadenowTime = 0.0f;
         }
-        this.bgmSource.Stop();
+        if (this.bgmSource != null)
+        {
+            this.bgmSource.Stop();
+        }
         this.bgmSource.clip = this.bgmDict[bgmName];
         this.readBGMText(bgmName);
         this.bgmSource.Play();
@@ -490,7 +489,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
             if(this.bgmSource.volume <= 0.0f)
             {
                 this.bgmSource.volume = 0.0f;
-                this.bgmSource = null;
+                this.bgmSource.Stop();
                 fadeOut = false;
             }
         }
@@ -498,9 +497,12 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
 
     public void StopBGM(float fadeouttime)
     {
-        fadeOut = true;
-        fadeOutTime = fadeouttime;
-        fadenowTime = this.bgmSource.time;
+        if (this.bgmSource.isPlaying)
+        {
+            fadeOut = true;
+            fadeOutTime = fadeouttime;
+            fadenowTime = this.bgmSource.time;
+        }
         //this.bgmSource.Stop();
         //this.bgmSource.clip = null;
     }

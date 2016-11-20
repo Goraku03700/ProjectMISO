@@ -120,7 +120,7 @@ Material:
       second: 0.02
     - first:
         name: _Range
-      second: 1
+      second: 0.203
     - first:
         name: _Shininess
       second: 1
