@@ -218,7 +218,7 @@ GameObject:
   - 4: {fileID: 4000014248471762}
   - 95: {fileID: 95000011504711166}
   m_Layer: 0
-  m_Name: Girl_Npc
+  m_Name: girl_npc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
