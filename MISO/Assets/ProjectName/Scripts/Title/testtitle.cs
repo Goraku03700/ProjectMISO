@@ -9,6 +9,9 @@ public class testtitle : MonoBehaviour {
     [SerializeField]
     Canvas m_fadeCanvas;
 
+    // パッドの番号
+    private MultiInput.JoypadNumber m_joypadNumber;
+
     //タイトルの演出シーンの状態
     enum TitleState
     {
@@ -43,6 +46,22 @@ public class testtitle : MonoBehaviour {
         bgm000_startFlag = false;
         se001_startFlag = false;
         se017_startFlag = false;
+        // パッドの設定
+        m_joypadNumber = MultiInput.JoypadNumber.Pad1;
+        //switch (gameObject.tag)
+        //{
+        //    case "Player1":
+        //        {
+        //            m_joypadNumber = MultiInput.JoypadNumber.Pad1;
+        //        }
+        //        break;
+
+        //    default:
+        //        {
+        //            Debug.LogAssertion("タグが設定されていません");
+        //            break;
+        //        }
+        //}       // end of switch(gameObject.tag)
 	}
 	
 	// Update is called once per frame
@@ -108,7 +127,8 @@ public class testtitle : MonoBehaviour {
                     bgm000_startFlag = true;
                 }
 
-                if (Input.GetKeyDown(KeyCode.A))    //入力で次の遷移に。
+                //if (Input.GetKeyDown(KeyCode.A))    //入力で次の遷移に。
+                if (MultiInput.GetButtonDown("Throw",m_joypadNumber))
                 {
                     m_titlestate = TitleState.Finish;
                     m_titleui.Activate(false);
