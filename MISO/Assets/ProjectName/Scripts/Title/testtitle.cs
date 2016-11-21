@@ -89,6 +89,7 @@ public class testtitle : MonoBehaviour {
                     m_girl.RotationGirl();
                     m_titlestate = TitleState.TrailTitleLogo;
                 }
+                
                 break;
 
             case TitleState.TrailTitleLogo: //リボンを引きずる・女性を移動させる・タイトルロゴを引きずる
@@ -148,6 +149,16 @@ public class testtitle : MonoBehaviour {
                 
 //                SceneManager.LoadScene("Select");
                 break;
+        }//switch
+        //TitleState.DisplaytitleLogoまでスキップ
+        if (MultiInput.GetButtonDown("Throw", m_joypadNumber) &&
+            m_titlestate != TitleState.DisplaytitleLogo)
+        {
+            m_invisibleribbon.ActiveRibbon(false);
+            m_girl.SetGirlPosition();
+            m_titlelogo.SetTitleLogoPosition();
+            m_titlestate = TitleState.DisplaytitleLogo;
+            m_titleui.Activate(true);
         }
 	}
     

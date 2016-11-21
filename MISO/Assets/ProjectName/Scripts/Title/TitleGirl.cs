@@ -61,4 +61,14 @@ public class TitleGirl : MonoBehaviour {
         get { return m_finishflg; }
     }
 
+    /// <summary>
+    /// ボタン入力でスキップした際に女性を所定の位置に移動させる。
+    /// </summary>
+    public void SetGirlPosition()
+    {
+        m_finishflg = true;
+        m_nowpos.x = m_limit_x;
+        this.transform.position = m_nowpos;
+    }
+
 }
