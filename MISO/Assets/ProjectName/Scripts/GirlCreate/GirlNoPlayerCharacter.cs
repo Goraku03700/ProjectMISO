@@ -64,11 +64,15 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     float m_speed = 0.15f;
     [SerializeField]
-    float m_rotationSmooth = 1f;
+    float m_rotationSmooth = 0.005f;
 
     public Vector3 m_targetPosition;
 
     private float m_changeTargetSqrDistance = 0.5f;
+
+    private Quaternion m_beforeRotation;
+
+    private Vector3 m_beforePosition;
 
 
     Vector2 m_movementAreaX; //xに最小値yに最大値
@@ -86,6 +90,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 
     public Vector3 GetRandomPositionOnLevel()
     {
+        m_beforeRotation = this.transform.rotation;
+        m_beforePosition = this.transform.position;
         return new Vector3(Random.Range(m_movementAreaX.x, m_movementAreaX.y), 0, Random.Range(m_movementAreaZ.x, m_movementAreaZ.y));
     }
 	
@@ -134,8 +140,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 }
 
                 // 目標地点の方向を向く
-                Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * m_rotationSmooth);
+                Quaternion targetRotation = Quaternion.LookRotation(Vector3.Normalize(m_targetPosition - m_beforePosition));
+                transform.rotation = Quaternion.Slerp(m_beforeRotation, targetRotation, Time.deltaTime * m_rotationSmooth);
 
                 // 前方に進む
                 transform.Translate(Vector3.forward * m_speed * Time.deltaTime);
@@ -143,7 +149,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 if (m_time > 4.0f)
                 {
                     //m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
-                    m_time = 0.0f;
+                    //m_time = 0.0f;
                 }
 
                 if (m_isCaught)

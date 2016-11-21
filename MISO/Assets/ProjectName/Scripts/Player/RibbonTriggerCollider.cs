@@ -56,6 +56,9 @@ namespace Ribbons
 
         private bool m_isOneFrameDuration;
 
+        private float m_durationTime;
+        private float m_activeOffTime;
+
         private Ribbon m_parentRibbon;
 
         //private List<GameObject> m_coughtObjects;

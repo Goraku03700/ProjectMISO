@@ -31,6 +31,8 @@ namespace Ribbons
             rigidbody.useGravity    = true;
 
             m_isDoThrow             = true;
+
+            m_wallColliderObject.SetActive(true);
         }
 
         public void ThrowUpdate()
@@ -140,9 +142,11 @@ namespace Ribbons
 
             Transform colliderTransform         = transform.FindChild("RibbonCollider");
             Transform triggerColliderTransform  = transform.FindChild("RibbonTriggerCollider");
+            Transform wallCollideTransform      = transform.FindChild("RibbonWallCollider");
 
             m_colliderObject        = colliderTransform.gameObject;
             m_triggerColliderObject = triggerColliderTransform.gameObject;
+            m_wallColliderObject    = wallCollideTransform.gameObject;
 
             m_colliderObject.SetActive(false);
             m_triggerColliderObject.SetActive(false);
@@ -201,6 +205,8 @@ namespace Ribbons
         private GameObject m_colliderObject;
 
         private GameObject m_triggerColliderObject;
+
+        private GameObject m_wallColliderObject;
 
         private RibbonTriggerCollider m_triggerCollider;
 

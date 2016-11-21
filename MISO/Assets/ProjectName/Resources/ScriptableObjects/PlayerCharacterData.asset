@@ -15,9 +15,13 @@ MonoBehaviour:
   ribbonMaxScale: 1
   ribbonMinScale: 0.5
   ribbonSizeScailingTime: 3
-  ribbonPullPower: 400
-  ribbonCollectLength: 1
-  throwPower: 500
+  ribbonPullPower: 300
+  ribbonCollectLength: 1.25
+  throwPower: 150
   throwSpeed: 500
   collectTime: 3
   inBuildingTime: 5
+  shakingTime: 0
+  shakingRepeat: 0
+  shakingReleaseGirl: 0
+  shakingInterval: 0

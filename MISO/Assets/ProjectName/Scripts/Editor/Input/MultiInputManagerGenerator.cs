@@ -94,7 +94,7 @@ public class MultiInputManagerGenarator {
         {
             var name = string.Format("Player{0} Horizontal", playerIndex);
             inputManagerGenerator.AddAxis(InputAxis.CreatePadAxis(name, joystickNum, 1));
-            inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, leftKey, rightKey, "", ""));
+            //inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, leftKey, rightKey, "", ""));
         }
 
         // 縦方向
@@ -106,7 +106,7 @@ public class MultiInputManagerGenarator {
             padAxis.invert = true;
 
             inputManagerGenerator.AddAxis(padAxis);
-            inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, downKey, upKey, "", ""));
+            //inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, downKey, upKey, "", ""));
         }
 
 
