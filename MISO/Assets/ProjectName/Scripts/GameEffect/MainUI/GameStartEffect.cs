@@ -65,7 +65,15 @@ public class GameStartEffect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (m_fadeObject.FadeEnd() || m_fadeObject == null)
+        if (m_fadeObject != null)
+        {
+           if(m_fadeObject.FadeEnd())
+           {
+               m_time += Time.deltaTime;
+           }
+        }
+
+        if (m_fadeObject == null)
         {
             m_time += Time.deltaTime;
         }

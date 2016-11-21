@@ -92,8 +92,11 @@ public class GirlCreateSystem : MonoBehaviour {
             }
         }
 
+        BGMManager.instance.PlayBGM("bgm001_GameMain", 0.0f);
          //   time = 0.0f;
 	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
