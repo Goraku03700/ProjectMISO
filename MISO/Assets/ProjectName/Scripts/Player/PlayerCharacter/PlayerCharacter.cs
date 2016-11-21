@@ -68,6 +68,32 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public void InputDash(bool isDash)
+    {
+        if(isDash)
+        {
+            m_movable.speed = m_playerCharacterData.dashSpeed;
+
+            if(m_rigidbody.velocity.magnitude > .0f)
+                m_dashDurationTime += Time.deltaTime;
+            else
+                m_dashDurationTime = .0f;
+
+            if(m_dashDurationTime > m_playerCharacterData.dashTime)
+            {
+                m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
+
+                m_dashDurationTime = .0f;
+            }
+        }
+        else
+        {
+            m_movable.speed = m_playerCharacterData.walkSpeed;
+
+            m_dashDurationTime = 0.0f;
+        }
+    }
+
     public void InputRelease()
     {
         if(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
@@ -163,6 +189,12 @@ public class PlayerCharacter : MonoBehaviour
         float ribbonSize = Mathf.PingPong(t, m_playerCharacterData.ribbonMaxScale - m_playerCharacterData.ribbonMinScale) + m_playerCharacterData.ribbonMinScale;
 
         m_controlledRibbon.transform.localScale = new Vector3(ribbonSize, m_controlledRibbon.transform.localScale.y, ribbonSize);
+
+        Vector3 force = Vector3.up * m_playerCharacterData.throwPower + transform.forward * m_playerCharacterData.throwSpeed;
+
+        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, t);
+
+        m_controlledRibbon.transform.position = point;
 
         Assert.IsNotNull(controlledRibbon);
     }
@@ -383,12 +415,11 @@ public class PlayerCharacter : MonoBehaviour
 
         for (int i = 0; i < m_playerCharacterData.shakingRepeat; ++i)
         {
-
             for (int j = 0; j < m_playerCharacterData.shakingReleaseGirl; ++j)
             {
+                releaseAngle = Quaternion.Euler(.0f, releaseAngleOffset * (median + j), .0f);
 
-
-                releaseAngle = Quaternion.Euler(.0f, releaseAngleOffset, .0f);
+                releaseAngle = Quaternion.Euler(.0f, releaseAngleOffset * (median - j), .0f);
             }
 
             yield return new WaitForSeconds(m_playerCharacterData.shakingInterval);
@@ -462,6 +493,7 @@ public class PlayerCharacter : MonoBehaviour
         HoldGirl,
         Shake,
         Knockback,
+        Tired,
     }
 
     private struct AnimatorParameters
@@ -495,6 +527,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParametersHashs[(int)AnimatorParametersID.HoldPlayer]         = Animator.StringToHash("holdPlayer");
         m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]           = Animator.StringToHash("holdGirl");
         m_animatorParametersHashs[(int)AnimatorParametersID.Knockback]          = Animator.StringToHash("knockback");
+        m_animatorParametersHashs[(int)AnimatorParametersID.Tired]              = Animator.StringToHash("tired");
     }
 
     private void _InitializeAnimationState()
@@ -583,6 +616,8 @@ public class PlayerCharacter : MonoBehaviour
     private float m_collectTime;
 
     private float m_inBuildingTime;
+
+    private float m_dashDurationTime;
 
     private Player m_player;
 

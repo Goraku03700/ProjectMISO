@@ -13,8 +13,7 @@ namespace Ribbons
 
         public void SizeAdjustUpdate()
         {
-            // test code
-            transform.RotateAround(m_playerCharacter.transform.position, Vector3.up, 180.0f * Time.deltaTime);
+            //transform.RotateAround(m_playerCharacter.transform.position, Vector3.up, 180.0f * Time.deltaTime);
         }
 
         public void Throw(Vector3 position, Quaternion rotation, float upPower, float speed)

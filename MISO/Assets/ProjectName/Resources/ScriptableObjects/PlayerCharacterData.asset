@@ -25,3 +25,6 @@ MonoBehaviour:
   shakingRepeat: 0
   shakingReleaseGirl: 0
   shakingInterval: 0
+  walkSpeed: 5
+  dashSpeed: 10
+  dashTime: 5

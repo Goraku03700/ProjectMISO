@@ -113,10 +113,12 @@ public class PlayerCharacterController : MonoBehaviour {
         //m_controlledPlayerCharacter.InputThrow(isPushThrowKey);
         m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
 
-        //if (Input.GetKeyDown(KeyCode.X))
-        //{
-        //    m_controlledPlayerCharacter.InputPull();
-        //}
+        m_controlledPlayerCharacter.InputDash(Input.GetKey(KeyCode.C));
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            m_controlledPlayerCharacter.InputPull();
+        }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {

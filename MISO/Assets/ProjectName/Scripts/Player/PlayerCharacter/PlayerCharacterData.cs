@@ -33,4 +33,10 @@ public class PlayerCharacterData : ScriptableObject
     public float shakingReleaseGirl;
 
     public float shakingInterval;
+
+    public float walkSpeed;
+
+    public float dashSpeed;
+
+    public float dashTime;
 }
