@@ -4421,7 +4421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tex: {fileID: 2800000, guid: a4f52be7c0ab2474fa5ab01d82cd303c, type: 3}
   girlColumnStartMaker: {fileID: 26738618}
-  girlLineInterval: 0.4
+  girlLineInterval: 0.3
   girlColumnInerver: 0.4
   girlPrefab: {fileID: 1000013640038662, guid: 2ac756083bb347344a5834c92510cabe, type: 2}
   playerEndMaker: {fileID: 1926425524}

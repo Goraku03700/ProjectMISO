@@ -18,6 +18,12 @@ public class Fade : SingletonMonoBehaviour<Fade>{
     [SerializeField]
     float fadeouttime;             // フェードイン・アウトそれぞれにかける時間
 
+    [SerializeField]
+    float m_inRotationPerSecond;
+
+    [SerializeField]
+    float m_outRotationPerSecond;
+
     private static string SceneName;           // 遷移先のシーン名
 
     [SerializeField]
@@ -50,9 +56,9 @@ public class Fade : SingletonMonoBehaviour<Fade>{
                     sprites[0].color = Color32.Lerp(m_lerpColors[0], m_lerpColors[1], m_time / m_colorTime);
                     sprites[1].color = Color32.Lerp(m_lerpColors[0], m_lerpColors[1], m_time / m_colorTime);
 
-                    float shininess = Mathf.Lerp(0.43f, 0.0f, m_time / fadeouttime);
-                    sprites[0].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * 360.0f);
-                    sprites[1].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * 360.0f);
+                    float shininess = Mathf.Lerp(0.42f, 0.0f, m_time / fadeouttime)-0.02f;
+                    sprites[0].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * m_outRotationPerSecond);
+                    sprites[1].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * m_outRotationPerSecond);
                     m_ribbon.rectTransform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, m_time / fadeouttime);
                     m_rend.SetFloat("_Range", shininess);
                     if(m_time>fadeouttime)
@@ -72,13 +78,13 @@ public class Fade : SingletonMonoBehaviour<Fade>{
                     {
                         sprites[1].color = Color32.Lerp(m_lerpColors[1], m_lerpColors[0], (m_time - m_colorTime) / m_colorTime);
                     }
-                    float shininess = Mathf.Lerp(0.0f, 0.43f, m_time / fadeintime);
+                    float shininess = Mathf.Lerp(0.0f, 0.42f, m_time / fadeintime);
                     if(m_time > fadeintime)
                     {
                         shininess = 1.0f;
                     }
-                    sprites[0].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * 720.0f);
-                    sprites[1].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * 720.0f);
+                    sprites[0].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * m_inRotationPerSecond);
+                    sprites[1].rectTransform.localRotation = Quaternion.Euler(0, 0, m_time * m_inRotationPerSecond);
                     m_ribbon.rectTransform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, m_time / fadeintime);
                     m_rend.SetFloat("_Range", shininess);
                     if (m_time > fadeintime)
