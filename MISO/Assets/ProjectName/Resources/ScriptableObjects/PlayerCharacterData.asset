@@ -20,4 +20,4 @@ MonoBehaviour:
   throwPower: 500
   throwSpeed: 500
   collectTime: 3
-  inBuildingTime: 3
+  inBuildingTime: 5
