@@ -226,7 +226,7 @@ public class SelectPlayer: MonoBehaviour
         }
         */
 
-        if (MultiInput.GetButton("Throw", m_joypadNumber))
+        if (MultiInput.GetButton("Hold", m_joypadNumber))
         {
             m_animator.SetBool("isCatch", true);
             m_playerState = PlayerState.Catch;
@@ -244,7 +244,7 @@ public class SelectPlayer: MonoBehaviour
         m_animator.SetBool("isAim", false);
 
         //if (Input.GetKey(KeyCode.S))
-        if(MultiInput.GetButton("Attack", m_joypadNumber))
+        if(MultiInput.GetButton("Throw", m_joypadNumber))
         {
             m_animator.SetBool("isAim", true);
             m_playerState = PlayerState.Aim;
