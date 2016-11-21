@@ -70,13 +70,16 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputRelease()
     {
-        if(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught"))
+        if(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
+            m_caughtRibbon != null)
         {
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
 
             gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
             m_caughtRibbon.Breake();
+
+            m_caughtRibbon = null;
         }        
     }
 
@@ -263,6 +266,19 @@ public class PlayerCharacter : MonoBehaviour
 
             m_inBuildingTime = .0f;
         }
+
+        // test
+        m_meshObject.SetActive(false);
+        m_buildingObject.SetActive(false);
+    }
+
+    public void InBuildingEnter()
+    {
+        // test
+        m_meshObject.SetActive(false);
+        m_buildingObject.SetActive(false);
+
+        m_inBuildingTime = .0f;
     }
 
     public void InBuildingUpdate()
@@ -275,44 +291,119 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public void InBuildingExit()
+    {
+        // test
+        m_meshObject.SetActive(true);
+        m_buildingObject.SetActive(true);
+    }
+
     public void OnHoldEnter()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray         ray         = new Ray(transform.position, transform.forward);
+        //int         layerMask   = LayerMask.GetMask(new string[] { "PlayerCharacterBuilding" });
+        int layerMask = LayerMask.GetMask(new string[] { "PlayerCharacterBuilding", "Girl" });
+        var rayCastHits = Physics.SphereCastAll(ray, m_collider.radius, 1.5f, layerMask);   //
+        float       minDistance = 1.5f; //
+        GameObject  gameObject  = null;
 
-        int layerMask = LayerMask.GetMask(new string[] {"PlayerCharacterBuilding","Girl" });
+        GameObject playerCharacterObject = null;
 
-        var rayCastHits = Physics.SphereCastAll(ray, m_collider.radius, 0.5f, layerMask);
-
-        foreach(var rayCast in rayCastHits)
+        foreach(var rayCastHit in rayCastHits)
         {
+            if (rayCastHit.distance < minDistance)
+            {
+                minDistance = rayCastHit.distance;
 
+                gameObject = rayCastHit.collider.gameObject;
+
+                if (gameObject.layer == LayerMask.NameToLayer("PlayerCharacterBuiling"))
+                {
+                    playerCharacterObject = gameObject;
+                }
+            }
+        }
+
+        if(playerCharacterObject != null)
+        {
+            m_holdingPlayerCharacter = playerCharacterObject.GetComponent<PlayerCharacter>();
+
+            m_holdingPlayerCharacter.Hold(this);
+
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.HoldPlayer]);
+        }
+        else
+        {
+            // Girl
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]);
+
+            m_player.score += 1;
+
+            m_holdingGirl = gameObject.GetComponent<GirlNoPlayerCharacter>();
+            //m_holdingGirl.Hold();
         }
     }
 
-    private enum AnimatorParametersID
+    public void OnHoldingPlayerCharacter()
     {
-        IsDownStick = 0,
-        IsPushThrowKey,
-        IsPushHoldKey,
-        IsPushCancelKey,
-        IsRibbonLanding,
-        IsPulled,
-        InputRelease,
-        IsCollect,
-        IsBreak,
-        Velocity,
-        InBuilding,
-        OutBuilding,
-        InputCancel,
+        
     }
 
-    private struct AnimatorParameters
+    public void ShakingUpdate()
     {
-        public bool isDownStick;
-        public bool isPushThrowKey;
-        public bool isPushHoldKey;
-        public bool isPushCancelKey;
-        public float velocity;
+        m_shakingTime += Time.deltaTime;
+
+        float t = m_shakingTime / m_playerCharacterData.shakingTime;
+
+        
+    }
+
+    public void OnHoldGirl()
+    {
+        
+    }
+
+    public void Shake()
+    {
+        
+    }
+
+    IEnumerator ShakeCorutine()
+    {
+        float releaseAngleOffset;
+
+        releaseAngleOffset = 180.0f / m_playerCharacterData.shakingReleaseGirl;
+
+        Quaternion releaseAngle = Quaternion.Euler(.0f, releaseAngleOffset, .0f);
+
+        float median = m_playerCharacterData.shakingReleaseGirl / 2.0f;
+
+        for (int i = 0; i < m_playerCharacterData.shakingRepeat; ++i)
+        {
+
+            for (int j = 0; j < m_playerCharacterData.shakingReleaseGirl; ++j)
+            {
+
+
+                releaseAngle = Quaternion.Euler(.0f, releaseAngleOffset, .0f);
+            }
+
+            yield return new WaitForSeconds(m_playerCharacterData.shakingInterval);
+        }
+
+        yield return null;
+    }
+
+    public void Hold(PlayerCharacter holdedPlayerCharacter)
+    {
+        m_holdedPlayerCharacter = holdedPlayerCharacter;
+
+        m_animator.Play("Base Layer.Holded.Holding");
+    }
+
+    public void KnockBack()
+    {
+        m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]);
     }
 
     void Awake()
@@ -332,6 +423,9 @@ public class PlayerCharacter : MonoBehaviour
         m_collider  = GetComponent<SphereCollider>();   
         m_player    = transform.parent.GetComponent<Player>();
 
+        m_meshObject = transform.FindChild("PlayerCharacterMesh").gameObject;
+        m_buildingObject = transform.FindChild("PlayerCharacterBuilding").gameObject;
+
         Assert.IsNotNull(m_animator);
         Assert.IsNotNull(m_movable);
 
@@ -344,6 +438,36 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorStateInfo = m_animator.GetCurrentAnimatorStateInfo(0);
 
         _UpdateAnimatorParameters();
+    }
+
+    private enum AnimatorParametersID
+    {
+        IsDownStick = 0,
+        IsPushThrowKey,
+        IsPushHoldKey,
+        IsPushCancelKey,
+        IsRibbonLanding,
+        IsPulled,
+        InputRelease,
+        IsCollect,
+        IsBreak,
+        Velocity,
+        InBuilding,
+        OutBuilding,
+        InputCancel,
+        HoldPlayer,
+        HoldGirl,
+        Shake,
+        Knockback,
+    }
+
+    private struct AnimatorParameters
+    {
+        public bool isDownStick;
+        public bool isPushThrowKey;
+        public bool isPushHoldKey;
+        public bool isPushCancelKey;
+        public float velocity;
     }
 
     private void _InitializeAnimatorParametersID()
@@ -365,6 +489,9 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParametersHashs[(int)AnimatorParametersID.InBuilding]         = Animator.StringToHash("inBuilding");
         m_animatorParametersHashs[(int)AnimatorParametersID.OutBuilding]        = Animator.StringToHash("outBuilding");
         m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]        = Animator.StringToHash("inputCancel");
+        m_animatorParametersHashs[(int)AnimatorParametersID.HoldPlayer]         = Animator.StringToHash("holdPlayer");
+        m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]           = Animator.StringToHash("holdGirl");
+        m_animatorParametersHashs[(int)AnimatorParametersID.Knockback]          = Animator.StringToHash("knockback");
     }
 
     private void _InitializeAnimationState()
@@ -469,6 +596,14 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    private PlayerCharacter m_holdingPlayerCharacter;
+
+    private GirlNoPlayerCharacter m_holdingGirl;
+
+    private PlayerCharacter m_holdedPlayerCharacter;
+
+    private float m_shakingTime;
+
     private PlayerCharacterData m_playerCharacterData;
     
     public PlayerCharacterData playerCharacterData
@@ -477,6 +612,10 @@ public class PlayerCharacter : MonoBehaviour
     }
 
     private SphereCollider m_collider;
+
+    private GameObject m_meshObject;
+
+    private GameObject m_buildingObject;
 
     private Animator m_animator;
 

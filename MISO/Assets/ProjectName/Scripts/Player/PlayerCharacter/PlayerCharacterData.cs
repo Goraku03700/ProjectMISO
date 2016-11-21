@@ -25,4 +25,12 @@ public class PlayerCharacterData : ScriptableObject
     public float collectTime;
 
     public float inBuildingTime;
+
+    public float shakingTime;
+
+    public float shakingRepeat;
+
+    public float shakingReleaseGirl;
+
+    public float shakingInterval;
 }

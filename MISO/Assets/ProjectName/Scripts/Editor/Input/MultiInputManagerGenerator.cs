@@ -111,19 +111,19 @@ public class MultiInputManagerGenarator {
 
 
         // 攻撃
-        {
-            var axis = new InputAxis();
-            var name = string.Format("Player{0} Attack", playerIndex);
-            var button = string.Format("joystick {0} button 1", joystickNum);
-            inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
-        }
+        //{
+        //    var axis = new InputAxis();
+        //    var name = string.Format("Player{0} Attack", playerIndex);
+        //    var button = string.Format("joystick {0} button 1", joystickNum);
+        //    inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
+        //}
 
         
         // Cancel
         {
             var axis = new InputAxis();
             var name = string.Format("Player{0} Cancel", playerIndex);
-            var button = string.Format("joystick {0} button 0", joystickNum);
+            var button = string.Format("joystick {0} button 2", joystickNum);
             inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
         }
 
@@ -131,7 +131,7 @@ public class MultiInputManagerGenarator {
         {
             var axis = new InputAxis();
             var name = string.Format("Player{0} Item", playerIndex);
-            var button = string.Format("joystick {0} button 1", joystickNum);
+            var button = string.Format("joystick {0} button 3", joystickNum);
             inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
         }
 
@@ -139,7 +139,7 @@ public class MultiInputManagerGenarator {
         {
             var axis = new InputAxis();
             var name = string.Format("Player{0} Throw", playerIndex);
-            var button = string.Format("joystick {0} button 4", joystickNum);
+            var button = string.Format("joystick {0} button 0", joystickNum);
             inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
         }
 
@@ -147,7 +147,7 @@ public class MultiInputManagerGenarator {
         {
             var axis = new InputAxis();
             var name = string.Format("Player{0} Hold", playerIndex);
-            var button = string.Format("joystick {0} button 3", joystickNum);
+            var button = string.Format("joystick {0} button 1", joystickNum);
             inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
         }
 
