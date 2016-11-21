@@ -194,6 +194,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000012471339652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013439189604}
+  - 65: {fileID: 65000012769994482}
+  m_Layer: 19
+  m_Name: RibbonWallCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012606811534
 GameObject:
   m_ObjectHideFlags: 1
@@ -501,6 +517,7 @@ Transform:
   - {fileID: 4000011742141174}
   - {fileID: 4000010701257908}
   - {fileID: 4000011237514338}
+  - {fileID: 4000013439189604}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000012709511564
@@ -607,6 +624,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000011742141174}
   m_RootOrder: 6
+--- !u!4 &4000013439189604
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012471339652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012559792974}
+  m_RootOrder: 3
 --- !u!4 &4000013876914008
 Transform:
   m_ObjectHideFlags: 1
@@ -922,7 +952,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!65 &65000010202069496
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -994,6 +1024,18 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000012769994482
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012471339652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000012875130772
 BoxCollider:
