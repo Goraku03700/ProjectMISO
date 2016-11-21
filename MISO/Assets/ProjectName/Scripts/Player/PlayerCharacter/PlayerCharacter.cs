@@ -201,15 +201,18 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PullUpdate()
     {
-        Vector3 vector = transform.position - m_controlledRibbon.transform.position;
-            
-        if(vector.magnitude < m_playerCharacterData.ribbonCollectLength)
+        if(m_controlledRibbon != null)
         {
-            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
+            Vector3 vector = transform.position - m_controlledRibbon.transform.position;
 
-            m_controlledRibbon.Pulled();
+            if (vector.magnitude < m_playerCharacterData.ribbonCollectLength)
+            {
+                m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
 
-            m_controlledRibbon = null;
+                m_controlledRibbon.Pulled();
+
+                m_controlledRibbon = null;
+            }
         }
     }
 
