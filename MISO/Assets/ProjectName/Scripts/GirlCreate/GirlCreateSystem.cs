@@ -38,6 +38,12 @@ public class GirlCreateSystem : MonoBehaviour {
     [SerializeField]
     float m_limit;
 
+    float m_Limit
+    {
+        get { return m_limit; }
+        set { m_limit = value; }
+    }
+
     public List<GirlCreateRule> m_createRules;
 
     public List<GirlCreateRule> m_createRules_Normal;
