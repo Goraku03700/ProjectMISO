@@ -38,7 +38,7 @@ public class GirlCreateSystem : MonoBehaviour {
     [SerializeField]
     float m_limit;
 
-    float m_Limit
+    public float m_Limit
     {
         get { return m_limit; }
         set { m_limit = value; }
