@@ -24,6 +24,8 @@ public class SelectPlayer: MonoBehaviour
     // アニメーター
     private Animator m_animator;
 
+    private bool m_readyFlag;
+
     // Use this for initialization
     void Start()
     {
@@ -66,7 +68,7 @@ public class SelectPlayer: MonoBehaviour
 
         m_playerState = PlayerState.Default;
 
-
+        m_readyFlag = false;
 
     }
 
@@ -121,6 +123,12 @@ public class SelectPlayer: MonoBehaviour
 
                 break;
             }
+
+        // 準備のフラグ
+        //if (MultiInput.GetButton("Pause", m_joypadNumber))
+        //{
+        //    m_readyFlag = true;
+        //}
 
     }
 
@@ -218,7 +226,7 @@ public class SelectPlayer: MonoBehaviour
         }
         */
 
-        if (MultiInput.GetButton("Throw", m_joypadNumber))
+        if (MultiInput.GetButton("Hold", m_joypadNumber))
         {
             m_animator.SetBool("isCatch", true);
             m_playerState = PlayerState.Catch;
@@ -236,7 +244,7 @@ public class SelectPlayer: MonoBehaviour
         m_animator.SetBool("isAim", false);
 
         //if (Input.GetKey(KeyCode.S))
-        if(MultiInput.GetButton("Attack", m_joypadNumber))
+        if(MultiInput.GetButton("Throw", m_joypadNumber))
         {
             m_animator.SetBool("isAim", true);
             m_playerState = PlayerState.Aim;
@@ -247,5 +255,9 @@ public class SelectPlayer: MonoBehaviour
     }
 
 
+    public bool getReadyFlag()
+    {
+        return m_readyFlag;
+    }
 }
 

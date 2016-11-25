@@ -12,7 +12,7 @@ public class PlayerScore : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        
         m_scoreText = this.GetComponent<Text>();
 
         string findGameObjectName = "Player";
@@ -52,9 +52,10 @@ public class PlayerScore : MonoBehaviour {
 
         GameObject g  = GameObject.Find(findGameObjectName);
         m_player = g.GetComponent<Player>();
+        
 
     }
-
+    
     // Update is called once per frame
     void Update () {
 

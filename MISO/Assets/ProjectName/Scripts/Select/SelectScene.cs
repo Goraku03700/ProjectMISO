@@ -61,6 +61,8 @@ public class SelectScene : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
+        //if (MultiInput.GetButton("Dash", m_joypadNumber))
+        //if(GameObject.Find("Player1").GetComponent<SelectPlayer>().getReadyFlag())
         {
             m_readyFlag[0] = true;
             readyText[0].text = "OK!";
