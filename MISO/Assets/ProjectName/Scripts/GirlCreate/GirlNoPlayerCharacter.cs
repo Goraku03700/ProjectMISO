@@ -54,11 +54,30 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     
     public GameObject m_girlMesh;
 
+    Vector2 m_movementAreaX; //xに最小値yに最大値
+    public Vector2 m_MovementAreaX
+    {
+        get { return m_movementAreaX; }
+        set { m_movementAreaX = value; }
+    }
+    Vector2 m_movementAreaZ;
+    public Vector2 m_MovementAreaZ
+    {
+        get { return m_movementAreaZ; }
+        set { m_movementAreaZ = value; }
+    }
+
+    [SerializeField]
+    LineRenderer m_ribbonLine;
+
+    [SerializeField]
+    Color[] m_ribbonColors;
 	// Use this for initialization
 	void Start () {
         m_status = State.Generation;
         m_time = 0.0f;
         m_targetPosition = GetRandomPositionOnLevel();
+        m_ribbonLine.enabled = false;
 	}
 
     [SerializeField]
@@ -75,18 +94,6 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     private Vector3 m_beforePosition;
 
 
-    Vector2 m_movementAreaX; //xに最小値yに最大値
-    public Vector2 m_MovementAreaX
-    {
-        get { return m_movementAreaX; }
-        set { m_movementAreaX = value; }
-    }
-    Vector2 m_movementAreaZ;
-    public Vector2 m_MovementAreaZ
-    {
-        get { return m_movementAreaZ; }
-        set { m_movementAreaZ = value; }
-    }
 
     public Vector3 GetRandomPositionOnLevel()
     {
@@ -140,8 +147,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 }
 
                 // 目標地点の方向を向く
-                Quaternion targetRotation = Quaternion.LookRotation(Vector3.Normalize(m_targetPosition - m_beforePosition));
-                transform.rotation = Quaternion.Slerp(m_beforeRotation, targetRotation, Time.deltaTime * m_rotationSmooth);
+                Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
+                transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, Time.deltaTime * m_rotationSmooth);
 
                 // 前方に進む
                 transform.Translate(Vector3.forward * m_speed * Time.deltaTime);
@@ -161,6 +168,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             case State.Caught:
             {
+                m_ribbonLine.SetPosition(0, this.transform.position);
                 //なんか処理
                 if(m_isAbsorption)
                 {
@@ -222,6 +230,32 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_isCaught          = true;
         gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
         m_status            = State.Caught;
+        m_ribbonLine.enabled = true;
+        m_ribbonLine.SetPosition(0, this.transform.position + Vector3.up);
+        m_ribbonLine.SetPosition(1, playerCharacter.transform.position + Vector3.up);
+        switch(gameObject.tag)
+        {
+            case "Player1":
+                {
+                    m_ribbonLine.SetColors(m_ribbonColors[0], m_ribbonColors[0]);
+                    break;
+                }
+            case "Player2":
+                {
+                    m_ribbonLine.SetColors(m_ribbonColors[1], m_ribbonColors[1]);
+                    break;
+                }
+            case "Player3":
+                {
+                    m_ribbonLine.SetColors(m_ribbonColors[2], m_ribbonColors[2]);
+                    break;
+                }
+            case "Player4":
+                {
+                    m_ribbonLine.SetColors(m_ribbonColors[3], m_ribbonColors[3]);
+                    break;
+                }
+        }
     }
 
     public void CatchRibbonRelease()

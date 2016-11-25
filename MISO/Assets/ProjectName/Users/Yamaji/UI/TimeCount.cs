@@ -32,6 +32,8 @@ public class TimeCount : MonoBehaviour {
 
     private bool m_isFever;
 
+    public GirlCreateSystem m_girlCreateSystem;
+
 	// Use this for initialization
 	void Start () {
         nowTime = 0.0f;
@@ -45,7 +47,13 @@ public class TimeCount : MonoBehaviour {
         m_isFever = false;
 
         m_endEffect.m_CountDownTime = m_countDownStartTime;
+
 	}
+
+    void Awake()
+    {
+        m_girlCreateSystem.m_Limit = timeInit;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -87,6 +95,7 @@ public class TimeCount : MonoBehaviour {
     /// </summary>
     public void StartTime()
     {
+        m_girlCreateSystem.m_Limit = timeInit;
         isStart = true;
     }
 }
