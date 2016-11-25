@@ -93,6 +93,25 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 
     private Vector3 m_beforePosition;
 
+    [SerializeField]
+    GameObject m_ribbon_Wind;
+
+    [SerializeField]
+    MeshRenderer m_ribbon_WindRenderer;
+
+    [SerializeField]
+    Material[] m_ribbon_WindMaterial1;
+
+    [SerializeField]
+    Material[] m_ribbon_WindMaterial2;
+
+    [SerializeField]
+    Material[] m_ribbon_WindMaterial3;
+
+    [SerializeField]
+    Material[] m_ribbon_WindMaterial4;
+
+    Bezier m_bezier;
 
 
     public Vector3 GetRandomPositionOnLevel()
@@ -168,11 +187,11 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             case State.Caught:
             {
-                m_ribbonLine.SetPosition(0, this.transform.position);
+                m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up / 1.5f);
                 //なんか処理
                 if(m_isAbsorption)
                 {
-                    
+                    m_time = 0.0f;
                     m_status = State.Absorption;
                 }
 
@@ -180,8 +199,10 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             case State.Absorption:
             {
+                transform.position =  m_bezier.GetPointAtTime(m_time*2f);
+                transform.localScale = Vector3.Lerp(new Vector3(0.1f,0.1f,0.1f), Vector3.zero, m_time * 2f);
                 //ベジェ曲線での取得演出処理
-                //if() 
+                if(m_time>0.5f) 
                 {
                     m_status = State.None;
                 }
@@ -231,28 +252,35 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
         m_status            = State.Caught;
         m_ribbonLine.enabled = true;
-        m_ribbonLine.SetPosition(0, this.transform.position + Vector3.up);
-        m_ribbonLine.SetPosition(1, playerCharacter.transform.position + Vector3.up);
+        m_ribbonLine.sortingOrder = 4;
+        m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up/1.5f);
+        m_ribbonLine.SetPosition(1, playerCharacter.transform.position + Vector3.up/1.5f);
+        m_ribbon_Wind.SetActive(true);
         switch(gameObject.tag)
         {
             case "Player1":
                 {
                     m_ribbonLine.SetColors(m_ribbonColors[0], m_ribbonColors[0]);
+                    m_ribbon_WindRenderer.materials = m_ribbon_WindMaterial1;
+                    //m_ribbon_WindRenderer.materials = m_ribbon_WindMaterials[0];
                     break;
                 }
             case "Player2":
                 {
                     m_ribbonLine.SetColors(m_ribbonColors[1], m_ribbonColors[1]);
+                    m_ribbon_WindRenderer.materials = m_ribbon_WindMaterial2;
                     break;
                 }
             case "Player3":
                 {
                     m_ribbonLine.SetColors(m_ribbonColors[2], m_ribbonColors[2]);
+                    m_ribbon_WindRenderer.materials = m_ribbon_WindMaterial3;
                     break;
                 }
             case "Player4":
                 {
                     m_ribbonLine.SetColors(m_ribbonColors[3], m_ribbonColors[3]);
+                    m_ribbon_WindRenderer.materials = m_ribbon_WindMaterial4;
                     break;
                 }
         }
@@ -265,8 +293,10 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_status            = State.Alive;
     }
 
-    public void Collect()
+    public void Collect(Vector3 billPosition)
     {
-        m_status = State.None;
+        m_isAbsorption = true;
+        m_bezier = new Bezier(transform.position, Vector3.LerpUnclamped(transform.position, billPosition, 0.4f) + Vector3.up * 4, Vector3.LerpUnclamped(transform.position, billPosition, 0.6f) + Vector3.up * 4, billPosition);
+        //m_bezier.ResetBezier(transform.position, Vector3.Lerp(transform.position, billPosition, 0.4f) + Vector3.up * 2, Vector3.Lerp(transform.position, billPosition, 0.6f) + Vector3.up * 2, billPosition);
     }
 }
