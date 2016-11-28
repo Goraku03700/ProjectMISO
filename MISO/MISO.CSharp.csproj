@@ -119,8 +119,12 @@
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\particle_sample.cs" />
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\sample.cs" />
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\SimpleParticlePack\Scripts\ParticleTester.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\RibbonEffect.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\RibbonEffectManager.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushParticle.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestParticle.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\Prefab\DushTest.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestPlayer.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\DashGauge.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIcon.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerScore.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TestUI.cs" />
@@ -144,6 +148,7 @@
     <Compile Include="Assets\UnityChan\Scripts\UnityChanControlScriptWithRgidBody.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ProjectName\Shader\CullingOfffShader.shader" />
     <None Include="Assets\ProjectName\Shader\Fade.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />

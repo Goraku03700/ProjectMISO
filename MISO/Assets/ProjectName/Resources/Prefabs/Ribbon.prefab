@@ -1088,7 +1088,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2c09369f7f9d34698b682ab7f6885a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_activeTime: 0.5
+  m_ribbonEffectManager: {fileID: 114000011885851006, guid: 94400e19095e181498409bc0c8d648ef,
+    type: 2}
 --- !u!114 &114000012679099478
 MonoBehaviour:
   m_ObjectHideFlags: 1

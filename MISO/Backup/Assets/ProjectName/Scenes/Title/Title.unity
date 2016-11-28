@@ -705,11 +705,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012320420594, guid: eed1f23ad9a613343b18a8a65bb1fadf,
-        type: 2}
-      propertyPath: BGMList.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 5e6b6f0b5f3e12c4ca29cec1fe88f5c1, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eed1f23ad9a613343b18a8a65bb1fadf, type: 2}
   m_IsPrefabParent: 0

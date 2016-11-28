@@ -106,6 +106,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Editor\ScriptableObjectToAsset.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ProjectName\Shader\CullingOfffShader.shader" />
     <None Include="Assets\ProjectName\Shader\Fade.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />

@@ -6,6 +6,10 @@ namespace Ribbons
 {
     public class RibbonTriggerCollider : MonoBehaviour
     {
+
+        [SerializeField]
+        RibbonEffectManager m_ribbonEffectManager;
+
         void Start()
         {
             m_parentRibbon  = transform.parent.GetComponent<Ribbon>();
@@ -56,6 +60,8 @@ namespace Ribbons
                 var girl = collider.gameObject.GetComponent<GirlNoPlayerCharacter>();
 
                 girl.CatchRibbon(m_parentRibbon.playerCharacter);
+
+                m_ribbonEffectManager.CreateRibbonEffect(transform.position, m_parentRibbon.playerCharacter);
 
                 coughtGirls.Add(girl);
             }

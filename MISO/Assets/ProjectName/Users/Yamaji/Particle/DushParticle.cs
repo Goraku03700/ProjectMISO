@@ -59,15 +59,16 @@ public class DushParticle : MonoBehaviour
             time++;
         }
 
+        // 間隔
         if(time > 1)
         {
-            startParticle();
+            setParticle();
             time = 0;
         }
 
     }
 
-    private void startParticle()
+    private void setParticle()
     {
         for (int i = 0; i < 30; i++)
         {

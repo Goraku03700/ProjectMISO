@@ -121,7 +121,7 @@ namespace Ribbons
 
             foreach (var girl in m_triggerCollider.coughtGirls)
             {
-                girl.Collect();
+                girl.Collect(m_playerCharacter.transform.position);
 
                 m_playerCharacter.player.score++;
             }
