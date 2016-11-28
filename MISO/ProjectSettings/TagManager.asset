@@ -51,3 +51,6 @@ TagManager:
   - name: font
     uniqueID: 2102810199
     locked: 0
+  - name: Stage
+    uniqueID: 3899176177
+    locked: 0

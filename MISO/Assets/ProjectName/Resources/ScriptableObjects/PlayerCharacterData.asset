@@ -17,6 +17,8 @@ MonoBehaviour:
   ribbonSizeScailingTime: 3
   ribbonPullPower: 300
   ribbonCollectLength: 1.25
+  ribbonProjectionTime: 1
+  ribbonPenaltyTime: 0
   throwPower: 150
   throwSpeed: 500
   collectTime: 3
@@ -25,3 +27,6 @@ MonoBehaviour:
   shakingRepeat: 0
   shakingReleaseGirl: 0
   shakingInterval: 0
+  walkSpeed: 5
+  dashSpeed: 10
+  dashTime: 5

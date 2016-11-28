@@ -68,6 +68,32 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public void InputDash(bool isDash)
+    {
+        if(isDash)
+        {
+            m_movable.speed = m_playerCharacterData.dashSpeed;
+
+            if(m_rigidbody.velocity.magnitude > .0f)
+                m_dashDurationTime += Time.deltaTime;
+            else
+                m_dashDurationTime = .0f;
+
+            if(m_dashDurationTime > m_playerCharacterData.dashTime)
+            {
+                m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
+
+                m_dashDurationTime = .0f;
+            }
+        }
+        else
+        {
+            m_movable.speed = m_playerCharacterData.walkSpeed;
+
+            m_dashDurationTime = 0.0f;
+        }
+    }
+
     public void InputRelease()
     {
         if(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
@@ -144,6 +170,8 @@ public class PlayerCharacter : MonoBehaviour
         m_controlledRibbon.playerCharacter      = this;
         m_lengthAdjustTime                      = .0f;
 
+        m_ribbonRandingProjection.SetActive(true);
+
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -164,6 +192,15 @@ public class PlayerCharacter : MonoBehaviour
 
         m_controlledRibbon.transform.localScale = new Vector3(ribbonSize, m_controlledRibbon.transform.localScale.y, ribbonSize);
 
+        Vector3 force = Vector3.up * m_playerCharacterData.throwPower + transform.forward * m_playerCharacterData.throwSpeed;
+
+        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, m_playerCharacterData.ribbonProjectionTime);
+
+        point.y = m_ribbonRandingProjection.transform.position.y;
+
+        m_ribbonRandingProjection.transform.position    = point;
+        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 4.0f;
+
         Assert.IsNotNull(controlledRibbon);
     }
 
@@ -177,6 +214,10 @@ public class PlayerCharacter : MonoBehaviour
             {
                 Destroy(m_controlledRibbon.gameObject);
             }
+        }
+        else
+        {
+            m_ribbonRandingProjection.SetActive(false);
         }
     }
 
@@ -383,12 +424,11 @@ public class PlayerCharacter : MonoBehaviour
 
         for (int i = 0; i < m_playerCharacterData.shakingRepeat; ++i)
         {
-
             for (int j = 0; j < m_playerCharacterData.shakingReleaseGirl; ++j)
             {
+                releaseAngle = Quaternion.Euler(.0f, releaseAngleOffset * (median + j), .0f);
 
-
-                releaseAngle = Quaternion.Euler(.0f, releaseAngleOffset, .0f);
+                releaseAngle = Quaternion.Euler(.0f, releaseAngleOffset * (median - j), .0f);
             }
 
             yield return new WaitForSeconds(m_playerCharacterData.shakingInterval);
@@ -428,12 +468,14 @@ public class PlayerCharacter : MonoBehaviour
 
         m_meshObject = transform.FindChild("PlayerCharacterMesh").gameObject;
         m_buildingObject = transform.FindChild("PlayerCharacterBuilding").gameObject;
+        m_ribbonRandingProjection = transform.FindChild("RibbonLandingProjection").gameObject;
+
+        _InitializeAnimatorParametersID();
+        _InitializeAnimationState();
 
         Assert.IsNotNull(m_animator);
         Assert.IsNotNull(m_movable);
 
-        _InitializeAnimatorParametersID();
-        _InitializeAnimationState();
     }
 
     void Update()
@@ -462,6 +504,7 @@ public class PlayerCharacter : MonoBehaviour
         HoldGirl,
         Shake,
         Knockback,
+        Tired,
     }
 
     private struct AnimatorParameters
@@ -495,6 +538,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParametersHashs[(int)AnimatorParametersID.HoldPlayer]         = Animator.StringToHash("holdPlayer");
         m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]           = Animator.StringToHash("holdGirl");
         m_animatorParametersHashs[(int)AnimatorParametersID.Knockback]          = Animator.StringToHash("knockback");
+        m_animatorParametersHashs[(int)AnimatorParametersID.Tired]              = Animator.StringToHash("tired");
     }
 
     private void _InitializeAnimationState()
@@ -584,6 +628,8 @@ public class PlayerCharacter : MonoBehaviour
 
     private float m_inBuildingTime;
 
+    private float m_dashDurationTime;
+
     private Player m_player;
 
     public Player player
@@ -619,6 +665,8 @@ public class PlayerCharacter : MonoBehaviour
     private GameObject m_meshObject;
 
     private GameObject m_buildingObject;
+
+    private GameObject m_ribbonRandingProjection;
 
     private Animator m_animator;
 
