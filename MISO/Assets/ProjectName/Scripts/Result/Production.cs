@@ -75,7 +75,7 @@ public class Production : MonoBehaviour {
     private ParticleSystem m_confettiParticle3;
 
     // 読み込むマテリアル
-    private Material[] m_podiumMaterial;
+    private Renderer[] m_podiumMaterial;
 
 
     // 計算用
@@ -169,6 +169,9 @@ public class Production : MonoBehaviour {
     [SerializeField]
     private Transform[] m_crownPosX;
 
+    [SerializeField]
+    private Light m_lightShaft;
+
     private Fade m_fadeObject;
 
     // Use this for initialization
@@ -248,6 +251,13 @@ public class Production : MonoBehaviour {
         m_saveCrownPosY[(int)CrownKind.Silver] = m_Crown[(int)CrownKind.Silver].transform.localPosition.y;
         m_saveCrownPosY[(int)CrownKind.Bronze] = m_Crown[(int)CrownKind.Bronze].transform.localPosition.y;
 
+        // マテリアル読み込み
+        m_podiumMaterial = new Renderer[ConstPlayerMax];
+        for (i = 0; i < ConstPlayerMax; i++)
+        {
+            m_podiumMaterial[i] = m_podium[i].GetComponent<Renderer>(); ;
+        }
+
         // テキストは最初表示しない
         for (i = 0; i < ConstPlayerMax; i++)
         {
@@ -266,7 +276,7 @@ public class Production : MonoBehaviour {
         System.Array.Reverse(tmp_score);    // 反転して降順にする
         for (i = 0; i < ConstPlayerMax; i++)
         {
-            // 順位の確定a
+            // 順位の確定
             m_playerRanking[i] = System.Array.IndexOf(tmp_score, m_score[i]);
         }
 
@@ -366,6 +376,9 @@ public class Production : MonoBehaviour {
 
         }
 
+        // lightShagtの初期化
+        //m_lightShaft.enabled = false;
+        m_lightShaft.range = 0.0f;
 
         // 演出01を初期の状態に設定
         m_resultState = ResultState.PutCompanyProduction;
@@ -693,7 +706,6 @@ public class Production : MonoBehaviour {
             }
         }
 
-
     }
 
 
@@ -730,6 +742,8 @@ public class Production : MonoBehaviour {
 
             return;
         }
+
+
         
         // 順位決定音鳴らす
         if (!se024_startFlag)
@@ -788,8 +802,9 @@ public class Production : MonoBehaviour {
             m_podium[i].transform.position = Vector3.Lerp(m_savePodiumStart[i], end_pos, m_podiumLerp[i]);
 
             // 表彰台の色の変更
-            m_podium[i].GetComponent<Renderer>().material.color = m_rankColor[m_playerRanking[i]];
-            //m_podium[i].GetComponent<Material>().SetColor("_EmissionColor", m_rankColor[m_playerRanking[i]]);
+            //m_podium[i].GetComponent<Renderer>().material.color = m_rankColor[m_playerRanking[i]];
+            m_podiumMaterial[i].material.EnableKeyword("_EMISSION");
+            m_podiumMaterial[i].material.SetColor("_EmissionColor", m_rankColor[m_playerRanking[i]]);
             
             // 王冠の位置を決める
             switch (m_playerRanking[i])
@@ -816,6 +831,16 @@ public class Production : MonoBehaviour {
                     break;
             }
 
+        }
+
+        // ライトの演出
+        m_lightShaft.transform.localPosition = new Vector3(m_podium[m_saveTopPlayer].transform.localPosition.x,
+                                                           m_lightShaft.transform.localPosition.y,
+                                                           m_podium[m_saveTopPlayer].transform.localPosition.z);
+        m_lightShaft.range += 10.0f * Time.deltaTime;
+        if(m_lightShaft.range > 10.0f)
+        {
+            m_lightShaft.range = 10.0f;
         }
 
         if (m_intervalTime > 5)
