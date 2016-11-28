@@ -54,6 +54,16 @@ public class PlayerCharacter : MonoBehaviour
             {
                 transform.forward = direction;
             }
+
+            if (m_controlledRibbon)
+            {
+                m_controlledRibbon.Shake(horizontal);
+            }
+
+            if (m_caughtRibbon)
+            {
+                m_caughtRibbon.ViolentMove(direction);
+            }
         }
         else
         {
@@ -321,7 +331,7 @@ public class PlayerCharacter : MonoBehaviour
         // test
         m_meshObject.SetActive(false);
         m_buildingObject.SetActive(false);
-
+            
         m_inBuildingTime = .0f;
     }
 
@@ -444,7 +454,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animator.Play("Base Layer.Holded.Holding");
     }
 
-    public void KnockBack()
+    public void KnockBack(Vector3 forceDirection)
     {
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]);
     }
@@ -466,9 +476,9 @@ public class PlayerCharacter : MonoBehaviour
         m_collider  = GetComponent<SphereCollider>();   
         m_player    = transform.parent.GetComponent<Player>();
 
-        m_meshObject = transform.FindChild("PlayerCharacterMesh").gameObject;
-        m_buildingObject = transform.FindChild("PlayerCharacterBuilding").gameObject;
-        m_ribbonRandingProjection = transform.FindChild("RibbonLandingProjection").gameObject;
+        m_meshObject                = transform.FindChild("PlayerCharacterMesh").gameObject;
+        m_buildingObject            = transform.FindChild("PlayerCharacterBuilding").gameObject;
+        m_ribbonRandingProjection   = transform.FindChild("RibbonLandingProjection").gameObject;
 
         _InitializeAnimatorParametersID();
         _InitializeAnimationState();
@@ -588,6 +598,19 @@ public class PlayerCharacter : MonoBehaviour
 
     private Rigidbody m_rigidbody;
 
+    public new Rigidbody rigidbody
+    {
+        get
+        {
+            return m_rigidbody;
+        }
+
+        set
+        {
+            m_rigidbody = value;
+        }
+    }
+
     private Movable m_movable;
 
     private GameObject m_ribbonObject;
@@ -691,4 +714,6 @@ public class PlayerCharacter : MonoBehaviour
                 m_animatorStateInfo.shortNameHash == Animator.StringToHash("CaughtRibbon.Collect");
         }
     }
+
+    
 }

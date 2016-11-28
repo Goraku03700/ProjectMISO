@@ -40,7 +40,7 @@ GameObject:
   - 114: {fileID: 114000012679099478}
   m_Layer: 10
   m_Name: Ribbon
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -510,7 +510,7 @@ Transform:
   m_GameObject: {fileID: 1000010432293650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 0.25, z: 1}
+  m_LocalScale: {x: 2, y: 1.5, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011742141174}
@@ -1088,8 +1088,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2c09369f7f9d34698b682ab7f6885a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ribbonEffectManager: {fileID: 114000011885851006, guid: 94400e19095e181498409bc0c8d648ef,
-    type: 2}
+  m_ribbonEffectManager: {fileID: 0}
+  m_activeTime: 0.25
 --- !u!114 &114000012679099478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938842d6c84abf44aa703ce9c23436d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_raycastLength: 0.5
+  m_raycastLength: 0.175
 --- !u!135 &135000010538966642
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1112,5 +1112,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.75
   m_Center: {x: 0, y: 0, z: 0}

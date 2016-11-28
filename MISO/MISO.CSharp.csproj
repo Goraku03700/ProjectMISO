@@ -78,6 +78,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\Player.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterController.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterControllerData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterHoldTrigger.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Ribbon.cs" />

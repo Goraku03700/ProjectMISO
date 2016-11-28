@@ -10,14 +10,24 @@ namespace Ribbons
         [SerializeField]
         RibbonEffectManager m_ribbonEffectManager;
 
+        void Awake()
+        {
+        }
+
         void Start()
         {
+            m_collider = GetComponent<SphereCollider>();
             m_parentRibbon  = transform.parent.GetComponent<Ribbon>();
-            //m_coughtObjects = new List<GameObject>();
             m_coughtGirls = new List<GirlNoPlayerCharacter>();
             m_coughtPlayerCharacters = new List<PlayerCharacter>();
 
+            //m_coughtObjects = new List<GameObject>();
             //Physics.SphereCastAll()
+        }
+
+        void Update()
+        {
+            
         }
 
         void FixedUpdate()
@@ -66,6 +76,8 @@ namespace Ribbons
                 coughtGirls.Add(girl);
             }
         }
+
+        private SphereCollider m_collider;
 
         private bool m_isOneFrameDuration;
 
@@ -118,6 +130,19 @@ namespace Ribbons
             set
             {
                 m_coughtGirls = value;
+            }
+        }
+
+        public SphereCollider collider
+        {
+            get
+            {
+                return m_collider;
+            }
+
+            set
+            {
+                m_collider = value;
             }
         }
     }
