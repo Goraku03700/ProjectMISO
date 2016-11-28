@@ -18,6 +18,10 @@ public class PlayerCharacterData : ScriptableObject
 
     public float ribbonCollectLength;
 
+    public float ribbonProjectionTime;
+
+    public float ribbonPenaltyTime;
+
     public float throwPower;
 
     public float throwSpeed;
@@ -33,4 +37,10 @@ public class PlayerCharacterData : ScriptableObject
     public float shakingReleaseGirl;
 
     public float shakingInterval;
+
+    public float walkSpeed;
+
+    public float dashSpeed;
+
+    public float dashTime;
 }

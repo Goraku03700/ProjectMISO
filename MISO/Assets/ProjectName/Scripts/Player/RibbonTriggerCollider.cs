@@ -6,6 +6,10 @@ namespace Ribbons
 {
     public class RibbonTriggerCollider : MonoBehaviour
     {
+
+        [SerializeField]
+        RibbonEffectManager m_ribbonEffectManager;
+
         void Start()
         {
             m_parentRibbon  = transform.parent.GetComponent<Ribbon>();
@@ -18,12 +22,19 @@ namespace Ribbons
 
         void FixedUpdate()
         {
-            if (m_isOneFrameDuration)
+            //if (m_isOneFrameDuration)
+            //{
+            //    gameObject.SetActive(false);
+            //}
+
+            //m_isOneFrameDuration = true;
+
+            m_durationTime += Time.deltaTime;
+
+            if(m_durationTime > m_activeTime)
             {
                 gameObject.SetActive(false);
             }
-
-            m_isOneFrameDuration = true;
         }
 
         void OnTriggerEnter(Collider collider)
@@ -50,6 +61,8 @@ namespace Ribbons
 
                 girl.CatchRibbon(m_parentRibbon.playerCharacter);
 
+                m_ribbonEffectManager.CreateRibbonEffect(transform.position, m_parentRibbon.playerCharacter);
+
                 coughtGirls.Add(girl);
             }
         }
@@ -57,7 +70,9 @@ namespace Ribbons
         private bool m_isOneFrameDuration;
 
         private float m_durationTime;
-        private float m_activeOffTime;
+
+        [SerializeField]
+        private float m_activeTime;
 
         private Ribbon m_parentRibbon;
 
