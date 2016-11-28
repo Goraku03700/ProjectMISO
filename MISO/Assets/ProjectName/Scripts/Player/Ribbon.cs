@@ -6,6 +6,12 @@ namespace Ribbons
 {
     public class Ribbon : MonoBehaviour
     {
+        public enum MoveDirectionState
+        {
+            Right,
+            Left,
+        }
+
         public void SizeAdjustEnter()
         {
             rigidbody.useGravity = false;
@@ -13,7 +19,7 @@ namespace Ribbons
 
         public void SizeAdjustUpdate()
         {
-            //transform.RotateAround(m_playerCharacter.transform.position, Vector3.up, 180.0f * Time.deltaTime);
+            transform.RotateAround(m_playerCharacter.transform.position, Vector3.up, 270.0f * Time.deltaTime);
         }
 
         public void Throw(Vector3 position, Quaternion rotation, float upPower, float speed)
@@ -28,7 +34,6 @@ namespace Ribbons
             m_upPower               = upPower;
 
             rigidbody.useGravity    = true;
-
             m_isDoThrow             = true;
 
             m_wallColliderObject.SetActive(true);
@@ -71,6 +76,26 @@ namespace Ribbons
             m_rigidbody.AddForce(direction.normalized * power);
         }
 
+        public void Shake(float horizontal)
+        {
+            if(horizontal > 0)
+            {
+                // right
+                if(m_moveDirectionState != MoveDirectionState.Right)
+                {
+                    _Penalty();
+                }
+            }
+            else
+            {
+                // left
+                if (m_moveDirectionState != MoveDirectionState.Left)
+                {
+                    _Penalty();
+                }
+            }
+        }
+
         public void PullEnter()
         {
             //m_triggerColliderObject.SetActive(false);
@@ -78,7 +103,11 @@ namespace Ribbons
 
         public void PullUpdate()
         {
+            float angle;
 
+            angle = (m_moveDirectionState == MoveDirectionState.Right) ? 180.0f : -180.0f ;
+
+            transform.RotateAround(playerCharacter.transform.position, transform.up, angle * Time.deltaTime);
         }
 
         public void Pulled()
@@ -172,6 +201,31 @@ namespace Ribbons
             }
         }
 
+        private void _Penalty()
+        {
+            float penaltyTime = 0.0f;
+
+            foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
+            {
+                // penaltyTime = playerCharacter.AddPenaltyTime():
+
+                if(penaltyTime > playerCharacter.playerCharacterData.ribbonPenaltyTime)
+                {
+                    Breake();
+                }
+            }
+
+            foreach (var girl in m_triggerCollider.coughtGirls)
+            {
+                // penaltyTime = girl.AddPenaltyTime();
+
+                if (penaltyTime > playerCharacter.playerCharacterData.ribbonPenaltyTime)
+                {
+                    Breake();
+                }
+            }
+        }
+
         private void _InitializeAnimatorParametersID()
         {
             int arraySize = Enum.GetValues(typeof(AnimatorParametersID)).Length;
@@ -188,7 +242,7 @@ namespace Ribbons
             m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsThrow], m_animatorParameters.isThrow);
             m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsGrounded], m_animatorParameters.isGrounded);
             m_animator.SetBool(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled], m_animatorParameters.isPulled);
-        }
+        }        
 
         private static int m_raycastLayerMask;
 
@@ -247,7 +301,20 @@ namespace Ribbons
             }
         }
 
-        
+        private MoveDirectionState m_moveDirectionState;
+
+        public MoveDirectionState moveDirectionState1
+        {
+            get
+            {
+                return m_moveDirectionState;
+            }
+
+            set
+            {
+                m_moveDirectionState = value;
+            }
+        }
     }
 
 }

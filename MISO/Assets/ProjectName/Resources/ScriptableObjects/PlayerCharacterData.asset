@@ -17,6 +17,8 @@ MonoBehaviour:
   ribbonSizeScailingTime: 3
   ribbonPullPower: 300
   ribbonCollectLength: 1.25
+  ribbonProjectionTime: 1
+  ribbonPenaltyTime: 0
   throwPower: 150
   throwSpeed: 500
   collectTime: 3

@@ -109,6 +109,25 @@ public class MultiInputManagerGenarator {
             //inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, downKey, upKey, "", ""));
         }
 
+        // 横方向
+        {
+            var name = string.Format("Player{0} Horizontal2", playerIndex);
+            inputManagerGenerator.AddAxis(InputAxis.CreatePadAxis(name, joystickNum, 4));
+            //inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, leftKey, rightKey, "", ""));
+        }
+
+        // 縦方向
+        {
+            var name = string.Format("Player{0} Vertical2", playerIndex);
+
+            var padAxis = InputAxis.CreatePadAxis(name, joystickNum, 5);
+
+            padAxis.invert = true;
+
+            inputManagerGenerator.AddAxis(padAxis);
+            //inputManagerGenerator.AddAxis(InputAxis.CreateKeyAxis(name, downKey, upKey, "", ""));
+        }
+
 
         // 攻撃
         //{
@@ -118,7 +137,7 @@ public class MultiInputManagerGenarator {
         //    inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
         //}
 
-        
+
         // Cancel
         {
             var axis = new InputAxis();

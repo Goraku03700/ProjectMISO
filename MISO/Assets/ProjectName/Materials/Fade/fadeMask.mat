@@ -114,7 +114,7 @@ Material:
       second: 0.02
     - first:
         name: _Range
-      second: 0.35398534
+      second: 0.27403668
     - first:
         name: _SmoothnessTextureChannel
       second: 0

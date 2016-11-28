@@ -170,6 +170,8 @@ public class PlayerCharacter : MonoBehaviour
         m_controlledRibbon.playerCharacter      = this;
         m_lengthAdjustTime                      = .0f;
 
+        m_ribbonRandingProjection.SetActive(true);
+
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -192,9 +194,12 @@ public class PlayerCharacter : MonoBehaviour
 
         Vector3 force = Vector3.up * m_playerCharacterData.throwPower + transform.forward * m_playerCharacterData.throwSpeed;
 
-        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, t);
+        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, m_playerCharacterData.ribbonProjectionTime);
 
-        m_controlledRibbon.transform.position = point;
+        point.y = m_ribbonRandingProjection.transform.position.y;
+
+        m_ribbonRandingProjection.transform.position    = point;
+        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 4.0f;
 
         Assert.IsNotNull(controlledRibbon);
     }
@@ -209,6 +214,10 @@ public class PlayerCharacter : MonoBehaviour
             {
                 Destroy(m_controlledRibbon.gameObject);
             }
+        }
+        else
+        {
+            m_ribbonRandingProjection.SetActive(false);
         }
     }
 
@@ -459,12 +468,14 @@ public class PlayerCharacter : MonoBehaviour
 
         m_meshObject = transform.FindChild("PlayerCharacterMesh").gameObject;
         m_buildingObject = transform.FindChild("PlayerCharacterBuilding").gameObject;
+        m_ribbonRandingProjection = transform.FindChild("RibbonLandingProjection").gameObject;
+
+        _InitializeAnimatorParametersID();
+        _InitializeAnimationState();
 
         Assert.IsNotNull(m_animator);
         Assert.IsNotNull(m_movable);
 
-        _InitializeAnimatorParametersID();
-        _InitializeAnimationState();
     }
 
     void Update()
@@ -654,6 +665,8 @@ public class PlayerCharacter : MonoBehaviour
     private GameObject m_meshObject;
 
     private GameObject m_buildingObject;
+
+    private GameObject m_ribbonRandingProjection;
 
     private Animator m_animator;
 

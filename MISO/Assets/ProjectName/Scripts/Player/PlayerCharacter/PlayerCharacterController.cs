@@ -78,6 +78,9 @@ public class PlayerCharacterController : MonoBehaviour {
         float horizontal    = MultiInput.GetAxis("Horizontal", m_joypadNumber);
         float vertical      = MultiInput.GetAxis("Vertical",   m_joypadNumber);
 
+        float horizontal2   = MultiInput.GetAxis("Horizontal2", m_joypadNumber);
+        float vertical2     = MultiInput.GetAxis("Vertical2",    m_joypadNumber);
+
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
         bool isPushCancelKey = MultiInput.GetButtonDown("Cancel", m_joypadNumber);
@@ -96,6 +99,10 @@ public class PlayerCharacterController : MonoBehaviour {
         if (_CheckStickRotation(vertical, horizontal))
         {
             m_controlledPlayerCharacter.InputRelease();
+        }
+
+        if (_CheckStickRotation(vertical2, horizontal2))
+        {
             m_controlledPlayerCharacter.InputPull();
         }
     }
