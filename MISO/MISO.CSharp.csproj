@@ -79,6 +79,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterController.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterHoldTrigger.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Player\PlayerFire.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Ribbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\RibbonTriggerCollider.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Result\BackUp.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\TitleTest.cs" />
+    <Compile Include="Assets\TestBezier.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
     <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />

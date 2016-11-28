@@ -111,6 +111,9 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     Material[] m_ribbon_WindMaterial4;
 
+    [SerializeField]
+    ParticleSystem m_particleSystem;
+
     Bezier m_bezier;
 
 
@@ -187,25 +190,34 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             case State.Caught:
             {
+                Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
+                transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 1.0f);
                 m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up / 1.5f);
                 //なんか処理
                 if(m_isAbsorption)
                 {
+                    m_ribbonLine.enabled = false;
                     m_time = 0.0f;
                     m_status = State.Absorption;
+                    m_particleSystem.startColor = new  Color32(82,255,68,255);
+                    m_particleSystem.emissionRate = 20.0f;
+                    m_particleSystem.Play();
                 }
 
                 break;
             }
             case State.Absorption:
             {
-                transform.position =  m_bezier.GetPointAtTime(m_time*2f);
-                transform.localScale = Vector3.Lerp(new Vector3(0.1f,0.1f,0.1f), Vector3.zero, m_time * 2f);
-                //ベジェ曲線での取得演出処理
-                if(m_time>0.5f) 
+                if (m_time > 1f)
                 {
                     m_status = State.None;
+                    m_time = 1f;
                 }
+                m_particleSystem.startSize = Mathf.Lerp(2.0f, 0.0f, m_time);
+                transform.localPosition =  m_bezier.GetPointAtTime(m_time);
+                transform.localScale = Vector3.Lerp(new Vector3(0.1f,0.1f,0.1f), Vector3.zero, m_time);
+                //ベジェ曲線での取得演出処理
+                
                 break;
             }
             case State.None:
@@ -251,6 +263,9 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_isCaught          = true;
         gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
         m_status            = State.Caught;
+        m_targetPosition = playerCharacter.transform.localPosition;
+        // 目標地点の方向を向く
+        
         m_ribbonLine.enabled = true;
         m_ribbonLine.sortingOrder = 4;
         m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up/1.5f);
@@ -296,7 +311,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     public void Collect(Vector3 billPosition)
     {
         m_isAbsorption = true;
-        m_bezier = new Bezier(transform.position, Vector3.LerpUnclamped(transform.position, billPosition, 0.4f) + Vector3.up * 4, Vector3.LerpUnclamped(transform.position, billPosition, 0.6f) + Vector3.up * 4, billPosition);
+        m_bezier = new Bezier(this.transform.localPosition, Vector3.Lerp(this.transform.localPosition, billPosition, 0.4f) + Vector3.up * 2f, Vector3.Lerp(this.transform.position, billPosition, 0.6f) + Vector3.up * 2f, billPosition);
+
         //m_bezier.ResetBezier(transform.position, Vector3.Lerp(transform.position, billPosition, 0.4f) + Vector3.up * 2, Vector3.Lerp(transform.position, billPosition, 0.6f) + Vector3.up * 2, billPosition);
     }
 }
