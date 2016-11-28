@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 535b90f2f3b100f4087e994e029c5894
-timeCreated: 1480307478
+guid: 4787591f3f516154daf059ac8d94f3e3
+timeCreated: 1480308277
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -58,8 +58,9 @@ ModelImporter:
     4300000: body_npc
     4300002: fuku_npc1
     4300004: hair_npc
-    7400000: default
-    7400002: walk
+    7400000: rampage
+    7400002: default
+    7400004: walk
     9500000: //RootNode
     13700000: body_npc
     13700002: fuku_npc1
