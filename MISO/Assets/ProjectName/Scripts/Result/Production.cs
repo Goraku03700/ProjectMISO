@@ -859,8 +859,8 @@ public class Production : MonoBehaviour {
             }
 
             // ポイントライトを置く
-            //m_pointLight[i].enabled = true;
-            //m_pointLight[i].transform.localPosition = m_player[i].transform.localPosition;
+            m_pointLight[i].enabled = true;
+            m_pointLight[i].transform.localPosition = m_player[i].transform.position;
 
         }
 
