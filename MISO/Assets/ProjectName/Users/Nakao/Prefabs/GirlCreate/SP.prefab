@@ -990,6 +990,7 @@ MonoBehaviour:
   m_ribbon_WindMaterial4:
   - {fileID: 2100000, guid: d5a6901f44ee35c42960226e9db95e68, type: 2}
   - {fileID: 2100000, guid: d5a6901f44ee35c42960226e9db95e68, type: 2}
+  m_particleSystem: {fileID: 198000014196177358}
 --- !u!114 &114000014286938260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1270,7 +1271,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -204885441
+  randomSeed: 109684543
   InitialModule:
     serializedVersion: 2
     enabled: 1
