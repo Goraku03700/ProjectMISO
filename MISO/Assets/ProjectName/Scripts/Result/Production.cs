@@ -200,10 +200,15 @@ public class Production : MonoBehaviour {
         m_score = new int[ConstPlayerMax];
 
         /**** 仮の値 ****/
-        m_score[0] = 20;
-        m_score[1] = 25;
-        m_score[2] = 15;
-        m_score[3] = 18;
+        m_score[0] = SceneSharedData.instance.Get<int>("PlayTest", "Player1Score");
+        m_score[1] = SceneSharedData.instance.Get<int>("PlayTest", "Player2Score");
+        m_score[2] = SceneSharedData.instance.Get<int>("PlayTest", "Player3Score");
+        m_score[3] = SceneSharedData.instance.Get<int>("PlayTest", "Player4Score");
+
+        SceneSharedData.instance.Remove("PlayTest", "Player1Score");
+        SceneSharedData.instance.Remove("PlayTest", "Player2Score");
+        SceneSharedData.instance.Remove("PlayTest", "Player3Score");
+        SceneSharedData.instance.Remove("PlayTest", "Player4Score");
 
         /**** マジックナンバー使用中 ****/
         // オブジェクトのロード

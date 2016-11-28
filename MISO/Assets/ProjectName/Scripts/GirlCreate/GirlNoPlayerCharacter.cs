@@ -116,9 +116,13 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 
     Bezier m_bezier;
 
+    [SerializeField]
+    Animator m_npcMotion;
+
 
     public Vector3 GetRandomPositionOnLevel()
     {
+        m_time = 0.0f;
         m_beforeRotation = this.transform.rotation;
         m_beforePosition = this.transform.position;
         return new Vector3(Random.Range(m_movementAreaX.x, m_movementAreaX.y), 0, Random.Range(m_movementAreaZ.x, m_movementAreaZ.y));
@@ -156,6 +160,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
                     //m_movable.speed = 4.0f;
                     m_time = 0.0f;
+                    m_npcMotion.SetBool("Move",true);
                 }
                 //m_status = State.Alive;
                 break;
@@ -169,8 +174,12 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 }
 
                 // 目標地点の方向を向く
+                if(m_time > 1.0f)
+                {
+                    m_time = 1.0f;
+                }
                 Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
-                transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, Time.deltaTime * m_rotationSmooth);
+                transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, m_time);
 
                 // 前方に進む
                 transform.Translate(Vector3.forward * m_speed * Time.deltaTime);
@@ -185,6 +194,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 {
                     m_movable.speed = 0.0f;
                     m_status = State.Caught;
+                    m_npcMotion.SetBool("Caught", true);
                 }
                 break;
             }
@@ -196,6 +206,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 //なんか処理
                 if(m_isAbsorption)
                 {
+                    m_npcMotion.SetBool("Caught",false);
+                    m_npcMotion.SetBool("Move", false);
                     m_ribbonLine.enabled = false;
                     m_time = 0.0f;
                     m_status = State.Absorption;
@@ -306,6 +318,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_isCaught          = false;
         gameObject.layer    = LayerMask.NameToLayer("Girl");
         m_status            = State.Alive;
+        m_npcMotion.SetBool("Caught", false);
     }
 
     public void Collect(Vector3 billPosition)

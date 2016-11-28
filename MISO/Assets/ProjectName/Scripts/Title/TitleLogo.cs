@@ -30,7 +30,7 @@ public class TitleLogo : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_titlelogo = GameObject.Find("TitleLogo");     //オブジェクトのロード
-        m_ribbon = GameObject.Find("ribbon2");
+        m_ribbon = GameObject.Find("ribbon_circle");
         m_startpos = this.transform.position;
         m_nowpos = m_startpos;
         m_startscale = this.transform.localScale;

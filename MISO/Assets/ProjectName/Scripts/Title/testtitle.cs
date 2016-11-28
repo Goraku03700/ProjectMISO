@@ -25,6 +25,8 @@ public class testtitle : MonoBehaviour {
     InvisibleRibbon m_invisibleribbon;
     TitleLogo m_titlelogo;
     TitleUI m_titleui;
+    [SerializeField]
+    Animator m_titlePlayerAnimator; 
 
     // BGM・SE用
     private bool bgm000_startFlag;
@@ -35,10 +37,10 @@ public class testtitle : MonoBehaviour {
 	void Start () {
         m_titlestate = TitleState.Start;
         m_girl = GameObject.Find("girl").GetComponent<TitleGirl>();
-        m_ribbon = GameObject.Find("ribbon2").GetComponent<TitleRibbon>();
+        m_ribbon = GameObject.Find("ribbon_circle").GetComponent<TitleRibbon>();
         m_titlelogo = GameObject.Find("TitleLogo").GetComponent<TitleLogo>();
         m_titleui = GameObject.Find("TitleUI").GetComponent<TitleUI>();
-        m_invisibleribbon = GameObject.Find("ribbon2/obj1").GetComponent<InvisibleRibbon>();
+      //  m_invisibleribbon = GameObject.Find("ribbon2/obj1").GetComponent<InvisibleRibbon>();
         m_fadeCanvas.gameObject.SetActive(true);
         bgm000_startFlag = false;
         se001_startFlag = false;
@@ -67,6 +69,7 @@ public class testtitle : MonoBehaviour {
                 if(m_ribbon.ThrowFinishFlag)    //リボンが所定の位置に着いたら遷移を移動させる
                 {
                     m_ribbon.ResetBezierRibbon();
+                    m_titlePlayerAnimator.SetBool("Running", true);
                     m_girl.RotationGirl();
                     m_titlestate = TitleState.TrailTitleLogo;
                 }
@@ -76,7 +79,8 @@ public class testtitle : MonoBehaviour {
                 //所定の位置に着いたら遷移を移動させる
                 if(m_ribbon.TrailFinishFlag && m_titlelogo.TrailtitleLogoFinishFlag)
                 {
-                    m_invisibleribbon.ActiveRibbon(false);
+                    //m_invisibleribbon.ActiveRibbon(false);
+                    m_ribbon.gameObject.SetActive(false);
                     m_titlestate = TitleState.BoundTitleLogo;
                 }
                 else
