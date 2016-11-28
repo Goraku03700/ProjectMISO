@@ -100,6 +100,9 @@ public class Production : MonoBehaviour {
     private float[] m_podiumSpeed;       // 表彰台の上下の移動速度
     private Vector3[] m_savePodiumStart;   // 位置を保存 
     private float[] m_podiumLerp;        // 線形補間用
+    private Color m_savePodiumColor;    // 表彰台の色の保存
+    private float m_podiumColorLerp;    // 表彰台の色の線形補間用
+
 
     private bool se023_startFlag;
     private bool se024_startFlag;
@@ -167,10 +170,25 @@ public class Production : MonoBehaviour {
     private Color[] m_rankColor;
 
     [SerializeField]
+    private float m_changeColorSpeed;
+
+    [SerializeField]
     private Transform[] m_crownPosX;
 
     [SerializeField]
+    private Light m_directionalLight;
+
+    [SerializeField]
+    private float m_darkSpeed;
+
+    [SerializeField]
+    private float m_endIntensity;
+
+    [SerializeField]
     private Light m_lightShaft;
+
+    [SerializeField]
+    private Light[] m_pointLight;
 
     private Fade m_fadeObject;
 
@@ -255,7 +273,7 @@ public class Production : MonoBehaviour {
         m_podiumMaterial = new Renderer[ConstPlayerMax];
         for (i = 0; i < ConstPlayerMax; i++)
         {
-            m_podiumMaterial[i] = m_podium[i].GetComponent<Renderer>(); ;
+            m_podiumMaterial[i] = m_podium[i].GetComponent<Renderer>();
         }
 
         // テキストは最初表示しない
@@ -375,10 +393,16 @@ public class Production : MonoBehaviour {
             m_podiumLerp[i] = 0.0f;
 
         }
+        m_savePodiumColor = m_podiumMaterial[0].material.GetColor("_EmissionColor");
+        m_podiumColorLerp = 0.0f;
 
         // lightShagtの初期化
-        //m_lightShaft.enabled = false;
         m_lightShaft.range = 0.0f;
+
+        for(i=0; i<ConstPlayerMax; i++)
+        {
+            m_pointLight[i].enabled = false;
+        }
 
         // 演出01を初期の状態に設定
         m_resultState = ResultState.PutCompanyProduction;
@@ -692,7 +716,16 @@ public class Production : MonoBehaviour {
         }
 
 
+        // 暗くする
+        this.GetComponent<SkyboxControl>().Dark();
+        m_directionalLight.intensity -= m_darkSpeed * Time.deltaTime;
+        if(m_directionalLight.intensity < m_endIntensity)
+        {
+            m_directionalLight.intensity = m_endIntensity;
+        }
         
+
+        // 一定時間たったら次の時間に決める
         if(m_intervalTime > m_podiumProductionWaitTime)
         {
             m_resultState = ResultState.DecideRankProducution;
@@ -731,15 +764,6 @@ public class Production : MonoBehaviour {
         // 一定時間待ってから演出を開始する
         if (m_intervalTime < m_podiumDecideRankWaitTime)
         {
-            /*
-            // オブジェクトの位置を保存しておく
-            for (i = 0; i < ConstPlayerMax; i++)
-            {
-                m_savePodiumStart[i] = m_podium[i].transform.position;
-            }
-            */
-            
-
             return;
         }
 
@@ -788,7 +812,7 @@ public class Production : MonoBehaviour {
                     m_player[i].GetComponent<Animator>().SetBool("isGlad", true);
                 }
 
-                if (m_playerRanking[i] == 3)
+                if (m_playerRanking[i] != 0)
                 {
                     m_player[i].GetComponent<Animator>().SetBool("isSad", true);
                 }
@@ -803,9 +827,12 @@ public class Production : MonoBehaviour {
 
             // 表彰台の色の変更
             //m_podium[i].GetComponent<Renderer>().material.color = m_rankColor[m_playerRanking[i]];
-            m_podiumMaterial[i].material.EnableKeyword("_EMISSION");
-            m_podiumMaterial[i].material.SetColor("_EmissionColor", m_rankColor[m_playerRanking[i]]);
-            
+            //m_podiumMaterial[i].material.EnableKeyword("_EMISSION");
+
+            //m_podiumMaterial[i].material.SetColor("_EmissionColor", m_rankColor[m_playerRanking[i]]);
+
+            m_podiumMaterial[i].material.SetColor("_EmissionColor", Color.Lerp(m_savePodiumColor, m_rankColor[m_playerRanking[i]], m_podiumColorLerp));
+
             // 王冠の位置を決める
             switch (m_playerRanking[i])
             {
@@ -831,7 +858,13 @@ public class Production : MonoBehaviour {
                     break;
             }
 
+            // ポイントライトを置く
+            //m_pointLight[i].enabled = true;
+            //m_pointLight[i].transform.localPosition = m_player[i].transform.localPosition;
+
         }
+
+        m_podiumColorLerp += m_changeColorSpeed * Time.deltaTime;
 
         // ライトの演出
         m_lightShaft.transform.localPosition = new Vector3(m_podium[m_saveTopPlayer].transform.localPosition.x,
@@ -843,14 +876,11 @@ public class Production : MonoBehaviour {
             m_lightShaft.range = 10.0f;
         }
 
+
         if (m_intervalTime > 5)
         {
             m_resultState = ResultState.WaitKey;
         }
-
-
-
-
     }
 
     /// <summary>

@@ -128,7 +128,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Player\Ribbon.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\RibbonTriggerCollider.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Result\Production.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Result\SkyboxRotate.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Result\SkyboxControl.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\InfoText.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\ScrollBack.cs" />
