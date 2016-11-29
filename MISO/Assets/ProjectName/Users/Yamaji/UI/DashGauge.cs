@@ -7,6 +7,9 @@ public class DashGauge : MonoBehaviour {
     private Camera m_targetCamera;
 
     [SerializeField]
+    private GameObject m_mainGauge;
+
+    [SerializeField]
     private Color m_maxColor;
 
     [SerializeField]
@@ -14,6 +17,9 @@ public class DashGauge : MonoBehaviour {
 
     [SerializeField]
     private Color m_littleColor;
+
+    [SerializeField]
+    private float m_littleColorRaito;
 
     private SpriteRenderer m_gaugeRenderer;
 
@@ -29,40 +35,67 @@ public class DashGauge : MonoBehaviour {
         m_maxScaleX = this.transform.localScale.x;
 
         m_gaugeRenderer = this.GetComponent<SpriteRenderer>();
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        //カメラの方向を向くようにする。
+        //カメラと同じ方向にする
         //this.transform.LookAt(this.m_targetCamera.transform.position);
-
-
-    
+        transform.rotation = Camera.current.transform.rotation;
 
         if (Input.GetKey(KeyCode.A))
         {
-            this.transform.localScale = new Vector3(this.transform.localScale.x + 1.0f * Time.deltaTime,
+            this.transform.localScale = new Vector3(this.transform.localScale.x + 6.0f * Time.deltaTime,
                                                     this.transform.localScale.y,
                                                     this.transform.localScale.z);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            this.transform.localScale = new Vector3(this.transform.localScale.x + (-1.0f) * Time.deltaTime,
+            this.transform.localScale = new Vector3(this.transform.localScale.x + (-6.0f) * Time.deltaTime,
                                                     this.transform.localScale.y,
                                                     this.transform.localScale.z);
         }
 
-
-        // 現在のスケールの割合を計算
-        float nowScaleXRaito = m_maxScaleX / this.transform.localScale.x;
-       
-        if(nowScaleXRaito >= 1.0f)
+        // 最大値と最小値の設定
+        float nowScaleX = this.transform.localScale.x;
+        
+        // 最大
+        if(nowScaleX > m_maxScaleX)
         {
-            m_gaugeRenderer.color = m_maxColor;
+            this.transform.localScale = new Vector3(m_maxScaleX,
+                                                    this.transform.localScale.y,
+                                                    this.transform.localScale.z);
+
         }
 
+        // 最小
+        if (nowScaleX < 0.0f)
+        {
+            this.transform.localScale = new Vector3(0.0f,
+                                                    this.transform.localScale.y,
+                                                    this.transform.localScale.z);
+
+        }
+
+
+        SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();
+
+        // 現在のスケールの割合を計算
+        float nowScaleXRaito = this.transform.localScale.x / m_maxScaleX;
+     
+        // 割合によって色を変える
+        if(nowScaleXRaito <= m_littleColorRaito)
+        {
+            m_gaugeRenderer.color = m_littleColor;
+        }else if(nowScaleXRaito >= 1.0f)
+        {
+            m_gaugeRenderer.color = m_maxColor;
+        }else
+        {
+            m_gaugeRenderer.color = m_normalColor;
+        }
+       
 
 
     }
