@@ -4,8 +4,8 @@ using System.Collections;
 [CreateAssetMenu(menuName = "ScriptableObject.Player Character Data")]
 public class PlayerCharacterData : ScriptableObject
 {
-    [Tooltip("リボンプレハブへのパス")]
-    public string ribbonPrefabPath;
+    [Tooltip("引き寄せ入力半回転回数")]
+    public int pullInputHalfRotation;
 
     public float ribbonMaxScale;
 
@@ -21,6 +21,10 @@ public class PlayerCharacterData : ScriptableObject
     public float ribbonProjectionTime;
 
     public float ribbonPenaltyTime;
+
+    public float ribbonShakeSpeed;
+
+    public float ribbonViolentMoveSpeed;
 
     public float throwPower;
 
@@ -43,4 +47,7 @@ public class PlayerCharacterData : ScriptableObject
     public float dashSpeed;
 
     public float dashTime;
+
+    [Tooltip("リボンプレハブへのパス")]
+    public string ribbonPrefabPath;
 }
