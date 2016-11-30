@@ -69,10 +69,10 @@ public class Production : MonoBehaviour {
     private float[] m_saveCrownPosY;
 
     // 読み込むパーティクル
-    private GameObject m_confettiParticleParent;
-    private ParticleSystem m_confettiParticle1;
-    private ParticleSystem m_confettiParticle2;
-    private ParticleSystem m_confettiParticle3;
+    private GameObject[] m_confettiParticleParent;
+    private ParticleSystem[] m_confettiParticle1;
+    private ParticleSystem[] m_confettiParticle2;
+    private ParticleSystem[] m_confettiParticle3;
 
     // 読み込むマテリアル
     private Renderer[] m_podiumMaterial;
@@ -185,12 +185,14 @@ public class Production : MonoBehaviour {
     private float m_endIntensity;
 
     [SerializeField]
-    private Light m_lightShaft;
+    private Light[] m_lightShaft;
 
     [SerializeField]
     private Light[] m_pointLight;
 
     private Fade m_fadeObject;
+
+    private int m_maxGirl;
 
     // Use this for initialization
     void Start() {
@@ -200,15 +202,21 @@ public class Production : MonoBehaviour {
         m_score = new int[ConstPlayerMax];
 
         /**** 仮の値 ****/
-        m_score[0] = SceneSharedData.instance.Get<int>("PlayTest", "Player1Score");
-        m_score[1] = SceneSharedData.instance.Get<int>("PlayTest", "Player2Score");
-        m_score[2] = SceneSharedData.instance.Get<int>("PlayTest", "Player3Score");
-        m_score[3] = SceneSharedData.instance.Get<int>("PlayTest", "Player4Score");
+        //m_score[0] = SceneSharedData.instance.Get<int>("PlayTest", "Player1Score");
+        //m_score[1] = SceneSharedData.instance.Get<int>("PlayTest", "Player2Score");
+        //m_score[2] = SceneSharedData.instance.Get<int>("PlayTest", "Player3Score");
+        //m_score[3] = SceneSharedData.instance.Get<int>("PlayTest", "Player4Score");
 
-        SceneSharedData.instance.Remove("PlayTest", "Player1Score");
-        SceneSharedData.instance.Remove("PlayTest", "Player2Score");
-        SceneSharedData.instance.Remove("PlayTest", "Player3Score");
-        SceneSharedData.instance.Remove("PlayTest", "Player4Score");
+        //SceneSharedData.instance.Remove("PlayTest", "Player1Score");
+        //SceneSharedData.instance.Remove("PlayTest", "Player2Score");
+        //SceneSharedData.instance.Remove("PlayTest", "Player3Score");
+        //SceneSharedData.instance.Remove("PlayTest", "Player4Score");
+
+        m_score[0] = 0;
+        m_score[1] = 0;
+        m_score[2] = 0;
+        m_score[3] = 0;
+
 
         /**** マジックナンバー使用中 ****/
         // オブジェクトのロード
@@ -250,6 +258,7 @@ public class Production : MonoBehaviour {
         */
 
         // パーティクルシステム
+        /*
         m_confettiParticleParent = GameObject.Find("ConfettiParticle");
         m_confettiParticle1 = GameObject.Find("ConfettiParticle1").GetComponent<ParticleSystem>();
         m_confettiParticle2 = GameObject.Find("ConfettiParticle2").GetComponent<ParticleSystem>();
@@ -257,6 +266,25 @@ public class Production : MonoBehaviour {
         m_confettiParticle1.Stop();
         m_confettiParticle2.Stop();
         m_confettiParticle3.Stop();
+        */
+
+        // パーティクルのオブジェクトを探す
+        m_confettiParticleParent = new GameObject[ConstPlayerMax];
+        m_confettiParticle1 = new ParticleSystem[ConstPlayerMax];
+        m_confettiParticle2 = new ParticleSystem[ConstPlayerMax];
+        m_confettiParticle3 = new ParticleSystem[ConstPlayerMax];
+        for (i = 0; i < ConstPlayerMax; i++)
+        {
+            string findObj = "ConfettiParticle" + (i+1);
+            m_confettiParticleParent[i] = GameObject.Find(findObj);
+            string findObj2 = findObj + "_1";
+            m_confettiParticle1[i] = GameObject.Find(findObj2).GetComponent<ParticleSystem>();
+            m_confettiParticle2[i] = GameObject.Find(findObj + "_2").GetComponent<ParticleSystem>();
+            m_confettiParticle3[i] = GameObject.Find(findObj + "_3").GetComponent<ParticleSystem>();
+            m_confettiParticle1[i].Stop();
+            m_confettiParticle2[i].Stop();
+            m_confettiParticle3[i].Stop();
+        }
 
         // 王冠
         m_Crown = new GameObject[(int)CrownKind.Max];
@@ -291,8 +319,11 @@ public class Production : MonoBehaviour {
         // プレイヤーの順位を判定
         m_playerRanking = new int[ConstPlayerMax];
 
+        bool same_flg = false;
+        int same_cnt = 0;
         int[] tmp_score;   // 一時保存用
         tmp_score = new int[ConstPlayerMax];
+
 
         m_score.CopyTo(tmp_score, 0);       // 配列のコピー
         System.Array.Sort(tmp_score);       // 昇順にソート
@@ -301,13 +332,29 @@ public class Production : MonoBehaviour {
         {
             // 順位の確定
             m_playerRanking[i] = System.Array.IndexOf(tmp_score, m_score[i]);
+
+            // 同じとき
+            if(i >= 1)
+            {
+                if(m_player[i] == m_player[i-1])
+                {
+                    same_flg = true;
+                    same_cnt++;
+                    continue;
+                }
+            }
+
+            if(same_flg)
+            {
+                m_playerRanking[i] += same_cnt;
+                same_flg = false;
+            }
         }
 
         int max = m_score.Max();   // スコアの最大値をとる
         m_saveTopPlayer = System.Array.IndexOf(m_score, max);   // 最大値の配列が何番目か保存
-
-
-
+        m_maxGirl = max;
+    
         // スコア関係の初期化
         m_scoreCount = new int[ConstPlayerMax];
         for (i = 0; i < ConstPlayerMax; i++)
@@ -396,14 +443,16 @@ public class Production : MonoBehaviour {
             m_podiumState[i] = PodiumState.Up;
             m_podiumSpeed[i] = m_podiumSeedMax[i];
             m_podiumLerp[i] = 0.0f;
-
         }
         m_savePodiumColor = m_podiumMaterial[0].material.GetColor("_EmissionColor");
         m_podiumColorLerp = 0.0f;
 
-        // lightShagtの初期化
-        m_lightShaft.range = 0.0f;
-
+        // lightShaftの初期化
+        for (i = 0; i < ConstPlayerMax; i++)
+        {
+            m_lightShaft[i].enabled = false;
+            m_lightShaft[i].range = 0.0f;
+        }
         for(i=0; i<ConstPlayerMax; i++)
         {
             m_pointLight[i].enabled = false;
@@ -625,7 +674,15 @@ public class Production : MonoBehaviour {
         }
 
         // 最後の女性の移動が完了したら次の状態に遷移
-        if (m_girlLerpRate[m_saveTopPlayer, m_score[m_saveTopPlayer] - 1] >= 1.0f)
+        if (m_maxGirl == 0)
+        {
+            m_resultState = ResultState.UpPodiumProduction;
+            time = 0;
+
+            return;
+
+        }
+        if (m_girlLerpRate[m_saveTopPlayer, m_score[m_saveTopPlayer] - 1 ] >= 1.0f)
         {
             m_resultState = ResultState.UpPodiumProduction;
             time = 0;
@@ -717,6 +774,7 @@ public class Production : MonoBehaviour {
             m_podium[i].transform.Translate(0.0f, m_podiumSpeed[i] * Time.deltaTime, 0.0f);
 
             // 数字のランダムで表示
+            m_scoreText[i].enabled = true;
             m_scoreText[i].text = Random.Range(10, 99 + 1).ToString() + "人";
         }
 
@@ -792,6 +850,7 @@ public class Production : MonoBehaviour {
         }
 
         // パーティクル開始
+        /*
         m_confettiParticleParent.transform.position = m_podium[m_saveTopPlayer].transform.position;
         m_confettiParticleParent.transform.Translate(0.0f, 5.0f, 0.0f, Space.World);
         if (!m_confettiParticle1.isPlaying) // 開始中じゃなかったら
@@ -801,10 +860,25 @@ public class Production : MonoBehaviour {
             m_confettiParticle2.Play();
             m_confettiParticle3.Play();
         }
+        */
 
         // 順位別の高さに移動
         for (i = 0; i < ConstPlayerMax; i++)
         {
+            // 1位ならパーティクル開始
+            if (m_playerRanking[i] == 0)
+            {
+                m_confettiParticleParent[i].transform.position = m_podium[i].transform.position;
+                m_confettiParticleParent[i].transform.Translate(0.0f, 5.0f, 0.0f, Space.World);
+                if (!m_confettiParticle1[i].isPlaying) // 開始中じゃなかったら
+                {
+                    // パーティクル開始
+                    m_confettiParticle1[i].Play();
+                    m_confettiParticle2[i].Play();
+                    m_confettiParticle3[i].Play();
+                }
+            }
+
             // 進める
             m_podiumLerp[i] += m_podiumDecideRankSpeed * Time.deltaTime;
             if (m_podiumLerp[i] > 1.0f)
@@ -843,43 +917,47 @@ public class Production : MonoBehaviour {
             {
                 case 0:
                     m_Crown[(int)CrownKind.Gold].SetActive(true);
-                    m_Crown[(int)CrownKind.Gold].transform.localPosition = new Vector3(m_crownPosX[i].localPosition.x,
+                    m_Crown[(int)CrownKind.Gold].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
                                                                                        m_saveCrownPosY[(int)CrownKind.Gold],
                                                                                        0.0f);
                     break;
 
                 case 1:
                     m_Crown[(int)CrownKind.Silver].SetActive(true);
-                    m_Crown[(int)CrownKind.Silver].transform.localPosition = new Vector3(m_crownPosX[i].localPosition.x,
+                    m_Crown[(int)CrownKind.Silver].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
                                                                                          m_saveCrownPosY[(int)CrownKind.Silver],
                                                                                          0.0f);
                     break;
 
                 case 2:
                     m_Crown[(int)CrownKind.Bronze].SetActive(true);
-                    m_Crown[(int)CrownKind.Bronze].transform.localPosition = new Vector3(m_crownPosX[i].localPosition.x,
+                    m_Crown[(int)CrownKind.Bronze].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
                                                                                        m_saveCrownPosY[(int)CrownKind.Bronze],
                                                                                        0.0f);
                     break;
             }
 
             // ポイントライトを置く
-            //m_pointLight[i].enabled = true;
-            //m_pointLight[i].transform.localPosition = m_player[i].transform.localPosition;
+            m_pointLight[i].enabled = true;
+            m_pointLight[i].transform.localPosition = m_player[i].transform.position;
 
+            // ライトの演出
+            if (m_playerRanking[i] == 0)
+            {
+                m_lightShaft[i].transform.localPosition = new Vector3(m_podium[i].transform.localPosition.x,
+                                                               m_lightShaft[i].transform.localPosition.y,
+                                                               m_podium[i].transform.localPosition.z);
+                m_lightShaft[i].range += 10.0f * Time.deltaTime;
+                if (m_lightShaft[i].range > 10.0f)
+                {
+                    m_lightShaft[i].range = 10.0f;
+                }
+            }
         }
 
         m_podiumColorLerp += m_changeColorSpeed * Time.deltaTime;
 
-        // ライトの演出
-        m_lightShaft.transform.localPosition = new Vector3(m_podium[m_saveTopPlayer].transform.localPosition.x,
-                                                           m_lightShaft.transform.localPosition.y,
-                                                           m_podium[m_saveTopPlayer].transform.localPosition.z);
-        m_lightShaft.range += 10.0f * Time.deltaTime;
-        if(m_lightShaft.range > 10.0f)
-        {
-            m_lightShaft.range = 10.0f;
-        }
+
 
 
         if (m_intervalTime > 5)

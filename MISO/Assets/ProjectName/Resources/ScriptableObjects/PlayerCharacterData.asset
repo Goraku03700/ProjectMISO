@@ -11,14 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbddd30c7eb3774c828688f336f2304, type: 3}
   m_Name: PlayerCharacterData
   m_EditorClassIdentifier: 
-  ribbonPrefabPath: Prefabs/Ribbon
-  ribbonMaxScale: 1
-  ribbonMinScale: 0.5
-  ribbonSizeScailingTime: 3
-  ribbonPullPower: 300
+  pullInputHalfRotation: 0
+  ribbonMaxScale: 3
+  ribbonMinScale: 1
+  ribbonSizeScailingTime: 1
+  ribbonPullPower: 100
   ribbonCollectLength: 1.25
   ribbonProjectionTime: 1
   ribbonPenaltyTime: 0
+  ribbonShakeSpeed: 50
+  ribbonViolentMoveSpeed: 75
   throwPower: 150
   throwSpeed: 500
   collectTime: 3
@@ -30,3 +32,4 @@ MonoBehaviour:
   walkSpeed: 5
   dashSpeed: 10
   dashTime: 5
+  ribbonPrefabPath: Prefabs/Ribbon
