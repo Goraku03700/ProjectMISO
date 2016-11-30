@@ -173,6 +173,7 @@
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushParticle.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\Prefab\DushTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestPlayer.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Billboard.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\DashGauge.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIcon.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerScore.cs" />

@@ -4,12 +4,6 @@ using System.Collections;
 public class DashGauge : MonoBehaviour {
 
     [SerializeField]
-    private Camera m_targetCamera;
-
-    [SerializeField]
-    private GameObject m_mainGauge;
-
-    [SerializeField]
     private Color m_maxColor;
 
     [SerializeField]
@@ -39,9 +33,7 @@ public class DashGauge : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //カメラと同じ方向にする
-        //this.transform.LookAt(this.m_targetCamera.transform.position);
-        transform.rotation = Camera.current.transform.rotation;
+
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -75,7 +67,6 @@ public class DashGauge : MonoBehaviour {
             this.transform.localScale = new Vector3(0.0f,
                                                     this.transform.localScale.y,
                                                     this.transform.localScale.z);
-
         }
 
 
@@ -95,8 +86,8 @@ public class DashGauge : MonoBehaviour {
         {
             m_gaugeRenderer.color = m_normalColor;
         }
-       
-
-
     }
+
+
+    //public void UpGauge()
 }
