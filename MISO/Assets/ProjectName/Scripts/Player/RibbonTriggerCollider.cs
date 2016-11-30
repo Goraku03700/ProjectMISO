@@ -21,6 +21,8 @@ namespace Ribbons
             m_coughtGirls = new List<GirlNoPlayerCharacter>();
             m_coughtPlayerCharacters = new List<PlayerCharacter>();
 
+            m_ribbonEffectManager = FindObjectOfType<RibbonEffectManager>();
+
             //m_coughtObjects = new List<GameObject>();
             //Physics.SphereCastAll()
         }
