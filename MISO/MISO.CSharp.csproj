@@ -142,6 +142,7 @@
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\ExitMovable.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\Hold.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\InBuilding.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\Knockback.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\LengthAdjust.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\Pull.cs" />
     <Compile Include="Assets\ProjectName\Scripts\StateMachineBehaviour\Players\SizeAdjust.cs" />

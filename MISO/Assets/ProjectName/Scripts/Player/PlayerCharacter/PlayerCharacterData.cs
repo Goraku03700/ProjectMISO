@@ -26,11 +26,17 @@ public class PlayerCharacterData : ScriptableObject
 
     public float ribbonViolentMoveSpeed;
 
+    public float ribbonReboundPower;
+
+    public float ribbonReboundCountRatio;
+
     public float throwPower;
 
     public float throwSpeed;
 
     public float collectTime;
+
+    public float knockbackPower;
 
     public float inBuildingTime;
 
@@ -47,6 +53,8 @@ public class PlayerCharacterData : ScriptableObject
     public float dashSpeed;
 
     public float dashTime;
+
+    public int collectScoreMinus;
 
     [Tooltip("リボンプレハブへのパス")]
     public string ribbonPrefabPath;

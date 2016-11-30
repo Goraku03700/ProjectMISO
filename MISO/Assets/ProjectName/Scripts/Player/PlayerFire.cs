@@ -25,7 +25,7 @@ public class PlayerFire : MonoBehaviour {
     public void Fire(Transform playerTransform, Rigidbody playerRigidbody)
     {
         playerTransform.position = this.transform.position + Vector3.up;
-        m_trans.transform.rotation = Quaternion.Inverse(this.transform.rotation);
+        playerTransform.rotation = Quaternion.Inverse(this.transform.rotation);
         m_rigidbody.velocity = Vector3.zero;
         m_rigidbody.angularVelocity = Vector3.zero;
         m_rigidbody.AddForce(-this.transform.forward * m_pushPower + Vector3.up * m_pushPower);
