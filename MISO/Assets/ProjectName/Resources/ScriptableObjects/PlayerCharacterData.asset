@@ -16,7 +16,7 @@ MonoBehaviour:
   ribbonMinScale: 1
   ribbonSizeScailingTime: 1
   ribbonPullPower: 100
-  ribbonCollectLength: 1.25
+  ribbonCollectLength: 1.5
   ribbonProjectionTime: 1
   ribbonPenaltyTime: 0
   ribbonShakeSpeed: 50

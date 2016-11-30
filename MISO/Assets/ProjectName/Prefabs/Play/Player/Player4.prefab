@@ -146,6 +146,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011757407794}
   - 65: {fileID: 65000010914559718}
+  - 114: {fileID: 114000011150278318}
   m_Layer: 14
   m_Name: PlayerCharacterBuilding
   m_TagString: Player4
@@ -1632,6 +1633,21 @@ MonoBehaviour:
   delayWeight: 0
   isKeepFace: 0
   isGUI: 0
+--- !u!114 &114000011150278318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011043841240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e695047b79c23f44ebd18a12d7b31a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_trans: {fileID: 0}
+  m_rigidbody: {fileID: 0}
+  m_pushPower: 150
+  m_limit: 0
 --- !u!114 &114000011349838486
 MonoBehaviour:
   m_ObjectHideFlags: 1

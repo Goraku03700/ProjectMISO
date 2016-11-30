@@ -350,6 +350,8 @@ public class PlayerCharacter : MonoBehaviour
         // test
         m_meshObject.SetActive(true);
         m_buildingObject.SetActive(true);
+
+        m_caughtRibbon.playerCharacter.playerFire.Fire(transform, m_rigidbody);
     }
 
     public void OnHoldEnter()
@@ -479,6 +481,8 @@ public class PlayerCharacter : MonoBehaviour
         m_meshObject                = transform.FindChild("PlayerCharacterMesh").gameObject;
         m_buildingObject            = transform.FindChild("PlayerCharacterBuilding").gameObject;
         m_ribbonRandingProjection   = transform.FindChild("RibbonLandingProjection").gameObject;
+
+        m_playerFire                = transform.transform.FindChild("PlayerCharacterBuilding").gameObject.GetComponent<PlayerFire>();
 
         _InitializeAnimatorParametersID();
         _InitializeAnimationState();
@@ -715,5 +719,18 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    
+    private PlayerFire m_playerFire;
+
+    public PlayerFire playerFire
+    {
+        get
+        {
+            return m_playerFire;
+        }
+
+        set
+        {
+            m_playerFire = value;
+        }
+    }
 }
