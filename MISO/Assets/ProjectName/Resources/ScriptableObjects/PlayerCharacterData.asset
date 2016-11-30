@@ -18,12 +18,15 @@ MonoBehaviour:
   ribbonPullPower: 100
   ribbonCollectLength: 1.5
   ribbonProjectionTime: 1
-  ribbonPenaltyTime: 0
+  ribbonPenaltyTime: 5
   ribbonShakeSpeed: 50
   ribbonViolentMoveSpeed: 75
+  ribbonReboundPower: 30
+  ribbonReboundCountRatio: 0.25
   throwPower: 150
   throwSpeed: 500
   collectTime: 3
+  knockbackPower: 50
   inBuildingTime: 5
   shakingTime: 0
   shakingRepeat: 0
@@ -32,4 +35,5 @@ MonoBehaviour:
   walkSpeed: 5
   dashSpeed: 10
   dashTime: 5
+  collectScoreMinus: 5
   ribbonPrefabPath: Prefabs/Ribbon

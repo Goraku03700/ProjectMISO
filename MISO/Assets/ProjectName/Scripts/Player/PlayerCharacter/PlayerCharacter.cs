@@ -275,6 +275,8 @@ public class PlayerCharacter : MonoBehaviour
 
             //Destroy(m_controlledRibbon.gameObject);
             m_controlledRibbon = null;
+
+            
         }
     }
 
@@ -324,6 +326,11 @@ public class PlayerCharacter : MonoBehaviour
         // test
         m_meshObject.SetActive(false);
         m_buildingObject.SetActive(false);
+    }
+
+    public void KnockbackEnter()
+    {
+        m_rigidbody.AddForce((transform.forward * -1 )* m_playerCharacterData.knockbackPower);
     }
 
     public void InBuildingEnter()
