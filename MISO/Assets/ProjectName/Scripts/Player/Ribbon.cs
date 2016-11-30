@@ -203,6 +203,21 @@ namespace Ribbons
 
             foreach(var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
+                if (playerCharacter.player.score - m_playerCharacter.playerCharacterData.collectScoreMinus < 0)
+                {
+                    playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
+
+                    int addScore = Math.Abs(playerCharacter.player.score);
+
+                    playerCharacter.player.score = 0;
+                }
+                else
+                {
+                    playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
+
+                    m_playerCharacter.player.score += m_playerCharacter.playerCharacterData.collectScoreMinus;
+                }
+
                 playerCharacter.Collect();
             }
 
@@ -308,6 +323,20 @@ namespace Ribbons
                 m_rigidbody.AddForce((transform.right * m_shake) * m_playerCharacter.playerCharacterData.ribbonShakeSpeed, ForceMode.Force);
 
                 m_isDoShake = false;
+            }
+
+            if(m_animatorParameters.isGrounded)
+            {
+                int objectsCount = m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count;
+
+                m_rigidbody.AddForce(transform.forward * ((objectsCount * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio) * m_playerCharacter.playerCharacterData.ribbonReboundPower),ForceMode.Force);
+
+                m_time += Time.deltaTime;
+
+                if(m_time > m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
+                {
+                    Breake();
+                }
             }
         }
 
@@ -441,6 +470,8 @@ namespace Ribbons
                 m_moveDirectionState = value;
             }
         }
+
+        private float m_time;
     }
 
 }

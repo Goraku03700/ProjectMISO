@@ -77,6 +77,11 @@ public class Production : MonoBehaviour {
     // 読み込むマテリアル
     private Renderer[] m_podiumMaterial;
 
+    // 王冠
+    private GameObject[] m_crownGold;
+    private GameObject[] m_crownSilver;
+    private GameObject[] m_crownBronze;
+
 
     // 計算用
     private int[] m_playerRanking;     // スコアのランキング
@@ -114,6 +119,9 @@ public class Production : MonoBehaviour {
     /// <summary>
     /// インスペクタに表示する変数
     /// </summary>
+
+    [SerializeField]
+    private GameObject m_canvasObject;
 
     [SerializeField]
     private Transform m_girlColumnStartMaker;    // 女性の行列のスタート地点
@@ -171,6 +179,16 @@ public class Production : MonoBehaviour {
 
     [SerializeField]
     private float m_changeColorSpeed;
+
+    [SerializeField]
+    private GameObject m_crownGoldObj;
+
+    [SerializeField]
+    private GameObject m_crownSilverObj;
+
+    [SerializeField]
+    private GameObject m_crownBronzeObj;
+
 
     [SerializeField]
     private Transform[] m_crownPosX;
@@ -287,6 +305,7 @@ public class Production : MonoBehaviour {
         }
 
         // 王冠
+        /*
         m_Crown = new GameObject[(int)CrownKind.Max];
         m_Crown[(int)CrownKind.Gold] = GameObject.Find("CrownGold");
         m_Crown[(int)CrownKind.Silver] = GameObject.Find("CrownSilver");
@@ -294,14 +313,43 @@ public class Production : MonoBehaviour {
         m_Crown[(int)CrownKind.Gold].SetActive(false);
         m_Crown[(int)CrownKind.Silver].SetActive(false);
         m_Crown[(int)CrownKind.Bronze].SetActive(false);
+        */
 
+        m_crownGold = new GameObject[ConstPlayerMax];
+        m_crownSilver = new GameObject[ConstPlayerMax];
+        m_crownBronze = new GameObject[ConstPlayerMax];
+        m_saveCrownPosY = new float[(int)CrownKind.Max];
+        GameObject.Find("CrownGold").transform.DetachChildren();
+        GameObject.Find("CrownSilver").transform.DetachChildren();
+        GameObject.Find("CrownBronze").transform.DetachChildren();
+        for (i = 0; i < ConstPlayerMax; i++)
+        {
+            
+            m_crownGold[i] = GameObject.Find("CrownGold" + (i+1).ToString());
+            m_crownSilver[i] = GameObject.Find("CrownSilver" + (i+1).ToString());
+            m_crownBronze[i] = GameObject.Find("CrownBronze" + (i+1).ToString());
+            m_saveCrownPosY[(int)CrownKind.Gold] = m_crownGold[i].transform.localPosition.y;
+            m_saveCrownPosY[(int)CrownKind.Silver] = m_crownSilver[i].transform.localPosition.y;
+            m_saveCrownPosY[(int)CrownKind.Bronze] = m_crownBronze[i].transform.localPosition.y;
+            m_crownGold[i].transform.DetachChildren();
+            m_crownSilver[i].transform.DetachChildren();
+            m_crownBronze[i].transform.DetachChildren();
+            m_crownGold[i].transform.SetParent(m_canvasObject.transform, false);
+            m_crownSilver[i].transform.SetParent(m_canvasObject.transform, false);
+            m_crownBronze[i].transform.SetParent(m_canvasObject.transform, false);
+            m_crownGold[i].SetActive(false);
+            m_crownSilver[i].SetActive(false);
+            m_crownBronze[i].SetActive(false);
+
+        }
 
         // 王冠の高さ保存
+        /*
         m_saveCrownPosY = new float[(int)CrownKind.Max];
         m_saveCrownPosY[(int)CrownKind.Gold] = m_Crown[(int)CrownKind.Gold].transform.localPosition.y;
         m_saveCrownPosY[(int)CrownKind.Silver] = m_Crown[(int)CrownKind.Silver].transform.localPosition.y;
         m_saveCrownPosY[(int)CrownKind.Bronze] = m_Crown[(int)CrownKind.Bronze].transform.localPosition.y;
-
+        */
         // マテリアル読み込み
         m_podiumMaterial = new Renderer[ConstPlayerMax];
         for (i = 0; i < ConstPlayerMax; i++)
@@ -916,22 +964,22 @@ public class Production : MonoBehaviour {
             switch (m_playerRanking[i])
             {
                 case 0:
-                    m_Crown[(int)CrownKind.Gold].SetActive(true);
-                    m_Crown[(int)CrownKind.Gold].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
+                    m_crownGold[i].SetActive(true);
+                   /***/ m_crownGold[i].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
                                                                                        m_saveCrownPosY[(int)CrownKind.Gold],
                                                                                        0.0f);
                     break;
 
                 case 1:
-                    m_Crown[(int)CrownKind.Silver].SetActive(true);
-                    m_Crown[(int)CrownKind.Silver].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
+                    m_crownSilver[i].SetActive(true);
+                    m_crownSilver[i].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
                                                                                          m_saveCrownPosY[(int)CrownKind.Silver],
                                                                                          0.0f);
                     break;
 
                 case 2:
-                    m_Crown[(int)CrownKind.Bronze].SetActive(true);
-                    m_Crown[(int)CrownKind.Bronze].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
+                    m_crownBronze[i].SetActive(true);
+                    m_crownBronze[i].transform.localPosition = new Vector3(/*m_scoreText[i].transform.position.x*/m_crownPosX[i].localPosition.x,
                                                                                        m_saveCrownPosY[(int)CrownKind.Bronze],
                                                                                        0.0f);
                     break;
