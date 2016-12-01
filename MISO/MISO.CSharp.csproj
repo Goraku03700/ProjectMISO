@@ -172,7 +172,7 @@
     <Compile Include="Assets\ProjectName\Users\Yamaji\LightShafts\LightShafts.Utils.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\LightShafts\LightShafts.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushParticle.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\Prefab\DushTest.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestPlayer.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Billboard.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\DashGauge.cs" />

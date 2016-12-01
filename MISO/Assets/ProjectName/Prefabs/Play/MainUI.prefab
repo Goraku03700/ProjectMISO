@@ -22,6 +22,7 @@ GameObject:
   - 222: {fileID: 222000010376765806}
   - 114: {fileID: 114000014273060412}
   - 114: {fileID: 114000012426044606}
+  - 114: {fileID: 114000010543084272}
   m_Layer: 5
   m_Name: ScoreText1P
   m_TagString: Player1
@@ -58,6 +59,7 @@ GameObject:
   - 114: {fileID: 114000012568105084}
   - 114: {fileID: 114000012814169496}
   - 114: {fileID: 114000010440823720}
+  - 114: {fileID: 114000013428203362}
   m_Layer: 5
   m_Name: ScoreNumber4P
   m_TagString: Player4
@@ -76,6 +78,7 @@ GameObject:
   - 222: {fileID: 222000010298249060}
   - 114: {fileID: 114000013896915496}
   - 114: {fileID: 114000010618181590}
+  - 114: {fileID: 114000013190777842}
   m_Layer: 5
   m_Name: ScoreText2P
   m_TagString: Player1
@@ -94,6 +97,7 @@ GameObject:
   - 222: {fileID: 222000010672078476}
   - 114: {fileID: 114000011244538974}
   - 114: {fileID: 114000013973339046}
+  - 114: {fileID: 114000013389020278}
   m_Layer: 5
   m_Name: ScoreText4P
   m_TagString: Player1
@@ -112,6 +116,7 @@ GameObject:
   - 222: {fileID: 222000013165539966}
   - 114: {fileID: 114000011039513950}
   - 114: {fileID: 114000010197792302}
+  - 114: {fileID: 114000010417750826}
   m_Layer: 5
   m_Name: ScoreText3P
   m_TagString: Player1
@@ -198,6 +203,7 @@ GameObject:
   - 114: {fileID: 114000014215019674}
   - 114: {fileID: 114000012589286038}
   - 114: {fileID: 114000012151560566}
+  - 114: {fileID: 114000013278505436}
   m_Layer: 5
   m_Name: ScoreNumber3P
   m_TagString: Player3
@@ -251,6 +257,7 @@ GameObject:
   - 114: {fileID: 114000013715045320}
   - 114: {fileID: 114000013746299378}
   - 114: {fileID: 114000013387230992}
+  - 114: {fileID: 114000011396835682}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -270,6 +277,7 @@ GameObject:
   - 114: {fileID: 114000014022447596}
   - 114: {fileID: 114000013603828948}
   - 114: {fileID: 114000012971243026}
+  - 114: {fileID: 114000013243928602}
   m_Layer: 5
   m_Name: 'ScoreNumber2P '
   m_TagString: Player2
@@ -289,6 +297,7 @@ GameObject:
   - 114: {fileID: 114000014266908936}
   - 114: {fileID: 114000012119670040}
   - 114: {fileID: 114000011257474296}
+  - 114: {fileID: 114000012286053132}
   m_Layer: 5
   m_Name: ScoreNumber1P
   m_TagString: Player1
@@ -470,7 +479,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 01987583c07d9f047ba4665012c6fbdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db6e1d2dadd71ea4ba3f3f67cb0441ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -478,6 +487,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000010417750826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011731643900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114000010429712900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -511,6 +534,20 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011289684834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &114000010543084272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010150370532}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
@@ -619,6 +656,20 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013042812340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &114000011396835682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012629401138}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
@@ -761,6 +812,20 @@ MonoBehaviour:
   spriteNormal: {fileID: 21300000, guid: 60d66500a921bd6438d8cfba9c27140d, type: 3}
   spriteAngry: {fileID: 21300000, guid: 7c488db21800fbf4ab493b14ae05d05a, type: 3}
   spriteSad: {fileID: 21300000, guid: 2025946a96d383b43be39e18b7137cc9, type: 3}
+--- !u!114 &114000012286053132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013042812340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114000012426044606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -858,12 +923,82 @@ MonoBehaviour:
   spriteNormal: {fileID: 21300000, guid: 511ff9ff44ca9db41987bd908bb53fad, type: 3}
   spriteAngry: {fileID: 21300000, guid: 4e0531c6132b38340ade956f1c901dae, type: 3}
   spriteSad: {fileID: 21300000, guid: 819a3dd2930649c448929af26b47dbc3, type: 3}
+--- !u!114 &114000013190777842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011382904282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &114000013243928602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012929395718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &114000013278505436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012217050714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114000013387230992
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012629401138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &114000013389020278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011402019178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &114000013428203362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011289684834}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
@@ -1120,7 +1255,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a89fed230a409274c92d6c4f40bd76cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2f016399aa3cdd48a235c125e60c1cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
