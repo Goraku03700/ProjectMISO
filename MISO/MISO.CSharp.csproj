@@ -108,6 +108,7 @@
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_DemoPlaySound.cs" />
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_OpenOtherScene.cs" />
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
+    <Compile Include="Assets\PlayerAbsorption.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Fade\Fade.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameEffect\MainUI\FeverTextControl.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameEffect\MainUI\GameEndEffect.cs" />

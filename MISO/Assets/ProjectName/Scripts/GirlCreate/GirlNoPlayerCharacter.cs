@@ -119,6 +119,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     Animator m_npcMotion;
 
+    [SerializeField]
+    PlayerAbsorption m_playerAbsorption;
 
     public Vector3 GetRandomPositionOnLevel()
     {
@@ -225,8 +227,9 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_status = State.None;
                     m_time = 1f;
                 }
+                transform.localPosition =  m_playerAbsorption.GetPointAtTime(m_time);
                 m_particleSystem.startSize = Mathf.Lerp(2.0f, 0.0f, m_time);
-                transform.localPosition =  m_bezier.GetPointAtTime(m_time);
+                //transform.localPosition =  m_bezier.GetPointAtTime(m_time);
                 transform.localScale = Vector3.Lerp(new Vector3(0.1f,0.1f,0.1f), Vector3.zero, m_time);
                 //ベジェ曲線での取得演出処理
                 
@@ -277,7 +280,6 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_status            = State.Caught;
         m_targetPosition = playerCharacter.transform.localPosition;
         // 目標地点の方向を向く
-        
         m_ribbonLine.enabled = true;
         m_ribbonLine.sortingOrder = 4;
         m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up/1.5f);
@@ -319,13 +321,14 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         gameObject.layer    = LayerMask.NameToLayer("Girl");
         m_status            = State.Alive;
         m_npcMotion.SetBool("Caught", false);
+        m_ribbonLine.enabled = false;
     }
 
     public void Collect(Vector3 billPosition)
     {
         m_isAbsorption = true;
         m_bezier = new Bezier(this.transform.localPosition, Vector3.Lerp(this.transform.localPosition, billPosition, 0.4f) + Vector3.up * 2f, Vector3.Lerp(this.transform.position, billPosition, 0.6f) + Vector3.up * 2f, billPosition);
-
+        m_playerAbsorption.startAbsorption(this.transform.localPosition,billPosition);
         //m_bezier.ResetBezier(transform.position, Vector3.Lerp(transform.position, billPosition, 0.4f) + Vector3.up * 2, Vector3.Lerp(transform.position, billPosition, 0.6f) + Vector3.up * 2, billPosition);
     }
 }
