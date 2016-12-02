@@ -16,8 +16,10 @@ public class SelectScene : MonoBehaviour {
     private bool bgm004_startFlag;
     private bool[] se026_startFlag;
 
-	// Use this for initialization
-	void Start () {
+    private MultiInput.JoypadNumber[] m_joypadNumber;
+
+    // Use this for initialization
+    void Start () {
 
         bgm004_startFlag = false;
         se026_startFlag = new bool[ConstPlayerMax];
@@ -48,6 +50,13 @@ public class SelectScene : MonoBehaviour {
 
         m_time = 0.0f;
 
+        // パッド設定
+        m_joypadNumber = new MultiInput.JoypadNumber[ConstPlayerMax];
+        m_joypadNumber[0] = MultiInput.JoypadNumber.Pad1;
+        m_joypadNumber[1] = MultiInput.JoypadNumber.Pad2;
+        m_joypadNumber[2] = MultiInput.JoypadNumber.Pad3;
+        m_joypadNumber[3] = MultiInput.JoypadNumber.Pad4;
+
     }
 
     // Update is called once per frame
@@ -60,13 +69,24 @@ public class SelectScene : MonoBehaviour {
             bgm004_startFlag = true;
         }
 
+        /*
+        for (int i = 0; i < ConstPlayerMax; i++)
+        {
+           
+            if(MultiInput.GetButtonDown("Pause", m_joypadNumber[i]))
+            {
+                m_readyFlag[i] = true;
+                readyText[i].text = "OK!";
+            }
+        }
+        */
+
         if (Input.GetKeyDown(KeyCode.Z))
-        //if (MultiInput.GetButton("Dash", m_joypadNumber))
-        //if(GameObject.Find("Player1").GetComponent<SelectPlayer>().getReadyFlag())
         {
             m_readyFlag[0] = true;
             readyText[0].text = "OK!";
         }
+
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -85,6 +105,8 @@ public class SelectScene : MonoBehaviour {
             m_readyFlag[3] = true;
             readyText[3].text = "OK!";
         }
+    
+
 
 
         // 全員分
