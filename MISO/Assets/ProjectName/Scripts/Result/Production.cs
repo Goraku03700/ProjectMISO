@@ -1050,9 +1050,17 @@ public class Production : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.A))
         {
             Fade.ChangeScene("Title");
-
         }
-       
+
+        if(MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad1) ||
+            MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad2) ||
+             MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad3) ||
+              MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad4))
+        {
+            Fade.ChangeScene("Title");
+        }
+
+
     }
 
       
