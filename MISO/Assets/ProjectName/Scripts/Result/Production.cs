@@ -121,6 +121,9 @@ public class Production : MonoBehaviour {
     /// </summary>
 
     [SerializeField]
+    private bool isFade;    // フェードするか
+
+    [SerializeField]
     private GameObject m_canvasObject;
 
     [SerializeField]
@@ -319,24 +322,26 @@ public class Production : MonoBehaviour {
         m_crownSilver = new GameObject[ConstPlayerMax];
         m_crownBronze = new GameObject[ConstPlayerMax];
         m_saveCrownPosY = new float[(int)CrownKind.Max];
-        GameObject.Find("CrownGold").transform.DetachChildren();
-        GameObject.Find("CrownSilver").transform.DetachChildren();
-        GameObject.Find("CrownBronze").transform.DetachChildren();
-        for (i = 0; i < ConstPlayerMax; i++)
+
+        for(i=0; i<ConstPlayerMax; i++)
         {
-            
-            m_crownGold[i] = GameObject.Find("CrownGold" + (i+1).ToString());
-            m_crownSilver[i] = GameObject.Find("CrownSilver" + (i+1).ToString());
-            m_crownBronze[i] = GameObject.Find("CrownBronze" + (i+1).ToString());
-            m_saveCrownPosY[(int)CrownKind.Gold] = m_crownGold[i].transform.localPosition.y;
-            m_saveCrownPosY[(int)CrownKind.Silver] = m_crownSilver[i].transform.localPosition.y;
-            m_saveCrownPosY[(int)CrownKind.Bronze] = m_crownBronze[i].transform.localPosition.y;
-            m_crownGold[i].transform.DetachChildren();
-            m_crownSilver[i].transform.DetachChildren();
-            m_crownBronze[i].transform.DetachChildren();
-            m_crownGold[i].transform.SetParent(m_canvasObject.transform, false);
-            m_crownSilver[i].transform.SetParent(m_canvasObject.transform, false);
-            m_crownBronze[i].transform.SetParent(m_canvasObject.transform, false);
+            // オブジェクトの生成
+            m_crownGold[i] = Instantiate(m_crownGoldObj);
+            m_crownSilver[i] = Instantiate(m_crownSilverObj);
+            m_crownBronze[i] = Instantiate(m_crownBronzeObj);
+
+            // キャンバスの中に入れる
+            m_crownGold[i].transform.SetParent(m_canvasObject.transform);
+            m_crownSilver[i].transform.SetParent(m_canvasObject.transform);
+            m_crownBronze[i].transform.SetParent(m_canvasObject.transform);
+
+            // scale
+            m_crownGold[i].transform.localScale = m_crownGoldObj.transform.localScale;
+            m_crownSilver[i].transform.localScale = m_crownSilverObj.transform.localScale;
+            m_crownBronze[i].transform.localScale = m_crownBronzeObj.transform.localScale;
+
+
+            // 非表示
             m_crownGold[i].SetActive(false);
             m_crownSilver[i].SetActive(false);
             m_crownBronze[i].SetActive(false);
@@ -344,12 +349,21 @@ public class Production : MonoBehaviour {
         }
 
         // 王冠の高さ保存
-        /*
         m_saveCrownPosY = new float[(int)CrownKind.Max];
-        m_saveCrownPosY[(int)CrownKind.Gold] = m_Crown[(int)CrownKind.Gold].transform.localPosition.y;
-        m_saveCrownPosY[(int)CrownKind.Silver] = m_Crown[(int)CrownKind.Silver].transform.localPosition.y;
-        m_saveCrownPosY[(int)CrownKind.Bronze] = m_Crown[(int)CrownKind.Bronze].transform.localPosition.y;
-        */
+        m_saveCrownPosY[(int)CrownKind.Gold] = m_crownGoldObj.transform.localPosition.y;
+        m_saveCrownPosY[(int)CrownKind.Silver] = m_crownSilverObj.transform.localPosition.y;
+        m_saveCrownPosY[(int)CrownKind.Bronze] = m_crownBronzeObj.transform.localPosition.y;
+
+        // 非表示
+        m_crownGoldObj.SetActive(false);
+        m_crownSilverObj.SetActive(false);
+        m_crownBronzeObj.SetActive(false);
+
+
+
+
+
+        
         // マテリアル読み込み
         m_podiumMaterial = new Renderer[ConstPlayerMax];
         for (i = 0; i < ConstPlayerMax; i++)
@@ -532,10 +546,16 @@ public class Production : MonoBehaviour {
         {
             // 会社を置く演出
             case ResultState.PutCompanyProduction:
-               //////if (m_fadeObject.FadeEnd() || m_fadeObject == null)
-               /////// {
+                if (isFade)
+                {
+                    if (m_fadeObject.FadeEnd() || m_fadeObject == null)
+                    {
+                        PutCompanyProduction();
+                    }
+                }else
+                {
                     PutCompanyProduction();
-               ///////}
+                }
                 break;
 
             // プレイヤーが前に走ってくる演出
