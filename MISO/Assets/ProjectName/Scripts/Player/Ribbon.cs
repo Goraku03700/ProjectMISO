@@ -226,6 +226,8 @@ namespace Ribbons
                 girl.Collect(m_playerCharacter.playerFire.transform.position);
 
                 m_playerCharacter.player.score++;
+
+                m_playerCharacter.npcGetParticle.Play();
             }
 
             Destroy(gameObject);

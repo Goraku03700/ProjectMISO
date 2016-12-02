@@ -85,22 +85,29 @@ public class Bezier : MonoBehaviour {
     /// <param name="v3">終点</param>
     public void ResetBezier(Vector3 v0, Vector3 v1, Vector3 v2, Vector3 v3)
     {
-        this.m_p0 = v0;
-        this.m_p1 = v1;
-        this.m_p2 = v2;
-        this.m_p3 = v3;
+        if (m_p0 == v0 && m_p1 == v1 && m_p2 == v2 && m_p3 == v3)
+        {
 
-        this.m_Ax = 0.0f;
-        this.m_Ay = 0.0f;
-        this.m_Az = 0.0f;
+        }
+        else
+        {
+            this.m_p0 = v0;
+            this.m_p1 = v1;
+            this.m_p2 = v2;
+            this.m_p3 = v3;
 
-        this.m_Bx = 0.0f;
-        this.m_By = 0.0f;
-        this.m_Bz = 0.0f;
+            this.m_Ax = 0.0f;
+            this.m_Ay = 0.0f;
+            this.m_Az = 0.0f;
 
-        this.m_Cx = 0.0f;
-        this.m_Cy = 0.0f;
-        this.m_Cz = 0.0f;
+            this.m_Bx = 0.0f;
+            this.m_By = 0.0f;
+            this.m_Bz = 0.0f;
+
+            this.m_Cx = 0.0f;
+            this.m_Cy = 0.0f;
+            this.m_Cz = 0.0f;
+        }
     }
 
 	// Use this for initialization

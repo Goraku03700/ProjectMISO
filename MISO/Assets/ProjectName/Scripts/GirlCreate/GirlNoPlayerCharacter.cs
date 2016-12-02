@@ -122,6 +122,12 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     PlayerAbsorption m_playerAbsorption;
 
+    [SerializeField]
+    PlayerFire m_getPlayerBillding;
+
+    [SerializeField]
+    Vector3 m_npcPos;
+
     public Vector3 GetRandomPositionOnLevel()
     {
         m_time = 0.0f;
@@ -227,10 +233,15 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_status = State.None;
                     m_time = 1f;
                 }
-                transform.localPosition =  m_playerAbsorption.GetPointAtTime(m_time);
+                m_bezier.ResetBezier(m_npcPos, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.4f) + Vector3.up * 6f, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.6f) + Vector3.up * 6f, m_getPlayerBillding.transform.position);
+                //this.transform.position =  m_bezier.GetPointAtTime(m_time);
+                transform.position = Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, m_time);
+                Vector3 up = m_bezier.GetPointAtTime(m_time);
+                up.z = up.x = 0.0f;
+                this.transform.position += up;
                 m_particleSystem.startSize = Mathf.Lerp(2.0f, 0.0f, m_time);
                 //transform.localPosition =  m_bezier.GetPointAtTime(m_time);
-                transform.localScale = Vector3.Lerp(new Vector3(0.1f,0.1f,0.1f), Vector3.zero, m_time);
+                transform.localScale = Vector3.Lerp(new Vector3(0.25f,0.25f,0.25f), Vector3.zero, m_time);
                 //ベジェ曲線での取得演出処理
                 
                 break;
@@ -279,6 +290,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
         m_status            = State.Caught;
         m_targetPosition = playerCharacter.transform.localPosition;
+        m_getPlayerBillding = playerCharacter.playerFire;
         // 目標地点の方向を向く
         m_ribbonLine.enabled = true;
         m_ribbonLine.sortingOrder = 4;
@@ -322,13 +334,24 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_status            = State.Alive;
         m_npcMotion.SetBool("Caught", false);
         m_ribbonLine.enabled = false;
+        m_ribbon_Wind.SetActive(false);
     }
 
     public void Collect(Vector3 billPosition)
     {
         m_isAbsorption = true;
-        m_bezier = new Bezier(this.transform.localPosition, Vector3.Lerp(this.transform.localPosition, billPosition, 0.4f) + Vector3.up * 2f, Vector3.Lerp(this.transform.position, billPosition, 0.6f) + Vector3.up * 2f, billPosition);
-        m_playerAbsorption.startAbsorption(this.transform.localPosition,billPosition);
+        billPosition += transform.up * 2;
+        m_npcPos = this.transform.position;
+        m_bezier = new Bezier(m_npcPos, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.4f) + Vector3.up * 6f, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.6f) + Vector3.up * 6f, m_getPlayerBillding.transform.position);
+        m_playerAbsorption.startAbsorption(this.transform.position,billPosition);
         //m_bezier.ResetBezier(transform.position, Vector3.Lerp(transform.position, billPosition, 0.4f) + Vector3.up * 2, Vector3.Lerp(transform.position, billPosition, 0.6f) + Vector3.up * 2, billPosition);
     }
 }
+/*10
+2.25
+-2.33313
+
+9.172901
+5.960464e-08
+3.480208
+*/
