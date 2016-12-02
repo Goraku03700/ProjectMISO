@@ -112,7 +112,7 @@ public class testtitle : MonoBehaviour {
                     bgm000_startFlag = true;
                 }
 
-                if (Input.GetKeyDown(KeyCode.A))    //入力で次の遷移に。
+                if (Input.GetKeyDown(KeyCode.A) || MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad1) || MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad2) || MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad3) || MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad4))    //入力で次の遷移に。
                 {
                     m_titlestate = TitleState.Finish;
                     m_titleui.Activate(false);
