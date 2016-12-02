@@ -248,6 +248,7 @@ public class PlayerCharacter : MonoBehaviour
     public void OnRibbonLanding()
     {
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
+        m_sweatParticle.Play();
     }
 
     public void PullUpdate()
@@ -272,7 +273,7 @@ public class PlayerCharacter : MonoBehaviour
         if(m_controlledRibbon)
         {
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]);
-
+            m_sweatParticle.Stop();
             //Destroy(m_controlledRibbon.gameObject);
             m_controlledRibbon = null;
 
@@ -490,6 +491,9 @@ public class PlayerCharacter : MonoBehaviour
         m_ribbonRandingProjection   = transform.FindChild("RibbonLandingProjection").gameObject;
 
         m_playerFire                = transform.transform.FindChild("PlayerCharacterBuilding").gameObject.GetComponent<PlayerFire>();
+
+        m_sweatParticle             = transform.FindChild("Ase").gameObject.GetComponent<ParticleSystem>();
+        m_sanddustParticle          = transform.FindChild("Suna").gameObject.GetComponent<ParticleSystem>();
 
         _InitializeAnimatorParametersID();
         _InitializeAnimationState();
@@ -740,4 +744,9 @@ public class PlayerCharacter : MonoBehaviour
             m_playerFire = value;
         }
     }
+
+    private ParticleSystem m_sweatParticle;
+
+    private ParticleSystem m_sanddustParticle;
+
 }
