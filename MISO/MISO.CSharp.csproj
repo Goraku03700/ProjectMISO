@@ -168,6 +168,7 @@
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\SimpleParticlePack\Scripts\ParticleTester.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\RibbonEffect.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\RibbonEffectManager.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\SpotLighter.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\LightShafts\LightShafts.Resources.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\LightShafts\LightShafts.Utils.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\LightShafts\LightShafts.cs" />
