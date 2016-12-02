@@ -134,9 +134,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Result\SkyboxControl.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Scene\SceneSharedData.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\InfoText.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Select\PlayerCharacterControllerSelect.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Select\PlayerCharacterSelect.cs" />
-    <Compile Include="Assets\ProjectName\Scripts\Select\PlayerSelect.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Select\PlayerStop.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\ScrollBack.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\SelectPlayer.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Select\SelectScene.cs" />
@@ -180,9 +178,9 @@
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestPlayer.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Billboard.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\DashGauge.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIcon.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerScore.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\DashGauge.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TestUI.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TimeCount.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />

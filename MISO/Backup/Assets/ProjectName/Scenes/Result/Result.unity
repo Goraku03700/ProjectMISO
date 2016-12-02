@@ -34801,7 +34801,7 @@ MonoBehaviour:
   isFade: 0
   m_canvasObject: {fileID: 309826518}
   m_girlColumnStartMaker: {fileID: 26738618}
-  m_girlLineInterval: 0.3
+  m_girlLineInterval: 0.25
   m_girlColumnInerver: 0.3
   m_girlPrefab: {fileID: 1000013640038662, guid: 2ac756083bb347344a5834c92510cabe,
     type: 2}
@@ -34824,8 +34824,8 @@ MonoBehaviour:
   m_rank4PodiumPos: {fileID: 393839931}
   m_rankColor:
   - {r: 1, g: 0.9724138, b: 0, a: 0}
-  - {r: 0.63235295, g: 0.63235295, b: 0.63235295, a: 0}
-  - {r: 0.7352941, g: 0.44557628, b: 0.13516435, a: 0}
+  - {r: 0.25735295, g: 0.25735295, b: 0.25735295, a: 0}
+  - {r: 0.53676474, g: 0.29097438, b: 0.027627591, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   m_changeColorSpeed: 1
   m_crownGoldObj: {fileID: 993254608}
