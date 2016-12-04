@@ -90,6 +90,7 @@ public class GameStartEffect : MonoBehaviour {
                         {
                             m_texts[i].rectTransform.localPosition = Vector3.Lerp(m_startRectTransforms[i].localPosition, m_endRectTransforms[i].localPosition, 1.0f);
                         }
+                        BGMManager.instance.PlaySE("se020_StartReady");
                     }
                     else
                     {
@@ -134,6 +135,7 @@ public class GameStartEffect : MonoBehaviour {
                     m_goTexts.enabled = true;
                     m_state = State.FadeGo;
                     m_timeCount.StartTime();
+                    BGMManager.instance.PlaySE("se021_StartGame");
                     break;
                 }
             case State.FadeGo:

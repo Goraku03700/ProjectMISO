@@ -63,6 +63,7 @@ public class GameEndEffect : MonoBehaviour {
                         m_countdownText.text = "";
                         m_state = State.Ribbon;
                         m_time = 0.0f;
+                        BGMManager.instance.PlaySE("se032_GameOverRibbon");
                     }
                     break;
                 }
