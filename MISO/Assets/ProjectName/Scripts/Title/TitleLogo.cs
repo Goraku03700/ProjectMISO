@@ -96,6 +96,7 @@ public class TitleLogo : MonoBehaviour {
                 m_nowpos.y = m_boundlimit_y;
                 m_boundupflg = false;
                 m_bounddownflg = true;
+                //BGMManager.instance.PlaySE("");
             }
         }
 

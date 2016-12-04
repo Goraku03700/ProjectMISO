@@ -29,5 +29,6 @@ public class PlayerFire : MonoBehaviour {
         m_rigidbody.velocity = Vector3.zero;
         m_rigidbody.angularVelocity = Vector3.zero;
         m_rigidbody.AddForce(-this.transform.forward * m_pushPower + Vector3.up * m_pushPower);
+        BGMManager.instance.PlaySE("se016_OutCampany");
     }
 }

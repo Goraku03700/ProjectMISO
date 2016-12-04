@@ -235,6 +235,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 }
                 m_bezier.ResetBezier(m_npcPos, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.4f) + Vector3.up * 6f, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.6f) + Vector3.up * 6f, m_getPlayerBillding.transform.position);
                 //this.transform.position =  m_bezier.GetPointAtTime(m_time);
+                m_playerAbsorption.SetAbsorption(m_npcPos, m_getPlayerBillding.transform.position);
                 transform.position = Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, m_time);
                 Vector3 up = m_bezier.GetPointAtTime(m_time);
                 up.z = up.x = 0.0f;
