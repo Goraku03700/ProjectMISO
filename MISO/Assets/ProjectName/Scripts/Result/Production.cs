@@ -603,7 +603,8 @@ public class Production : MonoBehaviour {
     /// </summary>
     private void PutCompanyProduction()
     {
-
+        BGMManager.instance.PlaySE("se_ResultStart_1");
+        
         // 親子関係を解除する(その場に置く)
         for (i = 0; i < ConstPlayerMax; i++)
         {
@@ -655,6 +656,9 @@ public class Production : MonoBehaviour {
             {
                 m_player[i].GetComponent<Animator>().SetBool("isWalk", false);
             }
+
+            // seとめる
+            BGMManager.instance.StopSE();
         }
 
 

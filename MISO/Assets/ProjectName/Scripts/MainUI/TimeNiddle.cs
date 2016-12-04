@@ -18,7 +18,7 @@ public class TimeNiddle : MonoBehaviour {
     void Update(){
 
         //this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, thi);
-        //this.transform.Rotate(0.0f, 0.0f, -rotateFrame);
-        iTween.RotateTo(this.gameObject, iTween.Hash("z", 360, "time", m_time));
+        this.transform.Rotate(0.0f, 0.0f, -0.3f);
+        //iTween.RotateTo(this.gameObject, iTween.Hash("z", 360, "time", m_time));
     }
 }
