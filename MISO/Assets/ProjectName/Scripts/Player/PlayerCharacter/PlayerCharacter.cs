@@ -54,6 +54,16 @@ public class PlayerCharacter : MonoBehaviour
             {
                 transform.forward = direction;
             }
+
+            if (m_controlledRibbon)
+            {
+                m_controlledRibbon.Shake(horizontal);
+            }
+
+            if (m_caughtRibbon)
+            {
+                m_caughtRibbon.ViolentMove(direction);
+            }
         }
         else
         {
@@ -238,6 +248,7 @@ public class PlayerCharacter : MonoBehaviour
     public void OnRibbonLanding()
     {
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
+        m_sweatParticle.Play();
     }
 
     public void PullUpdate()
@@ -251,7 +262,7 @@ public class PlayerCharacter : MonoBehaviour
                 m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
 
                 m_controlledRibbon.Pulled();
-
+                m_sweatParticle.Stop();
                 m_controlledRibbon = null;
             }
         }
@@ -262,9 +273,11 @@ public class PlayerCharacter : MonoBehaviour
         if(m_controlledRibbon)
         {
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]);
-
+            m_sweatParticle.Stop();
             //Destroy(m_controlledRibbon.gameObject);
             m_controlledRibbon = null;
+
+            
         }
     }
 
@@ -279,7 +292,7 @@ public class PlayerCharacter : MonoBehaviour
         if(m_controlledRibbon)
         {
             Destroy(m_controlledRibbon.gameObject);
-
+           
             m_controlledRibbon = null;
         }
     }
@@ -316,12 +329,17 @@ public class PlayerCharacter : MonoBehaviour
         m_buildingObject.SetActive(false);
     }
 
+    public void KnockbackEnter()
+    {
+        m_rigidbody.AddForce((transform.forward * -1 )* m_playerCharacterData.knockbackPower);
+    }
+
     public void InBuildingEnter()
     {
         // test
         m_meshObject.SetActive(false);
         m_buildingObject.SetActive(false);
-
+            
         m_inBuildingTime = .0f;
     }
 
@@ -340,6 +358,8 @@ public class PlayerCharacter : MonoBehaviour
         // test
         m_meshObject.SetActive(true);
         m_buildingObject.SetActive(true);
+
+        m_caughtRibbon.playerCharacter.playerFire.Fire(transform, m_rigidbody);
     }
 
     public void OnHoldEnter()
@@ -444,7 +464,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animator.Play("Base Layer.Holded.Holding");
     }
 
-    public void KnockBack()
+    public void KnockBack(Vector3 forceDirection)
     {
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]);
     }
@@ -466,9 +486,15 @@ public class PlayerCharacter : MonoBehaviour
         m_collider  = GetComponent<SphereCollider>();   
         m_player    = transform.parent.GetComponent<Player>();
 
-        m_meshObject = transform.FindChild("PlayerCharacterMesh").gameObject;
-        m_buildingObject = transform.FindChild("PlayerCharacterBuilding").gameObject;
-        m_ribbonRandingProjection = transform.FindChild("RibbonLandingProjection").gameObject;
+        m_meshObject                = transform.FindChild("PlayerCharacterMesh").gameObject;
+        m_buildingObject            = transform.FindChild("PlayerCharacterBuilding").gameObject;
+        m_ribbonRandingProjection   = transform.FindChild("RibbonLandingProjection").gameObject;
+
+        m_playerFire                = transform.transform.FindChild("PlayerCharacterBuilding").gameObject.GetComponent<PlayerFire>();
+
+        m_sweatParticle             = transform.FindChild("Ase").gameObject.GetComponent<ParticleSystem>();
+        m_sanddustParticle          = transform.FindChild("SandDust").gameObject.GetComponent<ParticleSystem>();
+        m_npcGetParticle            = transform.FindChild("NpcGetEffect").gameObject.GetComponent<ParticleSystem>();
 
         _InitializeAnimatorParametersID();
         _InitializeAnimationState();
@@ -588,6 +614,19 @@ public class PlayerCharacter : MonoBehaviour
 
     private Rigidbody m_rigidbody;
 
+    public new Rigidbody rigidbody
+    {
+        get
+        {
+            return m_rigidbody;
+        }
+
+        set
+        {
+            m_rigidbody = value;
+        }
+    }
+
     private Movable m_movable;
 
     private GameObject m_ribbonObject;
@@ -691,4 +730,36 @@ public class PlayerCharacter : MonoBehaviour
                 m_animatorStateInfo.shortNameHash == Animator.StringToHash("CaughtRibbon.Collect");
         }
     }
+
+    private PlayerFire m_playerFire;
+
+    public PlayerFire playerFire
+    {
+        get
+        {
+            return m_playerFire;
+        }
+
+        set
+        {
+            m_playerFire = value;
+        }
+    }
+
+    private ParticleSystem m_sweatParticle;
+
+    private ParticleSystem m_sanddustParticle;
+
+    private ParticleSystem m_npcGetParticle;
+
+    public ParticleSystem npcGetParticle
+    {
+        get
+        {
+            return m_npcGetParticle;
+        }
+    }
+
+
+
 }

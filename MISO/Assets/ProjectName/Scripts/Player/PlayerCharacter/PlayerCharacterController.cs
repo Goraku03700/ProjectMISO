@@ -12,6 +12,8 @@ public class PlayerCharacterController : MonoBehaviour {
 
 	void Start ()
     {
+        m_controllerData = Resources.Load("ScriptableObjects/PlayerCharacterControllerData") as PlayerCharacterControllerData;
+
         string findGameObjectName = "PlayerCharacter";
 
         switch(gameObject.tag)
@@ -84,8 +86,10 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
         bool isPushCancelKey = MultiInput.GetButtonDown("Cancel", m_joypadNumber);
+        bool isPushDashKey = MultiInput.GetButtonDown("Dash", m_joypadNumber);
 
         m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+        m_controlledPlayerCharacter.InputDash(isPushDashKey);
 
         if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
         {
@@ -96,14 +100,40 @@ public class PlayerCharacterController : MonoBehaviour {
             m_controlledPlayerCharacter.InputThrow();
         }
 
-        if (_CheckStickRotation(vertical, horizontal))
+        //if (_CheckStickRotation(vertical, horizontal))
+        //{
+        //    m_controlledPlayerCharacter.InputRelease();
+        //}
+
+        //if (_CheckStickRotation(vertical2, horizontal2))
+        //{
+        //    m_controlledPlayerCharacter.InputPull();
+        //}
+
+        // pull
+        if(_CheckStickHalfRotation(horizontal2, vertical2, ref m_pullHalfRotationInputCheck))
         {
-            m_controlledPlayerCharacter.InputRelease();
+            m_pullHalfRotationCount++;
+
+            if(m_pullHalfRotationCount >= m_controllerData.pullHalfRotation)
+            {
+                m_pullHalfRotationCount = 0;
+
+                m_controlledPlayerCharacter.InputPull();
+            }
         }
 
-        if (_CheckStickRotation(vertical2, horizontal2))
+        // breake
+        if (_CheckStickHalfRotation(horizontal, vertical, ref m_releaseHalfRotationInputCheck))
         {
-            m_controlledPlayerCharacter.InputPull();
+            m_releaseHalfRotationInputCount++;
+
+            if (m_releaseHalfRotationInputCount >= m_controllerData.releaseHalfRotation)
+            {
+                m_releaseHalfRotationInputCount = 0;
+
+                //m_controlledPlayerCharacter.InputRelease();
+            }
         }
     }
 
@@ -190,6 +220,52 @@ public class PlayerCharacterController : MonoBehaviour {
         return false;
     }
 
+    bool _CheckStickHalfRotation(
+        float horizontal,
+        float vertical,
+        ref HalfRotationInputCheck halfRotationInputCheck)
+    {
+        bool result = false;
+
+        switch (halfRotationInputCheck)
+        {
+            case HalfRotationInputCheck.Horizontal:
+
+                if (Mathf.Abs(horizontal) > m_controllerData.halfRotationUpperLimit &&
+                    Mathf.Abs(vertical) < m_controllerData.halfRotationLowerLimit)
+                {
+                    result = true;
+
+                    halfRotationInputCheck = HalfRotationInputCheck.Vertical;
+                }
+
+                    break;
+
+            case HalfRotationInputCheck.Vertical:
+
+                if (Mathf.Abs(vertical) > m_controllerData.halfRotationUpperLimit &&
+                    Mathf.Abs(horizontal) < m_controllerData.halfRotationLowerLimit)
+                {
+                    result = true;
+
+                    halfRotationInputCheck = HalfRotationInputCheck.Horizontal;
+                }
+
+                    break;
+
+            default:
+                break;
+        }
+
+        return result;
+    }
+
+    enum HalfRotationInputCheck
+    {
+        Horizontal,
+        Vertical,
+    }
+
     enum ReleaseInputState
     {
         CheckHorizontal,
@@ -213,6 +289,16 @@ public class PlayerCharacterController : MonoBehaviour {
 
     [SerializeField]
     private int m_releaseInputCount;
+
+    private HalfRotationInputCheck m_pullHalfRotationInputCheck;
+
+    private int m_pullHalfRotationCount;
+
+    private HalfRotationInputCheck m_releaseHalfRotationInputCheck;
+
+    private int m_releaseHalfRotationInputCount;
+
+    private PlayerCharacterControllerData m_controllerData;
 
 #if UNITY_EDITOR
 

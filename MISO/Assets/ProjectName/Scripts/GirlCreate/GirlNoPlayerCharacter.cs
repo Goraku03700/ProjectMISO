@@ -111,11 +111,26 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     Material[] m_ribbon_WindMaterial4;
 
+    [SerializeField]
+    ParticleSystem m_particleSystem;
+
     Bezier m_bezier;
 
+    [SerializeField]
+    Animator m_npcMotion;
+
+    [SerializeField]
+    PlayerAbsorption m_playerAbsorption;
+
+    [SerializeField]
+    PlayerFire m_getPlayerBillding;
+
+    [SerializeField]
+    Vector3 m_npcPos;
 
     public Vector3 GetRandomPositionOnLevel()
     {
+        m_time = 0.0f;
         m_beforeRotation = this.transform.rotation;
         m_beforePosition = this.transform.position;
         return new Vector3(Random.Range(m_movementAreaX.x, m_movementAreaX.y), 0, Random.Range(m_movementAreaZ.x, m_movementAreaZ.y));
@@ -153,6 +168,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
                     //m_movable.speed = 4.0f;
                     m_time = 0.0f;
+                    m_npcMotion.SetBool("Move",true);
                 }
                 //m_status = State.Alive;
                 break;
@@ -166,8 +182,12 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 }
 
                 // 目標地点の方向を向く
+                if(m_time > 1.0f)
+                {
+                    m_time = 1.0f;
+                }
                 Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
-                transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, Time.deltaTime * m_rotationSmooth);
+                transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, m_time);
 
                 // 前方に進む
                 transform.Translate(Vector3.forward * m_speed * Time.deltaTime);
@@ -182,30 +202,49 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 {
                     m_movable.speed = 0.0f;
                     m_status = State.Caught;
+                    m_npcMotion.SetBool("Caught", true);
                 }
                 break;
             }
             case State.Caught:
             {
+                Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
+                transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 1.0f);
                 m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up / 1.5f);
                 //なんか処理
                 if(m_isAbsorption)
                 {
+                    m_npcMotion.SetBool("Caught",false);
+                    m_npcMotion.SetBool("Move", false);
+                    m_ribbonLine.enabled = false;
                     m_time = 0.0f;
                     m_status = State.Absorption;
+                    m_particleSystem.startColor = new  Color32(82,255,68,255);
+                    m_particleSystem.emissionRate = 20.0f;
+                    m_particleSystem.Play();
                 }
 
                 break;
             }
             case State.Absorption:
             {
-                transform.position =  m_bezier.GetPointAtTime(m_time*2f);
-                transform.localScale = Vector3.Lerp(new Vector3(0.1f,0.1f,0.1f), Vector3.zero, m_time * 2f);
-                //ベジェ曲線での取得演出処理
-                if(m_time>0.5f) 
+                if (m_time > 1f)
                 {
                     m_status = State.None;
+                    m_time = 1f;
                 }
+                m_bezier.ResetBezier(m_npcPos, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.4f) + Vector3.up * 6f, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.6f) + Vector3.up * 6f, m_getPlayerBillding.transform.position);
+                //this.transform.position =  m_bezier.GetPointAtTime(m_time);
+                m_playerAbsorption.SetAbsorption(m_npcPos, m_getPlayerBillding.transform.position);
+                transform.position = Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, m_time);
+                Vector3 up = m_bezier.GetPointAtTime(m_time);
+                up.z = up.x = 0.0f;
+                this.transform.position += up;
+                m_particleSystem.startSize = Mathf.Lerp(2.0f, 0.0f, m_time);
+                //transform.localPosition =  m_bezier.GetPointAtTime(m_time);
+                transform.localScale = Vector3.Lerp(new Vector3(0.25f,0.25f,0.25f), Vector3.zero, m_time);
+                //ベジェ曲線での取得演出処理
+                
                 break;
             }
             case State.None:
@@ -251,6 +290,9 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_isCaught          = true;
         gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
         m_status            = State.Caught;
+        m_targetPosition = playerCharacter.transform.localPosition;
+        m_getPlayerBillding = playerCharacter.playerFire;
+        // 目標地点の方向を向く
         m_ribbonLine.enabled = true;
         m_ribbonLine.sortingOrder = 4;
         m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up/1.5f);
@@ -291,12 +333,26 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_isCaught          = false;
         gameObject.layer    = LayerMask.NameToLayer("Girl");
         m_status            = State.Alive;
+        m_npcMotion.SetBool("Caught", false);
+        m_ribbonLine.enabled = false;
+        m_ribbon_Wind.SetActive(false);
     }
 
     public void Collect(Vector3 billPosition)
     {
         m_isAbsorption = true;
-        m_bezier = new Bezier(transform.position, Vector3.LerpUnclamped(transform.position, billPosition, 0.4f) + Vector3.up * 4, Vector3.LerpUnclamped(transform.position, billPosition, 0.6f) + Vector3.up * 4, billPosition);
+        billPosition += transform.up * 2;
+        m_npcPos = this.transform.position;
+        m_bezier = new Bezier(m_npcPos, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.4f) + Vector3.up * 6f, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.6f) + Vector3.up * 6f, m_getPlayerBillding.transform.position);
+        m_playerAbsorption.startAbsorption(this.transform.position,billPosition);
         //m_bezier.ResetBezier(transform.position, Vector3.Lerp(transform.position, billPosition, 0.4f) + Vector3.up * 2, Vector3.Lerp(transform.position, billPosition, 0.6f) + Vector3.up * 2, billPosition);
     }
 }
+/*10
+2.25
+-2.33313
+
+9.172901
+5.960464e-08
+3.480208
+*/

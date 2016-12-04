@@ -73,7 +73,7 @@ public class FeverTextControl : MonoBehaviour {
                         m_time = 0.0f;
                         m_state = State.Roll;
                         m_thisRectTransform.localPosition = Vector3.Lerp(m_startSlidePosition, m_endSlidePosition, 1.0f);
-
+                        BGMManager.instance.PlaySE("se031_FeverMode_2");
                     }
                     else
                     {

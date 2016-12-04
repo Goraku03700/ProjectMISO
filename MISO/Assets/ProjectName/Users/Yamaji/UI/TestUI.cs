@@ -13,6 +13,7 @@ public class TestUI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.A))
         {
             GameObject.Find("PlayerIcon1P").GetComponent<PlayerIcon>().ChangeIconAngry();
@@ -32,6 +33,7 @@ public class TestUI : MonoBehaviour {
         {
             GameObject.Find("Time").GetComponent<TimeCount>().StartTime();
         }
+        */
     }
 
 

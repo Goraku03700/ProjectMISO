@@ -10,6 +10,7 @@ namespace Ribbons
         {
             Right,
             Left,
+            None,
         }
 
         public void SizeAdjustEnter()
@@ -71,29 +72,92 @@ namespace Ribbons
         {
             //m_triggerColliderObject.SetActive(false);
 
+            //m_rigidbody.AddForce(direction.normalized * power);
+
+            m_isDoPull = true;
+
             Vector3 direction = position - transform.position;
 
-            m_rigidbody.AddForce(direction.normalized * power);
+            direction.Normalize();
+
+            m_pullForce = direction * power;
         }
 
         public void Shake(float horizontal)
         {
-            if(horizontal > 0)
+            //if(horizontal > 0)
+            //{
+            //    // right
+            //    if(m_moveDirectionState == MoveDirectionState.Left)
+            //    {
+            //        _Penalty();
+            //    }
+            //}
+            //else
+            //{
+            //    // left
+            //    if (m_moveDirectionState == MoveDirectionState.Right)
+            //    {
+            //        _Penalty();
+            //    }
+            //}
+
+            //m_isDoShake = true;
+            m_shake = horizontal;
+
+            if(Mathf.Abs(m_shake) > .0f &&
+                m_animatorParameters.isGrounded)
             {
-                // right
-                if(m_moveDirectionState != MoveDirectionState.Right)
-                {
-                    _Penalty();
-                }
+                //m_isDoShake = true;
             }
-            else
+
+            if(m_animatorParameters.isGrounded)
             {
-                // left
-                if (m_moveDirectionState != MoveDirectionState.Left)
-                {
-                    _Penalty();
-                }
+                m_isDoShake = true;
+
+                //float angle = horizontal * m_playerCharacter.playerCharacterData.ribbonShakeSpeed;
+                m_shakeAngle = horizontal * m_playerCharacter.playerCharacterData.ribbonShakeSpeed;
+
+                //transform.RotateAround(playerCharacter.transform.position, transform.up, angle * Time.deltaTime);
             }
+        }
+
+        public void ViolentMove(Vector3 direction)
+        {
+            //float angle = Vector3.Angle(transform.forward, direction);
+
+            //if(angle > 0)
+            //{
+            //    // right
+            //    //m_moveDirectionState = MoveDirectionState.Right;
+
+            //    if(m_moveDirectionState == MoveDirectionState.Left)
+            //    {
+            //        m_moveDirectionState = MoveDirectionState.None;
+            //    }
+
+            //    m_isDoViolentMove = true;
+            //}
+            //else
+            //{
+            //    // left
+            //    //m_moveDirectionState = MoveDirectionState.Left;
+
+            //    if(m_moveDirectionState == MoveDirectionState.Right)
+            //    {
+            //        m_moveDirectionState = MoveDirectionState.None;
+            //    }
+
+            //    m_isDoViolentMove = true;
+            //}
+
+            m_isDoViolentMove = true;
+
+            float dot = Vector3.Dot(transform.forward, direction);
+
+            Vector3 force = (transform.right * dot).normalized;
+
+            m_rigidbody.AddForce(force * m_playerCharacter.playerCharacterData.ribbonViolentMoveSpeed, ForceMode.Force);
         }
 
         public void PullEnter()
@@ -108,6 +172,29 @@ namespace Ribbons
             angle = (m_moveDirectionState == MoveDirectionState.Right) ? 180.0f : -180.0f ;
 
             transform.RotateAround(playerCharacter.transform.position, transform.up, angle * Time.deltaTime);
+
+            Vector3 direction;
+
+            foreach (var coughtPlayerCharater in m_triggerCollider.coughtPlayerCharacters)
+            {
+                direction = transform.position - coughtPlayerCharater.transform.position;
+
+                if (direction.magnitude > m_triggerCollider.collider.radius)
+                {
+                    coughtPlayerCharater.transform.position = transform.position + (direction * m_triggerCollider.collider.radius);
+                }
+            }
+
+            foreach (var girl in m_triggerCollider.coughtGirls)
+            {
+                direction = transform.position - girl.transform.position;
+
+                if (direction.magnitude > m_triggerCollider.collider.radius)
+                {
+                    girl.transform.position = transform.position + (direction * m_triggerCollider.collider.radius);
+                }
+            }
+
         }
 
         public void Pulled()
@@ -116,14 +203,31 @@ namespace Ribbons
 
             foreach(var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
+                if (playerCharacter.player.score - m_playerCharacter.playerCharacterData.collectScoreMinus < 0)
+                {
+                    playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
+
+                    int addScore = Math.Abs(playerCharacter.player.score);
+
+                    playerCharacter.player.score = 0;
+                }
+                else
+                {
+                    playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
+
+                    m_playerCharacter.player.score += m_playerCharacter.playerCharacterData.collectScoreMinus;
+                }
+
                 playerCharacter.Collect();
             }
 
             foreach (var girl in m_triggerCollider.coughtGirls)
             {
-                girl.Collect(m_playerCharacter.transform.position);
+                girl.Collect(m_playerCharacter.playerFire.transform.position);
 
                 m_playerCharacter.player.score++;
+
+                m_playerCharacter.npcGetParticle.Play();
             }
 
             Destroy(gameObject);
@@ -183,6 +287,8 @@ namespace Ribbons
 
             //playerCharacter = transform.parent.GetComponent<PlayerCharacter>();
 
+            //GetComponent<HingeJoint>().connectedBody = m_playerCharacter.rigidbody;
+
             _InitializeAnimatorParametersID();
         }
 
@@ -198,6 +304,41 @@ namespace Ribbons
                 rigidbody.AddForce(Vector3.up * m_upPower + transform.forward * m_speed);
 
                 m_isDoThrow = false;
+            }
+
+            if(m_isDoShake)
+            {
+                transform.RotateAround(playerCharacter.transform.position, transform.up, m_shakeAngle * Time.deltaTime);
+
+                m_isDoShake = false;
+            }
+
+            if(m_isDoPull)
+            {
+                rigidbody.AddForce(m_pullForce, ForceMode.Force);
+
+                m_isDoPull = false;
+            }
+
+            if(m_isDoShake)
+            {
+                m_rigidbody.AddForce((transform.right * m_shake) * m_playerCharacter.playerCharacterData.ribbonShakeSpeed, ForceMode.Force);
+
+                m_isDoShake = false;
+            }
+
+            if(m_animatorParameters.isGrounded)
+            {
+                int objectsCount = m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count;
+
+                m_rigidbody.AddForce(transform.forward * ((objectsCount * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio) * m_playerCharacter.playerCharacterData.ribbonReboundPower),ForceMode.Force);
+
+                m_time += Time.deltaTime;
+
+                if(m_time > m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
+                {
+                    Breake();
+                }
             }
         }
 
@@ -267,7 +408,23 @@ namespace Ribbons
 
         private float m_speed;
 
+        private Vector3 m_pullForce;
+
+        private float m_shakeAngle;
+
+        private Vector3 m_violentMoveForce;
+
         private bool m_isDoThrow;
+
+        private bool m_isDoPull;
+
+        private bool m_isShake;
+
+        private bool m_isDoViolentMove;
+
+        private bool m_isDoShake;
+
+        private float m_shake;
 
         private PlayerCharacter m_playerCharacter;
 
@@ -315,6 +472,8 @@ namespace Ribbons
                 m_moveDirectionState = value;
             }
         }
+
+        private float m_time;
     }
 
 }

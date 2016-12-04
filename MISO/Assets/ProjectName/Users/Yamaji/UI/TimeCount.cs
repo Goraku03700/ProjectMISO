@@ -88,6 +88,12 @@ public class TimeCount : MonoBehaviour {
         {
             timeText.text = "";
         }
+
+        if(dispTime <= 0 && isStart)
+        {
+            isStart = false;
+            SetData();
+        }
 	}
 
     /// <summary>
@@ -97,6 +103,18 @@ public class TimeCount : MonoBehaviour {
     {
         m_girlCreateSystem.m_Limit = timeInit;
         isStart = true;
+    }
+
+    void SetData()
+    {
+        Player playerDataObject = GameObject.Find("Player1").GetComponent<Player>();
+        SceneSharedData.instance.Set("PlayTest", "Player1Score", playerDataObject.score);
+        playerDataObject = GameObject.Find("Player2").GetComponent<Player>();
+        SceneSharedData.instance.Set("PlayTest", "Player2Score", playerDataObject.score);
+        playerDataObject = GameObject.Find("Player3").GetComponent<Player>();
+        SceneSharedData.instance.Set("PlayTest", "Player3Score", playerDataObject.score);
+        playerDataObject = GameObject.Find("Player4").GetComponent<Player>();
+        SceneSharedData.instance.Set("PlayTest", "Player4Score", playerDataObject.score);
     }
 }
 

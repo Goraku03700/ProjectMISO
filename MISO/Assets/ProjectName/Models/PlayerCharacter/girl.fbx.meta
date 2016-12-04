@@ -157,7 +157,1945 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: result1
+      takeName: result1
+      firstFrame: 1
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: back
+      takeName: back
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: result2
+      takeName: result2
+      firstFrame: 1
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: tired
+      takeName: tired
+      firstFrame: 1
+      lastFrame: 52
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: catch1
+      takeName: catch1
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: aim
+      takeName: aim
+      firstFrame: 1
+      lastFrame: 36
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      firstFrame: 1
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pull
+      takeName: pull
+      firstFrame: 1
+      lastFrame: 17
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: default
+      takeName: default
+      firstFrame: 1
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: shot
+      takeName: shot
+      firstFrame: 1
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: grasp2
+      takeName: grasp2
+      firstFrame: 1
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: grasp1
+      takeName: grasp1
+      firstFrame: 1
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: fulful
+      takeName: fulful
+      firstFrame: 1
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: catch2
+      takeName: catch2
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: run
+      firstFrame: 1
+      lastFrame: 17
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: rampage2
+      takeName: rampage2
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: rampage1
+      takeName: rampage1
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group1/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: imagePlane3
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: player
+        weight: 1
+      - path: player/body_pl
+        weight: 1
+      - path: player/fuku_pl
+        weight: 1
+      - path: player/hair_pl1
+        weight: 1
+      - path: player/hair_pl2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform3
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane1/transform5
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform4
+        weight: 1
+      - path: transform6
+        weight: 1
+      - path: transform7
+        weight: 1
+      - path: transform7/root
+        weight: 1
+      - path: transform7/root/L_leg
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato
+        weight: 1
+      - path: transform7/root/L_leg/L_hiza/L_kakato/L_tumasaki
+        weight: 1
+      - path: transform7/root/R_leg
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato
+        weight: 1
+      - path: transform7/root/R_leg/R_hiza/R_kakato/R_tumasaki
+        weight: 1
+      - path: transform7/root/Up_body
+        weight: 1
+      - path: transform7/root/Up_body/chest
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/L_arm/L_hizi/L_tekubi
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck
+        weight: 1
+      - path: transform7/root/Up_body/chest/neck/head
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi
+        weight: 1
+      - path: transform7/root/Up_body/chest/R_arm/R_hizi/R_tekubi
+        weight: 1
+      - path: walk_01_npc:npc
+        weight: 1
+      - path: walk_01_npc:player
+        weight: 1
+      - path: walk_01_npc:plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
