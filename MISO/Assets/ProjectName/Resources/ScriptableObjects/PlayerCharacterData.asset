@@ -25,7 +25,7 @@ MonoBehaviour:
   ribbonReboundCountRatio: 0.15
   throwPower: 300
   throwSpeed: 600
-  collectTime: 3
+  collectTime: 0
   knockbackPower: 50
   inBuildingTime: 5
   shakingTime: 0

@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010688830228}
   - 212: {fileID: 212000011983662128}
   m_Layer: 0
-  m_Name: DasgGaugeBack
+  m_Name: DashGaugeBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
