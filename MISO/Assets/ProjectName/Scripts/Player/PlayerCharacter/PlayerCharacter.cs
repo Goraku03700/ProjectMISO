@@ -3,6 +3,7 @@ using UnityEngine.Assertions;
 using System;
 using Ribbons;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// プレイヤーキャラクターオブジェクトの動作を実装するクラス。
@@ -80,27 +81,47 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputDash(bool isDash)
     {
-        if(isDash)
+        m_isDash = false;
+
+        if(m_animatorStateInfo.shortNameHash == Animator.StringToHash("Move"))
         {
-            m_movable.speed = m_playerCharacterData.dashSpeed;
-
-            if(m_rigidbody.velocity.magnitude > .0f)
-                m_dashDurationTime += Time.deltaTime;
-            else
-                m_dashDurationTime = .0f;
-
-            if(m_dashDurationTime > m_playerCharacterData.dashTime)
+            if (isDash)
             {
-                m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
+                if (m_rigidbody.velocity.magnitude > 1.0f)
+                {
 
-                m_dashDurationTime = .0f;
+                    m_dashGauge.gaugeRenderer.enabled = true;
+                    m_dashGauge.backRenderer.enabled = true;
+                    m_dashGauge.frameRenderer.enabled = true;
+
+                    m_sanddustParticle.Play();
+
+                    m_movable.speed = m_playerCharacterData.dashSpeed;
+
+                    m_dashDurationTime += Time.deltaTime;
+
+                    if (m_dashDurationTime > m_playerCharacterData.dashTime)
+                    {
+                        m_sanddustParticle.Pause();
+
+                        m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
+
+                        // m_dashDurationTime = .0f;
+                    }
+
+                    m_isDash = true;
+                }
             }
-        }
-        else
-        {
-            m_movable.speed = m_playerCharacterData.walkSpeed;
+            else
+            {
+                m_sanddustParticle.Pause();
 
-            m_dashDurationTime = 0.0f;
+                m_movable.speed = m_playerCharacterData.walkSpeed;
+
+                //m_dashDurationTime = 0.0f;
+
+                m_isDash = false;
+            }
         }
     }
 
@@ -121,7 +142,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputCharge()
     {
-        m_animatorParameters.isPushThrowKey = true;
+        if(m_animatorParameters.isPushCancelKey == false)
+            m_animatorParameters.isPushThrowKey = true;
     }
 
     public void InputThrow()
@@ -159,15 +181,30 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.SizeAdjust"))
         {
-            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]);
+            //m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]);
+            m_animatorParameters.isPushCancelKey = true;
 
-            m_animatorParameters.isPushThrowKey = false;
+            m_isDoCancel = true;
         }
     }
 
     public void InputCancel(bool isPush)
     {
         m_animatorParameters.isPushCancelKey = isPush;
+
+        if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.SizeAdjust")
+            && isPush)
+        {
+            //m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]);
+            m_isDoCancel = true;
+        }
+
+        //m_animatorParameters.isPushCancelKey = isPush;
+    }
+
+    public void StartExit()
+    {
+        transform.FindChild("PlayerNumberIcon").transform.gameObject.SetActive(false);
     }
 
     public void SizeAdjustEnter()
@@ -216,7 +253,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SizeAdjustExit()
     {
-        if(m_animatorParameters.isPushCancelKey)
+        if(m_isDoCancel)
         {
             m_animatorParameters.isPushThrowKey = false;
 
@@ -224,6 +261,8 @@ public class PlayerCharacter : MonoBehaviour
             {
                 Destroy(m_controlledRibbon.gameObject);
             }
+
+            m_isDoCancel = false;
         }
         else
         {
@@ -255,6 +294,9 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(m_controlledRibbon != null)
         {
+            transform.LookAt(m_controlledRibbon.transform);
+
+
             Vector3 vector = transform.position - m_controlledRibbon.transform.position;
 
             if (vector.magnitude < m_playerCharacterData.ribbonCollectLength)
@@ -265,6 +307,7 @@ public class PlayerCharacter : MonoBehaviour
                 m_sweatParticle.Stop();
                 m_controlledRibbon = null;
             }
+
         }
     }
 
@@ -286,6 +329,8 @@ public class PlayerCharacter : MonoBehaviour
         //@todo Change SetTrigger
         m_animator.Play("Base Layer.CaughtRibbon.Caught");
 
+        m_rigidbody.mass = 0.1f;
+
         gameObject.layer    = LayerMask.NameToLayer("CaughtPlayerCharacter");
         m_caughtRibbon      = caughtRibbon;
 
@@ -302,6 +347,9 @@ public class PlayerCharacter : MonoBehaviour
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
 
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
+
+        m_rigidbody.mass = 1.0f;
+
     }
 
     public void Collect()
@@ -311,6 +359,8 @@ public class PlayerCharacter : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
         m_collectTime = .0f;
+
+        m_rigidbody.mass = 1.0f;
     }
 
     public void CollectUpdate()
@@ -490,7 +540,8 @@ public class PlayerCharacter : MonoBehaviour
         m_buildingObject            = transform.FindChild("PlayerCharacterBuilding").gameObject;
         m_ribbonRandingProjection   = transform.FindChild("RibbonLandingProjection").gameObject;
 
-        m_playerFire                = transform.transform.FindChild("PlayerCharacterBuilding").gameObject.GetComponent<PlayerFire>();
+        m_playerFire                = transform.FindChild("PlayerCharacterBuilding").gameObject.GetComponent<PlayerFire>();
+        m_dashGauge                 = transform.FindChild("Gauge").FindChild("DashGaugeMain").gameObject.GetComponent<DashGauge>();
 
         m_sweatParticle             = transform.FindChild("Ase").gameObject.GetComponent<ParticleSystem>();
         m_sanddustParticle          = transform.FindChild("SandDust").gameObject.GetComponent<ParticleSystem>();
@@ -501,12 +552,31 @@ public class PlayerCharacter : MonoBehaviour
 
         Assert.IsNotNull(m_animator);
         Assert.IsNotNull(m_movable);
-
+        Assert.IsNotNull(m_dashGauge);
     }
 
     void Update()
     {
         m_animatorStateInfo = m_animator.GetCurrentAnimatorStateInfo(0);
+
+        if(!m_isDash)
+        {
+            if (m_dashDurationTime > 0.0f)
+            {
+                m_dashDurationTime -= Time.deltaTime;
+
+                if (m_dashDurationTime <= 0.0f)
+                {
+                    m_dashGauge.gaugeRenderer.enabled = false;
+                    m_dashGauge.backRenderer.enabled = false;
+                    m_dashGauge.frameRenderer.enabled = false;
+                }
+            }
+            //else
+                //m_dashDurationTime = .0f;
+        }
+
+        m_dashGauge.raito = 1 - (m_dashDurationTime / m_playerCharacterData.dashTime);
 
         _UpdateAnimatorParameters();
     }
@@ -760,6 +830,25 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public Material[] ribbonMaterials
+    {
+        get
+        {
+            return m_ribbonMaterials;
+        }
 
+        set
+        {
+            m_ribbonMaterials = value;
+        }
+    }
 
+    bool m_isDoCancel;
+
+    bool m_isDash;
+
+    DashGauge m_dashGauge;
+
+    [SerializeField]
+    Material[] m_ribbonMaterials;
 }

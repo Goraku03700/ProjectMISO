@@ -10,7 +10,6 @@ namespace Ribbons
         {
             Right,
             Left,
-            None,
         }
 
         public void SizeAdjustEnter()
@@ -119,6 +118,18 @@ namespace Ribbons
                 m_shakeAngle = horizontal * m_playerCharacter.playerCharacterData.ribbonShakeSpeed;
 
                 //transform.RotateAround(playerCharacter.transform.position, transform.up, angle * Time.deltaTime);
+
+                //Vector3 playerDirection = m_playerCharacter.transform.position - transform.position;
+
+                //var direction = ((m_playerCharacter.transform.right * playerDirection.magnitude) - rigidbody.position).normalized;
+                //var rotation = Quaternion.AngleAxis(horizontal * 60, Vector3.up) * direction * Mathf.Abs(horizontal);
+                //var desired = rotation + m_shake * direction;
+                //var change = desired * m_playerCharacter.playerCharacterData.ribbonShakeSpeed - rigidbody.velocity;
+                //// Debug lines: Red - current heading
+                ////              Blue - applied heading
+                //Debug.DrawLine(rigidbody.position, rigidbody.position + rigidbody.velocity, Color.red);
+                //Debug.DrawLine(rigidbody.position, rigidbody.position + change, Color.blue);
+                //rigidbody.AddForce(change * Time.deltaTime, ForceMode.VelocityChange);
             }
         }
 
@@ -167,11 +178,11 @@ namespace Ribbons
 
         public void PullUpdate()
         {
-            float angle;
+            //float angle;
 
-            angle = (m_moveDirectionState == MoveDirectionState.Right) ? 180.0f : -180.0f ;
+            //angle = (m_moveDirectionState == MoveDirectionState.Right) ? 180.0f : -180.0f ;
 
-            transform.RotateAround(playerCharacter.transform.position, transform.up, angle * Time.deltaTime);
+            //transform.RotateAround(playerCharacter.transform.position, transform.up, angle * Time.deltaTime);
 
             Vector3 direction;
 
@@ -179,9 +190,10 @@ namespace Ribbons
             {
                 direction = transform.position - coughtPlayerCharater.transform.position;
 
-                if (direction.magnitude > m_triggerCollider.collider.radius)
+                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
                 {
-                    coughtPlayerCharater.transform.position = transform.position + (direction * m_triggerCollider.collider.radius);
+                    coughtPlayerCharater.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                    //coughtPlayerCharater.transform.position = transform.position;
                 }
             }
 
@@ -189,9 +201,10 @@ namespace Ribbons
             {
                 direction = transform.position - girl.transform.position;
 
-                if (direction.magnitude > m_triggerCollider.collider.radius)
+                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
                 {
-                    girl.transform.position = transform.position + (direction * m_triggerCollider.collider.radius);
+                    girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                    //girl.transform.position = transform.position;
                 }
             }
 
@@ -272,6 +285,41 @@ namespace Ribbons
             m_raycastLayerMask = LayerMask.GetMask(new string[] { "Stage" });
             //m_raycastLayerMask = 1 << 15;
 
+            m_meshRenderer = transform.Find("RibbonMesh/ribbon_circle").GetComponent<MeshRenderer>();
+
+            switch (gameObject.tag)
+            {
+                case "Player1":
+                    {
+                        m_meshRenderer.material = m_playerCharacter.ribbonMaterials[0];
+                    }
+                    break;
+
+                case "Player2":
+                    {
+                        m_meshRenderer.material = m_playerCharacter.ribbonMaterials[1];
+                    }
+                    break;
+
+                case "Player3":
+                    {
+                        m_meshRenderer.material = m_playerCharacter.ribbonMaterials[2];
+                    }
+                    break;
+
+                case "Player4":
+                    {
+                        m_meshRenderer.material = m_playerCharacter.ribbonMaterials[3];
+                    }
+                    break;
+
+                default:
+                    {
+                        Debug.LogAssertion("タグが設定されていません");
+                        break;
+                    }
+            }       // end of switch(gameObject.tag)
+
             Transform colliderTransform         = transform.FindChild("RibbonCollider");
             Transform triggerColliderTransform  = transform.FindChild("RibbonTriggerCollider");
             Transform wallCollideTransform      = transform.FindChild("RibbonWallCollider");
@@ -289,11 +337,26 @@ namespace Ribbons
 
             //GetComponent<HingeJoint>().connectedBody = m_playerCharacter.rigidbody;
 
+            m_moveDirectionState = UnityEngine.Random.value < .5f ? MoveDirectionState.Left : MoveDirectionState.Right;
+
             _InitializeAnimatorParametersID();
         }
 
         void Update()
         {
+            if(m_animatorParameters.isGrounded)
+            {
+                //transform.rotation = Quaternion.Euler(.0f, playerCharacter.transform.rotation.eulerAngles.y * -1.0f, .0f);
+
+                //Vector3 aa =  transform.rotation.eulerAngles;
+
+                Vector3 direction = transform.position - playerCharacter.transform.position;
+
+                direction.y = 0;
+
+                transform.forward = direction;
+            }
+
             _UpdateAnimatorParameters();
         }
 
@@ -331,7 +394,39 @@ namespace Ribbons
             {
                 int objectsCount = m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count;
 
-                m_rigidbody.AddForce(transform.forward * ((objectsCount * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio) * m_playerCharacter.playerCharacterData.ribbonReboundPower),ForceMode.Force);
+                float reboundPower = ((objectsCount * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio) * m_playerCharacter.playerCharacterData.ribbonReboundPower);
+
+                m_rigidbody.AddForce(transform.forward * reboundPower, ForceMode.Force);
+
+                if (m_triggerCollider.coughtPlayerCharacters.Count < 1)
+                {
+                    float violenetPower = ((objectsCount * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio) * m_playerCharacter.playerCharacterData.ribbonViolentMoveSpeed);
+
+                    m_changeTime += Time.deltaTime;
+
+                    float changeTime = m_changeTime / (m_playerCharacter.playerCharacterData.ribbonPenaltyTime / objectsCount);
+
+                    if (changeTime > 1.0f)
+                    {
+                        //m_moveDirectionState = m_moveDirectionState == MoveDirectionState.Left ? MoveDirectionState.Left : MoveDirectionState.Right; 
+                        if (m_moveDirectionState == MoveDirectionState.Left)
+                            m_moveDirectionState = MoveDirectionState.Right;
+                        else if (m_moveDirectionState == MoveDirectionState.Right)
+                            m_moveDirectionState = MoveDirectionState.Left;
+
+                        m_changeTime = 0.0f;
+                    }
+
+                    switch (m_moveDirectionState)
+                    {
+                        case MoveDirectionState.Right:
+                            m_rigidbody.AddForce(transform.right * violenetPower, ForceMode.Force);
+                            break;
+                        case MoveDirectionState.Left:
+                            m_rigidbody.AddForce((transform.right * -1) * violenetPower, ForceMode.Force);
+                            break;
+                    }
+                }
 
                 m_time += Time.deltaTime;
 
@@ -401,6 +496,8 @@ namespace Ribbons
         private GameObject m_triggerColliderObject;
 
         private GameObject m_wallColliderObject;
+
+        private MeshRenderer m_meshRenderer;
 
         private RibbonTriggerCollider m_triggerCollider;
 
@@ -473,7 +570,21 @@ namespace Ribbons
             }
         }
 
+        public MeshRenderer meshRenderer
+        {
+            get
+            {
+                return m_meshRenderer;
+            }
+
+            set
+            {
+                m_meshRenderer = value;
+            }
+        }
+
         private float m_time;
+        private float m_changeTime;
     }
 
 }

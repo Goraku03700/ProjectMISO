@@ -2,33 +2,18 @@
 using System.Collections;
 
 public class PlayerFire : MonoBehaviour {
-    [SerializeField]
-    Transform m_trans;
 
     [SerializeField]
-    Rigidbody m_rigidbody;
-
-
-    [SerializeField]
-    float m_pushPower;
-
-
-    [SerializeField]
-    float m_limit;
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
+    float m_pushPower = 10.0f;
 
     public void Fire(Transform playerTransform, Rigidbody playerRigidbody)
     {
         playerTransform.position = this.transform.position + Vector3.up;
         playerTransform.rotation = Quaternion.Inverse(this.transform.rotation);
-        m_rigidbody.velocity = Vector3.zero;
-        m_rigidbody.angularVelocity = Vector3.zero;
-        m_rigidbody.AddForce(-this.transform.forward * m_pushPower + Vector3.up * m_pushPower);
+        playerRigidbody.velocity = Vector3.zero;
+        playerRigidbody.angularVelocity = Vector3.zero;
+        playerRigidbody.AddForce(-this.transform.forward * m_pushPower + Vector3.up * m_pushPower);
+        playerRigidbody.mass = 1.0f;
         BGMManager.instance.PlaySE("se016_OutCampany");
     }
 }
