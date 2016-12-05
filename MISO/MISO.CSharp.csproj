@@ -122,6 +122,8 @@
     <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlCreater.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlNoPlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Input\MultiInput.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\MainUI\TimeCount.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\MainUI\TimeNiddle.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\Player.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Player\PlayerCharacter\PlayerCharacterController.cs" />
@@ -178,12 +180,12 @@
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushParticle.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\DushTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestPlayer.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Billboard.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIcon.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerScore.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\Billboard.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\DashGauge.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TestUI.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TimeCount.cs" />
+    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\iTween.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\HingeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\LopeTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Yanagimoto\Scripts\ScriptTest.cs" />

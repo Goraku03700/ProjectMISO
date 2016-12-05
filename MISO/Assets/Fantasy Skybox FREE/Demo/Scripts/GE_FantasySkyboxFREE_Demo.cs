@@ -89,7 +89,8 @@ using UnityEngine.UI;
 // 		Skybox: 
 // 		http://docs.unity3d.com/Documentation/Components/class-Skybox.html
 // 		
-// 		How do I Make a Skybox?
+// 		How do I Make a Skybox
+
 //		https://docs.unity3d.com/Documentation/Manual/HOWTO-UseSkybox.html
 // 
 // 		Render Settings

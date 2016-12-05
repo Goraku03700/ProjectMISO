@@ -236,10 +236,10 @@ public class Production : MonoBehaviour {
         }
         else
         {
-            m_score[0] = 49;
-            m_score[1] = 54;
-            m_score[2] = 32;
-            m_score[3] = 32;
+            m_score[0] = 20;
+            m_score[1] = 25;
+            m_score[2] = 25;
+            m_score[3] = 20;
 
         }
 
@@ -603,7 +603,8 @@ public class Production : MonoBehaviour {
     /// </summary>
     private void PutCompanyProduction()
     {
-
+        BGMManager.instance.PlaySE("se_ResultStart_1");
+        
         // 親子関係を解除する(その場に置く)
         for (i = 0; i < ConstPlayerMax; i++)
         {
@@ -655,6 +656,9 @@ public class Production : MonoBehaviour {
             {
                 m_player[i].GetComponent<Animator>().SetBool("isWalk", false);
             }
+
+            // seとめる
+            BGMManager.instance.StopSE();
         }
 
 
@@ -693,16 +697,24 @@ public class Production : MonoBehaviour {
 
                             // スコア加算
                             m_scoreCount[i]++;
-                            m_scoreText[i].enabled = true;
-                            m_scoreText[i].text = "？人";
+
 
                             // アニメーション開始
                             m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", true);
 
+
                             break;
                         }
                     }
+
+
+                    // SE再生
+                    BGMManager.instance.PlaySE("se025_NPCGoPlayer");
                 }
+
+                m_scoreText[i].enabled = true;
+                m_scoreText[i].text = "？人";
+
             }
 
             m_girlColumnCnt++;
