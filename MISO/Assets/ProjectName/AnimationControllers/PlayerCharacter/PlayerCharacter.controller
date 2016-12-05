@@ -223,6 +223,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b14c588427f8141b8453ff868a2fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013560592388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b61b15cf072c14dbd9af350e7c26e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013569628012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,7 +284,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400022, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
-    m_Threshold: 1
+    m_Threshold: 15
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -282,8 +293,8 @@ BlendTree:
   m_BlendParameter: velocity
   m_BlendParameterY: Blend
   m_MinThreshold: 0
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_MaxThreshold: 15
+  m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
 --- !u!1101 &1101000010016003680
@@ -998,9 +1009,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.9
+  m_ExitTime: 2
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1763,7 +1774,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000012699342396}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114000013560592388}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1948,14 +1960,14 @@ AnimatorStateMachine:
       second:
       - {fileID: 1109000011773501958}
     data:
-      first: {fileID: 1107000010730003952}
-      second:
-      - {fileID: 1109000013625147692}
-    data:
       first: {fileID: 1107000013914301966}
       second:
       - {fileID: 1109000011380159590}
       - {fileID: 1109000011460221424}
+    data:
+      first: {fileID: 1107000010730003952}
+      second:
+      - {fileID: 1109000013625147692}
     data:
       first: {fileID: 1107000013850094926}
       second:

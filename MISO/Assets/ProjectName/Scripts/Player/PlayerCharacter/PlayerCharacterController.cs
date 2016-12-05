@@ -86,10 +86,13 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
         bool isPushCancelKey = MultiInput.GetButtonDown("Cancel", m_joypadNumber);
-        bool isPushDashKey = MultiInput.GetButtonDown("Dash", m_joypadNumber);
+        bool isPushDashKey = MultiInput.GetButton("Dash", m_joypadNumber);
 
         m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
         m_controlledPlayerCharacter.InputDash(isPushDashKey);
+
+        //if (isPushCancelKey)
+        //    m_controlledPlayerCharacter.InputCancel();
 
         if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
         {
