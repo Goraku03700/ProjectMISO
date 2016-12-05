@@ -174,7 +174,7 @@ public class MultiInputManagerGenarator {
         {
             var axis = new InputAxis();
             var name = string.Format("Player{0} Dash", playerIndex);
-            var button = string.Format("joystick {0} button 4", joystickNum);
+            var button = string.Format("joystick {0} button 5", joystickNum);
             inputManagerGenerator.AddAxis(InputAxis.CreateButton(name, button, attackKey));
         }
     }

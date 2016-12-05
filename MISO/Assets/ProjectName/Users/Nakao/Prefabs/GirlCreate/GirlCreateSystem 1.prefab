@@ -426,7 +426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011759745440
 GameObject:
   m_ObjectHideFlags: 1
@@ -1510,7 +1510,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013819393060}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.37, z: 0}
+  m_LocalPosition: {x: 0, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1733,6 +1733,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 1
+  m_movementAreaX: {x: 5, y: 5}
+  m_movementAreaZ: {x: 5, y: 5}
 --- !u!114 &114000010286823622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1746,6 +1748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 1
+  m_movementAreaX: {x: 5, y: 5}
+  m_movementAreaZ: {x: 5, y: 5}
 --- !u!114 &114000010357837442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1819,6 +1823,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 0
+  m_movementAreaX: {x: 8, y: 8}
+  m_movementAreaZ: {x: 8, y: 8}
 --- !u!114 &114000010805934246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1952,6 +1958,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 0
+  m_movementAreaX: {x: 8, y: 8}
+  m_movementAreaZ: {x: 8, y: 8}
 --- !u!114 &114000011046861464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1995,6 +2003,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 0
+  m_movementAreaX: {x: 8, y: 8}
+  m_movementAreaZ: {x: 8, y: 8}
 --- !u!114 &114000011453561832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2023,6 +2033,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 0
+  m_movementAreaX: {x: 8, y: 8}
+  m_movementAreaZ: {x: 8, y: 8}
 --- !u!114 &114000011506596394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2126,6 +2138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 0
+  m_movementAreaX: {x: 8, y: 8}
+  m_movementAreaZ: {x: 8, y: 8}
 --- !u!114 &114000012436028598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2139,10 +2153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_girlCreateAreaList: []
   m_girlFeverCreateAreaList: []
-  m_LimitTimeUI: {fileID: 0}
-  m_Score1: {fileID: 0}
-  m_Score2: {fileID: 0}
-  m_limit: 80
+  m_limit: 99
   m_createRules:
   - {fileID: 114000013788959866, guid: b95d73600513fef4881ea73d416c2f31, type: 2}
   - {fileID: 114000011072394774, guid: d37defec3ab4bf34c9e56bda893315e9, type: 2}
@@ -2153,10 +2164,15 @@ MonoBehaviour:
   - {fileID: 114000013177626400, guid: 7bc3a8179a9eaf44d9321101f9a67da2, type: 2}
   - {fileID: 114000010439565176, guid: d4d9ebb5d22d7cb489628844f42ca35d, type: 2}
   - {fileID: 114000012379641166, guid: cec2f8561c7c66f48b75adeef12e47df, type: 2}
+  - {fileID: 114000010301468892, guid: 6e8c9a49351f8b6489608e35cbcef545, type: 2}
+  - {fileID: 114000010571301760, guid: b04b818e265c2ab45ac4e113b390cffd, type: 2}
+  - {fileID: 114000011690784412, guid: c1ce0b00aaf3d5d40b0bce3158f16d0b, type: 2}
+  - {fileID: 114000010743077890, guid: a69b667d9c4d7b345a7c739b85555ad2, type: 2}
   m_createRules_Normal: []
   m_createRules_Fever: []
   m_createRules_Continue: []
   m_girl_Count: 0
+  m_countDownTime: 0
 --- !u!114 &114000012457922054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2185,6 +2201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 1
+  m_movementAreaX: {x: 5, y: 5}
+  m_movementAreaZ: {x: 5, y: 5}
 --- !u!114 &114000012833661688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2333,6 +2351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_appearancePoints: []
   m_fever: 1
+  m_movementAreaX: {x: 5, y: 5}
+  m_movementAreaZ: {x: 5, y: 5}
 --- !u!114 &114000014251875650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2509,7 +2529,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ad7e012d685c4a24d9eb3236cf549a47, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32389b32f71ef4644a7af368352bfbc9, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

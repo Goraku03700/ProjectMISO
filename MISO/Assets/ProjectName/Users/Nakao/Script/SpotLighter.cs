@@ -10,7 +10,7 @@ public class SpotLighter : MonoBehaviour {
     List<Vector3> m_vectorBuffer = new List<Vector3>();
 	// Use this for initialization
 	void Start () {
-        for(int i = 0; i < 10 ; ++i)
+        for(int i = 0; i < 5 ; ++i)
         {
             m_vectorBuffer.Add(m_targetTransform.position);
         }
