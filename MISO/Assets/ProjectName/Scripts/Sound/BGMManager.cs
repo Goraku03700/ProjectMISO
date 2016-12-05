@@ -96,6 +96,37 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
         source.Play();
     }
 
+    public void PlaySingleSE(string seName)
+    {
+        if (!this.seDict.ContainsKey(seName)) throw new ArgumentException(seName + " not found", "seName");
+
+        for (int i = 0; i < this.seSources.Count; ++i)
+        {
+            if (this.seSources[i].clip.name == seName && this.seSources[i].isPlaying)
+            {
+                Debug.Log("SE AudioSource is Playing");
+                return;
+            }
+        }
+        AudioSource source = this.seSources.FirstOrDefault(s => !s.isPlaying);
+        if (source == null)
+        {
+
+
+            if (this.seSources.Count >= this.MaxSE)
+            {
+                Debug.Log("SE AudioSource is full");
+                return;
+            }
+
+            source = this.gameObject.AddComponent<AudioSource>();
+            this.seSources.Add(source);
+        }
+        source.clip = this.seDict[seName];
+        source.outputAudioMixerGroup = mixer.FindMatchingGroups("Master")[2];
+        source.Play();
+    }
+
     ///
     /// <summary>   SEをピッチしていで再生 spatialを true で3D   </summary>
     ///

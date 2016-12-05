@@ -26,7 +26,7 @@ public class PlayerAbsorption : MonoBehaviour {
             m_time += Time.deltaTime;
             if(m_time >1.0f)
             {
-                BGMManager.instance.PlaySE("se015_InCampany");
+                BGMManager.instance.PlaySingleSE("se015_InCampany");
                 m_time = 1.0f;
                 m_startAbsorption = false;
                 m_absorptionParticle.Stop();
