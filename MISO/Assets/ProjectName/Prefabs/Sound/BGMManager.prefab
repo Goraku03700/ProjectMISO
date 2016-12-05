@@ -75,10 +75,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0de359507ef27c247ba7709b26c14614, type: 3}
   - {fileID: 8300000, guid: 5092d5c68a887ff46982a3a36cdbc73b, type: 3}
   - {fileID: 8300000, guid: a4d64f88fdd8e1247bc802a2677b6455, type: 3}
-  - {fileID: 8300000, guid: c9de7a4be03a63e4bb7ae945be0c36d1, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: e053bcc5fc7986a4e83eaeeb51966b50, type: 3}
+  - {fileID: 8300000, guid: 78dd8102477defd42ab8ca9f86e73df8, type: 3}
+  - {fileID: 8300000, guid: ad625b57fe917ff49968694f8d89fa8f, type: 3}
+  - {fileID: 8300000, guid: 709b123bfa3896e4dbb11c3a743847fe, type: 3}
   MaxSE: 10
   mixer: {fileID: 24100000, guid: cf21b0116ef5a104e9941f7af4d67906, type: 2}
   keisuu: 0

@@ -158,5 +158,5 @@
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\readme.txt" />
     <None Include="Assets\UnityChan\README_SD_UnityChan.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
