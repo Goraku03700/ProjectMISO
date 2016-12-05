@@ -40,7 +40,7 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// <para>Version: 2.0.5</para>	 
+/// <para>Version: 2.0.46</para>	 
 /// <para>Author: Bob Berkebile (http://pixelplacement.com)</para>
 /// <para>Support: http://itween.pixelplacement.com</para>
 /// </summary>
@@ -3338,7 +3338,7 @@ public class iTween : MonoBehaviour{
 				colors[i,0]=GetComponent<Renderer>().materials[i].GetColor(namedcolorvalue.ToString());
 				colors[i,1]=GetComponent<Renderer>().materials[i].GetColor(namedcolorvalue.ToString());
 			}
-			//colors[0] = colors[1] = renderer.material.color;	
+			//colors[0] = colors[1] = GetComponent<Renderer>().material.color;	
 		}else if(GetComponent<Light>()){
 			colors = new Color[1,3];
 			colors[0,0] = colors[0,1] = GetComponent<Light>().color;	
@@ -4103,36 +4103,36 @@ public class iTween : MonoBehaviour{
 		
 		//apply:
 		if(GetComponent<GUITexture>()){
-			//guiTexture.color=colors[2];
+			//GetComponent<GUITexture>().color=colors[2];
 			GetComponent<GUITexture>().color=colors[0,2];
 		}else if(GetComponent<GUIText>()){
-			//guiText.material.color=colors[2];
+			//GetComponent<GUIText>().material.color=colors[2];
 			GetComponent<GUIText>().material.color=colors[0,2];
 		}else if(GetComponent<Renderer>()){
-			//renderer.material.color=colors[2];
+			//GetComponent<Renderer>().material.color=colors[2];
 			for (int i = 0; i < colors.GetLength(0); i++) {
 				GetComponent<Renderer>().materials[i].SetColor(namedcolorvalue.ToString(),colors[i,2]);
 			}
 		}else if(GetComponent<Light>()){
-			//light.color=colors[2];	
+			//GetComponent<Light>().color=colors[2];	
 			GetComponent<Light>().color=colors[0,2];
 		}
 		
 		//dial in:
 		if(percentage==1){
 			if(GetComponent<GUITexture>()){
-				//guiTexture.color=colors[1];
+				//GetComponent<GUITexture>().color=colors[1];
 				GetComponent<GUITexture>().color=colors[0,1];
 			}else if(GetComponent<GUIText>()){
-				//guiText.material.color=colors[1];
+				//GetComponent<GUIText>().material.color=colors[1];
 				GetComponent<GUIText>().material.color=colors[0,1];
 			}else if(GetComponent<Renderer>()){
-				//renderer.material.color=colors[1];	
+				//GetComponent<Renderer>().material.color=colors[1];	
 				for (int i = 0; i < colors.GetLength(0); i++) {
 					GetComponent<Renderer>().materials[i].SetColor(namedcolorvalue.ToString(),colors[i,1]);
 				}
 			}else if(GetComponent<Light>()){
-				//light.color=colors[1];	
+				//GetComponent<Light>().color=colors[1];	
 				GetComponent<Light>().color=colors[0,1];
 			}			
 		}
@@ -4173,7 +4173,7 @@ public class iTween : MonoBehaviour{
 		//handle orient to path request:
 		if(tweenArguments.Contains("orienttopath") && (bool)tweenArguments["orienttopath"]){
 			
-			//plot a point slightly ahead in the interpolation by pushing the percentage forward using the default lookahead value:
+			//plot a point sGetComponent<Light>()ly ahead in the interpolation by pushing the percentage forward using the default lookahead value:
 			float tLook;
 			if(tweenArguments.Contains("lookahead")){
 				lookAheadAmount = (float)tweenArguments["lookahead"];
@@ -6821,7 +6821,7 @@ public class iTween : MonoBehaviour{
 			time=Defaults.time;
 		}
 			
-		//do we need to use physics, is there a rigidbody?
+		//do we need to use physics, is there a GetComponent<Rigidbody>()?
 		if(GetComponent<Rigidbody>() != null){
 			physics=true;
 		}
@@ -7121,9 +7121,9 @@ public class iTween : MonoBehaviour{
 	void EnableKinematic(){
 		/*
 		if(gameObject.GetComponent(typeof(Rigidbody))){
-			if(!rigidbody.isKinematic){
+			if(!GetComponent<Rigidbody>().isKinematic){
 				kinematic=true;
-				rigidbody.isKinematic=true;
+				GetComponent<Rigidbody>().isKinematic=true;
 			}
 		}
 		*/
@@ -7131,9 +7131,9 @@ public class iTween : MonoBehaviour{
 	
 	void DisableKinematic(){
 		/*
-		if(kinematic && rigidbody.isKinematic==true){
+		if(kinematic && GetComponent<Rigidbody>().isKinematic==true){
 			kinematic=false;
-			rigidbody.isKinematic=false;
+			GetComponent<Rigidbody>().isKinematic=false;
 		}
 		*/
 	}
