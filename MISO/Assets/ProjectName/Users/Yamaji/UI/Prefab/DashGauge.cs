@@ -17,7 +17,11 @@ public class DashGauge : MonoBehaviour {
 
 
     private SpriteRenderer m_gaugeRenderer;
-    
+
+    private SpriteRenderer m_frameRenderer;
+
+    private SpriteRenderer m_backRenderer;
+
     private float m_maxScaleX;  // スケールの最大
 
     private float m_raito;  // ゲージの割合
@@ -36,15 +40,58 @@ public class DashGauge : MonoBehaviour {
         }
     }
 
+    public SpriteRenderer gaugeRenderer
+    {
+        get
+        {
+            return m_gaugeRenderer;
+        }
+
+        set
+        {
+            m_gaugeRenderer = value;
+            //m_frameRenderer = value;
+            //m_backRenderer = value;
+        }
+    }
+
+    public SpriteRenderer frameRenderer
+    {
+        get
+        {
+            return m_frameRenderer;
+        }
+
+        set
+        {
+            m_frameRenderer = value;
+        }
+    }
+
+    public SpriteRenderer backRenderer
+    {
+        get
+        {
+            return m_backRenderer;
+        }
+
+        set
+        {
+            m_backRenderer = value;
+        }
+    }
 
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 
         // スケールの最大を保存しておく
         m_maxScaleX = this.transform.localScale.x;
 
         m_gaugeRenderer = this.GetComponent<SpriteRenderer>();
+        m_frameRenderer = this.transform.parent.FindChild("DashGaugeFlame").gameObject.GetComponent<SpriteRenderer>();
+        m_backRenderer  = this.transform.parent.FindChild("DashGaugeBack").gameObject.GetComponent<SpriteRenderer>();
 
         m_raito = 1.0f;
 	}

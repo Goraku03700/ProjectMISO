@@ -977,7 +977,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!95 &95000010517180352
 Animator:
   serializedVersion: 3
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_particleSystem: {fileID: 198000014196177358}
   m_npcMotion: {fileID: 95000011200906182}
   m_playerAbsorption: {fileID: 114000012979001354}
-  m_getPlayer: {fileID: 0}
+  m_getPlayerBillding: {fileID: 0}
   m_npcPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014286938260
 MonoBehaviour:
