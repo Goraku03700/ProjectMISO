@@ -78,7 +78,12 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_time = 0.0f;
         m_targetPosition = GetRandomPositionOnLevel();
         m_ribbonLine.enabled = false;
-	}
+        m_rigidbody = GetComponent<Rigidbody>();
+
+    }
+
+
+    Rigidbody m_rigidbody;
 
     [SerializeField]
     float m_speed = 0.15f;
@@ -336,6 +341,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_npcMotion.SetBool("Caught", false);
         m_ribbonLine.enabled = false;
         m_ribbon_Wind.SetActive(false);
+        m_rigidbody.velocity = Vector3.zero;
     }
 
     public void Collect(Vector3 billPosition)
