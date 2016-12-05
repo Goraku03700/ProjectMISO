@@ -54,6 +54,8 @@ public class PlayerCharacter : MonoBehaviour
                 m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.SizeAdjust"))
             {
                 transform.forward = direction;
+
+                m_rigidbody.mass = 0.1f;
             }
 
             if (m_controlledRibbon)
@@ -413,15 +415,15 @@ public class PlayerCharacter : MonoBehaviour
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.OutBuilding]);
         }
 
-        //transform.position = m_caughtRibbon.playerCharacter.transform.position;
+        transform.position = m_caughtRibbon.playerCharacter.transform.position;
     }
 
     public void InBuildingExit()
     {
         // test
+        m_collider.enabled = true;
         m_meshObject.SetActive(true);
         m_buildingObject.SetActive(true);
-        m_collider.enabled = true;
 
         m_caughtRibbon.playerCharacter.playerFire.Fire(transform, m_rigidbody);
 
@@ -549,7 +551,7 @@ public class PlayerCharacter : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         m_animator  = GetComponent<Animator>();
         m_movable   = GetComponent<Movable>();
-        m_collider  = GetComponent<SphereCollider>();   
+        m_collider  = GetComponent<CapsuleCollider>();   
         m_player    = transform.parent.GetComponent<Player>();
 
         m_meshObject                = transform.FindChild("PlayerCharacterMesh").gameObject;
@@ -787,7 +789,7 @@ public class PlayerCharacter : MonoBehaviour
         get { return m_playerCharacterData; }
     }
 
-    private SphereCollider m_collider;
+    private CapsuleCollider m_collider;
 
     private GameObject m_meshObject;
 
