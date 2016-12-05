@@ -54,6 +54,8 @@ public class PlayerCharacter : MonoBehaviour
                 m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.SizeAdjust"))
             {
                 transform.forward = direction;
+
+                m_rigidbody.mass = 0.1f;
             }
 
             if (m_controlledRibbon)
@@ -64,6 +66,8 @@ public class PlayerCharacter : MonoBehaviour
             if (m_caughtRibbon)
             {
                 m_caughtRibbon.ViolentMove(direction);
+
+                m_bgmManager.PlaySELoop("se008_RageGirl");
             }
         }
         else
@@ -108,6 +112,8 @@ public class PlayerCharacter : MonoBehaviour
 
                         // m_dashDurationTime = .0f;
                     }
+
+                    //m_bgmManager.PlaySE();
 
                     m_isDash = true;
                 }
@@ -173,6 +179,8 @@ public class PlayerCharacter : MonoBehaviour
             if (m_controlledRibbon != null)
             {
                 m_controlledRibbon.Pull(transform.position, m_playerCharacterData.ribbonPullPower);
+
+                m_bgmManager.PlaySE("se005_CatchRibbon");
             }
         }
     }
@@ -248,6 +256,8 @@ public class PlayerCharacter : MonoBehaviour
         m_ribbonRandingProjection.transform.position    = point;
         m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 4.0f;
 
+        m_bgmManager.PlaySELoop("se000_AdjustRibbon");
+
         Assert.IsNotNull(controlledRibbon);
     }
 
@@ -277,6 +287,8 @@ public class PlayerCharacter : MonoBehaviour
                 transform.rotation,
                 m_playerCharacterData.throwPower,
                 m_playerCharacterData.throwSpeed);
+
+        m_bgmManager.PlaySE("se001_ThrowJustRibbon");
     }
 
     public void LengthAdjustUpdate()
@@ -288,6 +300,8 @@ public class PlayerCharacter : MonoBehaviour
     {
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_sweatParticle.Play();
+
+        m_bgmManager.PlaySE("se003_PutOnRibbon");
     }
 
     public void PullUpdate()
@@ -329,8 +343,6 @@ public class PlayerCharacter : MonoBehaviour
         //@todo Change SetTrigger
         m_animator.Play("Base Layer.CaughtRibbon.Caught");
 
-        m_rigidbody.mass = 0.1f;
-
         gameObject.layer    = LayerMask.NameToLayer("CaughtPlayerCharacter");
         m_caughtRibbon      = caughtRibbon;
 
@@ -348,7 +360,7 @@ public class PlayerCharacter : MonoBehaviour
 
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
-        m_rigidbody.mass = 1.0f;
+        //m_rigidbody.mass = 1.0f;
 
     }
 
@@ -389,7 +401,8 @@ public class PlayerCharacter : MonoBehaviour
         // test
         m_meshObject.SetActive(false);
         m_buildingObject.SetActive(false);
-            
+        m_collider.enabled = false;
+
         m_inBuildingTime = .0f;
     }
 
@@ -401,15 +414,20 @@ public class PlayerCharacter : MonoBehaviour
         {
             m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.OutBuilding]);
         }
+
+        transform.position = m_caughtRibbon.playerCharacter.transform.position;
     }
 
     public void InBuildingExit()
     {
         // test
+        m_collider.enabled = true;
         m_meshObject.SetActive(true);
         m_buildingObject.SetActive(true);
 
         m_caughtRibbon.playerCharacter.playerFire.Fire(transform, m_rigidbody);
+
+        m_rigidbody.mass = 0.1f;
     }
 
     public void OnHoldEnter()
@@ -533,7 +551,7 @@ public class PlayerCharacter : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         m_animator  = GetComponent<Animator>();
         m_movable   = GetComponent<Movable>();
-        m_collider  = GetComponent<SphereCollider>();   
+        m_collider  = GetComponent<CapsuleCollider>();   
         m_player    = transform.parent.GetComponent<Player>();
 
         m_meshObject                = transform.FindChild("PlayerCharacterMesh").gameObject;
@@ -546,6 +564,8 @@ public class PlayerCharacter : MonoBehaviour
         m_sweatParticle             = transform.FindChild("Ase").gameObject.GetComponent<ParticleSystem>();
         m_sanddustParticle          = transform.FindChild("SandDust").gameObject.GetComponent<ParticleSystem>();
         m_npcGetParticle            = transform.FindChild("NpcGetEffect").gameObject.GetComponent<ParticleSystem>();
+
+        m_bgmManager                = BGMManager.instance;
 
         _InitializeAnimatorParametersID();
         _InitializeAnimationState();
@@ -769,7 +789,7 @@ public class PlayerCharacter : MonoBehaviour
         get { return m_playerCharacterData; }
     }
 
-    private SphereCollider m_collider;
+    private CapsuleCollider m_collider;
 
     private GameObject m_meshObject;
 
@@ -851,4 +871,6 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField]
     Material[] m_ribbonMaterials;
+
+    BGMManager m_bgmManager;
 }

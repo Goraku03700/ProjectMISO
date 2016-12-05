@@ -199,8 +199,8 @@ public class SelectPlayer: MonoBehaviour
         //if (Input.GetKey(KeyCode.Space))
         if(MultiInput.GetButton("Dash", m_joypadNumber))
         {
-            float horizontal = MultiInput.GetAxis(MultiInput.Key.Horizontal, m_joypadNumber);
-            float vertical = MultiInput.GetAxis(MultiInput.Key.Vertical, m_joypadNumber);
+            float horizontal = MultiInput.GetAxis("Horizontal", m_joypadNumber);
+            float vertical = MultiInput.GetAxis("Vertical", m_joypadNumber);
             if (horizontal != .0f || vertical != .0f)
             {
                 Vector3 direction = new Vector3(horizontal, .0f, vertical);

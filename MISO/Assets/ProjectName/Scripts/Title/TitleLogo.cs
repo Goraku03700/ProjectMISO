@@ -157,4 +157,19 @@ public class TitleLogo : MonoBehaviour {
         get { return m_boundfinishflg; }
     }
 
+    /// <summary>
+    /// ボタン入力でスキップした際にタイトルのロゴを所定の位置に移動させる。
+    /// </summary>
+    public void SetTitleLogoPosition()
+    {
+        m_nowpos.x = Limit_x;
+        m_nowpos.y = m_startpos.y;
+        this.transform.position = m_nowpos;
+        m_nowscale.x = 2.0f;
+        m_nowscale.z = 1.0f;
+        this.transform.localScale = m_nowscale;
+        m_boundfinishflg = false;
+        m_bounddownflg = false;
+    }
+
 }

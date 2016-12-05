@@ -78,7 +78,12 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_time = 0.0f;
         m_targetPosition = GetRandomPositionOnLevel();
         m_ribbonLine.enabled = false;
-	}
+        m_rigidbody = GetComponent<Rigidbody>();
+
+    }
+
+
+    Rigidbody m_rigidbody;
 
     [SerializeField]
     float m_speed = 0.15f;
@@ -128,9 +133,14 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     Vector3 m_npcPos;
 
+    bool m_isScale = true;
+
+    float m_scaleTime;
+
     public Vector3 GetRandomPositionOnLevel()
     {
         m_time = 0.0f;
+        m_scaleTime = 0.0f;
         m_beforeRotation = this.transform.rotation;
         m_beforePosition = this.transform.position;
         return new Vector3(Random.Range(m_movementAreaX.x, m_movementAreaX.y), 0, Random.Range(m_movementAreaZ.x, m_movementAreaZ.y));
@@ -141,6 +151,27 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_girlMesh.transform.rotation = new Quaternion(0.0f,m_girlMesh.transform.rotation.y,0.0f,1.0f);
  //       m_girlMesh.transform.rotation = 0.0f;_
         m_time += Time.deltaTime;
+
+        if(m_isScale)
+        {
+            m_scaleTime += Time.deltaTime;
+            if (m_scaleTime >= 0.25f)
+            {
+                float scale = Mathf.Lerp(0.0f, m_scale, m_scaleTime);
+                m_girlMesh.transform.localScale = new Vector3(scale, scale, scale);
+            }
+            if (m_scaleTime >= 1.0f)
+            {
+                //m_status = State.Alive;
+                m_girlMesh.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
+                m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
+                //m_movable.speed = 4.0f;
+                m_scaleTime = 0.0f;
+                m_npcMotion.SetBool("Move", true);
+                m_isScale = false;
+            }
+        }
+
 	    switch(m_status)
         {
             case State.Generation:
@@ -156,20 +187,12 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_time = 0.0f;
                 }
                 */
-                if (m_time >= 0.25f)
-                {
-                    float scale = Mathf.Lerp(0.0f, m_scale, m_time);
-                    m_girlMesh.transform.localScale = new Vector3(scale, scale, scale);
-                }
+                
                 if(m_time >= 1.0f)
                 {
                     m_status = State.Alive;
-                    m_girlMesh.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
-                    m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
-                    //m_movable.speed = 4.0f;
-                    m_time = 0.0f;
-                    m_npcMotion.SetBool("Move",true);
                 }
+                
                 //m_status = State.Alive;
                 break;
             }
@@ -336,6 +359,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_npcMotion.SetBool("Caught", false);
         m_ribbonLine.enabled = false;
         m_ribbon_Wind.SetActive(false);
+        m_rigidbody.velocity = Vector3.zero;
     }
 
     public void Collect(Vector3 billPosition)
