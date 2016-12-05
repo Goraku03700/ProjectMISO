@@ -81,7 +81,7 @@ public class SelectScene : MonoBehaviour {
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad1))
         {
             m_readyFlag[0] = true;
             readyText[0].text = "OK!";
