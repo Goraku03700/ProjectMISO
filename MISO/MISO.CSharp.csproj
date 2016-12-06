@@ -168,6 +168,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleUI.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Utility\Billboard.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\FPSPresenter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\TextGradationEffect.cs" />
@@ -188,7 +189,6 @@
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestPlayer.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIcon.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerScore.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\Billboard.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\DashGauge.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TestUI.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\iTween.cs" />
