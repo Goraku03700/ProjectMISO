@@ -60,9 +60,12 @@ namespace Ribbons
 
                     PlayerCharacter playerCharacter = collider.gameObject.GetComponent<PlayerCharacter>();
 
-                    playerCharacter.CaughtRibbon(m_parentRibbon);
 
-                    coughtPlayerCharacters.Add(playerCharacter);
+                    if (playerCharacter.isCaught)
+                    {
+                        playerCharacter.CaughtRibbon(m_parentRibbon);
+                        coughtPlayerCharacters.Add(playerCharacter);
+                    }
                 }
             }
             else if(collider.gameObject.layer == LayerMask.NameToLayer("Girl"))
