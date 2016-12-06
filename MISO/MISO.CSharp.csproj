@@ -61,12 +61,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
     <Reference Include="GETween">
       <HintPath>Assets\GUI Animator\Common\Plugins\GETween.dll</HintPath>
     </Reference>
@@ -168,6 +162,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleUI.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Utility\Billboard.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\FPSPresenter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\TextGradationEffect.cs" />
@@ -188,7 +183,6 @@
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestPlayer.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIcon.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerScore.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\Billboard.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\DashGauge.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TestUI.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\iTween.cs" />
@@ -242,5 +236,5 @@
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\readme.txt" />
     <None Include="Assets\UnityChan\README_SD_UnityChan.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
