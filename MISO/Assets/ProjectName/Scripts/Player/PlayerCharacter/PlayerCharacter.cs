@@ -106,7 +106,7 @@ public class PlayerCharacter : MonoBehaviour
 
                     if (m_dashDurationTime > m_playerCharacterData.dashTime)
                     {
-                        m_sanddustParticle.Pause();
+                        m_sanddustParticle.Stop();
 
                         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
 
@@ -120,7 +120,7 @@ public class PlayerCharacter : MonoBehaviour
             }
             else
             {
-                m_sanddustParticle.Pause();
+                m_sanddustParticle.Stop();
 
                 m_movable.speed = m_playerCharacterData.walkSpeed;
 
@@ -192,6 +192,8 @@ public class PlayerCharacter : MonoBehaviour
             //m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]);
             m_animatorParameters.isPushCancelKey = true;
 
+            m_ribbonRandingProjection.SetActive(false);
+
             m_isDoCancel = true;
         }
     }
@@ -217,6 +219,11 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SizeAdjustEnter()
     {
+        if(m_controlledRibbon)
+        {
+            Destroy(m_controlledRibbon.gameObject);
+        }
+
         GameObject ribbonObject = Instantiate(m_ribbonObject, transform.position, transform.rotation) as GameObject;
 
         ribbonObject.tag                        = tag;
@@ -224,6 +231,7 @@ public class PlayerCharacter : MonoBehaviour
         //m_controlledRibbon.transform.position   = transform.position;
         m_controlledRibbon.playerCharacter      = this;
         m_lengthAdjustTime                      = .0f;
+        ribbonObject.transform.position         += new Vector3(.0f, 4.5f, .0f);
 
         m_ribbonRandingProjection.SetActive(true);
 
@@ -270,9 +278,9 @@ public class PlayerCharacter : MonoBehaviour
             if(m_controlledRibbon)
             {
                 Destroy(m_controlledRibbon.gameObject);
-            }
+                m_isDoCancel = false;
 
-            m_isDoCancel = false;
+            }
         }
         else
         {
@@ -333,8 +341,7 @@ public class PlayerCharacter : MonoBehaviour
             m_sweatParticle.Stop();
             //Destroy(m_controlledRibbon.gameObject);
             m_controlledRibbon = null;
-
-            
+            m_playerIcon.ChangeIconNormal();
         }
     }
 
@@ -345,9 +352,12 @@ public class PlayerCharacter : MonoBehaviour
 
         gameObject.layer    = LayerMask.NameToLayer("CaughtPlayerCharacter");
         m_caughtRibbon      = caughtRibbon;
+        m_playerIcon.ChangeIconAngry();
 
-        if(m_controlledRibbon)
+        if (m_controlledRibbon)
         {
+            m_controlledRibbon.Breake();
+
             Destroy(m_controlledRibbon.gameObject);
            
             m_controlledRibbon = null;
@@ -360,6 +370,8 @@ public class PlayerCharacter : MonoBehaviour
 
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
+        m_playerIcon.ChangeIconNormal();
+
         //m_rigidbody.mass = 1.0f;
 
     }
@@ -369,10 +381,10 @@ public class PlayerCharacter : MonoBehaviour
         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsCollect]);
 
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
-
         m_collectTime = .0f;
-
         m_rigidbody.mass = 1.0f;
+
+        m_playerIcon.ChangeIconSad();
     }
 
     public void CollectUpdate()
@@ -428,6 +440,8 @@ public class PlayerCharacter : MonoBehaviour
         m_caughtRibbon.playerCharacter.playerFire.Fire(transform, m_rigidbody);
 
         m_rigidbody.mass = 0.1f;
+
+        m_playerIcon.ChangeIconNormal();
     }
 
     public void OnHoldEnter()
@@ -566,6 +580,17 @@ public class PlayerCharacter : MonoBehaviour
         m_npcGetParticle            = transform.FindChild("NpcGetEffect").gameObject.GetComponent<ParticleSystem>();
 
         m_bgmManager                = BGMManager.instance;
+
+        var playerIcons = FindObjectsOfType<PlayerIcon>();
+
+        foreach(var playerIcon in playerIcons)
+        {
+            if(playerIcon.gameObject.tag == tag)
+            {
+                m_playerIcon = playerIcon;
+                break;
+            }
+        }
 
         _InitializeAnimatorParametersID();
         _InitializeAnimationState();
@@ -816,8 +841,8 @@ public class PlayerCharacter : MonoBehaviour
         get
         {
             return 
-                m_animatorStateInfo.shortNameHash == Animator.StringToHash("CaughtRibbon.Caught") ||
-                m_animatorStateInfo.shortNameHash == Animator.StringToHash("CaughtRibbon.Collect");
+                !(m_animatorStateInfo.shortNameHash == Animator.StringToHash("Caught") ||
+                m_animatorStateInfo.shortNameHash == Animator.StringToHash("Collect"));
         }
     }
 
@@ -873,4 +898,6 @@ public class PlayerCharacter : MonoBehaviour
     Material[] m_ribbonMaterials;
 
     BGMManager m_bgmManager;
+
+    PlayerIcon m_playerIcon;
 }

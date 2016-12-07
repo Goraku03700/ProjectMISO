@@ -88,19 +88,19 @@ public class SelectScene : MonoBehaviour {
         }
 
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad2))
         {
             m_readyFlag[1] = true;
             readyText[1].text = "OK!";
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad3))
         {
             m_readyFlag[2] = true;
             readyText[2].text = "OK!";
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad4))
         {
             m_readyFlag[3] = true;
             readyText[3].text = "OK!";
