@@ -55,6 +55,8 @@ namespace Ribbons
                     m_triggerColliderObject.SetActive(true);
 
                     playerCharacter.OnRibbonLanding();
+
+                    //m_rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 }
             }
         }
@@ -104,11 +106,11 @@ namespace Ribbons
             //m_isDoShake = true;
             m_shake = horizontal;
 
-            if(Mathf.Abs(m_shake) > .0f &&
-                m_animatorParameters.isGrounded)
-            {
-                //m_isDoShake = true;
-            }
+            //if(Mathf.Abs(m_shake) > .0f &&
+            //    m_animatorParameters.isGrounded)
+            //{
+            //    //m_isDoShake = true;
+            //}
 
             if(m_animatorParameters.isGrounded)
             {
@@ -130,6 +132,14 @@ namespace Ribbons
                 //Debug.DrawLine(rigidbody.position, rigidbody.position + rigidbody.velocity, Color.red);
                 //Debug.DrawLine(rigidbody.position, rigidbody.position + change, Color.blue);
                 //rigidbody.AddForce(change * Time.deltaTime, ForceMode.VelocityChange);
+
+                //Quaternion q = Quaternion.AngleAxis(m_shakeAngle * Time.deltaTime, Vector3.up);
+
+                //m_rigidbody.MovePosition(q * (transform.position - m_playerCharacter.transform.position) + m_playerCharacter.transform.position);
+                ////m_rigidbody.MovePosition(q * (m_playerCharacter.transform.position - transform.position) + transform.position);
+                ////m_rigidbody.MoveRotation(transform.rotation * q);
+
+                //m_rigidbody.velocity = q * m_rigidbody.velocity;
             }
         }
 
@@ -190,9 +200,9 @@ namespace Ribbons
             {
                 direction = transform.position - coughtPlayerCharater.transform.position;
 
-                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
+                if (direction.magnitude > m_triggerCollider.collider.radius * 5)
                 {
-                    coughtPlayerCharater.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                    //coughtPlayerCharater.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
                     //coughtPlayerCharater.transform.position = transform.position;
                 }
             }
@@ -201,9 +211,9 @@ namespace Ribbons
             {
                 direction = transform.position - girl.transform.position;
 
-                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
+                if (direction.magnitude > m_triggerCollider.collider.radius * 5)
                 {
-                    girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                    //girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
                     //girl.transform.position = transform.position;
                 }
             }
@@ -371,7 +381,15 @@ namespace Ribbons
 
             if(m_isDoShake)
             {
-                transform.RotateAround(playerCharacter.transform.position, transform.up, m_shakeAngle * Time.deltaTime);
+                //transform.RotateAround(playerCharacter.transform.position, transform.up, m_shakeAngle * Time.deltaTime);
+
+                Quaternion q = Quaternion.AngleAxis(m_shakeAngle * Time.deltaTime, Vector3.up);
+
+                m_rigidbody.MovePosition(q * (transform.position - m_playerCharacter.transform.position) + m_playerCharacter.transform.position);
+                //m_rigidbody.MovePosition(q * (m_playerCharacter.transform.position - transform.position) + transform.position);
+                //m_rigidbody.MoveRotation(transform.rotation * q);
+
+                m_rigidbody.velocity = q * m_rigidbody.velocity;
 
                 m_isDoShake = false;
             }
@@ -394,9 +412,11 @@ namespace Ribbons
             {
                 int objectsCount = m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count;
 
-                float reboundPower = ((objectsCount * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio) * m_playerCharacter.playerCharacterData.ribbonReboundPower);
-
-                m_rigidbody.AddForce(transform.forward * reboundPower, ForceMode.Force);
+                if(objectsCount > 0)
+                {
+                    float reboundPower = ((objectsCount * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio) * m_playerCharacter.playerCharacterData.ribbonReboundPower);
+                    m_rigidbody.AddForce(transform.forward * reboundPower, ForceMode.Force);
+                }
 
                 if (m_triggerCollider.coughtPlayerCharacters.Count < 1)
                 {
