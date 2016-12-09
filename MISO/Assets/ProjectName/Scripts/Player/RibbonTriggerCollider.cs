@@ -61,7 +61,9 @@ namespace Ribbons
                     PlayerCharacter playerCharacter = collider.gameObject.GetComponent<PlayerCharacter>();
 
 
-                    if (playerCharacter.isCaught)
+                    if (playerCharacter.animatorStateInfo.shortNameHash != Animator.StringToHash("CaughtRibbon.Caught") &&
+                        playerCharacter.animatorStateInfo.shortNameHash != Animator.StringToHash("CaughtRibbon.Release") &&
+                        !playerCharacter.isThisFrameCought)
                     {
                         playerCharacter.CaughtRibbon(m_parentRibbon);
                         coughtPlayerCharacters.Add(playerCharacter);
