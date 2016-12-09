@@ -23,7 +23,20 @@ public class Ready : MonoBehaviour {
             Vector3 objScale = this.transform.localScale;
 
             objScale.x += m_speed * Time.deltaTime;
+
+            if(objScale.x > 1.0f)
+            {
+                objScale.x = 1.0f;
+            }
+
+            this.transform.localScale = objScale;
         }
 	
 	}
+
+    public void DispReady()
+    {
+        m_isDisp = true;
+    }
 }
+
