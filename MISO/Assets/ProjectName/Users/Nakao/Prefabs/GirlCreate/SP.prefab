@@ -805,8 +805,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012996017462}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15538636, y: 7.2000003, z: 0.040471666}
-  m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
+  m_LocalPosition: {x: 0, y: 1.81, z: 0.040471666}
+  m_LocalScale: {x: 0.004, y: 0.006, z: 0.006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013677631816}
@@ -1038,9 +1038,9 @@ MonoBehaviour:
   m_status: 0
   m_time: 0
   m_scale: 1
-  m_movable: {fileID: 114000014286938260}
-  m_girlMesh: {fileID: 1000011533978290}
-  m_ribbonLine: {fileID: 120000012866303774}
+  m_movable: {fileID: 0}
+  m_girlMesh: {fileID: 53753888}
+  m_ribbonLine: {fileID: 8300000}
   m_ribbonColors:
   - {r: 0.93725497, g: 0.058823533, b: 0, a: 1}
   - {r: 0, g: 0.32941177, b: 0.92549026, a: 1}
@@ -1049,8 +1049,8 @@ MonoBehaviour:
   m_speed: 2
   m_rotationSmooth: 40
   m_targetPosition: {x: 0, y: 0, z: 0}
-  m_ribbon_Wind: {fileID: 1000012996017462}
-  m_ribbon_WindRenderer: {fileID: 23000013032509996}
+  m_ribbon_Wind: {fileID: 54190496}
+  m_ribbon_WindRenderer: {fileID: 0}
   m_ribbon_WindMaterial1:
   - {fileID: 2100000, guid: aa5e472f7671eec4a8188d8ac3acbb44, type: 2}
   - {fileID: 2100000, guid: aa5e472f7671eec4a8188d8ac3acbb44, type: 2}
@@ -1063,9 +1063,9 @@ MonoBehaviour:
   m_ribbon_WindMaterial4:
   - {fileID: 2100000, guid: d5a6901f44ee35c42960226e9db95e68, type: 2}
   - {fileID: 2100000, guid: d5a6901f44ee35c42960226e9db95e68, type: 2}
-  m_particleSystem: {fileID: 198000014196177358}
-  m_npcMotion: {fileID: 95000011200906182}
-  m_playerAbsorption: {fileID: 114000012979001354}
+  m_particleSystem: {fileID: 0}
+  m_npcMotion: {fileID: 0}
+  m_playerAbsorption: {fileID: 0}
   m_getPlayerBillding: {fileID: 0}
   m_npcPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014286938260
@@ -1348,7 +1348,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 766269931
+  randomSeed: 164849395
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -3102,7 +3102,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 560762833
+  randomSeed: 1886980246
   InitialModule:
     serializedVersion: 2
     enabled: 1
