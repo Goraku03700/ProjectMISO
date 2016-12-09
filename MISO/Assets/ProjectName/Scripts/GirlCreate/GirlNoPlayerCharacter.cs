@@ -167,7 +167,10 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
                 //m_movable.speed = 4.0f;
                 m_scaleTime = 0.0f;
-                m_npcMotion.SetBool("Move", true);
+                if (m_status != State.Caught)
+                {
+                    m_npcMotion.SetBool("Move", true);
+                }
                 m_isScale = false;
             }
         }
@@ -281,6 +284,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        /*
         int i = LayerMask.NameToLayer("RibbonTrigger");
         if(collision.gameObject.layer == i)
         {
@@ -294,6 +298,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             }
             m_isCaught = true;
             this.m_status = State.None;			gameObject.layer = LayerMask.NameToLayer("CaughtGirl");        }
+        }
+         */
     }
 
     public void CatchRibbon(PlayerCharacter playerCharacter)
