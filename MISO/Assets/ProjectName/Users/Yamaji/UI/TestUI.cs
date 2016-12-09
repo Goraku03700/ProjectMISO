@@ -34,6 +34,17 @@ public class TestUI : MonoBehaviour {
             GameObject.Find("Time").GetComponent<TimeCount>().StartTime();
         }
         */
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            GameObject.Find("PullArrow").GetComponent<PullArrow>().ChangeArrowLeft();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            GameObject.Find("PullArrow").GetComponent<PullArrow>().ChangeArrowRight();
+
+        }
     }
 
 

@@ -6,8 +6,11 @@ public class TimeNiddle : MonoBehaviour {
     [SerializeField]
     private float m_time;
 
+    private float m_nowTime;
 
     private GameObject obj;
+
+    private bool isStart;
 
     private float rotateFrame;
 	// Use this for initialization
@@ -15,17 +18,31 @@ public class TimeNiddle : MonoBehaviour {
 
         rotateFrame = m_time * 30 / 360;
 
-        obj = GameObject.Find("TimeNiddle");
+        m_nowTime = 0.0f;
+
+        isStart = false;
+
 	
 	}
 
     // Update is called once per frame
     void Update(){
 
-        //this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, thi);
-        this.transform.Rotate(0.0f, 0.0f, -0.3f);
-        //iTween.RotateTo(this.gameObject, iTween.Hash("z", 360, "time", m_time));
+        if (isStart)
+        {
+            m_nowTime += Time.deltaTime;
+        }
 
-        //iTween.RotateTo(this.gameObject, iTween.Hash("z", 360.0f, "time", 1.0f));
+        // 現在の角度を求める
+        float rot_z = m_nowTime / m_time * 360;
+
+        // 回転
+        this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -rot_z);
+
+    }
+
+    public void StartRotate()
+    {
+        isStart = true;
     }
 }

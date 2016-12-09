@@ -22,6 +22,9 @@ public class TimeCount : MonoBehaviour {
     [SerializeField]
     Image m_clock;
 
+    [SerializeField]
+    TimeNiddle m_timeNiddle;
+
     private float nowTime;
 
     private Text timeText;
@@ -102,6 +105,8 @@ public class TimeCount : MonoBehaviour {
     {
         m_girlCreateSystem.m_Limit = timeInit;
         isStart = true;
+
+        m_timeNiddle.StartRotate();
     }
 
     void SetData()

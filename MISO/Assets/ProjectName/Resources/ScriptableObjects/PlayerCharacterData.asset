@@ -16,10 +16,10 @@ MonoBehaviour:
   ribbonMinScale: 1
   ribbonSizeScailingTime: 1
   ribbonPullPower: 350
-  ribbonCollectLength: 2.5
+  ribbonCollectLength: 3
   ribbonProjectionTime: 1
   ribbonPenaltyTime: 5
-  ribbonShakeSpeed: 50
+  ribbonShakeSpeed: 180
   ribbonViolentMoveSpeed: 75
   ribbonReboundPower: 30
   ribbonReboundCountRatio: 0.15
@@ -32,8 +32,8 @@ MonoBehaviour:
   shakingRepeat: 0
   shakingReleaseGirl: 0
   shakingInterval: 0
-  walkSpeed: 5
-  dashSpeed: 10
+  walkSpeed: 50
+  dashSpeed: 100
   dashTime: 5
   collectScoreMinus: 5
   ribbonPrefabPath: Prefabs/Ribbon
