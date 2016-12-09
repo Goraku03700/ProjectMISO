@@ -405,6 +405,8 @@ public class PlayerCharacter : MonoBehaviour
             m_inBuildingTime = .0f;
         }
 
+
+
         // test
         m_meshObject.SetActive(false);
         m_buildingObject.SetActive(false);
@@ -907,4 +909,6 @@ public class PlayerCharacter : MonoBehaviour
     BGMManager m_bgmManager;
 
     PlayerIcon m_playerIcon;
+
+    PlayerAbsorption m_playerAbsorpstion;
 }
