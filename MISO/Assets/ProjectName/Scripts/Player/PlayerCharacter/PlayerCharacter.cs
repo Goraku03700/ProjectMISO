@@ -398,7 +398,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_playerAbsorption.startAbsorption(transform.position, m_caughtRibbon.playerCharacter.transform.position);
 
-        m_collider.enabled = false;
+        m_collider.enabled      = false;
+        m_wallCollider.enabled  = false;
     }
 
     public void CollectUpdate()
@@ -452,8 +453,6 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InBuildingExit()
     {
-        // test
-        m_collider.enabled = true;
         m_meshObject.SetActive(true);
         m_buildingObject.SetActive(true);
 
@@ -462,6 +461,29 @@ public class PlayerCharacter : MonoBehaviour
         //m_rigidbody.mass = 0.1f;
 
         m_playerIcon.ChangeIconNormal();
+
+        m_wallCollider.enabled = true;
+    }
+
+    public void OutBuildingUpdate()
+    {
+        if (m_rigidbody.velocity.y <= 0.0f)
+        {
+            int raycastLayerMask = LayerMask.GetMask(new string[] { "Stage" });
+
+            bool isGrounded = Physics.Raycast(
+            transform.position,
+            Vector3.down,
+            .5f,
+            raycastLayerMask);
+
+            if (isGrounded)
+            {
+                m_collider.enabled = true;
+
+                m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.OutBuildingExit]);
+            }
+        }
     }
 
     public void OnHoldEnter()
@@ -585,7 +607,8 @@ public class PlayerCharacter : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         m_animator  = GetComponent<Animator>();
         m_movable   = GetComponent<Movable>();
-        m_collider  = GetComponent<CapsuleCollider>();   
+        m_collider  = GetComponent<CapsuleCollider>();
+        m_wallCollider = GetComponent<BoxCollider>();
         m_player    = transform.parent.GetComponent<Player>();
 
         m_meshObject                = transform.FindChild("PlayerCharacterMesh").gameObject;
@@ -664,6 +687,7 @@ public class PlayerCharacter : MonoBehaviour
         Velocity,
         InBuilding,
         OutBuilding,
+        OutBuildingExit,
         InputCancel,
         HoldPlayer,
         HoldGirl,
@@ -699,6 +723,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParametersHashs[(int)AnimatorParametersID.Velocity]           = Animator.StringToHash("velocity");
         m_animatorParametersHashs[(int)AnimatorParametersID.InBuilding]         = Animator.StringToHash("inBuilding");
         m_animatorParametersHashs[(int)AnimatorParametersID.OutBuilding]        = Animator.StringToHash("outBuilding");
+        m_animatorParametersHashs[(int)AnimatorParametersID.OutBuildingExit]    = Animator.StringToHash("outBuildingExit");
         m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]        = Animator.StringToHash("inputCancel");
         m_animatorParametersHashs[(int)AnimatorParametersID.HoldPlayer]         = Animator.StringToHash("holdPlayer");
         m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]           = Animator.StringToHash("holdGirl");
@@ -912,6 +937,19 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public AnimatorStateInfo animatorStateInfo
+    {
+        get
+        {
+            return m_animatorStateInfo;
+        }
+
+        set
+        {
+            m_animatorStateInfo = value;
+        }
+    }
+
     bool m_isDoCancel;
 
     bool m_isDash;
@@ -928,4 +966,6 @@ public class PlayerCharacter : MonoBehaviour
     PlayerAbsorption m_playerAbsorption;
 
     Vector3 m_dafaultScale;
+
+    BoxCollider m_wallCollider;
 }

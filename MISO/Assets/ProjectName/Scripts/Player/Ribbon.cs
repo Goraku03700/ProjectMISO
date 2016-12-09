@@ -200,10 +200,10 @@ namespace Ribbons
             {
                 direction = transform.position - coughtPlayerCharater.transform.position;
 
-                if (direction.magnitude > m_triggerCollider.collider.radius * 5)
+                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
                 {
-                    //coughtPlayerCharater.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
-                    //coughtPlayerCharater.transform.position = transform.position;
+                    coughtPlayerCharater.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                    coughtPlayerCharater.transform.position = transform.position;
                 }
             }
 
@@ -211,10 +211,10 @@ namespace Ribbons
             {
                 direction = transform.position - girl.transform.position;
 
-                if (direction.magnitude > m_triggerCollider.collider.radius * 5)
+                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
                 {
-                    //girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
-                    //girl.transform.position = transform.position;
+                    girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                    girl.transform.position = transform.position;
                 }
             }
 
