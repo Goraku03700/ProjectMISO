@@ -137,7 +137,7 @@ GameObject:
   - 114: {fileID: 114000013062789994}
   m_Layer: 5
   m_Name: PlayerIcon3P
-  m_TagString: Untagged
+  m_TagString: Player3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ GameObject:
   - 114: {fileID: 114000012137018162}
   m_Layer: 5
   m_Name: PlayerIcon1P
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,7 +352,7 @@ GameObject:
   - 114: {fileID: 114000013973460068}
   m_Layer: 5
   m_Name: ScoreBack2P
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,7 +370,7 @@ GameObject:
   - 114: {fileID: 114000012238415410}
   m_Layer: 5
   m_Name: PlayerIcon4P
-  m_TagString: Untagged
+  m_TagString: Player4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -405,7 +405,7 @@ GameObject:
   - 114: {fileID: 114000010722344560}
   m_Layer: 5
   m_Name: PlayerIcon2P
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d40a8c41e7b42429d91c7f5d2d3606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_time: 0
+  m_time: 180
 --- !u!114 &114000012814169496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1125,6 +1125,7 @@ MonoBehaviour:
   m_endEffect: {fileID: 0}
   m_fever: {fileID: 0}
   m_clock: {fileID: 114000014234670720}
+  m_timeNiddle: {fileID: 0}
   m_girlCreateSystem: {fileID: 0}
 --- !u!114 &114000013755519210
 MonoBehaviour:

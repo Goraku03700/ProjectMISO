@@ -392,6 +392,10 @@ public class PlayerCharacter : MonoBehaviour
         m_rigidbody.mass = 1.0f;
 
         m_playerIcon.ChangeIconSad();
+
+        m_playerAbsorption.startAbsorption(transform.position, m_caughtRibbon.playerCharacter.transform.position);
+
+        m_collider.enabled = false;
     }
 
     public void CollectUpdate()
@@ -405,9 +409,14 @@ public class PlayerCharacter : MonoBehaviour
             m_inBuildingTime = .0f;
         }
 
+        m_playerAbsorption.SetEndPosition(m_caughtRibbon.playerCharacter.transform.position);
+        transform.position = m_playerAbsorption.GetLerpPointAtTime();
+
         // test
-        m_meshObject.SetActive(false);
-        m_buildingObject.SetActive(false);
+        //m_meshObject.SetActive(false);
+        //m_buildingObject.SetActive(false);
+
+        transform.localScale = Vector3.Lerp(m_dafaultScale, Vector3.zero, m_collectTime / m_playerCharacterData.collectTime);
     }
 
     public void KnockbackEnter()
@@ -421,6 +430,7 @@ public class PlayerCharacter : MonoBehaviour
         m_meshObject.SetActive(false);
         m_buildingObject.SetActive(false);
         m_collider.enabled = false;
+        transform.localScale = m_dafaultScale;
 
         m_inBuildingTime = .0f;
     }
@@ -586,7 +596,11 @@ public class PlayerCharacter : MonoBehaviour
         m_sanddustParticle          = transform.FindChild("SandDust").gameObject.GetComponent<ParticleSystem>();
         m_npcGetParticle            = transform.FindChild("NpcGetEffect").gameObject.GetComponent<ParticleSystem>();
 
+        m_playerAbsorption         = transform.FindChild("CharacterAbsorption").gameObject.GetComponent<PlayerAbsorption>();
+
         m_bgmManager                = BGMManager.instance;
+
+        m_dafaultScale = transform.localScale;
 
         var playerIcons = FindObjectsOfType<PlayerIcon>();
 
@@ -907,4 +921,8 @@ public class PlayerCharacter : MonoBehaviour
     BGMManager m_bgmManager;
 
     PlayerIcon m_playerIcon;
+
+    PlayerAbsorption m_playerAbsorption;
+
+    Vector3 m_dafaultScale;
 }
