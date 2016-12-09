@@ -8,27 +8,27 @@ GUI Animator FREE 1.1.0
 
 	Features:
 
-		ï 9 Demo scenes for C# developers.
-		ï 9 Demo scenes for JavaScript developers.
-		ï 2 Basic demo scenes for C# developers.
-		ï Position, rotation, scale, fade animations with tweener.
-		ï Categorized In, Idle and Out animations.
-		ï Able to add and play sounds along with UI animations.
-		ï Ignorable time scale.
+		ÅE9 Demo scenes for C# developers.
+		ÅE9 Demo scenes for JavaScript developers.
+		ÅE2 Basic demo scenes for C# developers.
+		ÅEPosition, rotation, scale, fade animations with tweener.
+		ÅECategorized In, Idle and Out animations.
+		ÅEAble to add and play sounds along with UI animations.
+		ÅEIgnorable time scale.
 		
-		ï Supports Unity UI. (http://unity3d.com/learn/tutorials/modules/beginner/ui)
-		ï Supports all Canvas Render Modes.
-		ï Supports all UI Scale Modes.
+		ÅESupports Unity UI. (http://unity3d.com/learn/tutorials/modules/beginner/ui)
+		ÅESupports all Canvas Render Modes.
+		ÅESupports all UI Scale Modes.
 
-		ï Support all build player platforms.
+		ÅESupport all build player platforms.
 		
 	Compatible:
 	
-		ï Unity 5.4.0 or higher.
+		ÅEUnity 5.4.0 or higher.
 
 	Note:
 
-		ï GUI Animator FREE shows a text at upper-left corner of screen for a while when Play mode started.
+		ÅEGUI Animator FREE shows a text at upper-left corner of screen for a while when Play mode started.
 
 	Product Pages:
 
@@ -44,12 +44,12 @@ GUI Animator FREE 1.1.0
 
 	Advance features in full version:
 
-		ï Callbacks.
-		ï No message in Play mode.
-		ï Supports DOTween, HOTween, LeanTween, iTween and able to add your favorite tweeners.
-		ï Rotate, Scale and Fade loop in Idle-animations.
-		ï Friendly Inspector that categorize animations in to tab.
-		ï Better performance.
+		ÅECallbacks.
+		ÅENo message in Play mode.
+		ÅESupports DOTween, HOTween, LeanTween, iTween and able to add your favorite tweeners.
+		ÅERotate, Scale and Fade loop in Idle-animations.
+		ÅEFriendly Inspector that categorize animations in to tab.
+		ÅEBetter performance.
 
 
 	Please direct any bugs/comments/suggestions to support e-mail (geteamdev@gmail.com).
@@ -66,41 +66,41 @@ Release notes
 
 	Version 1.1.0
 	
-		ï Unity 5.4.0 or higher compatible.
+		ÅEUnity 5.4.0 or higher compatible.
 
 	Version 1.0.1 (Release on May 19, 2016)
 	
-		ï Fixed, DontDestroyOnLoad is called in edit mode.
-		ï Improved performance of Scale Loop and Fade Loop animations.
-		ï Unity 5.3.4: Uses "SceneManager.LoadScene" instead of "Application.LoadLevel".
-		ï Unity 5.3.4: GETween, GUIAnimatorFREE are built on Unity 5.3.4p2.
-		ï Update demo scenes and sample scripts.
-		ï Unity 4.7.1 or higher.
-		ï Unity 5.3.4 or higher.
+		ÅEFixed, DontDestroyOnLoad is called in edit mode.
+		ÅEImproved performance of Scale Loop and Fade Loop animations.
+		ÅEUnity 5.3.4: Uses "SceneManager.LoadScene" instead of "Application.LoadLevel".
+		ÅEUnity 5.3.4: GETween, GUIAnimatorFREE are built on Unity 5.3.4p2.
+		ÅEUpdate demo scenes and sample scripts.
+		ÅEUnity 4.7.1 or higher.
+		ÅEUnity 5.3.4 or higher.
 
 	Version 0.9.95 (Initial version, release on May 04, 2016)
 
-		ï 9 Demo scenes with sample scripts for C# developers.
-		ï 9 Demo scenes with sample scripts for JavaScript developers.
-		ï 2 Basic demo scenes with sample scripts for C# developers.
-		ï Animate position, rotation, scale, fade using tweener.
-		ï Controls sounds with UI animations.
-		ï Ignorable time scale.
+		ÅE9 Demo scenes with sample scripts for C# developers.
+		ÅE9 Demo scenes with sample scripts for JavaScript developers.
+		ÅE2 Basic demo scenes with sample scripts for C# developers.
+		ÅEAnimate position, rotation, scale, fade using tweener.
+		ÅEControls sounds with UI animations.
+		ÅEIgnorable time scale.
 		
-		ï Works with Unity UI. (http://unity3d.com/learn/tutorials/modules/beginner/ui)
-		ï Works with all Canvas Render Modes.
-		ï Works with all UI Scale Modes.
+		ÅEWorks with Unity UI. (http://unity3d.com/learn/tutorials/modules/beginner/ui)
+		ÅEWorks with all Canvas Render Modes.
+		ÅEWorks with all UI Scale Modes.
 
-		ï Supports all player platforms.
-		ï Unity 4.6.9 or higher.
-		ï Unity 5.3.2 or higher.
+		ÅESupports all player platforms.
+		ÅEUnity 4.6.9 or higher.
+		ÅEUnity 5.3.2 or higher.
 
 ------------------------------------------------------------------
 Easing type references
 ------------------------------------------------------------------
 	
-	ï Easings.net
+	ÅEEasings.net
 		http://easings.net
 
-	ï RobertPenner.com
+	ÅERobertPenner.com
 		http://www.robertpenner.com/easing/easing_demo.html
