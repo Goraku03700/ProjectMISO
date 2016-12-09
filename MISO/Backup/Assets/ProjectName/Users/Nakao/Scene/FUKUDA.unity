@@ -1739,6 +1739,56 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012618874054, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013035006066, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011707901326, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011860913204, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013150283264, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012618874054, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013035006066, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011707901326, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011860913204, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013150283264, guid: 19b851b4c6d643f4ebacbd92edc5f896,
+        type: 2}
+      propertyPath: m_EffectDistance.y
+      value: -0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19b851b4c6d643f4ebacbd92edc5f896, type: 2}
   m_IsPrefabParent: 0
@@ -2483,6 +2533,11 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -0.78
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010768051242, guid: f22cf58988bc63646ab51980ab3df6f0,
+        type: 2}
+      propertyPath: m_isKeybordPlay
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22cf58988bc63646ab51980ab3df6f0, type: 2}
   m_IsPrefabParent: 0
@@ -3052,7 +3107,7 @@ Prefab:
     - target: {fileID: 224000012368788992, guid: 3af9e66458fd627458141966b21e6181,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 1000
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 224000012368788992, guid: 3af9e66458fd627458141966b21e6181,
         type: 2}
