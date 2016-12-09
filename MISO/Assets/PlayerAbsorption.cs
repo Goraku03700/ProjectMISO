@@ -47,6 +47,7 @@ public class PlayerAbsorption : MonoBehaviour {
             m_bezier = new Bezier(startPosition, Vector3.Lerp(startPosition, endPosition, 0.4f) + Vector3.up * 6f, Vector3.Lerp(startPosition, endPosition, 0.6f) + Vector3.up * 6f, endPosition);
             m_startAbsorption = true;
             m_absorptionParticle.Play();
+            m_time = 0.0f;
         }
         m_startPosition = startPosition;
         m_endPosition = endPosition;
