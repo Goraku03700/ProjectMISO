@@ -66,7 +66,6 @@ public class TimeCount : MonoBehaviour {
         {
             nowTime += Time.deltaTime;
         }
-
         // 残り時間を計算
         float dispTime = timeInit - nowTime;
 
@@ -75,8 +74,8 @@ public class TimeCount : MonoBehaviour {
 
         timeText.text = minute.ToString() + ":" + second.ToString().PadLeft(2, '0');
 
-        if(dispTime <= m_feverStartTime && !m_isFever)
-        {
+        if(dispTime <= m_feverStartTime + 1.0f && !m_isFever)
+        { 
             m_isFever = true;
             m_fever.StartFever();
         }

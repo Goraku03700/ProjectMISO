@@ -1,11 +1,11 @@
-﻿Shader "UI/Mask"
+﻿Shader "UI/Fever"
 {
 	Properties
 	{
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
 		_Color("Tint", Color) = (1, 1, 1, 1)
-		_ScrollX("Scroll X", float) = 0
-		_ScrollY("Scroll Y", float) = 0
+			_ScrollX("Scroll X", float) = 0
+			_ScrollY("Scroll Y", float) = 0
 			_StencilComp("Stencil Comparison", Float) = 8
 			_Stencil("Stencil ID", Float) = 0
 			_StencilOp("Stencil Operation", Float) = 0
@@ -99,8 +99,8 @@
 						float _ScrollX, _ScrollY;
 						fixed4 frag(v2f IN) : SV_Target
 						{
-							//float2 scroll = float2(_ScrollX, _ScrollY) * _Time.y;
-							half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+							float2 scroll = float2(_ScrollX, _ScrollY) * _Time.y;
+							half4 color = (tex2D(_MainTex, IN.texcoord + scroll) + _TextureSampleAdd) * IN.color;
 							half mask = tex2D(_MaskTex, IN.texcoord).a;
 							half alpha = mask - (-1 + _Range * 2);
 							color.a *= alpha;

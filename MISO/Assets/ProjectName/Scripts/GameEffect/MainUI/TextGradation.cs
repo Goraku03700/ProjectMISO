@@ -17,7 +17,7 @@ public class TextGradation : MonoBehaviour {
     float m_limit;
     float m_time;
 
-    
+    RawImage m_outFlame;
 
     [SerializeField]
     int m_iterator;
@@ -32,11 +32,16 @@ public class TextGradation : MonoBehaviour {
             }
         }
         m_time = 0.0f;
+        m_outFlame = GameObject.Find("OutFlame").GetComponent<RawImage>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
+        if(m_outFlame.enabled == false)
+        {
+            m_outFlame.enabled = true;
+        }
         m_time += Time.deltaTime;
         if(m_time > m_limit)
         {

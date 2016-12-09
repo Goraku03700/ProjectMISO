@@ -10,8 +10,10 @@ public class GameEndEffect : MonoBehaviour {
     Image[] m_textSprites;
 
     [SerializeField]
-    Text m_countdownText;
+    Image m_countdownImage;
 
+    [SerializeField]
+    Sprite[] m_countdownSprites;
     enum State
     {
         CountDown,
@@ -56,11 +58,15 @@ public class GameEndEffect : MonoBehaviour {
         {
             case State.CountDown:
                 {
-                    m_countdownText.text = "" + (int)(m_countDownTime+1-m_time);
-                    m_countdownText.color = new Color(1f,0,0,(1f - (m_time - Mathf.FloorToInt(m_time))));
+                    if(m_countdownImage.enabled == false)
+                    {
+                        m_countdownImage.enabled = true;
+                    }
+                    m_countdownImage.sprite = m_countdownSprites[(int)(m_countDownTime-m_time)];
+                    m_countdownImage.color = new Color(1f,0,0,(1f - (m_time - Mathf.FloorToInt(m_time))));
                     if(m_countDownTime <m_time)
                     {
-                        m_countdownText.text = "";
+                        m_countdownImage.enabled = false;
                         m_state = State.Ribbon;
                         m_time = 0.0f;
                         BGMManager.instance.PlaySE("se032_GameOverRibbon");
@@ -90,7 +96,7 @@ public class GameEndEffect : MonoBehaviour {
                     break;
                 }
             default:
-                m_countdownText.text = "";
+                m_countdownImage.enabled = false;
                 break;
         }
 
