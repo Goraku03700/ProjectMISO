@@ -63,4 +63,14 @@ public class PlayerAbsorption : MonoBehaviour {
         return m_bezier.GetPointAtTime(m_time);
     }
 
+    public Vector3 GetLerpPointAtTime(float time)
+    {
+        Vector3 position;
+        position =  Vector3.Lerp(m_startPosition, m_endPosition, m_time);
+        Vector3 up = m_bezier.GetPointAtTime(m_time);
+        up.z = up.x = 0.0f;
+        position += up;
+        return position;
+    }
+
 }

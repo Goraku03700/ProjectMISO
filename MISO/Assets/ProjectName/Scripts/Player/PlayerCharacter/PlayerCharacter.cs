@@ -55,7 +55,7 @@ public class PlayerCharacter : MonoBehaviour
             {
                 transform.forward = direction;
 
-                m_rigidbody.mass = 0.1f;
+                //m_rigidbody.mass = 0.1f;
             }
 
             if (m_controlledRibbon)
@@ -316,7 +316,11 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(m_controlledRibbon != null)
         {
-            transform.LookAt(m_controlledRibbon.transform);
+            Vector3 atPosition = m_controlledRibbon.transform.position;
+
+            atPosition.y = 0;
+
+            transform.LookAt(atPosition);
 
 
             Vector3 vector = transform.position - m_controlledRibbon.transform.position;
@@ -347,20 +351,23 @@ public class PlayerCharacter : MonoBehaviour
 
     public void CaughtRibbon(Ribbon caughtRibbon)
     {
-        //@todo Change SetTrigger
-        m_animator.Play("Base Layer.CaughtRibbon.Caught");
-
-        gameObject.layer    = LayerMask.NameToLayer("CaughtPlayerCharacter");
-        m_caughtRibbon      = caughtRibbon;
-        m_playerIcon.ChangeIconAngry();
-
-        if (m_controlledRibbon)
+        if(isCaught)
         {
-            m_controlledRibbon.Breake();
+            //@todo Change SetTrigger
+            m_animator.Play("Base Layer.CaughtRibbon.Caught");
 
-            Destroy(m_controlledRibbon.gameObject);
-           
-            m_controlledRibbon = null;
+            gameObject.layer = LayerMask.NameToLayer("CaughtPlayerCharacter");
+            m_caughtRibbon = caughtRibbon;
+            m_playerIcon.ChangeIconAngry();
+
+            if (m_controlledRibbon)
+            {
+                m_controlledRibbon.Breake();
+
+                Destroy(m_controlledRibbon.gameObject);
+
+                m_controlledRibbon = null;
+            }
         }
     }
 
@@ -439,7 +446,7 @@ public class PlayerCharacter : MonoBehaviour
 
         m_caughtRibbon.playerCharacter.playerFire.Fire(transform, m_rigidbody);
 
-        m_rigidbody.mass = 0.1f;
+        //m_rigidbody.mass = 0.1f;
 
         m_playerIcon.ChangeIconNormal();
     }

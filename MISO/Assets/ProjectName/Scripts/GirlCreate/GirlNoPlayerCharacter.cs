@@ -176,17 +176,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         {
             case State.Generation:
             {
-                /*float scale = Mathf.Lerp(0.0f,m_scale,m_time);
-                m_girlMesh.transform.localScale = new Vector3(scale,scale,scale);
-                //登場演出
-                if(scale == m_scale)
-                {
-                    m_status = State.Alive;
-                    m_movable.direction = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
-                    m_movable.speed = 3.0f;
-                    m_time = 0.0f;
-                }
-                */
+                
                 
                 if(m_time >= 1.0f)
                 {
@@ -257,7 +247,6 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_time = 1f;
                 }
                 m_bezier.ResetBezier(m_npcPos, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.4f) + Vector3.up * 6f, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.6f) + Vector3.up * 6f, m_getPlayerBillding.transform.position);
-                //this.transform.position =  m_bezier.GetPointAtTime(m_time);
                 m_playerAbsorption.SetAbsorption(m_npcPos, m_getPlayerBillding.transform.position);
                 transform.position = Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, m_time);
                 Vector3 up = m_bezier.GetPointAtTime(m_time);
