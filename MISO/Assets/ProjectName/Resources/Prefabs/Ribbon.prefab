@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938842d6c84abf44aa703ce9c23436d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_raycastLength: 0.25
+  m_raycastLength: 0.4
 --- !u!114 &114000013475928498
 MonoBehaviour:
   m_ObjectHideFlags: 1
