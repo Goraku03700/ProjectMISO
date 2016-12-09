@@ -351,7 +351,9 @@ public class PlayerCharacter : MonoBehaviour
 
     public void CaughtRibbon(Ribbon caughtRibbon)
     {
-        if(isCaught)
+        //if(isCaught)
+        if(m_animatorStateInfo.shortNameHash != Animator.StringToHash("CaughtRibbon.Caught") &&
+            m_animatorStateInfo.shortNameHash != Animator.StringToHash("CaughtRibbon.Release"))
         {
             //@todo Change SetTrigger
             m_animator.Play("Base Layer.CaughtRibbon.Caught");
@@ -373,7 +375,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public void CatchRelease()
     {
-        m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
+        //m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
+        //m_animator.Play("");
 
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
@@ -389,7 +392,7 @@ public class PlayerCharacter : MonoBehaviour
 
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
         m_collectTime = .0f;
-        m_rigidbody.mass = 1.0f;
+        //m_rigidbody.mass = 1.0f;
 
         m_playerIcon.ChangeIconSad();
 
