@@ -85,6 +85,8 @@ public class PlayerIcon : MonoBehaviour {
 
                     }
 
+                    this.transform.localScale = new Vector3(0, 0, 0);
+
                 }
                 break;
 

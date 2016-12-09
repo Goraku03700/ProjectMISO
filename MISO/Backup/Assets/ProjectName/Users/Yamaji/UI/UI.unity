@@ -596,13 +596,14 @@ GameObject:
   - 224: {fileID: 1045765230}
   - 222: {fileID: 1045765232}
   - 114: {fileID: 1045765231}
+  - 114: {fileID: 1045765233}
   m_Layer: 5
-  m_Name: Clock
+  m_Name: PullArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1045765230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -642,7 +643,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c08ff2b50950f5e45851fb4ea902528e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4928bbbb5049483b9d0e29a072171ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -657,6 +658,21 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1045765229}
+--- !u!114 &1045765233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1045765229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2796e435d32793541b5007d979a6e2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_scaleAdd: 1.1
+  m_scaleSpeed: 0.2
+  m_ArrowLeft: {fileID: 0}
+  m_ArrowRight: {fileID: 0}
 --- !u!1 &1172174729 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013811463074, guid: bc9abf7190fcc144eaf43d94b35ee1c3,
@@ -763,6 +779,53 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1363461997}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1421246653
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010664700688, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010664700688, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010664700688, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010664700688, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010664700688, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010664700688, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010664700688, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010664700688, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013859949398, guid: 1952d347209a2054f80baa8ff6f1f270,
+        type: 2}
+      propertyPath: m_targetCamera
+      value: 
+      objectReference: {fileID: 1280010470}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1952d347209a2054f80baa8ff6f1f270, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1468278550
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +1008,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.14267498
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011809158566, guid: 9428d3e80bb32db45b2dcd6c012b2ed4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9428d3e80bb32db45b2dcd6c012b2ed4, type: 2}

@@ -19,7 +19,7 @@ public class GameStartEffect : MonoBehaviour {
     Text[] m_texts;
 
     [SerializeField]
-    Text m_goTexts;
+    Image m_goImage;
 
     float m_time;
     [SerializeField]
@@ -59,7 +59,7 @@ public class GameStartEffect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        m_goTexts.enabled = false;
+        m_goImage.enabled = false;
         m_fadeObject = GameObject.FindObjectOfType<Fade>();
 	}
 	
@@ -108,7 +108,7 @@ public class GameStartEffect : MonoBehaviour {
                     {
                         m_time = 0.0f;
                         m_state = State.Go;
-                        m_goTexts.text = "Go!!";
+                        m_goImage.color = lerpColors[1];
                         for (int i = 0; i < m_texts.Length; ++i)
                         {
                             m_texts[i].color = lerpColors[1];
@@ -132,7 +132,7 @@ public class GameStartEffect : MonoBehaviour {
                 }
             case State.Go:
                 {
-                    m_goTexts.enabled = true;
+                    m_goImage.enabled = true;
                     m_state = State.FadeGo;
                     m_timeCount.StartTime();
                     BGMManager.instance.PlaySE("se021_StartGame");
@@ -144,15 +144,15 @@ public class GameStartEffect : MonoBehaviour {
                     if (m_time > m_fadeGoEndTime + m_fadeGoStartTime)
                     {
                         m_state = State.None;
-                        m_goTexts.color = lerpColors[1];
+                        m_goImage.color = lerpColors[1];
                     }
                     else if(m_time < m_fadeGoStartTime)
                     {
-                        m_goTexts.color = lerpColors[0];
+                        m_goImage.color = lerpColors[0];
                     }
                     else
                     {
-                        m_goTexts.color = Color32.Lerp(lerpColors[0], lerpColors[1], m_time / m_fadeGoEndTime);
+                        m_goImage.color = Color32.Lerp(lerpColors[0], lerpColors[1], m_time / m_fadeGoEndTime);
                      }
                     break;
                 }
