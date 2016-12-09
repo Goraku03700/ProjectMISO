@@ -370,6 +370,8 @@ public class PlayerCharacter : MonoBehaviour
 
                 m_controlledRibbon = null;
             }
+
+            m_isThisFrameCought = true;
         }
     }
 
@@ -670,6 +672,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_dashGauge.raito = 1 - (m_dashDurationTime / m_playerCharacterData.dashTime);
 
+        m_isThisFrameCought = false;
+
         _UpdateAnimatorParameters();
     }
 
@@ -950,6 +954,19 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public bool isThisFrameCought
+    {
+        get
+        {
+            return m_isThisFrameCought;
+        }
+
+        set
+        {
+            m_isThisFrameCought = value;
+        }
+    }
+
     bool m_isDoCancel;
 
     bool m_isDash;
@@ -968,4 +985,6 @@ public class PlayerCharacter : MonoBehaviour
     Vector3 m_dafaultScale;
 
     BoxCollider m_wallCollider;
+
+    bool m_isThisFrameCought;
 }
