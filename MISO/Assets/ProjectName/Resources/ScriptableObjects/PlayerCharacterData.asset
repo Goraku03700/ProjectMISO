@@ -19,7 +19,7 @@ MonoBehaviour:
   ribbonCollectLength: 3
   ribbonProjectionTime: 1
   ribbonPenaltyTime: 5
-  ribbonShakeSpeed: 180
+  ribbonShakeSpeed: 30
   ribbonViolentMoveSpeed: 75
   ribbonReboundPower: 30
   ribbonReboundCountRatio: 0.15
