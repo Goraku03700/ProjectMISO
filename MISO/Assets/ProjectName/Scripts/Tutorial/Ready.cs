@@ -13,6 +13,8 @@ public class Ready : MonoBehaviour {
 
         m_isDisp = false;
 
+        this.transform.localScale = new Vector3(0.0f, 0.0f, 1.0f);
+
 	}
 
     // Update is called once per frame
@@ -23,10 +25,12 @@ public class Ready : MonoBehaviour {
             Vector3 objScale = this.transform.localScale;
 
             objScale.x += m_speed * Time.deltaTime;
+            objScale.y += m_speed * Time.deltaTime;
 
             if(objScale.x > 1.0f)
             {
                 objScale.x = 1.0f;
+                objScale.y = 1.0f;
             }
 
             this.transform.localScale = objScale;

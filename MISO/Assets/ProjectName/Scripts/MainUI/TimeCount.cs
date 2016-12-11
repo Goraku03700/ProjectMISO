@@ -51,6 +51,7 @@ public class TimeCount : MonoBehaviour {
 
         m_endEffect.m_CountDownTime = m_countDownStartTime;
 
+
 	}
 
     void Awake()

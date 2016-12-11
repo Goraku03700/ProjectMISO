@@ -13,7 +13,10 @@ public class DashGauge : MonoBehaviour {
     private Color m_littleColor;    // 少ない時の色
 
     [SerializeField]
-    private float m_littleColorRaito;   // 色を変える割合
+    private float m_littleColorRaito;   // 色を変える割合(少ない時)
+
+    [SerializeField]
+    private float m_normalColorRaito;   // 色を変える割合(通常時)
 
 
     private SpriteRenderer m_gaugeRenderer;
@@ -133,7 +136,7 @@ public class DashGauge : MonoBehaviour {
         {
             m_gaugeRenderer.color = m_littleColor;
         }
-        else if (m_raito >= 1.0f)
+        else if (m_raito >= m_normalColorRaito)
         {
             m_gaugeRenderer.color = m_maxColor;
         }

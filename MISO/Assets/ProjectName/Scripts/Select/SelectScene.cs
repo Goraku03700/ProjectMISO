@@ -18,6 +18,7 @@ public class SelectScene : MonoBehaviour {
 
     private MultiInput.JoypadNumber[] m_joypadNumber;
 
+
     // Use this for initialization
     void Start () {
 
@@ -85,6 +86,8 @@ public class SelectScene : MonoBehaviour {
         {
             m_readyFlag[0] = true;
             readyText[0].text = "OK!";
+
+            GameObject.Find("PlayerCharacter1").GetComponent<Animator>().SetBool("isGlad", true);
         }
 
 
@@ -92,20 +95,26 @@ public class SelectScene : MonoBehaviour {
         {
             m_readyFlag[1] = true;
             readyText[1].text = "OK!";
+
+            GameObject.Find("PlayerCharacter2").GetComponent<Animator>().SetBool("isGlad", true);
         }
 
         if (Input.GetKeyDown(KeyCode.C) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad3))
         {
             m_readyFlag[2] = true;
             readyText[2].text = "OK!";
+
+            GameObject.Find("PlayerCharacter3").GetComponent<Animator>().SetBool("isGlad", true);
         }
 
         if (Input.GetKeyDown(KeyCode.V) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad4))
         {
             m_readyFlag[3] = true;
             readyText[3].text = "OK!";
+
+            GameObject.Find("PlayerCharacter4").GetComponent<Animator>().SetBool("isGlad", true);
         }
-    
+
 
 
 
