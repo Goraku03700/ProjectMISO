@@ -200,10 +200,10 @@ namespace Ribbons
             {
                 direction = transform.position - coughtPlayerCharater.transform.position;
 
-                if (direction.magnitude > m_triggerCollider.collider.radius * 5)
+                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
                 {
-                    //coughtPlayerCharater.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
-                    //coughtPlayerCharater.transform.position = transform.position;
+                    coughtPlayerCharater.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                    coughtPlayerCharater.transform.position = transform.position;
                 }
             }
 
@@ -211,10 +211,10 @@ namespace Ribbons
             {
                 direction = transform.position - girl.transform.position;
 
-                if (direction.magnitude > m_triggerCollider.collider.radius * 5)
+                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
                 {
-                    //girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
-                    //girl.transform.position = transform.position;
+                    girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                    girl.transform.position = transform.position;
                 }
             }
 
@@ -383,13 +383,16 @@ namespace Ribbons
             {
                 //transform.RotateAround(playerCharacter.transform.position, transform.up, m_shakeAngle * Time.deltaTime);
 
-                Quaternion q = Quaternion.AngleAxis(m_shakeAngle * Time.deltaTime, Vector3.up);
+                Quaternion  q = Quaternion.AngleAxis(m_shakeAngle * Time.deltaTime, Vector3.up);
+                Vector3     v = q * (transform.position - m_playerCharacter.transform.position) + m_playerCharacter.transform.position;
 
-                m_rigidbody.MovePosition(q * (transform.position - m_playerCharacter.transform.position) + m_playerCharacter.transform.position);
+                m_rigidbody.MovePosition(v);
                 //m_rigidbody.MovePosition(q * (m_playerCharacter.transform.position - transform.position) + transform.position);
                 //m_rigidbody.MoveRotation(transform.rotation * q);
 
-                m_rigidbody.velocity = q * m_rigidbody.velocity;
+                //m_rigidbody.velocity = q * m_rigidbody.velocity;
+
+                //m_rigidbody.AddForce(v * 200, ForceMode.);
 
                 m_isDoShake = false;
             }

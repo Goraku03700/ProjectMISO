@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623dcffdcb2323b43bdb1d787123db84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_screenPosition: {x: 650, y: 40, z: 0}
+  m_screenPosition: {x: 460, y: 40, z: 0}
   m_images:
   - {fileID: 0}
   - {fileID: 0}
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623dcffdcb2323b43bdb1d787123db84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_screenPosition: {x: 100, y: 370, z: 0}
+  m_screenPosition: {x: 100, y: 268, z: 0}
   m_images:
   - {fileID: 0}
   - {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623dcffdcb2323b43bdb1d787123db84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_screenPosition: {x: 650, y: 370, z: 0}
+  m_screenPosition: {x: 460, y: 268, z: 0}
   m_images:
   - {fileID: 0}
   - {fileID: 0}
