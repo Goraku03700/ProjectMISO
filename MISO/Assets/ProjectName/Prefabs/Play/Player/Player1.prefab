@@ -330,6 +330,7 @@ GameObject:
   - 4: {fileID: 4000011236113572}
   - 198: {fileID: 198000010738127576}
   - 199: {fileID: 199000011394393106}
+  - 114: {fileID: 114000014016117124}
   m_Layer: 0
   m_Name: Ase
   m_TagString: Untagged
@@ -1863,7 +1864,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.25, z: 0.25}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!65 &65000012074963306
 BoxCollider:
@@ -1992,13 +1993,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e09fa7d3628012c4fbfe38f171d221b0, type: 2}
   - {fileID: 2100000, guid: 5c9f2d06be0d9a049b87d3e9a581d2c2, type: 2}
   - {fileID: 2100000, guid: ad60ae5885166914b8cb682880d78098, type: 2}
-  m_meshRenderers:
-  - {fileID: 137000013642202014}
-  - {fileID: 137000012864644880}
-  - {fileID: 137000011375535626}
-  - {fileID: 137000011934189772}
-  m_invisibleMaterial: {fileID: 2100000, guid: 8f1c5aa3e8b489a46802092b6b8692b9, type: 2}
-  m_origineMaterial: {fileID: 2100000, guid: 9cb38fd98b3855d4196019b088dee453, type: 2}
 --- !u!114 &114000012899080588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2014,6 +2008,7 @@ MonoBehaviour:
   m_normalColor: {r: 0.98823535, g: 1, b: 0.16862746, a: 1}
   m_littleColor: {r: 1, g: 0, b: 0, a: 1}
   m_littleColorRaito: 0.3
+  m_normalColorRaito: 0.8
 --- !u!114 &114000012944347082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2052,6 +2047,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetCamera: {fileID: 0}
+--- !u!114 &114000014016117124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011283633888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34f63489f3042f4898f2bbf53e66064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135000010584107126
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2337,7 +2343,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -425537773
+  randomSeed: 1387319401
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2663,7 +2669,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startRotation:
-      scalar: 2.6179938
+      scalar: 3.3161256
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4056,7 +4062,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1817376430
+  randomSeed: 1633208898
   InitialModule:
     serializedVersion: 2
     enabled: 1

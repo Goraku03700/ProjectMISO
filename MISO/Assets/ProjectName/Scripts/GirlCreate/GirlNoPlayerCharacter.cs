@@ -257,7 +257,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 this.transform.position += up;
                 m_particleSystem.startSize = Mathf.Lerp(2.0f, 0.0f, m_time);
                 //transform.localPosition =  m_bezier.GetPointAtTime(m_time);
-                transform.localScale = Vector3.Lerp(new Vector3(0.25f,0.25f,0.25f), Vector3.zero, m_time);
+                transform.localScale = Vector3.Lerp(new Vector3(1f,1f,1f), Vector3.zero, m_time);
                 //ベジェ曲線での取得演出処理
                 
                 break;
@@ -308,6 +308,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_isCaught          = true;
         gameObject.layer    = LayerMask.NameToLayer("CaughtGirl");
         m_status            = State.Caught;
+        m_npcMotion.SetBool("Caught", true);
         m_targetPosition = playerCharacter.transform.localPosition;
         m_getPlayerBillding = playerCharacter.playerFire;
         // 目標地点の方向を向く
