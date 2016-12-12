@@ -118,6 +118,7 @@
     <Compile Include="Assets\OutBuilding.cs" />
     <Compile Include="Assets\PlayerAbsorption.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Fade\Fade.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\GameEffect\Ase.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameEffect\MainUI\FeverTextControl.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameEffect\MainUI\GameEndEffect.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameEffect\MainUI\GameStartEffect.cs" />
