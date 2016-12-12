@@ -19,3 +19,5 @@ EditorBuildSettings:
     path: Assets/ProjectName/Scenes/Select/Select.unity
   - enabled: 1
     path: Assets/ProjectName/Scenes/Play/Play.unity
+  - enabled: 1
+    path: Assets/ProjectName/Scenes/Tutorial/Tutorial.unity

@@ -116,6 +116,12 @@ Material:
         name: _Range
       second: 1
     - first:
+        name: _ScrollX
+      second: 0
+    - first:
+        name: _ScrollY
+      second: 0
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:

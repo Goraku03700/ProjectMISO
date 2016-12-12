@@ -157,6 +157,23 @@ Transform:
   - {fileID: 977740855}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &70585373 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010164261928, guid: 66fdad13293a38c46ae48bc46aeea821,
+    type: 2}
+  m_PrefabInternal: {fileID: 1649561967}
+--- !u!114 &70585375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70585373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee84318adb148c4cb9735a91ac8d7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FlashSpeed: 0
 --- !u!1 &79739488
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 853583467}
+  m_animator: {fileID: 0}
 --- !u!108 &298247673
 Light:
   m_ObjectHideFlags: 0
@@ -1546,6 +1564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 415055038}
+  m_animator: {fileID: 0}
 --- !u!108 &1401506727
 Light:
   m_ObjectHideFlags: 0
@@ -3203,6 +3222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 712702182}
+  m_animator: {fileID: 0}
 --- !u!108 &1875958703
 Light:
   m_ObjectHideFlags: 0
@@ -3648,6 +3668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 1161362233}
+  m_animator: {fileID: 0}
 --- !u!108 &2113365853
 Light:
   m_ObjectHideFlags: 0

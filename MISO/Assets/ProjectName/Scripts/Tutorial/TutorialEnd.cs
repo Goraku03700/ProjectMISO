@@ -44,9 +44,10 @@ public class TutorialEnd : MonoBehaviour {
 
 
         // 全員レディしたら
-        if(m_readyFlag[0] && m_readyFlag[1] && m_readyFlag[2] && m_readyFlag[3])
+        if (m_readyFlag[0] && m_readyFlag[1] && m_readyFlag[2] && m_readyFlag[3])
         {
             Fade.ChangeScene("Play");
         }
+
     }
 }
