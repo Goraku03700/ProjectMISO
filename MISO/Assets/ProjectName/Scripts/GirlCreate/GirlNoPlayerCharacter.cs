@@ -196,7 +196,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 {
                     m_targetPosition = GetRandomPositionOnLevel();
                 }
-
+                m_rigidbody.velocity = Vector3.zero;
                 // 目標地点の方向を向く
                 if(m_time > 1.0f)
                 {
