@@ -1,58 +1,94 @@
-﻿/*
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class FlashText : MonoBehaviour {
 
     [SerializeField]
-    private float m_FlashSpeed; // 点滅速度
+    private float m_speed;
+
 
     // テキストの状態
-    enum TextState{
+    enum TextState
+    {
         Normal,
         Decide,
     }
     TextState m_textState;
 
-    enum 
+    private Text m_text;
 
-    private Text m_text;        // 文字オブジェクト
+    private float m_flashApha;
+    private float m_time;
 
-    private float m_addAlpha;   // 加算値
 
-    private float m_time;       // 経過時間
-    
     // Use this for initialization
     void Start()
     {
-        m_text = this.GetComponent<Text>();
 
+        m_text = this.GetComponent<Text>();
+        
+        if(m_speed == 0.0f) m_speed = 1.0f;
+        m_flashApha = 1.0f;
         m_time = 0.0f;
-   }
+
+        m_textState = TextState.Normal;
+
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-
-        m_time += Time.deltaTime;
-
         Color color = m_text.color;
 
-        switch(m_textState)
+        switch (m_textState)
         {
             case TextState.Normal:
+                if (color.a > 1.0f || color.a < 0.0f)
                 {
-                    float addAlpha = m_time / m_FlashSpeed;
-                    color.a += addAlpha;
-
+                    m_speed *= -1;
                 }
+
+                //m_text.color = new Color(m_text.color.r, m_text.color.g, m_text.color.b, m_text.color.a + m_speed * Time.deltaTime);
+                color.a += m_speed * Time.deltaTime;
+                break;
+
+            case TextState.Decide:
+
+                m_time += Time.deltaTime;
+
+                // α値切り替え
+                if (m_time > 0.1f)
+                {
+                    if (m_flashApha >= 1.0f)
+                    {
+                        //m_flashApha = 0.0f;
+                        color.a = 0.0f;
+                    }
+                    else
+                    {
+                        //m_flashApha = 1.0f;
+                        color.a = 1.0f;
+                    }
+
+                    m_time = 0.0f;
+                }
+
+                //m_text.color = new Color(m_text.color.r, m_text.color.g, m_text.color.b, m_flashApha);
                 break;
         }
 
         m_text.color = color;
 
-
     }
+
+    /// <summary>
+    /// 文字を点滅させる
+    /// </summary>
+    public void DecideText()
+    {
+        m_textState = TextState.Decide;
+    }
+
 }
-*/
