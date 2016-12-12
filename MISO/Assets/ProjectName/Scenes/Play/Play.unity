@@ -980,6 +980,12 @@ Transform:
   - {fileID: 947643291}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &556786254 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012213929506, guid: 785c0019dfa09264cbf695ea777fb5c9,
+    type: 2}
+  m_PrefabInternal: {fileID: 478277895}
+  m_Script: {fileID: 11500000, guid: 3c1be03ed0a4f45438793c26655d24bb, type: 3}
 --- !u!1001 &601207058
 Prefab:
   m_ObjectHideFlags: 0
@@ -2709,10 +2715,11 @@ Prefab:
       propertyPath: m_Name
       value: EffevtRibbonManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011739552568, guid: 94400e19095e181498409bc0c8d648ef, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 114000011885851006, guid: 94400e19095e181498409bc0c8d648ef,
+        type: 2}
+      propertyPath: m_ribbonEffectPrefabs
+      value: 
+      objectReference: {fileID: 556786254}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94400e19095e181498409bc0c8d648ef, type: 2}
   m_IsPrefabParent: 0

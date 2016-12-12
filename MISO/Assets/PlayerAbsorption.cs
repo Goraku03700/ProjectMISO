@@ -13,6 +13,7 @@ public class PlayerAbsorption : MonoBehaviour {
     Vector3 m_startPosition, m_endPosition;
 
     float m_time = 0.0f;
+    float m_duration;
 
 	// Use this for initialization
 	void Start () {
@@ -25,14 +26,14 @@ public class PlayerAbsorption : MonoBehaviour {
         if(m_startAbsorption)
         {
             m_time += Time.deltaTime;
-            if(m_time >1.0f)
+            if(m_time >1.0f + m_duration)
             {
                 BGMManager.instance.PlaySE("se015_InCampany");
                 m_time = 1.0f;
                 m_startAbsorption = false;
                 m_absorptionParticle.Stop();
-            } 
-            transform.position = Vector3.Lerp(m_startPosition, m_endPosition, m_time);
+            }
+            transform.position = Vector3.Lerp(m_startPosition, m_endPosition, m_time / (1.0f + m_duration));
             Vector3 up = m_bezier.GetPointAtTime(m_time);
             up.z = up.x = 0.0f;
             this.transform.position += up;
@@ -48,6 +49,7 @@ public class PlayerAbsorption : MonoBehaviour {
             m_startAbsorption = true;
             m_absorptionParticle.Play();
             m_time = 0.0f;
+            m_duration = Random.Range(-0.2f, 0.2f);
         }
         m_startPosition = startPosition;
         m_endPosition = endPosition;
@@ -71,14 +73,14 @@ public class PlayerAbsorption : MonoBehaviour {
 
     public Vector3 GetPointAtTime(float time)
     {
-        return m_bezier.GetPointAtTime(m_time);
+        return m_bezier.GetPointAtTime(m_time / (1.0f + m_duration));
     }
 
     public Vector3 GetLerpPointAtTime()
     {
         Vector3 position;
-        position =  Vector3.Lerp(m_startPosition, m_endPosition, m_time);
-        Vector3 up = m_bezier.GetPointAtTime(m_time);
+        position = Vector3.Lerp(m_startPosition, m_endPosition, m_time / (1.0f + m_duration));
+        Vector3 up = m_bezier.GetPointAtTime(m_time / (1.0f + m_duration));
         up.z = up.x = 0.0f;
         position += up;
         return position;
