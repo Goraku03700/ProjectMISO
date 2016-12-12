@@ -661,6 +661,7 @@ GameObject:
   - 114: {fileID: 114000012357281818}
   - 114: {fileID: 114000012053717858}
   - 136: {fileID: 136000012543093140}
+  - 65: {fileID: 65000013801959598}
   m_Layer: 8
   m_Name: PlayerCharacter4
   m_TagString: Player4
@@ -1865,6 +1866,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!65 &65000013801959598
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013135572196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!95 &95000010222785294
 Animator:
   serializedVersion: 3
@@ -1981,6 +1994,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e09fa7d3628012c4fbfe38f171d221b0, type: 2}
   - {fileID: 2100000, guid: 5c9f2d06be0d9a049b87d3e9a581d2c2, type: 2}
   - {fileID: 2100000, guid: ad60ae5885166914b8cb682880d78098, type: 2}
+  m_meshRenderers:
+  - {fileID: 137000014245018724}
+  - {fileID: 137000013907173816}
+  - {fileID: 137000010451452338}
+  - {fileID: 137000012486287130}
+  m_invisibleMaterial: {fileID: 2100000, guid: 51be65fc472df374c974e698454a1813, type: 2}
+  m_origineMaterial: {fileID: 2100000, guid: 8a175c354405d1a419ec6ca57fc9b379, type: 2}
 --- !u!114 &114000012357281818
 MonoBehaviour:
   m_ObjectHideFlags: 1

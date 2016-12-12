@@ -352,9 +352,9 @@ public class PlayerCharacter : MonoBehaviour
     public void CaughtRibbon(Ribbon caughtRibbon)
     {
         //if(isCaught)
-        if(m_animatorStateInfo.shortNameHash != Animator.StringToHash("CaughtRibbon.Caught") &&
-            m_animatorStateInfo.shortNameHash != Animator.StringToHash("CaughtRibbon.Release") &&
-            m_animatorStateInfo.shortNameHash != Animator.StringToHash("Movable.Invisible"))
+        if(m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
+            m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Release") &&
+            m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Invisible"))
         {
             //@todo Change SetTrigger
             m_animator.Play("Base Layer.CaughtRibbon.Caught");
