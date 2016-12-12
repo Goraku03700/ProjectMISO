@@ -171,6 +171,8 @@
     <Compile Include="Assets\ProjectName\Scripts\Title\TitleUI.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\UI_BackGround_Rotation.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Title\testtitle.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Tutorial\FlashText.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Tutorial\PracticeText.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Tutorial\Ready.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Tutorial\TutorialEnd.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Utility\Billboard.cs" />
