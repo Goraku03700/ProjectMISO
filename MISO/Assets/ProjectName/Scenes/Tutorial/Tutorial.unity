@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 853583467}
-  m_animator: {fileID: 0}
+  m_animator: {fileID: 1434938533}
 --- !u!108 &298247673
 Light:
   m_ObjectHideFlags: 0
@@ -1381,9 +1381,19 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f4b980fe24203b45a9e83b9bdf26ca5, type: 2}
   m_IsPrefabParent: 0
+--- !u!95 &1132029675 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000013181290282, guid: 0f4b980fe24203b45a9e83b9bdf26ca5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1088516863}
 --- !u!4 &1161362233 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000014100624696, guid: 56007ee8d1581ff49b4b1311a1e73f72,
+    type: 2}
+  m_PrefabInternal: {fileID: 1444857342}
+--- !u!95 &1179643111 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000010222785294, guid: 56007ee8d1581ff49b4b1311a1e73f72,
     type: 2}
   m_PrefabInternal: {fileID: 1444857342}
 --- !u!4 &1208338372 stripped
@@ -1420,7 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 415055038}
-  m_animator: {fileID: 0}
+  m_animator: {fileID: 1132029675}
 --- !u!108 &1401506727
 Light:
   m_ObjectHideFlags: 0
@@ -1514,6 +1524,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 602612d04b0c4dd42ab65641c2665685, type: 2}
   m_IsPrefabParent: 0
+--- !u!95 &1434938533 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000010662214332, guid: 2bfc17de90e6c32418272494045b676c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1595582670}
 --- !u!1001 &1444857342
 Prefab:
   m_ObjectHideFlags: 0
@@ -3065,7 +3080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 712702182}
-  m_animator: {fileID: 0}
+  m_animator: {fileID: 2087146572}
 --- !u!108 &1875958703
 Light:
   m_ObjectHideFlags: 0
@@ -3482,6 +3497,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 60, y: 20, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &2087146572 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000010481996032, guid: f22cf58988bc63646ab51980ab3df6f0,
+    type: 2}
+  m_PrefabInternal: {fileID: 601207058}
 --- !u!1 &2113365851
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,7 +3531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 1161362233}
-  m_animator: {fileID: 0}
+  m_animator: {fileID: 1179643111}
 --- !u!108 &2113365853
 Light:
   m_ObjectHideFlags: 0
