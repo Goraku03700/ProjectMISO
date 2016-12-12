@@ -79,7 +79,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_targetPosition = GetRandomPositionOnLevel();
         m_ribbonLine.enabled = false;
         m_rigidbody = GetComponent<Rigidbody>();
-
+        this.transform.localScale = Vector3.zero;
     }
 
 
@@ -143,7 +143,6 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_scaleTime = 0.0f;
         m_beforeRotation = this.transform.rotation;
         m_beforePosition = this.transform.position;
-        this.transform.localScale = Vector3.zero;
         return new Vector3(Random.Range(m_movementAreaX.x, m_movementAreaX.y), 0, Random.Range(m_movementAreaZ.x, m_movementAreaZ.y));
     }
 	
