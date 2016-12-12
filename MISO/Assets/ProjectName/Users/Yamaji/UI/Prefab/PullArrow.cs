@@ -35,8 +35,15 @@ public class PullArrow : MonoBehaviour {
 
     private Vector3 m_saveScale;
 
-	// Use this for initialization
-	void Start () {
+    private SpriteRenderer m_spriteRenderer;
+
+    void Awake()
+    {
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    // Use this for initialization
+    void Start () {
 
         m_pullArrowKind = PullArrowKind.Left;
 
@@ -45,8 +52,6 @@ public class PullArrow : MonoBehaviour {
         // 最大と最小の大きさを決めておく
         m_maxScale = m_saveScale.x * m_scaleAdd;
         m_minScale = m_saveScale.x * (1 - (m_scaleAdd - 1));
-
-        
     }
 	
 	// Update is called once per frame
@@ -133,4 +138,18 @@ public class PullArrow : MonoBehaviour {
         }
 
     }
+
+    public SpriteRenderer spriteRenderer
+    {
+        get
+        {
+            return m_spriteRenderer;
+        }
+
+        set
+        {
+            m_spriteRenderer = value;
+        }
+    }
+
 }

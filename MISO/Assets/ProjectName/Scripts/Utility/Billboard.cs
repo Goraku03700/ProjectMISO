@@ -7,8 +7,9 @@ public class Billboard : MonoBehaviour {
     private Camera m_targetCamera;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+    {
+        m_targetCamera = Camera.main;
 	}
 	
 	// Update is called once per frame

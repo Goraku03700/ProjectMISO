@@ -53,6 +53,7 @@ namespace Ribbons
                 {
                     m_colliderObject.SetActive(true);
                     m_triggerColliderObject.SetActive(true);
+                    //m_pullArrow.spriteRenderer.enabled = true;
 
                     playerCharacter.OnRibbonLanding();
 
@@ -184,6 +185,19 @@ namespace Ribbons
         public void PullEnter()
         {
             //m_triggerColliderObject.SetActive(false);
+
+            //m_pullArrowGameObject.SetActive(true);
+
+            int objectsCount = m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count;
+
+            if (objectsCount > 0)
+            {
+                m_pullArrow.spriteRenderer.enabled = true;
+            }
+            else
+            {
+                m_pullArrow.spriteRenderer.enabled = false;
+            }
         }
 
         public void PullUpdate()
@@ -333,10 +347,13 @@ namespace Ribbons
             Transform colliderTransform         = transform.FindChild("RibbonCollider");
             Transform triggerColliderTransform  = transform.FindChild("RibbonTriggerCollider");
             Transform wallCollideTransform      = transform.FindChild("RibbonWallCollider");
+            Transform pullAllowTransform        = transform.FindChild("PullArrow");
 
             m_colliderObject        = colliderTransform.gameObject;
             m_triggerColliderObject = triggerColliderTransform.gameObject;
             m_wallColliderObject    = wallCollideTransform.gameObject;
+            m_pullArrowGameObject   = pullAllowTransform.gameObject;
+            m_pullArrow             = m_pullArrowGameObject.GetComponent<PullArrow>();
 
             m_colliderObject.SetActive(false);
             m_triggerColliderObject.SetActive(false);
@@ -348,6 +365,18 @@ namespace Ribbons
             //GetComponent<HingeJoint>().connectedBody = m_playerCharacter.rigidbody;
 
             m_moveDirectionState = UnityEngine.Random.value < .5f ? MoveDirectionState.Left : MoveDirectionState.Right;
+
+            switch (m_moveDirectionState)
+            {
+                case MoveDirectionState.Right:
+                    m_pullArrow.ChangeArrowLeft();
+                    break;
+                case MoveDirectionState.Left:
+                    m_pullArrow.ChangeArrowRight();
+                    break;
+            }
+
+            m_pullArrow.spriteRenderer.enabled = false;
 
             _InitializeAnimatorParametersID();
         }
@@ -433,9 +462,17 @@ namespace Ribbons
                     {
                         //m_moveDirectionState = m_moveDirectionState == MoveDirectionState.Left ? MoveDirectionState.Left : MoveDirectionState.Right; 
                         if (m_moveDirectionState == MoveDirectionState.Left)
+                        {
                             m_moveDirectionState = MoveDirectionState.Right;
+
+                            m_pullArrow.ChangeArrowLeft();
+                        }
                         else if (m_moveDirectionState == MoveDirectionState.Right)
+                        {
                             m_moveDirectionState = MoveDirectionState.Left;
+
+                            m_pullArrow.ChangeArrowRight();
+                        }
 
                         m_changeTime = 0.0f;
                     }
@@ -608,6 +645,10 @@ namespace Ribbons
 
         private float m_time;
         private float m_changeTime;
+
+        private GameObject m_pullArrowGameObject;
+
+        private PullArrow m_pullArrow;
     }
 
 }
