@@ -54,6 +54,8 @@ public class PlayerCharacterData : ScriptableObject
 
     public float dashTime;
 
+    public float invisibleTime;
+
     public int collectScoreMinus;
 
     [Tooltip("リボンプレハブへのパス")]

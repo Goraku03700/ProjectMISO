@@ -35,5 +35,6 @@ MonoBehaviour:
   walkSpeed: 50
   dashSpeed: 100
   dashTime: 5
+  invisibleTime: 3
   collectScoreMinus: 5
   ribbonPrefabPath: Prefabs/Ribbon

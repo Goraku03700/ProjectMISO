@@ -1863,7 +1863,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.25, y: 0.25, z: 0.25}
   m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!65 &65000012074963306
 BoxCollider:
@@ -1992,6 +1992,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e09fa7d3628012c4fbfe38f171d221b0, type: 2}
   - {fileID: 2100000, guid: 5c9f2d06be0d9a049b87d3e9a581d2c2, type: 2}
   - {fileID: 2100000, guid: ad60ae5885166914b8cb682880d78098, type: 2}
+  m_meshRenderers:
+  - {fileID: 137000013642202014}
+  - {fileID: 137000012864644880}
+  - {fileID: 137000011375535626}
+  - {fileID: 137000011934189772}
+  m_invisibleMaterial: {fileID: 2100000, guid: 8f1c5aa3e8b489a46802092b6b8692b9, type: 2}
+  m_origineMaterial: {fileID: 2100000, guid: 9cb38fd98b3855d4196019b088dee453, type: 2}
 --- !u!114 &114000012899080588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2330,7 +2337,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -519936852
+  randomSeed: -425537773
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -4049,7 +4056,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1633208898
+  randomSeed: -1817376430
   InitialModule:
     serializedVersion: 2
     enabled: 1

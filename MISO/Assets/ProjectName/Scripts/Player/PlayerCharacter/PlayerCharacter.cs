@@ -291,7 +291,7 @@ public class PlayerCharacter : MonoBehaviour
     public void LengthAdjustEnter()
     {
         m_controlledRibbon.Throw(
-                transform.position + new Vector3(.0f, 1.0f, 1.0f),
+                transform.position + new Vector3(.0f, 4.5f, 1.0f),
                 transform.rotation,
                 m_playerCharacterData.throwPower,
                 m_playerCharacterData.throwSpeed);
@@ -377,7 +377,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void CatchRelease()
     {
-        //m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
+        m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
         //m_animator.Play("");
 
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
@@ -465,6 +465,11 @@ public class PlayerCharacter : MonoBehaviour
         m_playerIcon.ChangeIconNormal();
 
         m_wallCollider.enabled = true;
+
+        for (int i = 0; i < m_meshRenderers.Length; ++i)
+        {
+            m_meshRenderers[i].material = m_invisibleMaterial;
+        }
     }
 
     public void OutBuildingUpdate()
@@ -484,6 +489,38 @@ public class PlayerCharacter : MonoBehaviour
                 m_collider.enabled = true;
 
                 m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.OutBuildingExit]);
+            }
+        }
+    }
+
+    public void InvisibleEnter()
+    {
+        m_invisibleTime = 0.0f;
+
+        //foreach (var meshRenderer in m_meshRenderers)
+        //{
+        //    meshRenderer.materials[0] = m_invisibleMaterial;
+        //}
+
+        
+    }
+
+    public void InvisibleUpdate()
+    {
+        m_invisibleTime += Time.deltaTime;
+
+        if(m_invisibleTime > m_playerCharacterData.invisibleTime)
+        {
+            m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InvisibleEnd]);
+
+            //foreach (var meshRenderer in m_meshRenderers)
+            //{
+            //    meshRenderer.materials[0] = m_origineMaterial;
+            //}
+
+            for (int i = 0; i < m_meshRenderers.Length; ++i)
+            {
+                m_meshRenderers[i].material = m_origineMaterial;
             }
         }
     }
@@ -630,6 +667,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_dafaultScale = transform.localScale;
 
+        
+
         var playerIcons = FindObjectsOfType<PlayerIcon>();
 
         foreach(var playerIcon in playerIcons)
@@ -698,6 +737,7 @@ public class PlayerCharacter : MonoBehaviour
         Shake,
         Knockback,
         Tired,
+        InvisibleEnd,
     }
 
     private struct AnimatorParameters
@@ -733,6 +773,7 @@ public class PlayerCharacter : MonoBehaviour
         m_animatorParametersHashs[(int)AnimatorParametersID.HoldGirl]           = Animator.StringToHash("holdGirl");
         m_animatorParametersHashs[(int)AnimatorParametersID.Knockback]          = Animator.StringToHash("knockback");
         m_animatorParametersHashs[(int)AnimatorParametersID.Tired]              = Animator.StringToHash("tired");
+        m_animatorParametersHashs[(int)AnimatorParametersID.InvisibleEnd]       = Animator.StringToHash("invisibleEnd");
     }
 
     private void _InitializeAnimationState()
@@ -987,4 +1028,15 @@ public class PlayerCharacter : MonoBehaviour
     BoxCollider m_wallCollider;
 
     bool m_isThisFrameCought;
+
+    float m_invisibleTime;
+
+    [SerializeField]
+    SkinnedMeshRenderer[] m_meshRenderers;
+
+    [SerializeField]
+    Material m_invisibleMaterial;
+
+    [SerializeField]
+    Material m_origineMaterial;
 }
