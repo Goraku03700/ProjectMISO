@@ -36,14 +36,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012504516146}
-  - 114: {fileID: 114000013994473236}
+  - 114: {fileID: 114000012213929506}
   m_Layer: 0
   m_Name: RibbonEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4000012097400378
 Transform:
   m_ObjectHideFlags: 1
@@ -71,7 +71,7 @@ Transform:
   - {fileID: 4000012097400378}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000013994473236
+--- !u!114 &114000012213929506
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -129,11 +129,11 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1227382099
+  randomSeed: -1305584075
   InitialModule:
     serializedVersion: 2
     enabled: 1

@@ -2083,6 +2083,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e09fa7d3628012c4fbfe38f171d221b0, type: 2}
   - {fileID: 2100000, guid: 5c9f2d06be0d9a049b87d3e9a581d2c2, type: 2}
   - {fileID: 2100000, guid: ad60ae5885166914b8cb682880d78098, type: 2}
+  m_meshRenderers:
+  - {fileID: 137000014029522654}
+  - {fileID: 137000010533635702}
+  - {fileID: 137000010250016168}
+  - {fileID: 137000011004302642}
+  m_invisibleMaterial: {fileID: 2100000, guid: 30daf2dbdaf534e4d835a47904af72b8, type: 2}
+  m_origineMaterial: {fileID: 2100000, guid: e183b2839ff4d1a4f856071195c6f2c2, type: 2}
 --- !u!114 &114000012999071670
 MonoBehaviour:
   m_ObjectHideFlags: 1
