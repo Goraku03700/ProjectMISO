@@ -143,6 +143,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_scaleTime = 0.0f;
         m_beforeRotation = this.transform.rotation;
         m_beforePosition = this.transform.position;
+        this.transform.localScale = Vector3.zero;
         return new Vector3(Random.Range(m_movementAreaX.x, m_movementAreaX.y), 0, Random.Range(m_movementAreaZ.x, m_movementAreaZ.y));
     }
 	
@@ -225,7 +226,11 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             case State.Caught:
             {
                 Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
-                transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 1.0f);
+                targetRotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 1.0f);
+                targetRotation.x = 0.0f;
+                targetRotation.z = 0.0f;
+                transform.rotation = targetRotation;
+                
                 m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up / 1.5f);
                 //なんか処理
                 if(m_isAbsorption)
