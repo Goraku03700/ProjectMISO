@@ -45,6 +45,8 @@ public class PullArrow : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
         m_pullArrowKind = PullArrowKind.Left;
 
         m_saveScale = this.transform.localScale;
