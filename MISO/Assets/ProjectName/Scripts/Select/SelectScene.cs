@@ -154,7 +154,7 @@ public class SelectScene : MonoBehaviour {
             if (m_time > 1.0f)
             {
                 BGMManager.instance.StopBGM(0.0f);
-                Fade.ChangeScene("Play");
+                Fade.ChangeScene("Tutorial");
             }
         }
         

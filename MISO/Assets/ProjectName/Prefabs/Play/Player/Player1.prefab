@@ -330,6 +330,7 @@ GameObject:
   - 4: {fileID: 4000011236113572}
   - 198: {fileID: 198000010738127576}
   - 199: {fileID: 199000011394393106}
+  - 114: {fileID: 114000014016117124}
   m_Layer: 0
   m_Name: Ase
   m_TagString: Untagged
@@ -2007,7 +2008,7 @@ MonoBehaviour:
   m_normalColor: {r: 0.98823535, g: 1, b: 0.16862746, a: 1}
   m_littleColor: {r: 1, g: 0, b: 0, a: 1}
   m_littleColorRaito: 0.3
-  m_normalColorRaito: 0
+  m_normalColorRaito: 0.8
 --- !u!114 &114000012944347082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2046,6 +2047,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetCamera: {fileID: 0}
+--- !u!114 &114000014016117124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011283633888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34f63489f3042f4898f2bbf53e66064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135000010584107126
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2331,7 +2343,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -519936852
+  randomSeed: 1387319401
   InitialModule:
     serializedVersion: 2
     enabled: 1
