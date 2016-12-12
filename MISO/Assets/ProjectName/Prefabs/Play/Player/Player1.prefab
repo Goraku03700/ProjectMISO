@@ -1993,6 +1993,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e09fa7d3628012c4fbfe38f171d221b0, type: 2}
   - {fileID: 2100000, guid: 5c9f2d06be0d9a049b87d3e9a581d2c2, type: 2}
   - {fileID: 2100000, guid: ad60ae5885166914b8cb682880d78098, type: 2}
+  m_meshRenderers:
+  - {fileID: 137000013642202014}
+  - {fileID: 137000012864644880}
+  - {fileID: 137000011375535626}
+  - {fileID: 137000011934189772}
+  m_invisibleMaterial: {fileID: 2100000, guid: 8f1c5aa3e8b489a46802092b6b8692b9, type: 2}
+  m_origineMaterial: {fileID: 2100000, guid: 9cb38fd98b3855d4196019b088dee453, type: 2}
 --- !u!114 &114000012899080588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2343,7 +2350,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1387319401
+  randomSeed: 1360423572
   InitialModule:
     serializedVersion: 2
     enabled: 1
