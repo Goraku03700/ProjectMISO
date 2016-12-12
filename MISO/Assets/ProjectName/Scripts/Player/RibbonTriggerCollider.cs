@@ -63,6 +63,7 @@ namespace Ribbons
 
                     if (playerCharacter.animatorStateInfo.shortNameHash != Animator.StringToHash("CaughtRibbon.Caught") &&
                         playerCharacter.animatorStateInfo.shortNameHash != Animator.StringToHash("CaughtRibbon.Release") &&
+                        playerCharacter.animatorStateInfo.shortNameHash != Animator.StringToHash("Movable.Invisible") &&
                         !playerCharacter.isThisFrameCought)
                     {
                         playerCharacter.CaughtRibbon(m_parentRibbon);
