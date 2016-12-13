@@ -145,7 +145,8 @@ public class SelectScene : MonoBehaviour {
         if (m_readyFlag[0] && m_readyFlag[1] && m_readyFlag[2] && m_readyFlag[3])
         {
             // 文字を点滅させる
-            GameObject.Find("InfoText").GetComponent<InfoText>().FlashText();
+            //GameObject.Find("InfoText").GetComponent<InfoText>().FlashText();
+            GameObject.Find("InfoText").GetComponent<FlashText>().DecideText();
 
             // 時間経過
             m_time += Time.deltaTime;

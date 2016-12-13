@@ -47,13 +47,13 @@ public class PullArrow : MonoBehaviour {
 
         this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
-        m_pullArrowKind = PullArrowKind.Left;
+        //m_pullArrowKind = PullArrowKind.Left;
 
-        m_saveScale = this.transform.localScale;
+        //m_saveScale = this.transform.localScale;
 
         // 最大と最小の大きさを決めておく
-        m_maxScale = m_saveScale.x * m_scaleAdd;
-        m_minScale = m_saveScale.x * (1 - (m_scaleAdd - 1));
+        //m_maxScale = m_saveScale.x * m_scaleAdd;
+        //m_minScale = m_saveScale.x * (1 - (m_scaleAdd - 1));
     }
 	
 	// Update is called once per frame
@@ -63,6 +63,7 @@ public class PullArrow : MonoBehaviour {
 
 
         // 最大超えたら
+        /*
         if (m_maxScale <= objScale.y && m_pullArrowState == PullArrowState.Big)
         {
             m_pullArrowState = PullArrowState.Small;
@@ -92,9 +93,11 @@ public class PullArrow : MonoBehaviour {
                 }
                 break;
         }
+        */
 
-
-
+        // ピンポン
+        float scale = Mathf.PingPong(Time.time * m_scaleSpeed, m_scaleAdd - 1.0f) + 1.0f;
+        objScale.x = objScale.y = scale;
 
         this.transform.localScale = objScale;
 
@@ -112,12 +115,12 @@ public class PullArrow : MonoBehaviour {
         if(m_pullArrowKind != PullArrowKind.Left)
         {
             // 大きさ戻す
-            this.transform.localScale = m_saveScale;
+            //this.transform.localScale = m_saveScale;
 
             m_pullArrowKind = PullArrowKind.Left;
 
-            this.GetComponent<SpriteRenderer>().sprite = m_ArrowLeft;
-
+            //this.GetComponent<SpriteRenderer>().sprite = m_ArrowLeft;
+            m_spriteRenderer.sprite = m_ArrowLeft;
         }
     }
 
@@ -131,12 +134,12 @@ public class PullArrow : MonoBehaviour {
         if (m_pullArrowKind != PullArrowKind.Right)
         {
             // 大きさ戻す
-            this.transform.localScale = m_saveScale;
+            //this.transform.localScale = m_saveScale;
 
             m_pullArrowKind = PullArrowKind.Right;
 
-            this.GetComponent<SpriteRenderer>().sprite = m_ArrowRight;
-
+            //this.GetComponent<SpriteRenderer>().sprite = m_ArrowRight;
+            m_spriteRenderer.sprite = m_ArrowRight;
         }
 
     }

@@ -45,6 +45,9 @@ public class testtitle : MonoBehaviour {
         bgm000_startFlag = false;
         se001_startFlag = false;
         se017_startFlag = false;
+
+        //QualitySettings.vSyncCount = 0;
+        //Application.targetFrameRate = 60;
 	}
 	
 	// Update is called once per frame
