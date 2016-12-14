@@ -16,6 +16,8 @@ public class TimeNiddle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+       // m_time = GameObject.Find("Time").GetComponent<TimeCount>().
+
         rotateFrame = m_time * 30 / 360;
 
         m_nowTime = 0.0f;
