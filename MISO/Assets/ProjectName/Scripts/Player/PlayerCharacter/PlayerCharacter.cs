@@ -235,6 +235,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_ribbonRandingProjection.SetActive(true);
 
+        m_controlledRibbon.transform.FindChild("RibbonLine").GetComponent<RibbonLine>().startTransform = m_arm;
+
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -316,13 +318,6 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(m_controlledRibbon != null)
         {
-            Vector3 atPosition = m_controlledRibbon.transform.position;
-
-            atPosition.y = 0;
-
-            transform.LookAt(atPosition);
-
-
             Vector3 vector = transform.position - m_controlledRibbon.transform.position;
 
             if (vector.magnitude < m_playerCharacterData.ribbonCollectLength)
@@ -333,8 +328,92 @@ public class PlayerCharacter : MonoBehaviour
                 m_sweatParticle.Stop();
                 m_controlledRibbon = null;
             }
+            else
+            {
+                Vector3 atPosition = m_controlledRibbon.transform.position;
 
+                atPosition.y = 0;
+
+                transform.LookAt(atPosition);
+            }
         }
+    }
+
+    public void StartPulledCorutine(int score)
+    {
+        StartCoroutine("PulledCorutine", score);
+      //  StartCoroutine("PulledCorutine");
+    }
+
+    public IEnumerator PulledCorutine(int score)
+    {
+        const float OneLoopTime = 0.25f;
+
+        float currentTime = 0.0f;
+
+        while (currentTime < m_playerCharacterData.collectTime)
+        {
+            currentTime += Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        currentTime = 0.0f;
+
+        for (int i = 0; i < score; ++i)
+        {
+            currentTime = 0.0f;
+
+            while (currentTime < OneLoopTime)
+            {
+                currentTime += Time.deltaTime;
+
+                float t = currentTime / OneLoopTime;
+
+                // ease-in-out
+                //t = (t * t) * (3.0f - (2.0f * t));
+
+                float scaling;
+
+                //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
+                scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
+
+                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            m_bgmManager.PlaySE("se015_InCampany");
+        }
+
+        m_buildingObject.transform.localScale = m_buildingDefaultScale;
+    }
+
+    public IEnumerator PulledCorutineAAA()
+    {
+        const float OneLoopTime = .75f;
+
+        float currentTime = 0.0f;
+
+        m_bgmManager.PlaySE("se015_InCampany");
+
+        while (currentTime < OneLoopTime)
+        {
+            currentTime += Time.deltaTime;
+
+            float t = currentTime / OneLoopTime;
+
+            // ease-in-out
+            t = (t * t) * (3.0f - (2.0f * t));
+
+            float scaling = Mathf.PingPong(0.5f, t) + 1.0f;
+
+            m_buildingObject.transform.localScale = m_buildingDefaultScale * scaling;
+
+            yield return null;
+        }
+
+        m_buildingObject.transform.localScale = m_buildingDefaultScale;
     }
 
     public void BreakeRibbon()
@@ -667,8 +746,8 @@ public class PlayerCharacter : MonoBehaviour
         m_bgmManager                = BGMManager.instance;
 
         m_dafaultScale = transform.localScale;
+        m_buildingDefaultScale = m_buildingObject.transform.localScale;
 
-        
 
         var playerIcons = FindObjectsOfType<PlayerIcon>();
 
@@ -1040,4 +1119,9 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField]
     Material m_origineMaterial;
+
+    [SerializeField]
+    Transform m_arm;
+
+    Vector3 m_buildingDefaultScale;
 }

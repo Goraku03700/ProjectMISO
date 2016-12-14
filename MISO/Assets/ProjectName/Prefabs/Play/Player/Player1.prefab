@@ -846,6 +846,7 @@ GameObject:
   - 114: {fileID: 114000012565677748}
   - 136: {fileID: 136000013549618338}
   - 65: {fileID: 65000010238919118}
+  - 65: {fileID: 65000010598397336}
   m_Layer: 8
   m_Name: PlayerCharacter1
   m_TagString: Player1
@@ -1193,7 +1194,7 @@ Transform:
   m_GameObject: {fileID: 1000010975372652}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011503833594}
@@ -1866,6 +1867,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!65 &65000010598397336
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013709511498}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000012074963306
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2000,6 +2013,7 @@ MonoBehaviour:
   - {fileID: 137000011934189772}
   m_invisibleMaterial: {fileID: 2100000, guid: 8f1c5aa3e8b489a46802092b6b8692b9, type: 2}
   m_origineMaterial: {fileID: 2100000, guid: 9cb38fd98b3855d4196019b088dee453, type: 2}
+  m_arm: {fileID: 4000011504450098}
 --- !u!114 &114000012899080588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2350,7 +2364,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1360423572
+  randomSeed: 1999696820
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -4069,7 +4083,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1633208898
+  randomSeed: -1166222172
   InitialModule:
     serializedVersion: 2
     enabled: 1
