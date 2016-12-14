@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623dcffdcb2323b43bdb1d787123db84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_screenPosition: {x: 105, y: 445, z: 0}
+  m_screenPosition: {x: 106, y: 415, z: 0}
   m_images:
   - {fileID: 0}
   - {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623dcffdcb2323b43bdb1d787123db84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_screenPosition: {x: 750, y: 445, z: 0}
+  m_screenPosition: {x: 750, y: 415, z: 0}
   m_images:
   - {fileID: 0}
   - {fileID: 0}
@@ -242,4 +242,4 @@ MonoBehaviour:
   - {fileID: 0}
   m_setAlphaColor: {r: 1, g: 1, b: 1, a: 0.503}
   m_setDefaultColor: {r: 1, g: 1, b: 1, a: 1}
-  radius: 3
+  radius: 3.5
