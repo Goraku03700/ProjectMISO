@@ -9,10 +9,13 @@ public class RayTest : MonoBehaviour
     public Image[] m_images;
     public Text[] m_texts;
     [SerializeField]
+    float m_distance;
+    [SerializeField]
     Color m_setAlphaColor;
     [SerializeField]
     Color m_setDefaultColor;
-    public float radius = 3f;
+    public float m_radius;
+    float radius;
     Ray[] rays;
     void Start()
     {
@@ -21,10 +24,10 @@ public class RayTest : MonoBehaviour
     }
     void Update()
     {
-        m_screenPositions[0] = m_screenPositions[1] = m_screenPosition;
-        m_screenPositions[0].x -= 25;
-        m_screenPositions[1].x += 25;
-
+        m_screenPositions[0] = m_screenPositions[1] = new Vector3(Screen.width * m_screenPosition.x, Screen.height * m_screenPosition.y); ;
+        m_screenPositions[0].x -= m_distance*Screen.width;
+        m_screenPositions[1].x += m_distance * Screen.width;
+        radius = Screen.width * m_radius;
         //メインカメラ上のマウスカーソルのある位置からRayを飛ばす
         rays[0] = Camera.main.ScreenPointToRay(m_screenPositions[0]);
         rays[1] = Camera.main.ScreenPointToRay(m_screenPositions[1]);
@@ -37,10 +40,14 @@ public class RayTest : MonoBehaviour
 
         if (Physics.SphereCast(rays[0],radius, out hit, maxDistance, layerMask))
         {
-            m_images[0].color = m_setAlphaColor;
-            m_images[1].color = m_setAlphaColor;
-            m_texts[0].color = m_setAlphaColor;
-            m_texts[1].color = m_setAlphaColor;
+            for (int i = 0; i < m_images.Length; ++i)
+            {
+                m_images[i].color = m_setAlphaColor;
+            }
+            for (int i = 0; i < m_texts.Length; ++i)
+            {
+                m_texts[i].color = m_setAlphaColor;
+            }
             //Rayが当たるオブジェクトがあった場合はそのオブジェクト名をログに表示
             Debug.Log(hit.collider.gameObject.name);
             //Rayを画面に表示
@@ -49,10 +56,14 @@ public class RayTest : MonoBehaviour
         }
         else if (Physics.SphereCast(rays[1], radius, out hit, maxDistance, layerMask))
         {
-            m_images[0].color = m_setAlphaColor;
-            m_images[1].color = m_setAlphaColor;
-            m_texts[0].color = m_setAlphaColor;
-            m_texts[1].color = m_setAlphaColor;
+            for (int i = 0; i < m_images.Length; ++i)
+            {
+                m_images[i].color = m_setAlphaColor;
+            }
+            for (int i = 0; i < m_texts.Length; ++i)
+            {
+                m_texts[i].color = m_setAlphaColor;
+            }
             //Rayが当たるオブジェクトがあった場合はそのオブジェクト名をログに表示
             Debug.Log(hit.collider.gameObject.name);
             //Rayを画面に表示
@@ -61,10 +72,14 @@ public class RayTest : MonoBehaviour
         }
         else
         {
-            m_images[0].color = m_setDefaultColor;
-            m_images[1].color = m_setDefaultColor;
-            m_texts[0].color = m_setDefaultColor;
-            m_texts[1].color = m_setDefaultColor;
+            for (int i = 0; i < m_images.Length; ++i)
+            {
+                m_images[i].color = m_setDefaultColor;
+            }
+            for (int i = 0; i < m_texts.Length; ++i)
+            {
+                m_texts[i].color = m_setDefaultColor;
+            }
             //Rayを画面に表示
             Debug.DrawRay(rays[0].origin, rays[0].direction * maxDistance, Color.green, 1, false);
             Debug.DrawRay(rays[1].origin, rays[1].direction * maxDistance, Color.green, 1, false);
