@@ -579,6 +579,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eed1f23ad9a613343b18a8a65bb1fadf, type: 2}
   m_IsPrefabParent: 0
+--- !u!95 &300542252 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000010481996032, guid: f22cf58988bc63646ab51980ab3df6f0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1413176884}
 --- !u!1001 &302489973
 Prefab:
   m_ObjectHideFlags: 0
@@ -758,6 +763,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b60c367430f004d468feeb9ae758d6a8, type: 2}
   m_IsPrefabParent: 0
+--- !u!95 &432226007 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000013181290282, guid: 0f4b980fe24203b45a9e83b9bdf26ca5,
+    type: 2}
+  m_PrefabInternal: {fileID: 231722258}
 --- !u!1 &458295740
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 479359262}
+  m_animator: {fileID: 300542252}
 --- !u!108 &489260472
 Light:
   m_ObjectHideFlags: 0
@@ -965,6 +976,11 @@ Transform:
   - {fileID: 796305074}
   m_Father: {fileID: 0}
   m_RootOrder: 14
+--- !u!95 &513211291 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000010662214332, guid: 2bfc17de90e6c32418272494045b676c,
+    type: 2}
+  m_PrefabInternal: {fileID: 991437705}
 --- !u!1001 &519841096
 Prefab:
   m_ObjectHideFlags: 0
@@ -2056,6 +2072,11 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!95 &890096915 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000010222785294, guid: 56007ee8d1581ff49b4b1311a1e73f72,
+    type: 2}
+  m_PrefabInternal: {fileID: 2008130377}
 --- !u!224 &981737446 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224000013165424012, guid: 45333fc6a7bb30943a95a4ac9971fffc,
@@ -2191,6 +2212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 1468757903}
+  m_animator: {fileID: 513211291}
 --- !u!108 &1048930957
 Light:
   m_ObjectHideFlags: 0
@@ -3380,6 +3402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 712444065}
+  m_animator: {fileID: 432226007}
 --- !u!108 &1963520596
 Light:
   m_ObjectHideFlags: 0
@@ -3797,6 +3820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetTransform: {fileID: 1053983930}
+  m_animator: {fileID: 890096915}
 --- !u!108 &2108231304
 Light:
   m_ObjectHideFlags: 0
