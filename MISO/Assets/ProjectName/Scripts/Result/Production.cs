@@ -108,6 +108,9 @@ public class Production : MonoBehaviour {
     private Color m_savePodiumColor;    // 表彰台の色の保存
     private float m_podiumColorLerp;    // 表彰台の色の線形補間用
 
+    private ParticleSystem m_fireWorkParticleRed;
+    private ParticleSystem m_fireWorkParticleBlue;
+
 
     private bool se023_startFlag;
     private bool se024_startFlag;
@@ -367,9 +370,12 @@ public class Production : MonoBehaviour {
         m_crownSilverObj.SetActive(false);
         m_crownBronzeObj.SetActive(false);
 
+        // 花火パーティクル
+        m_fireWorkParticleRed  = GameObject.Find("FireWorkRed").GetComponent<ParticleSystem>();
+        m_fireWorkParticleBlue = GameObject.Find("FireWorkBlue").GetComponent<ParticleSystem>();
 
-
-
+        m_fireWorkParticleRed.Stop();
+        m_fireWorkParticleBlue.Stop();
 
         
         // マテリアル読み込み
@@ -937,19 +943,12 @@ public class Production : MonoBehaviour {
             }
         }
 
-        // パーティクル開始
-        /*
-        m_confettiParticleParent.transform.position = m_podium[m_saveTopPlayer].transform.position;
-        m_confettiParticleParent.transform.Translate(0.0f, 5.0f, 0.0f, Space.World);
-        if (!m_confettiParticle1.isPlaying) // 開始中じゃなかったら
+        // 花火パーティクル開始
+        if (!m_fireWorkParticleRed.isPlaying)
         {
-            // パーティクル開始
-            m_confettiParticle1.Play();
-            m_confettiParticle2.Play();
-            m_confettiParticle3.Play();
+            m_fireWorkParticleRed.Play();
+            m_fireWorkParticleBlue.Play();
         }
-        */
-
         // 順位別の高さに移動
         for (i = 0; i < ConstPlayerMax; i++)
         {

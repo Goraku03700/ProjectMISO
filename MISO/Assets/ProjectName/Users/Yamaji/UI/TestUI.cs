@@ -5,46 +5,49 @@ using System.Collections;
 public class TestUI : MonoBehaviour {
 
     private int i;
+
+    private GameObject stick;
+
+    private float rot;
 	// Use this for initialization
 	void Start () {
         i = 0;
+
+        stick = GameObject.Find("Stick");
+
+        rot = 0.0f;
 	}
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GameObject.Find("PlayerIcon1P").GetComponent<PlayerIcon>().ChangeIconAngry();
-        }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            GameObject.Find("PlayerIcon1P").GetComponent<PlayerIcon>().ChangeIconNormal();
-        }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            GameObject.Find("PlayerIcon1P").GetComponent<PlayerIcon>().ChangeIconSad();
-        }
+            /*stick.transform.localRotation = Quaternion.Euler(stick.transform.localRotation.x,
+                                                             stick.transform.localRotation.y,
+                                                             stick.transform.localRotation.z - 0.1f);*/
+            //rot += 200.0f * Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            GameObject.Find("Time").GetComponent<TimeCount>().StartTime();
-        }
-        */
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            GameObject.Find("PullArrow").GetComponent<PullArrow>().ChangeArrowLeft();
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            GameObject.Find("PullArrow").GetComponent<PullArrow>().ChangeArrowRight();
+            GameObject.Find("Stick").GetComponent<PullStick>().ChangeStickLeft();
 
         }
+        
+        if(Input.GetKey(KeyCode.RightArrow))
+        {
+            /*
+            stick.transform.localRotation = Quaternion.Euler(stick.transform.localRotation.x,
+                                                             stick.transform.localRotation.y,
+                                                             stick.transform.localRotation.z + 0.1f);
+                                                                */
+            //rot -= 200.0f * Time.deltaTime;
+
+            GameObject.Find("Stick").GetComponent<PullStick>().ChangeStickRight();
+
+        }
+
+
     }
 
 
