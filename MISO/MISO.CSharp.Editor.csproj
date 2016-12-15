@@ -142,6 +142,7 @@
     <None Include="Assets\ProjectName\Shader\CullingOfffShader.shader" />
     <None Include="Assets\ProjectName\Shader\Fade.shader" />
     <None Include="Assets\ProjectName\Shader\FeverOutFlame.shader" />
+    <None Include="Assets\ProjectName\Users\Nakao\Script\Page.shader" />
     <None Include="Assets\ProjectName\Users\Yamaji\LightShafts\ColorFilter.shader" />
     <None Include="Assets\ProjectName\Users\Yamaji\LightShafts\Coord.shader" />
     <None Include="Assets\ProjectName\Users\Yamaji\LightShafts\Depth.shader" />

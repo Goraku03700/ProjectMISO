@@ -238,6 +238,8 @@ namespace Ribbons
         {
             m_animatorParameters.isPulled = true;
 
+            int tempScore = m_playerCharacter.player.score;
+
             foreach(var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
                 if (playerCharacter.player.score - m_playerCharacter.playerCharacterData.collectScoreMinus < 0)
@@ -247,6 +249,8 @@ namespace Ribbons
                     int addScore = Math.Abs(playerCharacter.player.score);
 
                     playerCharacter.player.score = 0;
+
+                    m_playerCharacter.player.score += addScore;
                 }
                 else
                 {
@@ -265,6 +269,14 @@ namespace Ribbons
                 m_playerCharacter.player.score++;
 
                 m_playerCharacter.npcGetParticle.Play();
+            }
+
+            int score = m_playerCharacter.player.score - tempScore;
+
+            if(score > 0)
+            {
+                //StartCoroutine(m_playerCharacter.PulledCorutine(score));
+                m_playerCharacter.StartPulledCorutine(score);
             }
 
             Destroy(gameObject);
@@ -377,7 +389,8 @@ namespace Ribbons
             }
 
             m_pullArrow.spriteRenderer.enabled = false;
-
+            //m_pullArrowGameObject.transform.position = playerCharacter.transform.position;
+            
             _InitializeAnimatorParametersID();
         }
 
@@ -394,6 +407,18 @@ namespace Ribbons
                 direction.y = 0;
 
                 transform.forward = direction;
+
+                //Vector3 position = playerCharacter.transform.position;
+
+                //position.y += 5.0f;
+
+                Vector3 center;
+
+                center.x = (transform.position.x + playerCharacter.transform.position.x) / 2.0f;
+                center.y = (transform.position.y + playerCharacter.transform.position.y) / 2.0f + 5.0f;
+                center.z = (transform.position.z + playerCharacter.transform.position.z) / 2.0f;
+
+                m_pullArrowGameObject.transform.position = center;
             }
 
             _UpdateAnimatorParameters();
@@ -494,6 +519,11 @@ namespace Ribbons
                 {
                     Breake();
                 }
+            }
+
+            if(transform.position.y < -1.0f)
+            {
+                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
             }
         }
 
