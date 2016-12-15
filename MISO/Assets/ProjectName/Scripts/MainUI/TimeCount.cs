@@ -86,6 +86,7 @@ public class TimeCount : MonoBehaviour {
             m_isCountDown = true;
             m_endEffect.StartEndEffect();
             m_clock.enabled = false;
+            m_timeNiddle.enabled = false;
         }
         else if(m_isCountDown)
         {

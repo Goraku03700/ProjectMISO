@@ -244,13 +244,14 @@ namespace Ribbons
             {
                 if (playerCharacter.player.score - m_playerCharacter.playerCharacterData.collectScoreMinus < 0)
                 {
+                    m_playerCharacter.player.score += m_playerCharacter.playerCharacterData.collectScoreMinus;
                     playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
 
-                    int addScore = Math.Abs(playerCharacter.player.score);
+                    //int addScore = Math.Abs(playerCharacter.player.score);
 
                     playerCharacter.player.score = 0;
 
-                    m_playerCharacter.player.score += addScore;
+                    //m_playerCharacter.player.score += addScore;
                 }
                 else
                 {
@@ -523,7 +524,7 @@ namespace Ribbons
 
             if(transform.position.y < -1.0f)
             {
-                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
             }
         }
 

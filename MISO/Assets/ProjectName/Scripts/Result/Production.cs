@@ -708,7 +708,6 @@ public class Production : MonoBehaviour {
                             // アニメーション開始
                             m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", true);
 
-
                             break;
                         }
                     }
