@@ -91,7 +91,8 @@ public class PlayerCharacter : MonoBehaviour
         {
             if (isDash)
             {
-                if (m_rigidbody.velocity.magnitude > 1.0f)
+                if (m_rigidbody.velocity.magnitude > 0.25f &&
+                    m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Tired"))
                 {
 
                     m_dashGauge.gaugeRenderer.enabled = true;
@@ -110,7 +111,7 @@ public class PlayerCharacter : MonoBehaviour
 
                         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
 
-                        // m_dashDurationTime = .0f;
+                        m_dashDurationTime = m_playerCharacterData.dashTime;
                     }
 
                     //m_bgmManager.PlaySE();
@@ -217,6 +218,11 @@ public class PlayerCharacter : MonoBehaviour
         transform.FindChild("PlayerNumberIcon").transform.gameObject.SetActive(false);
     }
 
+    public void TiredExit()
+    {
+        m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
+    }
+
     public void SizeAdjustEnter()
     {
         if(m_controlledRibbon)
@@ -238,6 +244,7 @@ public class PlayerCharacter : MonoBehaviour
         m_controlledRibbon.transform.FindChild("RibbonLine").GetComponent<RibbonLine>().startTransform = m_arm;
 
         m_controlledRibbon.transform.localScale = new Vector3(m_playerCharacterData.ribbonMinScale, m_controlledRibbon.transform.localScale.y, m_playerCharacterData.ribbonMinScale);
+        m_ribbonRandingProjection.transform.localScale = new Vector3(m_playerCharacterData.ribbonMinScale, m_playerCharacterData.ribbonMinScale, 1) / 2.0f;
 
         Vector3 position = transform.position;
 
