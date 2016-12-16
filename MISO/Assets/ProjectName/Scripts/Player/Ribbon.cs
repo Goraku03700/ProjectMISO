@@ -15,20 +15,43 @@ namespace Ribbons
         public void SizeAdjustEnter()
         {
             rigidbody.useGravity = false;
+
+            //m_ribbonLine.gameObject.SetActive(true);
+
+            transform.position += (Vector3.forward * 5.0f) + Vector3.up;
         }
 
         public void SizeAdjustUpdate()
         {
-            transform.RotateAround(m_playerCharacter.transform.position, Vector3.up, 270.0f * Time.deltaTime);
+            //Quaternion q = transform.rotation;
+
+            transform.RotateAround(m_playerCharacter.transform.position, Vector3.up, -270.0f * Time.deltaTime);
+            //transform.rotation = q;
+
+            //Vector3 position = m_playerCharacter.transform.position;
+
+            //position.y = transform.position.y;
+
+            //transform.LookAt(position);
+        }
+
+        public void SizeAdjustExit()
+        {
+            rigidbody.useGravity = true;
+
+            //m_ribbonLine.gameObject.SetActive(true);
         }
 
         public void Throw(Vector3 position, Quaternion rotation, float upPower, float speed)
         {
-            m_animatorParameters.isThrow = true;
+            m_animatorParameters.isThrow    = true;
+            rigidbody.useGravity            = true;
 
-            transform.position      = position;
-            //transform.forward   = direction;
-            transform.rotation      = rotation;
+            //transform.position      = position;
+            //transform.forward     = direction;
+            //transform.rotation      = rotation;
+            m_throwPosition         = position;
+            m_throwRotation         = rotation;
 
             m_speed                 = speed;
             m_upPower               = upPower;
@@ -285,14 +308,17 @@ namespace Ribbons
 
         public void Breake()
         {
-            foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
+            if(m_triggerCollider.isActiveAndEnabled)
             {
-                playerCharacter.CatchRelease();
-            }
+                foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
+                {
+                    playerCharacter.CatchRelease();
+                }
 
-            foreach (var girl in m_triggerCollider.coughtGirls)
-            {
-                girl.CatchRibbonRelease();
+                foreach (var girl in m_triggerCollider.coughtGirls)
+                {
+                    girl.CatchRibbonRelease();
+                }
             }
 
             Destroy(gameObject);
@@ -361,12 +387,16 @@ namespace Ribbons
             Transform triggerColliderTransform  = transform.FindChild("RibbonTriggerCollider");
             Transform wallCollideTransform      = transform.FindChild("RibbonWallCollider");
             Transform pullAllowTransform        = transform.FindChild("PullArrow");
+            Transform ribbonLineTransform       = transform.FindChild("RibbonLine");
+            Transform meshTransform             = transform.FindChild("RibbonMesh");
 
             m_colliderObject        = colliderTransform.gameObject;
             m_triggerColliderObject = triggerColliderTransform.gameObject;
             m_wallColliderObject    = wallCollideTransform.gameObject;
             m_pullArrowGameObject   = pullAllowTransform.gameObject;
+            m_meshObject            = meshTransform.gameObject;
             m_pullArrow             = m_pullArrowGameObject.GetComponent<PullArrow>();
+            m_ribbonLine            = ribbonLineTransform.gameObject.GetComponent<RibbonLine>();
 
             m_colliderObject.SetActive(false);
             m_triggerColliderObject.SetActive(false);
@@ -391,23 +421,28 @@ namespace Ribbons
 
             m_pullArrow.spriteRenderer.enabled = false;
             //m_pullArrowGameObject.transform.position = playerCharacter.transform.position;
-            
+
+            m_isStarted = true;
+
             _InitializeAnimatorParametersID();
         }
 
         void Update()
         {
-            if(m_animatorParameters.isGrounded)
+            Vector3 direction = transform.position - playerCharacter.transform.position;
+
+            direction.y = 0;
+
+            if(direction.magnitude > .0f)
+                transform.forward = direction;
+
+            if (m_animatorParameters.isGrounded)
             {
                 //transform.rotation = Quaternion.Euler(.0f, playerCharacter.transform.rotation.eulerAngles.y * -1.0f, .0f);
 
                 //Vector3 aa =  transform.rotation.eulerAngles;
 
-                Vector3 direction = transform.position - playerCharacter.transform.position;
-
-                direction.y = 0;
-
-                transform.forward = direction;
+                
 
                 //Vector3 position = playerCharacter.transform.position;
 
@@ -421,17 +456,28 @@ namespace Ribbons
 
                 m_pullArrowGameObject.transform.position = center;
             }
+            else
+            {
+                //m_meshObject.transform.rotation = transform.rotation;
+                //m_meshObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+                //transform.rotation = m_playerCharacter.transform.rotation;
+            }
 
             _UpdateAnimatorParameters();
         }
 
         void FixedUpdate()
         {
-            if(m_isDoThrow)
+            if(m_isStarted)
             {
-                rigidbody.AddForce(Vector3.up * m_upPower + transform.forward * m_speed);
+                if (m_isDoThrow)
+                {
+                    transform.position = m_throwPosition;
+                    transform.rotation = m_throwRotation;
+                    rigidbody.AddForce(Vector3.up * m_upPower + transform.forward * m_speed);
 
-                m_isDoThrow = false;
+                    m_isDoThrow = false;
+                }
             }
 
             if(m_isDoShake)
@@ -680,6 +726,14 @@ namespace Ribbons
         private GameObject m_pullArrowGameObject;
 
         private PullArrow m_pullArrow;
-    }
 
+        private RibbonLine m_ribbonLine;
+
+        private Vector3     m_throwPosition;
+        private Quaternion  m_throwRotation;
+
+        private bool m_isStarted;
+
+        private GameObject m_meshObject;
+    }
 }

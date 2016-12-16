@@ -10,9 +10,7 @@ namespace Ribbons
         {
             m_ribbon = animator.gameObject.GetComponent<Ribbon>();
 
-            m_ribbon.transform.position += Vector3.forward + Vector3.up;
-
-            
+            m_ribbon.SizeAdjustEnter();
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,9 +20,9 @@ namespace Ribbons
         }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        //
-        //}
+        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+            m_ribbon.SizeAdjustExit();
+        }
 
         // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
         //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

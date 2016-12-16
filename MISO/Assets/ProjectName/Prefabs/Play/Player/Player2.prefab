@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_releaseInputCheckCount: 0
   m_releaseInputCount: 0
   m_isKeybordPlay: 0
-  m_joypadNumber: 0
+  m_joypadNumber: 1
 --- !u!114 &114000010827763110
 MonoBehaviour:
   m_ObjectHideFlags: 1

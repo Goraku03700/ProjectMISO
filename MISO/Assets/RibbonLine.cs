@@ -11,6 +11,14 @@ namespace Ribbons
         {
             m_ribbon = transform.parent.GetComponent<Ribbon>();
             m_lineRenderer = GetComponent<LineRenderer>();
+
+            //Vector3 start, end;
+
+            //start = m_startTransform.position;
+            //end = gameObject.transform.position;
+
+            //m_lineRenderer.SetPosition(0, start);
+            //m_lineRenderer.SetPosition(1, end);            
         }
 
         // Update is called once per frame
@@ -29,10 +37,14 @@ namespace Ribbons
 
             //transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, direction.magnitude / 5);
 
+            m_lineRenderer.enabled = true;
+
             Vector3 start, end;
 
             start   = m_startTransform.position;
             end     = gameObject.transform.position;
+
+            //start.z += 0.5f;
 
             m_lineRenderer.SetPosition(0, start);
             m_lineRenderer.SetPosition(1, end);

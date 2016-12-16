@@ -237,6 +237,14 @@ public class PlayerCharacter : MonoBehaviour
 
         m_controlledRibbon.transform.FindChild("RibbonLine").GetComponent<RibbonLine>().startTransform = m_arm;
 
+        m_controlledRibbon.transform.localScale = new Vector3(m_playerCharacterData.ribbonMinScale, m_controlledRibbon.transform.localScale.y, m_playerCharacterData.ribbonMinScale);
+
+        Vector3 position = transform.position;
+
+        position.y = m_controlledRibbon.transform.position.y;
+
+        m_controlledRibbon.transform.position = position;
+
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -281,7 +289,7 @@ public class PlayerCharacter : MonoBehaviour
             {
                 Destroy(m_controlledRibbon.gameObject);
                 m_isDoCancel = false;
-
+                m_ribbonRandingProjection.SetActive(false);
             }
         }
         else
@@ -446,7 +454,7 @@ public class PlayerCharacter : MonoBehaviour
             {
                 m_controlledRibbon.Breake();
 
-                Destroy(m_controlledRibbon.gameObject);
+                //Destroy(m_controlledRibbon.gameObject);
 
                 m_controlledRibbon = null;
             }
