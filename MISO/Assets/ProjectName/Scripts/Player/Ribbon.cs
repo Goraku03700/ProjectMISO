@@ -370,7 +370,7 @@ namespace Ribbons
                 case "Player1":
                     {
                         m_meshRenderer.material = m_playerCharacter.ribbonMaterials[0];
-                        m_ribbonLine.lineRenderer
+                        m_ribbonLine.lineRenderer.material = m_playerCharacter.ribbonMaterials[0];
                     }
                     break;
 

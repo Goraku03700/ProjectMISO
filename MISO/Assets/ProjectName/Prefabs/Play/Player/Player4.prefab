@@ -998,7 +998,7 @@ Transform:
   m_GameObject: {fileID: 1000010523405336}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014100624696}
@@ -2001,6 +2001,7 @@ MonoBehaviour:
   - {fileID: 137000012486287130}
   m_invisibleMaterial: {fileID: 2100000, guid: 51be65fc472df374c974e698454a1813, type: 2}
   m_origineMaterial: {fileID: 2100000, guid: 8a175c354405d1a419ec6ca57fc9b379, type: 2}
+  m_ribbonLineMaterial: {fileID: 0}
   m_arm: {fileID: 4000010032373062}
 --- !u!114 &114000012357281818
 MonoBehaviour:

@@ -1129,6 +1129,9 @@ public class PlayerCharacter : MonoBehaviour
     Material m_origineMaterial;
 
     [SerializeField]
+    Material m_ribbonLineMaterial;
+
+    [SerializeField]
     Transform m_arm;
 
     Vector3 m_buildingDefaultScale;
