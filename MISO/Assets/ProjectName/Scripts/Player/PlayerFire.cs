@@ -8,7 +8,7 @@ public class PlayerFire : MonoBehaviour {
 
     public void Fire(Transform playerTransform, Rigidbody playerRigidbody)
     {
-        playerTransform.position = this.transform.position + Vector3.up;
+        playerTransform.position = this.transform.position + Vector3.up + (this.transform.forward * -1);
         playerTransform.rotation = Quaternion.Inverse(this.transform.rotation);
         playerRigidbody.velocity = Vector3.zero;
         playerRigidbody.angularVelocity = Vector3.zero;

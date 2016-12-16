@@ -561,6 +561,11 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    //public void OutBuildingEnter()
+    //{
+    //    m_rigidbody.mass = 1.0f;
+    //}
+
     public void OutBuildingUpdate()
     {
         if (m_rigidbody.velocity.y <= 0.0f)
@@ -578,6 +583,8 @@ public class PlayerCharacter : MonoBehaviour
                 m_collider.enabled = true;
 
                 m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.OutBuildingExit]);
+
+              //  m_rigidbody.mass = 0.1f;
             }
         }
     }

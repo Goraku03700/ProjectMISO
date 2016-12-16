@@ -1692,7 +1692,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SizeAdjust
-  m_Speed: 1
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000010204763560}
@@ -2127,25 +2127,25 @@ AnimatorStateMachine:
       second:
       - {fileID: 1109000011773501958}
     data:
-      first: {fileID: 1107000013914301966}
-      second:
-      - {fileID: 1109000011380159590}
-      - {fileID: 1109000011460221424}
-    data:
       first: {fileID: 1107000010730003952}
       second:
       - {fileID: 1109000013625147692}
     data:
-      first: {fileID: 1107000013850094926}
-      second:
-      - {fileID: 1109000013401931768}
+      first: {fileID: 1107000012741149278}
+      second: []
     data:
       first: {fileID: 1107000013833288774}
       second:
       - {fileID: 1109000014212367722}
     data:
-      first: {fileID: 1107000012741149278}
-      second: []
+      first: {fileID: 1107000013850094926}
+      second:
+      - {fileID: 1109000013401931768}
+    data:
+      first: {fileID: 1107000013914301966}
+      second:
+      - {fileID: 1109000011380159590}
+      - {fileID: 1109000011460221424}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 504, y: -120, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
