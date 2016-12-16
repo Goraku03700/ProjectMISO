@@ -1188,7 +1188,7 @@ ModelImporter:
       name: shot
       takeName: shot
       firstFrame: 1
-      lastFrame: 40
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1297,7 +1297,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     - serializedVersion: 16
       name: grasp2
       takeName: grasp2

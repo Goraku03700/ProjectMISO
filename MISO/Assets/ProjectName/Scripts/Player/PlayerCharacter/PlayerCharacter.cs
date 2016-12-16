@@ -237,6 +237,14 @@ public class PlayerCharacter : MonoBehaviour
 
         m_controlledRibbon.transform.FindChild("RibbonLine").GetComponent<RibbonLine>().startTransform = m_arm;
 
+        m_controlledRibbon.transform.localScale = new Vector3(m_playerCharacterData.ribbonMinScale, m_controlledRibbon.transform.localScale.y, m_playerCharacterData.ribbonMinScale);
+
+        Vector3 position = transform.position;
+
+        position.y = m_controlledRibbon.transform.position.y;
+
+        m_controlledRibbon.transform.position = position;
+
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -264,7 +272,7 @@ public class PlayerCharacter : MonoBehaviour
         point.y = m_ribbonRandingProjection.transform.position.y;
 
         m_ribbonRandingProjection.transform.position    = point;
-        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 4.0f;
+        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 2.0f;
 
         m_bgmManager.PlaySELoop("se000_AdjustRibbon");
 
@@ -281,7 +289,7 @@ public class PlayerCharacter : MonoBehaviour
             {
                 Destroy(m_controlledRibbon.gameObject);
                 m_isDoCancel = false;
-
+                m_ribbonRandingProjection.SetActive(false);
             }
         }
         else
@@ -383,6 +391,7 @@ public class PlayerCharacter : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
+            m_player.score += 1;
             m_bgmManager.PlaySE("se015_InCampany");
         }
 
@@ -446,7 +455,7 @@ public class PlayerCharacter : MonoBehaviour
             {
                 m_controlledRibbon.Breake();
 
-                Destroy(m_controlledRibbon.gameObject);
+                //Destroy(m_controlledRibbon.gameObject);
 
                 m_controlledRibbon = null;
             }
@@ -1088,6 +1097,19 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public Material ribbonLineMaterial
+    {
+        get
+        {
+            return m_ribbonLineMaterial;
+        }
+
+        set
+        {
+            m_ribbonLineMaterial = value;
+        }
+    }
+
     bool m_isDoCancel;
 
     bool m_isDash;
@@ -1119,6 +1141,9 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField]
     Material m_origineMaterial;
+
+    [SerializeField]
+    Material m_ribbonLineMaterial;
 
     [SerializeField]
     Transform m_arm;
