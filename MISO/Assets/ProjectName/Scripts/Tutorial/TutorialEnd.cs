@@ -6,16 +6,38 @@ public class TutorialEnd : MonoBehaviour {
 
     private bool[] m_readyFlag; // レディ押したか
 
+    private Animator[] m_animePlayer;
+
+    private bool flg;
+
 	// Use this for initialization
 	void Start () {
 
-        m_readyFlag = new bool[4];
-        for (int i = 0; i < 4; i++) m_readyFlag[i] = false;
 
-	}
+        m_readyFlag = new bool[4];
+        m_animePlayer = new Animator[4];
+        for (int i = 0; i < 4; i++)
+        {
+            m_readyFlag[i] = false;
+            //m_animePlayer[i] = GameObject.Find("PlayerCharacter" + (i+1).ToString()).GetComponent<Animator>();
+            GameObject.Find("PlayerCharacter" + (i+1).ToString()).GetComponent<Animator>().Play("Base Layer.Movable.Move");
+        }
+
+        flg = false;
+
+    }
 
     // Update is called once per frame
     void Update() {
+
+        /*
+        if(!flg)
+        {
+            for(int i=0; i<4; i++)
+                m_animePlayer[i].Play("Base Layer.Movable.Move");
+            flg = true;
+        }
+        */
 
         // スタートが押されたか
         if (MultiInput.GetButtonDown("Pause", MultiInput.JoypadNumber.Pad1) || Input.GetKeyDown(KeyCode.Z))

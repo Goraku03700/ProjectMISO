@@ -14,6 +14,11 @@ namespace Players
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            if(m_playerCharacter == null)
+            {
+                m_playerCharacter = animator.gameObject.GetComponent<PlayerCharacter>();
+            }
+
             m_playerCharacter.StartExit();
         }
 

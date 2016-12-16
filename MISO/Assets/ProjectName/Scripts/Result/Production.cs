@@ -609,6 +609,8 @@ public class Production : MonoBehaviour {
     /// </summary>
     private void PutCompanyProduction()
     {
+        BGMManager.instance.StopBGM(0.0f);
+
         BGMManager.instance.PlaySE("se_ResultStart_1");
         
         // 親子関係を解除する(その場に置く)

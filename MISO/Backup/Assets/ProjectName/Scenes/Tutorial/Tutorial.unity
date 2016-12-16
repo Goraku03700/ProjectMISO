@@ -154,6 +154,7 @@ Transform:
   - {fileID: 1208338372}
   - {fileID: 1946310054}
   - {fileID: 1697219098}
+  - {fileID: 952736627}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &70585373 stripped
@@ -1059,6 +1060,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isVisible: 1
+--- !u!1001 &952736626
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 26532524}
+    m_Modifications:
+    - target: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &952736627 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000011734740748, guid: 56007ee8d1581ff49b4b1311a1e73f72,
+    type: 2}
+  m_PrefabInternal: {fileID: 952736626}
 --- !u!1001 &975905920
 Prefab:
   m_ObjectHideFlags: 0
@@ -1143,7 +1191,7 @@ GameObject:
   - 4: {fileID: 1037659840}
   - 114: {fileID: 1037659839}
   m_Layer: 0
-  m_Name: TutorialEnd
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1172,7 +1220,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
 --- !u!1001 &1039634804
 Prefab:
   m_ObjectHideFlags: 0
@@ -2766,6 +2814,10 @@ Prefab:
       propertyPath: m_girlCreateSystem
       value: 
       objectReference: {fileID: 14902451}
+    - target: {fileID: 1000012262509172, guid: 66fdad13293a38c46ae48bc46aeea821, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66fdad13293a38c46ae48bc46aeea821, type: 2}
   m_IsPrefabParent: 0
@@ -3650,7 +3702,17 @@ Transform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 18
+--- !u!4 &1926302585 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000014100624696, guid: 56007ee8d1581ff49b4b1311a1e73f72,
+    type: 2}
+  m_PrefabInternal: {fileID: 952736626}
+--- !u!95 &1926302590 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000010222785294, guid: 56007ee8d1581ff49b4b1311a1e73f72,
+    type: 2}
+  m_PrefabInternal: {fileID: 952736626}
 --- !u!1001 &1935929424
 Prefab:
   m_ObjectHideFlags: 0
@@ -3979,7 +4041,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010861118060, guid: eed1f23ad9a613343b18a8a65bb1fadf, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eed1f23ad9a613343b18a8a65bb1fadf, type: 2}
@@ -4058,8 +4120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7857e0cc575282418c0bb61f3fb613c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_targetTransform: {fileID: 0}
-  m_animator: {fileID: 0}
+  m_targetTransform: {fileID: 1926302585}
+  m_animator: {fileID: 1926302590}
 --- !u!108 &2113365853
 Light:
   m_ObjectHideFlags: 0
