@@ -272,7 +272,7 @@ public class PlayerCharacter : MonoBehaviour
         point.y = m_ribbonRandingProjection.transform.position.y;
 
         m_ribbonRandingProjection.transform.position    = point;
-        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 4.0f;
+        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 2.0f;
 
         m_bgmManager.PlaySELoop("se000_AdjustRibbon");
 

@@ -350,11 +350,27 @@ namespace Ribbons
 
             m_meshRenderer = transform.Find("RibbonMesh/ribbon_circle").GetComponent<MeshRenderer>();
 
+            Transform colliderTransform         = transform.FindChild("RibbonCollider");
+            Transform triggerColliderTransform  = transform.FindChild("RibbonTriggerCollider");
+            Transform wallCollideTransform      = transform.FindChild("RibbonWallCollider");
+            Transform pullAllowTransform        = transform.FindChild("PullArrow");
+            Transform ribbonLineTransform       = transform.FindChild("RibbonLine");
+            Transform meshTransform             = transform.FindChild("RibbonMesh");
+
+            m_colliderObject        = colliderTransform.gameObject;
+            m_triggerColliderObject = triggerColliderTransform.gameObject;
+            m_wallColliderObject    = wallCollideTransform.gameObject;
+            m_pullArrowGameObject   = pullAllowTransform.gameObject;
+            m_meshObject            = meshTransform.gameObject;
+            m_pullArrow             = m_pullArrowGameObject.GetComponent<PullArrow>();
+            m_ribbonLine            = ribbonLineTransform.gameObject.GetComponent<RibbonLine>();
+
             switch (gameObject.tag)
             {
                 case "Player1":
                     {
                         m_meshRenderer.material = m_playerCharacter.ribbonMaterials[0];
+                        m_ribbonLine.lineRenderer
                     }
                     break;
 
@@ -382,21 +398,6 @@ namespace Ribbons
                         break;
                     }
             }       // end of switch(gameObject.tag)
-
-            Transform colliderTransform         = transform.FindChild("RibbonCollider");
-            Transform triggerColliderTransform  = transform.FindChild("RibbonTriggerCollider");
-            Transform wallCollideTransform      = transform.FindChild("RibbonWallCollider");
-            Transform pullAllowTransform        = transform.FindChild("PullArrow");
-            Transform ribbonLineTransform       = transform.FindChild("RibbonLine");
-            Transform meshTransform             = transform.FindChild("RibbonMesh");
-
-            m_colliderObject        = colliderTransform.gameObject;
-            m_triggerColliderObject = triggerColliderTransform.gameObject;
-            m_wallColliderObject    = wallCollideTransform.gameObject;
-            m_pullArrowGameObject   = pullAllowTransform.gameObject;
-            m_meshObject            = meshTransform.gameObject;
-            m_pullArrow             = m_pullArrowGameObject.GetComponent<PullArrow>();
-            m_ribbonLine            = ribbonLineTransform.gameObject.GetComponent<RibbonLine>();
 
             m_colliderObject.SetActive(false);
             m_triggerColliderObject.SetActive(false);

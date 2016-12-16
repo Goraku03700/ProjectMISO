@@ -68,5 +68,18 @@ namespace Ribbons
                 m_startTransform = value;
             }
         }
+
+        public LineRenderer lineRenderer
+        {
+            get
+            {
+                return m_lineRenderer;
+            }
+
+            set
+            {
+                m_lineRenderer = value;
+            }
+        }
     }
 }
