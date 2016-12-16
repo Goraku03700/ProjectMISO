@@ -58,6 +58,8 @@ public class SelectScene : MonoBehaviour {
         m_joypadNumber[2] = MultiInput.JoypadNumber.Pad3;
         m_joypadNumber[3] = MultiInput.JoypadNumber.Pad4;
 
+        BGMManager.instance.PlayBGM("bgm004_GameSelect", 1.0f);
+
     }
 
     // Update is called once per frame
@@ -66,7 +68,7 @@ public class SelectScene : MonoBehaviour {
         // BGM鳴らす
         if(!bgm004_startFlag)
         {
-            BGMManager.instance.PlayBGM("bgm004_GameSelect", 0.01f);
+            //BGMManager.instance.PlayBGM("bgm004_GameSelect", 1.0f);
             bgm004_startFlag = true;
         }
 

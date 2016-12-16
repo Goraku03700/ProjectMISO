@@ -22,8 +22,12 @@ public class TimeCount : MonoBehaviour {
     [SerializeField]
     Image m_clock;
 
-    [SerializeField]
-    TimeNiddle m_timeNiddle;
+    //[SerializeField]
+    //TimeNiddle m_timeNiddle;
+
+    private GameObject m_timeNiddle;
+
+    private TimeNiddle m_timeNiddleScript;
 
     private float nowTime;
 
@@ -37,7 +41,7 @@ public class TimeCount : MonoBehaviour {
 
     public GirlCreateSystem m_girlCreateSystem;
 
-	// Use this for initialization
+	// Use this for initializationm
 	void Start () {
         nowTime = 0.0f;
 
@@ -50,6 +54,10 @@ public class TimeCount : MonoBehaviour {
         m_isFever = false;
 
         m_endEffect.m_CountDownTime = m_countDownStartTime;
+
+        m_timeNiddle = GameObject.Find("TimeNiddle");
+
+        m_timeNiddleScript = m_timeNiddle.GetComponent<TimeNiddle>();
 
 
 	}
@@ -86,7 +94,7 @@ public class TimeCount : MonoBehaviour {
             m_isCountDown = true;
             m_endEffect.StartEndEffect();
             m_clock.enabled = false;
-            m_timeNiddle.enabled = false;
+            m_timeNiddle.SetActive(false);
         }
         else if(m_isCountDown)
         {
@@ -108,7 +116,7 @@ public class TimeCount : MonoBehaviour {
         m_girlCreateSystem.m_Limit = timeInit;
         isStart = true;
 
-        m_timeNiddle.StartRotate();
+        m_timeNiddleScript.StartRotate();
     }
 
     void SetData()
@@ -121,6 +129,11 @@ public class TimeCount : MonoBehaviour {
         SceneSharedData.instance.Set("PlayTest", "Player3Score", playerDataObject.score);
         playerDataObject = GameObject.Find("Player4").GetComponent<Player>();
         SceneSharedData.instance.Set("PlayTest", "Player4Score", playerDataObject.score);
+    }
+
+    public float GetTime()
+    {
+        return timeInit;
     }
 }
 

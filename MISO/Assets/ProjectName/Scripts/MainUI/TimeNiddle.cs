@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TimeNiddle : MonoBehaviour {
 
-    [SerializeField]
+    //[SerializeField]
     private float m_time;
 
     private float m_nowTime;
@@ -16,13 +16,15 @@ public class TimeNiddle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-       // m_time = GameObject.Find("Time").GetComponent<TimeCount>().
+        m_time = GameObject.Find("Time").GetComponent<TimeCount>().GetTime();
 
-        rotateFrame = m_time * 30 / 360;
+        rotateFrame = m_time * 30 / 360 ;
 
         m_nowTime = 0.0f;
 
         isStart = false;
+
+
 
 	
 	}
@@ -39,7 +41,7 @@ public class TimeNiddle : MonoBehaviour {
         float rot_z = m_nowTime / m_time * 360;
 
         // 回転
-        this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -rot_z);
+        this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -rot_z + 90.0f);
 
     }
 
@@ -48,3 +50,7 @@ public class TimeNiddle : MonoBehaviour {
         isStart = true;
     }
 }
+
+
+//
+//
