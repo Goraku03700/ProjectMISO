@@ -262,15 +262,17 @@ namespace Ribbons
             m_animatorParameters.isPulled = true;
 
             int tempScore = m_playerCharacter.player.score;
-
+            int addScore = 0;
+             
             foreach(var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
                 if (playerCharacter.player.score - m_playerCharacter.playerCharacterData.collectScoreMinus < 0)
                 {
-                    m_playerCharacter.player.score += m_playerCharacter.playerCharacterData.collectScoreMinus;
-                    playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
+                    //m_playerCharacter.player.score += m_playerCharacter.playerCharacterData.collectScoreMinus;
+                    //playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
 
                     //int addScore = Math.Abs(playerCharacter.player.score);
+                    addScore += playerCharacter.player.score;
 
                     playerCharacter.player.score = 0;
 
@@ -280,27 +282,30 @@ namespace Ribbons
                 {
                     playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
 
-                    m_playerCharacter.player.score += m_playerCharacter.playerCharacterData.collectScoreMinus;
+                    //m_playerCharacter.player.score += m_playerCharacter.playerCharacterData.collectScoreMinus;
+                    addScore += m_playerCharacter.playerCharacterData.collectScoreMinus;
                 }
 
                 playerCharacter.Collect();
+                m_playerCharacter.npcGetParticle.Play();
             }
 
             foreach (var girl in m_triggerCollider.coughtGirls)
             {
                 girl.Collect(m_playerCharacter.playerFire.transform.position);
 
-                m_playerCharacter.player.score++;
+                //m_playerCharacter.player.score++;
+                addScore += 1;
 
                 m_playerCharacter.npcGetParticle.Play();
             }
 
-            int score = m_playerCharacter.player.score - tempScore;
+            //int score = m_playerCharacter.player.score - tempScore;
 
-            if(score > 0)
+            if(addScore > 0)
             {
                 //StartCoroutine(m_playerCharacter.PulledCorutine(score));
-                m_playerCharacter.StartPulledCorutine(score);
+                m_playerCharacter.StartPulledCorutine(addScore);
             }
 
             Destroy(gameObject);
@@ -308,7 +313,7 @@ namespace Ribbons
 
         public void Breake()
         {
-            if(m_triggerCollider.isActiveAndEnabled)
+            if(m_triggerCollider.coughtPlayerCharacters != null)
             {
                 foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
                 {
@@ -370,7 +375,7 @@ namespace Ribbons
                 case "Player1":
                     {
                         m_meshRenderer.material = m_playerCharacter.ribbonMaterials[0];
-                        m_ribbonLine.lineRenderer.material = m_playerCharacter.ribbonMaterials[0];
+                        //m_ribbonLine.lineRenderer.material = m_playerCharacter.ribbonMaterials[0];
                     }
                     break;
 
@@ -398,6 +403,8 @@ namespace Ribbons
                         break;
                     }
             }       // end of switch(gameObject.tag)
+
+            m_ribbonLine.lineRenderer.material = m_playerCharacter.ribbonLineMaterial;
 
             m_colliderObject.SetActive(false);
             m_triggerColliderObject.SetActive(false);

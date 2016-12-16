@@ -391,6 +391,7 @@ public class PlayerCharacter : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
+            m_player.score += 1;
             m_bgmManager.PlaySE("se015_InCampany");
         }
 
@@ -1093,6 +1094,19 @@ public class PlayerCharacter : MonoBehaviour
         set
         {
             m_isThisFrameCought = value;
+        }
+    }
+
+    public Material ribbonLineMaterial
+    {
+        get
+        {
+            return m_ribbonLineMaterial;
+        }
+
+        set
+        {
+            m_ribbonLineMaterial = value;
         }
     }
 

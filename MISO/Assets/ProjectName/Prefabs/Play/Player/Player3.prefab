@@ -2103,7 +2103,8 @@ MonoBehaviour:
   - {fileID: 137000011004302642}
   m_invisibleMaterial: {fileID: 2100000, guid: 30daf2dbdaf534e4d835a47904af72b8, type: 2}
   m_origineMaterial: {fileID: 2100000, guid: e183b2839ff4d1a4f856071195c6f2c2, type: 2}
-  m_ribbonLineMaterial: {fileID: 0}
+  m_ribbonLineMaterial: {fileID: 2100000, guid: 5efc73e43d4848d45a29d8f39e6c64f4,
+    type: 2}
   m_arm: {fileID: 4000011212296774}
 --- !u!114 &114000012999071670
 MonoBehaviour:

@@ -6,11 +6,14 @@ namespace Ribbons
     public class RibbonLine : MonoBehaviour
     {
 
-        // Use this for initialization
+        void Awake()
+        {
+            m_lineRenderer = GetComponent<LineRenderer>();
+        }
+
         void Start()
         {
             m_ribbon = transform.parent.GetComponent<Ribbon>();
-            m_lineRenderer = GetComponent<LineRenderer>();
 
             //Vector3 start, end;
 
