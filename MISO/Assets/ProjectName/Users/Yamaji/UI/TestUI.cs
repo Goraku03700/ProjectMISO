@@ -30,8 +30,8 @@ public class TestUI : MonoBehaviour {
                                                              stick.transform.localRotation.z - 0.1f);*/
             //rot += 200.0f * Time.deltaTime;
 
-            GameObject.Find("Stick").GetComponent<PullStick>().ChangeStickLeft();
-
+            GameObject.Find("PullStick").GetComponent<PullStick>().ChangeStickLeft();
+            
         }
         
         if(Input.GetKey(KeyCode.RightArrow))
@@ -43,7 +43,7 @@ public class TestUI : MonoBehaviour {
                                                                 */
             //rot -= 200.0f * Time.deltaTime;
 
-            GameObject.Find("Stick").GetComponent<PullStick>().ChangeStickRight();
+            GameObject.Find("PullStick").GetComponent<PullStick>().ChangeStickRight();
 
         }
 
