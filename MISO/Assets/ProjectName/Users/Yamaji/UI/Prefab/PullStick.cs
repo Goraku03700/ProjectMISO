@@ -4,7 +4,24 @@ using System.Collections;
 public class PullStick : MonoBehaviour {
 
     [SerializeField]
-    private float m_speed;
+    private float m_slopeSpeed; // 傾けるスピード
+
+    [SerializeField]
+    private float m_slopeMax;   // 傾ける最大値
+
+    [SerializeField]
+    private float m_slopeTime;   // 傾ける時間
+
+    [SerializeField]
+    private float m_slopeWaitTime; // 0度の位置で止める時間
+
+    /*
+    [SerializeField]
+    private float m_scaleSpeed; // 拡縮のスピード
+
+    [SerializeField]
+    private float m_scaleMax;   // 拡縮の最大(倍率)
+    */
 
     enum StickState
     {
@@ -16,6 +33,8 @@ public class PullStick : MonoBehaviour {
 
     private float m_rot;
 
+    private float m_time;
+
    
 
 	// Use this for initialization
@@ -23,32 +42,69 @@ public class PullStick : MonoBehaviour {
 
         m_rot = 0.0f;
 
+        m_time = 0.0f;
+
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        m_time += Time.deltaTime;
+
         switch (m_stickState)
         {
             case StickState.Left:
                 {
-                    m_rot += m_speed;
-                    if (m_rot > 40.0f)
-                        m_rot = 40.0f;
+                    
+                    m_rot -= m_slopeSpeed * Time.deltaTime;
+                    if (m_rot < -m_slopeMax)
+                        m_rot = -m_slopeMax;
+                   
                 }
                 break;
 
             case StickState.Right:
                 {
-                    m_rot -= m_speed;
-                    if (m_rot < -40.0f)
-                        m_rot = -40.0f;
+                    
+                    m_rot += m_slopeSpeed * Time.deltaTime;
+                    if (m_rot > m_slopeMax)
+                        m_rot = m_slopeMax;
+
                 }
                 break;
         }
 
-        this.transform.Rotate(0.0f, 0.0f, m_rot);
-        //this.transform.Rotate(new Vector3(0, 0, 1), m_rot);
+        // 0度の位置で止める
+        if (m_time < m_slopeWaitTime)
+        {
+            m_rot = 0.0f;
+        }
+
+        if (m_time > m_slopeTime)
+        {
+            m_time = 0.0f;
+            m_rot = 0.0f;
+        }
+
+        
+        Vector3 angle;
+        angle.x = this.transform.eulerAngles.x;
+        angle.y = this.transform.eulerAngles.y;
+        angle.z = m_rot;
+        
+        this.transform.eulerAngles = angle;
+
+
+        // 大きさの変更
+        /*
+        Vector3 objScale = this.transform.localScale;
+
+        float scale = Mathf.PingPong(Time.time * m_scaleSpeed, m_scaleMax - 1.0f) + 1.0f;
+        objScale.x = objScale.y = scale;
+
+        this.transform.localScale = objScale;
+        */
 
 
     }
@@ -56,10 +112,16 @@ public class PullStick : MonoBehaviour {
     public void ChangeStickLeft()
     {
         m_stickState = StickState.Left;
+
+        m_time = 0.0f;
+        m_rot = 0.0f;
     }
 
     public void ChangeStickRight()
     {
         m_stickState = StickState.Right;
+
+        m_time = 0.0f;
+        m_rot = 0.0f;
     }
 }
