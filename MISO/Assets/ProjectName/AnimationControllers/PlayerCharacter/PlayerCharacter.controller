@@ -158,6 +158,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e42859caf0f98f46908e7e77e4428bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000010387214936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f46bd24f5817244da620c1c8cc5ebb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010714842514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1495,7 +1506,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000011412898746}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114000010387214936}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1925,7 +1937,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400010, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+  m_Motion: {fileID: 7400022, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2127,25 +2139,25 @@ AnimatorStateMachine:
       second:
       - {fileID: 1109000011773501958}
     data:
+      first: {fileID: 1107000013914301966}
+      second:
+      - {fileID: 1109000011380159590}
+      - {fileID: 1109000011460221424}
+    data:
       first: {fileID: 1107000010730003952}
       second:
       - {fileID: 1109000013625147692}
-    data:
-      first: {fileID: 1107000012741149278}
-      second: []
-    data:
-      first: {fileID: 1107000013833288774}
-      second:
-      - {fileID: 1109000014212367722}
     data:
       first: {fileID: 1107000013850094926}
       second:
       - {fileID: 1109000013401931768}
     data:
-      first: {fileID: 1107000013914301966}
+      first: {fileID: 1107000013833288774}
       second:
-      - {fileID: 1109000011380159590}
-      - {fileID: 1109000011460221424}
+      - {fileID: 1109000014212367722}
+    data:
+      first: {fileID: 1107000012741149278}
+      second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 504, y: -120, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}

@@ -200,6 +200,19 @@ namespace Ribbons
 
             float dot = Vector3.Dot(transform.forward, direction);
 
+            if(dot > 0)
+            {
+                m_moveDirectionState = MoveDirectionState.Right;
+
+                m_pullStick.ChangeStickLeft();
+            }
+            else
+            {
+                m_moveDirectionState = MoveDirectionState.Left;
+
+                m_pullStick.ChangeStickRight();
+            }
+
             Vector3 force = (transform.right * dot).normalized;
 
             m_rigidbody.AddForce(force * m_playerCharacter.playerCharacterData.ribbonViolentMoveSpeed, ForceMode.Force);
@@ -210,17 +223,6 @@ namespace Ribbons
             //m_triggerColliderObject.SetActive(false);
 
             //m_pullArrowGameObject.SetActive(true);
-
-            int objectsCount = m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count;
-
-            if (objectsCount > 0)
-            {
-                m_pullArrow.spriteRenderer.enabled = true;
-            }
-            else
-            {
-                m_pullArrow.spriteRenderer.enabled = false;
-            }
         }
 
         public void PullUpdate()
@@ -230,6 +232,19 @@ namespace Ribbons
             //angle = (m_moveDirectionState == MoveDirectionState.Right) ? 180.0f : -180.0f ;
 
             //transform.RotateAround(playerCharacter.transform.position, transform.up, angle * Time.deltaTime);
+
+            int objectsCount = m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count;
+
+            if (objectsCount > 0)
+            {
+                //m_pullStick.spriteRenderer.enabled = true;
+                m_pullStick.gameObject.SetActive(true);
+            }
+            else
+            {
+                //m_pullStick.spriteRenderer.enabled = false;
+                m_pullStick.gameObject.SetActive(false);
+            }
 
             Vector3 direction;
 
@@ -358,7 +373,7 @@ namespace Ribbons
             Transform colliderTransform         = transform.FindChild("RibbonCollider");
             Transform triggerColliderTransform  = transform.FindChild("RibbonTriggerCollider");
             Transform wallCollideTransform      = transform.FindChild("RibbonWallCollider");
-            Transform pullAllowTransform        = transform.FindChild("PullArrow");
+            Transform pullAllowTransform        = transform.FindChild("PullStick");
             Transform ribbonLineTransform       = transform.FindChild("RibbonLine");
             Transform meshTransform             = transform.FindChild("RibbonMesh");
 
@@ -367,7 +382,7 @@ namespace Ribbons
             m_wallColliderObject    = wallCollideTransform.gameObject;
             m_pullArrowGameObject   = pullAllowTransform.gameObject;
             m_meshObject            = meshTransform.gameObject;
-            m_pullArrow             = m_pullArrowGameObject.GetComponent<PullArrow>();
+            m_pullStick             = m_pullArrowGameObject.GetComponent<PullStick>();
             m_ribbonLine            = ribbonLineTransform.gameObject.GetComponent<RibbonLine>();
 
             switch (gameObject.tag)
@@ -408,6 +423,7 @@ namespace Ribbons
 
             m_colliderObject.SetActive(false);
             m_triggerColliderObject.SetActive(false);
+            //m_pullStick.spriteRenderer.enabled = false;
 
             m_triggerCollider = m_triggerColliderObject.GetComponent<RibbonTriggerCollider>();
 
@@ -420,14 +436,15 @@ namespace Ribbons
             switch (m_moveDirectionState)
             {
                 case MoveDirectionState.Right:
-                    m_pullArrow.ChangeArrowLeft();
+                    m_pullStick.ChangeStickLeft();
                     break;
                 case MoveDirectionState.Left:
-                    m_pullArrow.ChangeArrowRight();
+                    m_pullStick.ChangeStickRight();
                     break;
             }
 
-            m_pullArrow.spriteRenderer.enabled = false;
+            //m_pullStick.spriteRenderer.enabled = false;
+            m_pullStick.gameObject.SetActive(false);
             //m_pullArrowGameObject.transform.position = playerCharacter.transform.position;
 
             m_isStarted = true;
@@ -545,13 +562,13 @@ namespace Ribbons
                         {
                             m_moveDirectionState = MoveDirectionState.Right;
 
-                            m_pullArrow.ChangeArrowLeft();
+                            m_pullStick.ChangeStickLeft();
                         }
                         else if (m_moveDirectionState == MoveDirectionState.Right)
                         {
                             m_moveDirectionState = MoveDirectionState.Left;
 
-                            m_pullArrow.ChangeArrowRight();
+                            m_pullStick.ChangeStickRight();
                         }
 
                         m_changeTime = 0.0f;
@@ -733,7 +750,7 @@ namespace Ribbons
 
         private GameObject m_pullArrowGameObject;
 
-        private PullArrow m_pullArrow;
+        private PullStick m_pullStick;
 
         private RibbonLine m_ribbonLine;
 

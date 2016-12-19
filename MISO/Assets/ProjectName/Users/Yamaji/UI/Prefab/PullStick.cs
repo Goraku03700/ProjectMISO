@@ -15,6 +15,9 @@ public class PullStick : MonoBehaviour {
     [SerializeField]
     private float m_slopeWaitTime; // 0度の位置で止める時間
 
+
+    private SpriteRenderer m_spriteRenderer;
+
     /*
     [SerializeField]
     private float m_scaleSpeed; // 拡縮のスピード
@@ -35,10 +38,26 @@ public class PullStick : MonoBehaviour {
 
     private float m_time;
 
-   
+    public SpriteRenderer spriteRenderer
+    {
+        get
+        {
+            return m_spriteRenderer;
+        }
 
-	// Use this for initialization
-	void Start () {
+        set
+        {
+            m_spriteRenderer = value;
+        }
+    }
+
+    void Awake()
+    {
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    // Use this for initialization
+    void Start () {
 
         m_rot = 0.0f;
 
