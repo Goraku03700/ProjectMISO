@@ -354,10 +354,99 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public struct PulledCorutineArgs
+    {
+        public int addScore;
+        public int inPlayerNum;
+    }
+
     public void StartPulledCorutine(int score)
     {
         StartCoroutine("PulledCorutine", score);
       //  StartCoroutine("PulledCorutine");
+    }
+
+    public void StartPulledCorutine(int score, int inPlayerNum)
+    {
+        PulledCorutineArgs args;
+
+        args.addScore = score;
+        args.inPlayerNum = inPlayerNum;
+
+        StartCoroutine("PulledCorutine", args);
+        //  StartCoroutine("PulledCorutine");
+    }
+
+    public IEnumerator PulledCorutine(PulledCorutineArgs args)
+    {
+        const float OneLoopTime = 0.25f;
+
+        float currentTime = 0.0f;
+
+        while (currentTime < m_playerCharacterData.collectTime)
+        {
+            currentTime += Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        currentTime = 0.0f;
+
+        for (int i = 0; i < args.addScore; ++i)
+        {
+            currentTime = 0.0f;
+
+            while (currentTime < OneLoopTime)
+            {
+                currentTime += Time.deltaTime;
+
+                float t = currentTime / OneLoopTime;
+
+                // ease-in-out
+                //t = (t * t) * (3.0f - (2.0f * t));
+
+                float scaling;
+
+                //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
+                scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
+
+                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            m_player.score += 1;
+            m_bgmManager.PlaySE("se015_InCampany");
+        }
+
+        for (int i = 0; i < args.inPlayerNum ; ++i)
+        {
+            currentTime = 0.0f;
+
+            while (currentTime < OneLoopTime)
+            {
+                currentTime += Time.deltaTime;
+
+                float t = currentTime / OneLoopTime;
+
+                // ease-in-out
+                //t = (t * t) * (3.0f - (2.0f * t));
+
+                float scaling;
+
+                //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
+                scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
+
+                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            //m_player.score += 1;
+            m_bgmManager.PlaySE("se015_InCampany");
+        }
+
+        m_buildingObject.transform.localScale = m_buildingDefaultScale;
     }
 
     public IEnumerator PulledCorutine(int score)
@@ -468,6 +557,11 @@ public class PlayerCharacter : MonoBehaviour
             }
 
             m_isThisFrameCought = true;
+
+            //m_lineRenderer.enabled = true;
+
+            m_lineRenderer.SetPosition(1, caughtRibbon.playerCharacter.transform.position);
+            m_lineRenderer.material = caughtRibbon.playerCharacter.ribbonLineMaterial;
         }
     }
 
@@ -479,6 +573,8 @@ public class PlayerCharacter : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
         m_playerIcon.ChangeIconNormal();
+
+        m_lineRenderer.enabled = false;
 
         //m_rigidbody.mass = 1.0f;
 
@@ -498,6 +594,7 @@ public class PlayerCharacter : MonoBehaviour
 
         m_collider.enabled      = false;
         m_wallCollider.enabled  = false;
+        m_lineRenderer.enabled  = false;
     }
 
     public void CollectUpdate()
@@ -752,6 +849,7 @@ public class PlayerCharacter : MonoBehaviour
         m_collider  = GetComponent<CapsuleCollider>();
         m_wallCollider = GetComponent<BoxCollider>();
         m_player    = transform.parent.GetComponent<Player>();
+        m_lineRenderer = GetComponent<LineRenderer>();
 
         m_meshObject                = transform.FindChild("PlayerCharacterMesh").gameObject;
         m_buildingObject            = transform.FindChild("PlayerCharacterBuilding").gameObject;
@@ -813,6 +911,8 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         m_dashGauge.raito = 1 - (m_dashDurationTime / m_playerCharacterData.dashTime);
+
+        m_lineRenderer.SetPosition(0, transform.position);
 
         m_isThisFrameCought = false;
 
@@ -1163,4 +1263,6 @@ public class PlayerCharacter : MonoBehaviour
     Transform m_arm;
 
     Vector3 m_buildingDefaultScale;
+
+    LineRenderer m_lineRenderer;
 }

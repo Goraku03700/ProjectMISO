@@ -276,8 +276,9 @@ namespace Ribbons
         {
             m_animatorParameters.isPulled = true;
 
-            int tempScore = m_playerCharacter.player.score;
+            //int tempScore = m_playerCharacter.player.score;
             int addScore = 0;
+            int addPlayer = 0;
              
             foreach(var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
@@ -301,6 +302,7 @@ namespace Ribbons
                     addScore += m_playerCharacter.playerCharacterData.collectScoreMinus;
                 }
 
+                addPlayer += 1;
                 playerCharacter.Collect();
                 m_playerCharacter.npcGetParticle.Play();
             }
@@ -317,11 +319,13 @@ namespace Ribbons
 
             //int score = m_playerCharacter.player.score - tempScore;
 
-            if(addScore > 0)
-            {
-                //StartCoroutine(m_playerCharacter.PulledCorutine(score));
-                m_playerCharacter.StartPulledCorutine(addScore);
-            }
+            //if(addScore > 0)
+            //{
+            //    //StartCoroutine(m_playerCharacter.PulledCorutine(score));
+            //    m_playerCharacter.StartPulledCorutine(addScore);
+            //}
+
+            m_playerCharacter.StartPulledCorutine(addScore, addPlayer);
 
             Destroy(gameObject);
         }
