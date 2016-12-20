@@ -1048,6 +1048,14 @@ Prefab:
       propertyPath: m_targetCamera
       value: 
       objectReference: {fileID: 947643290}
+    - target: {fileID: 4000010730616990, guid: f22cf58988bc63646ab51980ab3df6f0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010730616990, guid: f22cf58988bc63646ab51980ab3df6f0, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22cf58988bc63646ab51980ab3df6f0, type: 2}
   m_IsPrefabParent: 0
@@ -1649,6 +1657,14 @@ Prefab:
       propertyPath: m_targetCamera
       value: 
       objectReference: {fileID: 947643290}
+    - target: {fileID: 4000011453669014, guid: 0f4b980fe24203b45a9e83b9bdf26ca5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011453669014, guid: 0f4b980fe24203b45a9e83b9bdf26ca5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f4b980fe24203b45a9e83b9bdf26ca5, type: 2}
   m_IsPrefabParent: 0
@@ -1838,6 +1854,14 @@ Prefab:
       propertyPath: m_targetCamera
       value: 
       objectReference: {fileID: 947643290}
+    - target: {fileID: 4000010124704096, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010124704096, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
   m_IsPrefabParent: 0
@@ -2103,6 +2127,14 @@ Prefab:
       propertyPath: m_targetCamera
       value: 
       objectReference: {fileID: 947643290}
+    - target: {fileID: 4000010497206272, guid: 2bfc17de90e6c32418272494045b676c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010497206272, guid: 2bfc17de90e6c32418272494045b676c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bfc17de90e6c32418272494045b676c, type: 2}
   m_IsPrefabParent: 0
