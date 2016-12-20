@@ -64,6 +64,7 @@ public class PlayerScore : MonoBehaviour {
 
         m_time = 0.0f;
 
+        m_downFlag = false;
     }
     
     // Update is called once per frame
@@ -72,9 +73,10 @@ public class PlayerScore : MonoBehaviour {
         m_scoreText.text = m_player.score.ToString();
 
         // スコアを少しずつ下げる
-        if(m_downFlag)
+        if (m_downFlag)
         {
             m_time += Time.deltaTime;
+        }
 
 
     }
