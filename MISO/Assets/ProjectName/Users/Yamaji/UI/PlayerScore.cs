@@ -5,9 +5,18 @@ using System.Collections;
 
 public class PlayerScore : MonoBehaviour {
 
-    private Text m_scoreText;
+    [SerializeField]
+    private float m_downSpeed;  // だんだん下げる時の速度
+
+    private Text m_scoreText;  
 
     private Player m_player;
+
+    private bool m_downFlag;
+
+    private int m_saveScore;
+
+    private float m_time;
 
 
 	// Use this for initialization
@@ -52,7 +61,8 @@ public class PlayerScore : MonoBehaviour {
 
         GameObject g  = GameObject.Find(findGameObjectName);
         m_player = g.GetComponent<Player>();
-        
+
+        m_time = 0.0f;
 
     }
     
@@ -61,5 +71,27 @@ public class PlayerScore : MonoBehaviour {
 
         m_scoreText.text = m_player.score.ToString();
 
+        // スコアを少しずつ下げる
+        if(m_downFlag)
+        {
+            m_time += Time.deltaTime;
+
+
+    }
+
+
+    /// <summary>
+    /// 数字を
+    /// </summary>
+    /// <param name="donwNum"></param>
+    public void DownCount(int donwNum)
+    {
+        // カウントダウンフラグ
+        m_downFlag = true;
+
+        // 数値を保存する
+        m_saveScore = int.Parse(m_scoreText.text);
+
+        m_time = 0.0f;
     }
 }

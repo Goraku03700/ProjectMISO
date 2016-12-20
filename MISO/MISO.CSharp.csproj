@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -131,6 +133,7 @@
     <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlCreater.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GirlCreate\GirlNoPlayerCharacter.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Input\MultiInput.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\MainUI\Damage.cs" />
     <Compile Include="Assets\ProjectName\Scripts\MainUI\DashGauge.cs" />
     <Compile Include="Assets\ProjectName\Scripts\MainUI\TimeCount.cs" />
     <Compile Include="Assets\ProjectName\Scripts\MainUI\TimeNiddle.cs" />
@@ -198,7 +201,6 @@
     <Compile Include="Assets\ProjectName\Users\Yamaji\Particle\TestPlayer.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerIcon.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\PlayerScore.cs" />
-    <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\Damage.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\PullArrow.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\Prefab\PullStick.cs" />
     <Compile Include="Assets\ProjectName\Users\Yamaji\UI\TestUI.cs" />
