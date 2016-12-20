@@ -410,7 +410,7 @@ public class PlayerCharacter : MonoBehaviour
                 //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
                 scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
 
-                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+                m_buildingObject.transform.localScale = m_buildingScale * (scaling + 1.0f);
 
                 yield return new WaitForEndOfFrame();
             }
@@ -437,7 +437,7 @@ public class PlayerCharacter : MonoBehaviour
                 //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
                 scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
 
-                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+                m_buildingObject.transform.localScale = m_buildingScale * (scaling + 1.0f);
 
                 yield return new WaitForEndOfFrame();
             }
@@ -446,7 +446,9 @@ public class PlayerCharacter : MonoBehaviour
             m_bgmManager.PlaySE("se015_InCampany");
         }
 
-        m_buildingObject.transform.localScale = m_buildingDefaultScale;
+        m_isChangeBuildingSize = true;
+
+        //m_buildingObject.transform.localScale = m_buildingScale;
     }
 
     public IEnumerator PulledCorutine(int score)
@@ -482,7 +484,7 @@ public class PlayerCharacter : MonoBehaviour
                 //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
                 scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
 
-                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+                m_buildingObject.transform.localScale = m_buildingScale * (scaling + 1.0f);
 
                 yield return new WaitForEndOfFrame();
             }
@@ -491,7 +493,7 @@ public class PlayerCharacter : MonoBehaviour
             m_bgmManager.PlaySE("se015_InCampany");
         }
 
-        m_buildingObject.transform.localScale = m_buildingDefaultScale;
+        m_buildingObject.transform.localScale = m_buildingScale;
     }
 
     public IEnumerator PulledCorutineAAA()
@@ -513,12 +515,12 @@ public class PlayerCharacter : MonoBehaviour
 
             float scaling = Mathf.PingPong(0.5f, t) + 1.0f;
 
-            m_buildingObject.transform.localScale = m_buildingDefaultScale * scaling;
+            m_buildingObject.transform.localScale = m_buildingScale * scaling;
 
             yield return null;
         }
 
-        m_buildingObject.transform.localScale = m_buildingDefaultScale;
+        m_buildingObject.transform.localScale = m_buildingScale;
     }
 
     public void BreakeRibbon()
@@ -630,6 +632,7 @@ public class PlayerCharacter : MonoBehaviour
         m_buildingObject.SetActive(false);
         m_collider.enabled = false;
         transform.localScale = m_dafaultScale;
+        m_isChangeBuildingSize = true;
 
         m_inBuildingTime = .0f;
     }
@@ -867,7 +870,7 @@ public class PlayerCharacter : MonoBehaviour
         m_bgmManager                = BGMManager.instance;
 
         m_dafaultScale = transform.localScale;
-        m_buildingDefaultScale = m_buildingObject.transform.localScale;
+        m_buildingScale = m_buildingObject.transform.localScale;
 
 
         var playerIcons = FindObjectsOfType<PlayerIcon>();
@@ -915,6 +918,15 @@ public class PlayerCharacter : MonoBehaviour
         m_lineRenderer.SetPosition(0, transform.position);
 
         m_isThisFrameCought = false;
+
+        m_buildingScale.y = 3 + (m_player.score * 0.25f);
+
+        if (m_isChangeBuildingSize)
+        {
+            m_buildingObject.transform.localScale = m_buildingScale;
+
+            m_isChangeBuildingSize = false;
+        }
 
         _UpdateAnimatorParameters();
     }
@@ -1262,7 +1274,9 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     Transform m_arm;
 
-    Vector3 m_buildingDefaultScale;
+    Vector3 m_buildingScale;
 
     LineRenderer m_lineRenderer;
+
+    bool m_isChangeBuildingSize;
 }
