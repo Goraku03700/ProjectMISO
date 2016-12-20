@@ -89,7 +89,7 @@ namespace Ribbons
         {
             if(m_rigidbody.velocity.y > 0.0f)
             {
-                m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, .0f, m_rigidbody.velocity.z);
+                //m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, .0f, m_rigidbody.velocity.z);
             }
         }
 
@@ -200,7 +200,7 @@ namespace Ribbons
 
             float dot = Vector3.Dot(transform.forward, direction);
 
-            if(dot > 0)
+            if(dot < 0)
             {
                 m_moveDirectionState = MoveDirectionState.Right;
 

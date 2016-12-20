@@ -91,17 +91,65 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
         m_controlledPlayerCharacter.InputDash(isPushDashKey);
 
-        //if (isPushCancelKey)
-        //    m_controlledPlayerCharacter.InputCancel();
+        bool isVertical2Down = m_prevFrameVertical2 - vertical2 > 0.0f;
 
-        if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
+        //if(vertical2 <= 1.0f)
+        //{
+
+        //}
+
+        if (vertical2 <= -0.0f && isVertical2Down)
         {
             m_controlledPlayerCharacter.InputCharge();
         }
-        else if (MultiInput.GetButtonUp("Throw", m_joypadNumber))
+        else if(vertical2 >= 0.0f)
         {
             m_controlledPlayerCharacter.InputThrow();
         }
+
+        m_prevFrameVertical2 = vertical2;
+
+        //if(vertical2 < 0.125f && vertical2 > -0.125f)
+        //{
+        //    m_isCanceled = true;
+        //}
+
+        //if(vertical2 < -0.125f)
+        //{
+        //    if (m_isCanceled)
+        //    {
+        //        m_controlledPlayerCharacter.InputCharge();
+
+        //        m_isCanceled = false;
+        //    }
+        //}
+        //else if(vertical2 > -0.125f)
+        //{
+        //    m_controlledPlayerCharacter.InputThrow();
+        //}
+
+        //if(vertical2 < -0.125f)
+        //{
+        //    m_controlledPlayerCharacter.InputCharge(vertical2);
+        //}
+        //else if(vertical2 > -0.125f)
+        //{
+        //    m_controlledPlayerCharacter.InputThrow();
+        //}
+
+        //Debug.Log(horizontal2.ToString());
+
+        //if (isPushCancelKey)
+        //    m_controlledPlayerCharacter.InputCancel();
+
+        //if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
+        //{
+        //    m_controlledPlayerCharacter.InputCharge();
+        //}
+        //else if (MultiInput.GetButtonUp("Throw", m_joypadNumber))
+        //{
+        //    m_controlledPlayerCharacter.InputThrow();
+        //}
 
         //if (_CheckStickRotation(vertical, horizontal))
         //{
@@ -114,7 +162,7 @@ public class PlayerCharacterController : MonoBehaviour {
         //}
 
         // pull
-        if(_CheckStickHalfRotation(horizontal2, vertical2, ref m_pullHalfRotationInputCheck))
+        if (_CheckStickHalfRotation(horizontal2, vertical2, ref m_pullHalfRotationInputCheck))
         {
             m_pullHalfRotationCount++;
 
@@ -302,6 +350,10 @@ public class PlayerCharacterController : MonoBehaviour {
     private int m_releaseHalfRotationInputCount;
 
     private PlayerCharacterControllerData m_controllerData;
+
+    private float m_prevFrameVertical2;
+
+    private bool m_isCanceled;
 
 #if UNITY_EDITOR
 

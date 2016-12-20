@@ -149,8 +149,37 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputCharge()
     {
-        if(m_animatorParameters.isPushCancelKey == false)
+        if (m_animatorParameters.isPushCancelKey == false)
+        {
             m_animatorParameters.isPushThrowKey = true;
+
+            //if(m_chargeTime >= m_playerCharacterData.chargeTimeMax)
+            //{
+            //    m_chargeTime = m_playerCharacterData.chargeTimeMax;
+            //}
+            //else
+            //{
+            //    m_chargeTime += Time.deltaTime;
+            //}
+
+            //float power = m_chargeTime / m_playerCharacterData.chargeTimeMax;
+
+            //Debug.Log(power.ToString());
+
+            //m_throwPower = power * m_playerCharacterData.throwPower;
+            //m_throwSpeed = power * m_playerCharacterData.throwSpeed;
+        }
+    }
+
+    public void InputCharge(float horizontal)
+    {
+        if (m_animatorParameters.isPushCancelKey == false)
+        {
+            m_animatorParameters.isPushThrowKey = true;
+
+            m_throwPower = -horizontal * m_playerCharacterData.throwPower;
+            m_throwSpeed = -horizontal * m_playerCharacterData.throwSpeed;
+        }
     }
 
     public void InputThrow()
@@ -264,6 +293,22 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SizeAdjustUpdate()
     {
+        if (m_chargeTime >= m_playerCharacterData.chargeTimeMax)
+        {
+            m_chargeTime = m_playerCharacterData.chargeTimeMax;
+        }
+        else
+        {
+            m_chargeTime += Time.deltaTime;
+        }
+
+        float power = m_chargeTime / m_playerCharacterData.chargeTimeMax;
+
+        Debug.Log(power.ToString());
+
+        m_throwPower = power * m_playerCharacterData.throwPower;
+        m_throwSpeed = power * m_playerCharacterData.throwSpeed;
+
         m_lengthAdjustTime += Time.deltaTime;
 
         float t = m_lengthAdjustTime / m_playerCharacterData.ribbonSizeScailingTime;
@@ -272,9 +317,12 @@ public class PlayerCharacter : MonoBehaviour
 
         m_controlledRibbon.transform.localScale = new Vector3(ribbonSize, m_controlledRibbon.transform.localScale.y, ribbonSize);
 
-        Vector3 force = Vector3.up * m_playerCharacterData.throwPower + transform.forward * m_playerCharacterData.throwSpeed;
+        Vector3 force = Vector3.up * m_throwPower + transform.forward * m_throwSpeed;
 
-        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, m_playerCharacterData.ribbonProjectionTime);
+        //force *= 2.0f;
+
+        //Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, m_playerCharacterData.ribbonProjectionTime);
+        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 4.5f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, 1.0f, m_playerCharacterData.ribbonProjectionTime);
 
         point.y = m_ribbonRandingProjection.transform.position.y;
 
@@ -303,15 +351,23 @@ public class PlayerCharacter : MonoBehaviour
         {
             m_ribbonRandingProjection.SetActive(false);
         }
+
+        m_chargeTime = 0.0f;
     }
 
     public void LengthAdjustEnter()
     {
+        //m_controlledRibbon.Throw(
+        //        transform.position + new Vector3(.0f, 4.5f, 1.0f),
+        //        transform.rotation,
+        //        m_playerCharacterData.throwPower,
+        //        m_playerCharacterData.throwSpeed);
+
         m_controlledRibbon.Throw(
                 transform.position + new Vector3(.0f, 4.5f, 1.0f),
                 transform.rotation,
-                m_playerCharacterData.throwPower,
-                m_playerCharacterData.throwSpeed);
+                m_throwPower,
+                m_throwSpeed);
 
         m_bgmManager.PlaySE("se001_ThrowJustRibbon");
     }
@@ -1279,4 +1335,9 @@ public class PlayerCharacter : MonoBehaviour
     LineRenderer m_lineRenderer;
 
     bool m_isChangeBuildingSize;
+
+    float m_chargeTime;
+
+    float m_throwPower;
+    float m_throwSpeed;
 }
