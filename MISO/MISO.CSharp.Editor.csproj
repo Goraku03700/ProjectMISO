@@ -18,7 +18,6 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
-    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -131,6 +130,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\InpurManagerGenerator.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputEditorWindow.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputManagerGenerator.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Editor\OverwriteFile.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\SceneBackup.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\ScriptableObjectToAsset.cs" />
   </ItemGroup>
@@ -243,5 +243,5 @@
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\readme.txt" />
     <None Include="Assets\UnityChan\README_SD_UnityChan.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

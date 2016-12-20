@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: deccd48f0637705448cddd8f562ad573
-timeCreated: 1479427999
+timeCreated: 1482126028
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -44,11 +44,11 @@ ModelImporter:
     100072: transform5
     100074: transform6
     100076: transform7
-    100078: Up_body
-    100080: walk_01_npc:npc
-    100082: walk_01_npc:player
-    100084: walk_01_npc:plbone
-    100086: transform8
+    100078: transform8
+    100080: Up_body
+    100082: walk_01_npc:npc
+    100084: walk_01_npc:player
+    100086: walk_01_npc:plbone
     400000: body_pl
     400002: chest
     400004: fuku_pl
@@ -88,11 +88,11 @@ ModelImporter:
     400072: transform5
     400074: transform6
     400076: transform7
-    400078: Up_body
-    400080: walk_01_npc:npc
-    400082: walk_01_npc:player
-    400084: walk_01_npc:plbone
-    400086: transform8
+    400078: transform8
+    400080: Up_body
+    400082: walk_01_npc:npc
+    400084: walk_01_npc:player
+    400086: walk_01_npc:plbone
     4300000: body_pl
     4300002: fuku_pl
     4300004: hair_pl1

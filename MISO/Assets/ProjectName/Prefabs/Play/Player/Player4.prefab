@@ -662,6 +662,7 @@ GameObject:
   - 114: {fileID: 114000012053717858}
   - 136: {fileID: 136000012543093140}
   - 65: {fileID: 65000013801959598}
+  - 120: {fileID: 120000014227083942}
   m_Layer: 8
   m_Name: PlayerCharacter4
   m_TagString: Player4
@@ -1387,7 +1388,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011043841240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: -1.25}
+  m_LocalPosition: {x: 0, y: 0.25, z: -1.35}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1731,7 +1732,7 @@ Transform:
   m_GameObject: {fileID: 1000013135572196}
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 10, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
   m_Children:
   - {fileID: 4000010434547100}
@@ -1816,7 +1817,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 86d78f08b765aed4ea1fd67e04a8f9e9, type: 2}
+  - {fileID: 2100000, guid: b6140a9b99426e34d87a2476f5ef4baf, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -1935,7 +1936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e695047b79c23f44ebd18a12d7b31a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pushPower: 150
+  m_pushPower: 500
 --- !u!114 &114000011349838486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1966,6 +1967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetCamera: {fileID: 0}
+  m_enableRotateZ: 0
 --- !u!114 &114000011556225246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2068,6 +2070,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0260521028e864b9ed4748b7443c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!120 &120000014227083942
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013135572196}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: 0.2
+    endWidth: 0.2
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!135 &135000012384447130
 SphereCollider:
   m_ObjectHideFlags: 1

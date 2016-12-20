@@ -793,7 +793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af4f3a3d4d6b0442acd56bd00aa36e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 20
+  m_slopeSpeed: 0
+  m_slopeMax: 0
+  m_slopeTime: 0
+  m_slopeWaitTime: 0
 --- !u!114 &114000011513063752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -806,6 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetCamera: {fileID: 0}
+  m_enableRotateZ: 0
 --- !u!114 &114000012679099478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -830,6 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetCamera: {fileID: 0}
+  m_enableRotateZ: 0
 --- !u!114 &114000013475928498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -909,7 +914,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212000011868608128
 SpriteRenderer:
