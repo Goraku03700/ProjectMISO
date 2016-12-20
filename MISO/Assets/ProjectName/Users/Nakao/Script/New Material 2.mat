@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Material
+  m_Name: New Material 2
   m_Shader: {fileID: 4800000, guid: 2a63c766a870c4444aaa29ccc67accc3, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 4251cf3200d11474da0ac54ae9bc6746, type: 3}
+        m_Texture: {fileID: 2800000, guid: 11116b5cb2743d447a464b09c7463d34, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -78,7 +78,7 @@ Material:
     m_Floats:
     - first:
         name: _AlphaMask
-      second: 0.146
+      second: 0.141
     - first:
         name: _BumpScale
       second: 1
@@ -93,7 +93,7 @@ Material:
       second: 0
     - first:
         name: _Flip
-      second: -321.60403
+      second: 1
     - first:
         name: _GlossMapScale
       second: 1

@@ -6,6 +6,8 @@
 		_PageTex("PageTexture", 2D) = "white" {}
 		_AlphaMask("AlphaMask", Range(0, 1)) = 0.1
 			_Flip("Flip", Range(-1, 1)) = 0
+			_Reverse("Reverse", Range(0, 1)) = 0
+			_Shadow("Shadow", Range(0, 1)) = 0
 	}
 	SubShader
 		{
@@ -39,6 +41,8 @@
 				float4 _PageTex_ST;
 				float _AlphaMask;
 				float _Flip;
+				float _Reverse;
+				float _Shadow;
 
 				float l2(float x)
 				{
@@ -47,6 +51,10 @@
 
 				float l1(float y)
 				{
+					if (_Flip < 1.0f)
+					{
+						//return (_Flip + 0.1 * sin(y * 3))-0.1f;
+					}
 					return _Flip + 0.1 * sin(y * 3);
 					return _Flip + 0.5;
 				}
@@ -74,11 +82,21 @@
 					//L0より右の描画を無視
 					float l0_y = l0(i.uv.x);
 					clip(i.uv.y - l0_y);
+					//clip(i.uv.y - l0_y*36);
 
 					//範囲内ならば暗い色に
-					if (i.uv.x > l1(i.uv.y) && i.uv.y < l2(i.uv.x))
-						content_col = float4(0.5, 0.5, 0.5, 1);
-
+					if (i.uv.x > l1(i.uv.y) && i.uv.y < l2(i.uv.x) && _Reverse < 1.0f)
+						content_col = float4(0.2, 0.2, 0.2, 1);
+					else if (i.uv.x > l1(i.uv.y) && _Reverse >= 1.0f)
+						content_col = float4(0.2, 0.2, 0.2, 1);
+					if (i.uv.x < ((cos(i.uv.y - 0.5f)*_Shadow)) && _Reverse < 1.0f)
+					{
+						content_col = float4(0.3, 0.3, 0.3, 1);
+					}
+					else if (i.uv.x > 1.0f - ((cos(i.uv.y - 0.5f)*_Shadow)) && _Reverse >= 1.0f)
+					{
+						content_col = float4(0.3, 0.3, 0.3, 1);
+					}
 					//ページ内容のうち一定の値より透明なものはページの色にすり替える
 					if (content_col.a < _AlphaMask)
 						return page_col;
