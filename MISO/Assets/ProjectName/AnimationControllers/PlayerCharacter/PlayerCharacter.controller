@@ -158,6 +158,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e42859caf0f98f46908e7e77e4428bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000010387214936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f46bd24f5817244da620c1c8cc5ebb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010714842514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -309,7 +320,7 @@ BlendTree:
   m_Name: Move
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400006, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+    m_Motion: {fileID: 7400022, guid: 3d261dd88c8835943a999c2b3062f5e4, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -317,8 +328,16 @@ BlendTree:
     m_DirectBlendParameter: velocity
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400022, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+    m_Motion: {fileID: 7400006, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
     m_Threshold: 5
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: velocity
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400022, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+    m_Threshold: 15
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -327,7 +346,7 @@ BlendTree:
   m_BlendParameter: velocity
   m_BlendParameterY: Blend
   m_MinThreshold: 0
-  m_MaxThreshold: 5
+  m_MaxThreshold: 15
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -339,7 +358,7 @@ BlendTree:
   m_Name: Move
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400006, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+    m_Motion: {fileID: 7400022, guid: 3d261dd88c8835943a999c2b3062f5e4, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -347,8 +366,16 @@ BlendTree:
     m_DirectBlendParameter: velocity
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400022, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+    m_Motion: {fileID: 7400006, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
     m_Threshold: 5
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: velocity
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400022, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+    m_Threshold: 15
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -357,7 +384,7 @@ BlendTree:
   m_BlendParameter: velocity
   m_BlendParameterY: Blend
   m_MinThreshold: 0
-  m_MaxThreshold: 5
+  m_MaxThreshold: 15
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -1495,7 +1522,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000011412898746}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114000010387214936}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1579,7 +1607,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400026, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+  m_Motion: {fileID: 7400002, guid: 3d261dd88c8835943a999c2b3062f5e4, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1692,7 +1720,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SizeAdjust
-  m_Speed: 1
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000010204763560}
@@ -1925,7 +1953,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400010, guid: 0ea34d5d91252e14a86a98f9c248991f, type: 3}
+  m_Motion: {fileID: 7400004, guid: 3d261dd88c8835943a999c2b3062f5e4, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1995,7 +2023,7 @@ AnimatorState:
   - {fileID: 114000010714842514}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
+  m_WriteDefaultValues: 0
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0

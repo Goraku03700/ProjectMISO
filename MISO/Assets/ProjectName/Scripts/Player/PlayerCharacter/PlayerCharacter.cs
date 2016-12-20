@@ -91,7 +91,8 @@ public class PlayerCharacter : MonoBehaviour
         {
             if (isDash)
             {
-                if (m_rigidbody.velocity.magnitude > 1.0f)
+                if (m_rigidbody.velocity.magnitude > 0.25f &&
+                    m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Tired"))
                 {
 
                     m_dashGauge.gaugeRenderer.enabled = true;
@@ -110,7 +111,7 @@ public class PlayerCharacter : MonoBehaviour
 
                         m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
 
-                        // m_dashDurationTime = .0f;
+                        m_dashDurationTime = m_playerCharacterData.dashTime;
                     }
 
                     //m_bgmManager.PlaySE();
@@ -217,6 +218,11 @@ public class PlayerCharacter : MonoBehaviour
         transform.FindChild("PlayerNumberIcon").transform.gameObject.SetActive(false);
     }
 
+    public void TiredExit()
+    {
+        m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.Tired]);
+    }
+
     public void SizeAdjustEnter()
     {
         if(m_controlledRibbon)
@@ -236,6 +242,15 @@ public class PlayerCharacter : MonoBehaviour
         m_ribbonRandingProjection.SetActive(true);
 
         m_controlledRibbon.transform.FindChild("RibbonLine").GetComponent<RibbonLine>().startTransform = m_arm;
+
+        m_controlledRibbon.transform.localScale = new Vector3(m_playerCharacterData.ribbonMinScale, m_controlledRibbon.transform.localScale.y, m_playerCharacterData.ribbonMinScale);
+        m_ribbonRandingProjection.transform.localScale = new Vector3(m_playerCharacterData.ribbonMinScale, m_playerCharacterData.ribbonMinScale, 1) / 2.0f;
+
+        Vector3 position = transform.position;
+
+        position.y = m_controlledRibbon.transform.position.y;
+
+        m_controlledRibbon.transform.position = position;
 
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
@@ -264,7 +279,7 @@ public class PlayerCharacter : MonoBehaviour
         point.y = m_ribbonRandingProjection.transform.position.y;
 
         m_ribbonRandingProjection.transform.position    = point;
-        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 4.0f;
+        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 2.0f;
 
         m_bgmManager.PlaySELoop("se000_AdjustRibbon");
 
@@ -281,7 +296,7 @@ public class PlayerCharacter : MonoBehaviour
             {
                 Destroy(m_controlledRibbon.gameObject);
                 m_isDoCancel = false;
-
+                m_ribbonRandingProjection.SetActive(false);
             }
         }
         else
@@ -339,10 +354,99 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public struct PulledCorutineArgs
+    {
+        public int addScore;
+        public int inPlayerNum;
+    }
+
     public void StartPulledCorutine(int score)
     {
         StartCoroutine("PulledCorutine", score);
       //  StartCoroutine("PulledCorutine");
+    }
+
+    public void StartPulledCorutine(int score, int inPlayerNum)
+    {
+        PulledCorutineArgs args;
+
+        args.addScore = score;
+        args.inPlayerNum = inPlayerNum;
+
+        StartCoroutine("PulledCorutine", args);
+        //  StartCoroutine("PulledCorutine");
+    }
+
+    public IEnumerator PulledCorutine(PulledCorutineArgs args)
+    {
+        const float OneLoopTime = 0.25f;
+
+        float currentTime = 0.0f;
+
+        while (currentTime < m_playerCharacterData.collectTime)
+        {
+            currentTime += Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        currentTime = 0.0f;
+
+        for (int i = 0; i < args.addScore; ++i)
+        {
+            currentTime = 0.0f;
+
+            while (currentTime < OneLoopTime)
+            {
+                currentTime += Time.deltaTime;
+
+                float t = currentTime / OneLoopTime;
+
+                // ease-in-out
+                //t = (t * t) * (3.0f - (2.0f * t));
+
+                float scaling;
+
+                //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
+                scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
+
+                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            m_player.score += 1;
+            m_bgmManager.PlaySE("se015_InCampany");
+        }
+
+        for (int i = 0; i < args.inPlayerNum ; ++i)
+        {
+            currentTime = 0.0f;
+
+            while (currentTime < OneLoopTime)
+            {
+                currentTime += Time.deltaTime;
+
+                float t = currentTime / OneLoopTime;
+
+                // ease-in-out
+                //t = (t * t) * (3.0f - (2.0f * t));
+
+                float scaling;
+
+                //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
+                scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
+
+                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            //m_player.score += 1;
+            m_bgmManager.PlaySE("se015_InCampany");
+        }
+
+        m_buildingObject.transform.localScale = m_buildingDefaultScale;
     }
 
     public IEnumerator PulledCorutine(int score)
@@ -383,6 +487,7 @@ public class PlayerCharacter : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
+            m_player.score += 1;
             m_bgmManager.PlaySE("se015_InCampany");
         }
 
@@ -446,12 +551,17 @@ public class PlayerCharacter : MonoBehaviour
             {
                 m_controlledRibbon.Breake();
 
-                Destroy(m_controlledRibbon.gameObject);
+                //Destroy(m_controlledRibbon.gameObject);
 
                 m_controlledRibbon = null;
             }
 
             m_isThisFrameCought = true;
+
+            //m_lineRenderer.enabled = true;
+
+            m_lineRenderer.SetPosition(1, caughtRibbon.playerCharacter.transform.position);
+            m_lineRenderer.material = caughtRibbon.playerCharacter.ribbonLineMaterial;
         }
     }
 
@@ -463,6 +573,8 @@ public class PlayerCharacter : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
         m_playerIcon.ChangeIconNormal();
+
+        m_lineRenderer.enabled = false;
 
         //m_rigidbody.mass = 1.0f;
 
@@ -482,6 +594,7 @@ public class PlayerCharacter : MonoBehaviour
 
         m_collider.enabled      = false;
         m_wallCollider.enabled  = false;
+        m_lineRenderer.enabled  = false;
     }
 
     public void CollectUpdate()
@@ -552,6 +665,11 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    //public void OutBuildingEnter()
+    //{
+    //    m_rigidbody.mass = 1.0f;
+    //}
+
     public void OutBuildingUpdate()
     {
         if (m_rigidbody.velocity.y <= 0.0f)
@@ -569,6 +687,8 @@ public class PlayerCharacter : MonoBehaviour
                 m_collider.enabled = true;
 
                 m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.OutBuildingExit]);
+
+              //  m_rigidbody.mass = 0.1f;
             }
         }
     }
@@ -729,6 +849,7 @@ public class PlayerCharacter : MonoBehaviour
         m_collider  = GetComponent<CapsuleCollider>();
         m_wallCollider = GetComponent<BoxCollider>();
         m_player    = transform.parent.GetComponent<Player>();
+        m_lineRenderer = GetComponent<LineRenderer>();
 
         m_meshObject                = transform.FindChild("PlayerCharacterMesh").gameObject;
         m_buildingObject            = transform.FindChild("PlayerCharacterBuilding").gameObject;
@@ -790,6 +911,8 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         m_dashGauge.raito = 1 - (m_dashDurationTime / m_playerCharacterData.dashTime);
+
+        m_lineRenderer.SetPosition(0, transform.position);
 
         m_isThisFrameCought = false;
 
@@ -1088,6 +1211,19 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public Material ribbonLineMaterial
+    {
+        get
+        {
+            return m_ribbonLineMaterial;
+        }
+
+        set
+        {
+            m_ribbonLineMaterial = value;
+        }
+    }
+
     bool m_isDoCancel;
 
     bool m_isDash;
@@ -1121,7 +1257,12 @@ public class PlayerCharacter : MonoBehaviour
     Material m_origineMaterial;
 
     [SerializeField]
+    Material m_ribbonLineMaterial;
+
+    [SerializeField]
     Transform m_arm;
 
     Vector3 m_buildingDefaultScale;
+
+    LineRenderer m_lineRenderer;
 }

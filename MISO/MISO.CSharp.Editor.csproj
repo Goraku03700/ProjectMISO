@@ -130,6 +130,7 @@
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\InpurManagerGenerator.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputEditorWindow.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\Input\MultiInputManagerGenerator.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Editor\OverwriteFile.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\SceneBackup.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Editor\ScriptableObjectToAsset.cs" />
   </ItemGroup>

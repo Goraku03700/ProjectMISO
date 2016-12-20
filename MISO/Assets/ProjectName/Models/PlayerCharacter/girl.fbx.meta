@@ -52,6 +52,7 @@ ModelImporter:
     100088: walk_01_npc:npc
     100090: walk_01_npc:player
     100092: walk_01_npc:plbone
+    100094: transform8
     400000: body
     400002: //RootNode
     400004: pasted__pasted__polySurface4
@@ -99,6 +100,7 @@ ModelImporter:
     400088: walk_01_npc:npc
     400090: walk_01_npc:player
     400092: walk_01_npc:plbone
+    400094: transform8
     2300000: body
     2300002: pasted__pasted__polySurface4
     2300004: pasted__polySurface8
@@ -1188,7 +1190,7 @@ ModelImporter:
       name: shot
       takeName: shot
       firstFrame: 1
-      lastFrame: 40
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1297,7 +1299,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     - serializedVersion: 16
       name: grasp2
       takeName: grasp2

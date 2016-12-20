@@ -19515,6 +19515,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 23000013390549922, guid: 8e5a013b9cf31204c835c72f4bdb4904,
+        type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e5a013b9cf31204c835c72f4bdb4904, type: 2}
   m_IsPrefabParent: 0
@@ -36951,7 +36956,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1577090937
+  randomSeed: 143260393
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -39310,7 +39315,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1314780060
+  randomSeed: -237482642
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -57093,8 +57098,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 4
-    radius: 4
+    type: 12
+    radius: 20
     angle: 1
     length: 5
     boxX: 1
@@ -58420,7 +58425,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1490777144}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.79, y: 0.4, z: 4.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60783,7 +60788,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -2095222295
+  randomSeed: 1280435605
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -67203,8 +67208,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 4
-    radius: 4
+    type: 12
+    radius: 20
     angle: 1
     length: 5
     boxX: 1
@@ -68530,7 +68535,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1836103712}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.79, y: 0.4, z: 4.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68606,7 +68611,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1716365344
+  randomSeed: -698426369
   InitialModule:
     serializedVersion: 2
     enabled: 1

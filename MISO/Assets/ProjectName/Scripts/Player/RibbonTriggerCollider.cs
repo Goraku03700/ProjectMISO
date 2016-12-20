@@ -71,11 +71,11 @@ namespace Ribbons
                     }
                 }
             }
-            else if(collider.gameObject.layer == LayerMask.NameToLayer("Girl"))
+            else if (collider.gameObject.layer == LayerMask.NameToLayer("GirlTrigger"))
             {
                 //coughtObjects.Add(collider.gameObject);
 
-                var girl = collider.gameObject.GetComponent<GirlNoPlayerCharacter>();
+                var girl = collider.gameObject.transform.parent.GetComponent<GirlNoPlayerCharacter>();
 
                 girl.CatchRibbon(m_parentRibbon.playerCharacter);
 
@@ -83,6 +83,19 @@ namespace Ribbons
 
                 coughtGirls.Add(girl);
             }
+
+            //else if(collider.gameObject.layer == LayerMask.NameToLayer("Girl"))
+            //{
+            //    //coughtObjects.Add(collider.gameObject);
+
+            //    var girl = collider.gameObject.GetComponent<GirlNoPlayerCharacter>();
+
+            //    girl.CatchRibbon(m_parentRibbon.playerCharacter);
+
+            //    m_ribbonEffectManager.CreateRibbonEffect(transform.position, m_parentRibbon.playerCharacter);
+
+            //    coughtGirls.Add(girl);
+            //}
         }
 
         private SphereCollider m_collider;

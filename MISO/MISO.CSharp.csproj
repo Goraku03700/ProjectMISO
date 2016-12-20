@@ -210,6 +210,7 @@
     <Compile Include="Assets\RibbonLine.cs" />
     <Compile Include="Assets\Start.cs" />
     <Compile Include="Assets\TestBezier.cs" />
+    <Compile Include="Assets\Tired.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
     <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />

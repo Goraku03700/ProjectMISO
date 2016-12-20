@@ -316,7 +316,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_targetPosition = playerCharacter.transform.localPosition;
         m_getPlayerBillding = playerCharacter.playerFire;
         // 目標地点の方向を向く
-        m_ribbonLine.enabled = true;
+        //m_ribbonLine.enabled = true;
         m_ribbonLine.sortingOrder = 4;
         m_ribbonLine.SetPosition(0, this.transform.localPosition + Vector3.up/1.5f);
         m_ribbonLine.SetPosition(1, playerCharacter.transform.position + Vector3.up/1.5f);

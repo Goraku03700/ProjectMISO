@@ -72,6 +72,7 @@ GameObject:
   - 114: {fileID: 114000012840227938}
   - 136: {fileID: 136000011877470708}
   - 65: {fileID: 65000012186528778}
+  - 120: {fileID: 120000012181003212}
   m_Layer: 8
   m_Name: PlayerCharacter3
   m_TagString: Player3
@@ -1104,7 +1105,7 @@ Transform:
   m_GameObject: {fileID: 1000010141415344}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014282376540}
@@ -2103,6 +2104,8 @@ MonoBehaviour:
   - {fileID: 137000011004302642}
   m_invisibleMaterial: {fileID: 2100000, guid: 30daf2dbdaf534e4d835a47904af72b8, type: 2}
   m_origineMaterial: {fileID: 2100000, guid: e183b2839ff4d1a4f856071195c6f2c2, type: 2}
+  m_ribbonLineMaterial: {fileID: 2100000, guid: 5efc73e43d4848d45a29d8f39e6c64f4,
+    type: 2}
   m_arm: {fileID: 4000011212296774}
 --- !u!114 &114000012999071670
 MonoBehaviour:
@@ -2138,7 +2141,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e695047b79c23f44ebd18a12d7b31a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pushPower: 150
+  m_pushPower: 500
+--- !u!120 &120000012181003212
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010167597370}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: 1
+    endWidth: 1
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!135 &135000012130718018
 SphereCollider:
   m_ObjectHideFlags: 1
