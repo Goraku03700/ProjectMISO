@@ -17,7 +17,7 @@ MonoBehaviour:
   ribbonSizeScailingTime: 1
   ribbonPullPower: 350
   ribbonCollectLength: 5
-  ribbonProjectionTime: 2
+  ribbonProjectionTime: 1.8
   ribbonPenaltyTime: 5
   ribbonShakeSpeed: 30
   ribbonViolentMoveSpeed: 75
