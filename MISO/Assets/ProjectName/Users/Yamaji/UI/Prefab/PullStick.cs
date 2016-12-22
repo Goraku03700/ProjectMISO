@@ -63,7 +63,18 @@ public class PullStick : MonoBehaviour {
 
         m_time = 0.0f;
 
+        // nullチェック？
+        if (m_slopeSpeed == 0.0f)
+            m_slopeSpeed = 150.0f;
 
+        if (m_slopeMax == 0.0f)
+            m_slopeMax = 50.0f;
+
+        if (m_slopeTime == 0.0f)
+            m_slopeTime = 1.0f;
+
+        if (m_slopeWaitTime == 0.0f)
+            m_slopeWaitTime = 0.2f;
 	}
 	
 	// Update is called once per frame

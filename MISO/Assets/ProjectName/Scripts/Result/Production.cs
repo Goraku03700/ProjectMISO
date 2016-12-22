@@ -526,8 +526,8 @@ public class Production : MonoBehaviour {
         // lightShaftの初期化
         for (i = 0; i < ConstPlayerMax; i++)
         {
-            //m_lightShaft[i].enabled = false;
-           // m_lightShaft[i].range = 0.0f;
+           m_lightShaft[i].enabled = false;
+           m_lightShaft[i].range = 0.0f;
         }
         for(i=0; i<ConstPlayerMax; i++)
         {
@@ -901,6 +901,8 @@ public class Production : MonoBehaviour {
         shaft_rot.y = 90.0f;
         shaft_rot.z = 90.0f;
         m_lightShaft[0].transform.eulerAngles = shaft_rot;
+        m_lightShaft[0].range = 10.0f;
+        m_lightShaft[0].enabled = true;
 
         // ライト2つ目
         shaft_rot = m_lightShaft[1].transform.eulerAngles;
@@ -909,6 +911,8 @@ public class Production : MonoBehaviour {
         shaft_rot.y = 90.0f;
         shaft_rot.z = 90.0f;
         m_lightShaft[1].transform.eulerAngles = shaft_rot;
+        m_lightShaft[1].range = 10.0f;
+        m_lightShaft[1].enabled = true;
 
 
         // 一定時間たったら次の時間に決める
@@ -923,6 +927,16 @@ public class Production : MonoBehaviour {
             {
                 m_savePodiumStart[i] = m_podium[i].transform.position;
             }
+
+            // ライトの角度戻す
+            m_lightShaft[0].transform.localRotation = Quaternion.Euler(90.0f, 90.0f, 90.0f);
+            m_lightShaft[1].transform.localRotation = Quaternion.Euler(90.0f, 90.0f, 90.0f);
+
+            // ライト消す
+            m_lightShaft[0].range = 0.0f;
+            m_lightShaft[1].range = 0.0f;
+
+
         }
 
     }
