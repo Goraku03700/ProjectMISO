@@ -30,6 +30,8 @@ public class PlayerCharacterData : ScriptableObject
 
     public float ribbonReboundCountRatio;
 
+    public float chargeTimeMax;
+
     public float throwPower;
 
     public float throwSpeed;

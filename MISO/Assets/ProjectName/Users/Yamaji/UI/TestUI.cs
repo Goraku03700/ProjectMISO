@@ -8,6 +8,8 @@ public class TestUI : MonoBehaviour {
 
     private GameObject stick;
 
+    public GameObject m_Damage;
+
     private float rot;
 	// Use this for initialization
 	void Start () {
@@ -16,12 +18,12 @@ public class TestUI : MonoBehaviour {
         stick = GameObject.Find("Stick");
 
         rot = 0.0f;
+
 	}
 
     // Update is called once per frame
     void Update()
     {
-
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -46,6 +48,29 @@ public class TestUI : MonoBehaviour {
             GameObject.Find("PullStick").GetComponent<PullStick>().ChangeStickRight();
 
         }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            GameObject.Find("Damage1").GetComponent<Damage>().DispDamage();
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            GameObject.Find("Damage2").GetComponent<Damage>().DispDamage();
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            GameObject.Find("Damage3").GetComponent<Damage>().DispDamage();
+        }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            GameObject.Find("Damage4").GetComponent<Damage>().DispDamage();
+        }
+
+
+
 
 
     }

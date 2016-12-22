@@ -4,6 +4,7 @@ using System;
 using Ribbons;
 using System.Collections;
 using System.Collections.Generic;
+using XInputDotNetPure;
 
 /// <summary>
 /// プレイヤーキャラクターオブジェクトの動作を実装するクラス。
@@ -149,8 +150,37 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputCharge()
     {
-        if(m_animatorParameters.isPushCancelKey == false)
+        if (m_animatorParameters.isPushCancelKey == false)
+        {
             m_animatorParameters.isPushThrowKey = true;
+
+            //if(m_chargeTime >= m_playerCharacterData.chargeTimeMax)
+            //{
+            //    m_chargeTime = m_playerCharacterData.chargeTimeMax;
+            //}
+            //else
+            //{
+            //    m_chargeTime += Time.deltaTime;
+            //}
+
+            //float power = m_chargeTime / m_playerCharacterData.chargeTimeMax;
+
+            //Debug.Log(power.ToString());
+
+            //m_throwPower = power * m_playerCharacterData.throwPower;
+            //m_throwSpeed = power * m_playerCharacterData.throwSpeed;
+        }
+    }
+
+    public void InputCharge(float horizontal)
+    {
+        if (m_animatorParameters.isPushCancelKey == false)
+        {
+            m_animatorParameters.isPushThrowKey = true;
+
+            m_throwPower = -horizontal * m_playerCharacterData.throwPower;
+            m_throwSpeed = -horizontal * m_playerCharacterData.throwSpeed;
+        }
     }
 
     public void InputThrow()
@@ -252,6 +282,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_controlledRibbon.transform.position = position;
 
+        m_chargeTime = 0.0f;
+
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -264,6 +296,23 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SizeAdjustUpdate()
     {
+        if (m_chargeTime >= m_playerCharacterData.chargeTimeMax)
+        {
+            m_chargeTime = m_playerCharacterData.chargeTimeMax;
+        }
+        else
+        {
+            m_chargeTime += Time.deltaTime;
+        }
+
+        float power = m_chargeTime / m_playerCharacterData.chargeTimeMax;
+
+        //Debug.Log(power.ToString());
+
+        //m_throwPower = power * m_playerCharacterData.throwPower;
+        m_throwPower = m_playerCharacterData.throwPower;
+        m_throwSpeed = power * m_playerCharacterData.throwSpeed;
+
         m_lengthAdjustTime += Time.deltaTime;
 
         float t = m_lengthAdjustTime / m_playerCharacterData.ribbonSizeScailingTime;
@@ -272,9 +321,13 @@ public class PlayerCharacter : MonoBehaviour
 
         m_controlledRibbon.transform.localScale = new Vector3(ribbonSize, m_controlledRibbon.transform.localScale.y, ribbonSize);
 
-        Vector3 force = Vector3.up * m_playerCharacterData.throwPower + transform.forward * m_playerCharacterData.throwSpeed;
+        //Vector3 force = Vector3.up * m_throwPower + transform.forward * m_throwSpeed;
+        Vector3 force = transform.forward * m_throwSpeed;
 
-        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, m_playerCharacterData.ribbonProjectionTime);
+        //force *= 2.0f;
+
+        //Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, m_playerCharacterData.ribbonProjectionTime);
+        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 4.5f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, 1.0f, m_playerCharacterData.ribbonProjectionTime);
 
         point.y = m_ribbonRandingProjection.transform.position.y;
 
@@ -282,6 +335,12 @@ public class PlayerCharacter : MonoBehaviour
         m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 2.0f;
 
         m_bgmManager.PlaySELoop("se000_AdjustRibbon");
+
+        //m_vibrationLeft = Mathf.Sin(Mathf.PI * 2 / t);
+        //m_vibrationRight = Mathf.Sin(Mathf.PI * 2 / t);
+
+        m_vibrationLeft = Mathf.PingPong(Time.time, 0.5f) + 0.5f;
+        m_vibrationRight = Mathf.PingPong(Time.time, 0.5f) + 0.5f;
 
         Assert.IsNotNull(controlledRibbon);
     }
@@ -303,15 +362,25 @@ public class PlayerCharacter : MonoBehaviour
         {
             m_ribbonRandingProjection.SetActive(false);
         }
+
+        m_chargeTime = 0.0f;
+        m_vibrationLeft = 0.0f;
+        m_vibrationRight = 0.0f;
     }
 
     public void LengthAdjustEnter()
     {
+        //m_controlledRibbon.Throw(
+        //        transform.position + new Vector3(.0f, 4.5f, 1.0f),
+        //        transform.rotation,
+        //        m_playerCharacterData.throwPower,
+        //        m_playerCharacterData.throwSpeed);
+
         m_controlledRibbon.Throw(
                 transform.position + new Vector3(.0f, 4.5f, 1.0f),
                 transform.rotation,
-                m_playerCharacterData.throwPower,
-                m_playerCharacterData.throwSpeed);
+                m_throwPower,
+                m_throwSpeed);
 
         m_bgmManager.PlaySE("se001_ThrowJustRibbon");
     }
@@ -335,6 +404,22 @@ public class PlayerCharacter : MonoBehaviour
         {
             Vector3 vector = transform.position - m_controlledRibbon.transform.position;
 
+            if(m_controlledRibbon.caughtObjectCount > 0)
+            {
+                switch (m_controlledRibbon.moveDirectionState1)
+                {
+                    case Ribbon.MoveDirectionState.Left:
+                        m_vibrationLeft = 1.0f;
+                        m_vibrationRight = 0.25f;
+                        break;
+
+                    case Ribbon.MoveDirectionState.Right:
+                        m_vibrationLeft = 0.25f;
+                        m_vibrationRight = 1.0f;
+                        break;
+                }
+            }
+
             if (vector.magnitude < m_playerCharacterData.ribbonCollectLength)
             {
                 m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -342,6 +427,9 @@ public class PlayerCharacter : MonoBehaviour
                 m_controlledRibbon.Pulled();
                 m_sweatParticle.Stop();
                 m_controlledRibbon = null;
+
+                m_vibrationLeft = 0.0f;
+                m_vibrationRight = 0.0f;
             }
             else
             {
@@ -352,6 +440,12 @@ public class PlayerCharacter : MonoBehaviour
                 transform.LookAt(atPosition);
             }
         }
+    }
+
+    public void PullExit()
+    {
+        m_vibrationLeft = 0.0f;
+        m_vibrationRight = 0.0f;
     }
 
     public struct PulledCorutineArgs
@@ -395,6 +489,8 @@ public class PlayerCharacter : MonoBehaviour
         for (int i = 0; i < args.addScore; ++i)
         {
             currentTime = 0.0f;
+            //m_vibrationLeft = 0.0f;
+            //m_vibrationRight = 0.0f;
 
             while (currentTime < OneLoopTime)
             {
@@ -410,18 +506,26 @@ public class PlayerCharacter : MonoBehaviour
                 //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
                 scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
 
-                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+                m_buildingObject.transform.localScale = m_buildingScale * (scaling + 1.0f);
 
                 yield return new WaitForEndOfFrame();
             }
 
             m_player.score += 1;
             m_bgmManager.PlaySE("se015_InCampany");
+            //m_vibrationLeft = 1.0f;
+            //m_vibrationRight = 1.0f;
+
+            StartCoroutine(PulledControllerCorutine());
+
+            yield return new WaitForEndOfFrame();
         }
 
         for (int i = 0; i < args.inPlayerNum ; ++i)
         {
             currentTime = 0.0f;
+            //m_vibrationLeft = 0.0f;
+            //m_vibrationRight = 0.0f;
 
             while (currentTime < OneLoopTime)
             {
@@ -437,16 +541,44 @@ public class PlayerCharacter : MonoBehaviour
                 //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
                 scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
 
-                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+                m_buildingObject.transform.localScale = m_buildingScale * (scaling + 1.0f);
 
                 yield return new WaitForEndOfFrame();
             }
 
             //m_player.score += 1;
             m_bgmManager.PlaySE("se015_InCampany");
+
+            //m_vibrationLeft = 1.0f;
+            //m_vibrationRight = 1.0f;
+
+            StartCoroutine(PulledControllerCorutine());
+
+            yield return new WaitForEndOfFrame();
         }
 
-        m_buildingObject.transform.localScale = m_buildingDefaultScale;
+        //m_vibrationLeft = 0.0f;
+        //m_vibrationRight = 0.0f;
+
+        m_isChangeBuildingSize = true;
+
+        //m_buildingObject.transform.localScale = m_buildingScale;
+    }
+
+    public IEnumerator PulledControllerCorutine()
+    {
+        m_vibrationLeft     = 0.75f;
+        m_vibrationRight    = 0.75f;
+
+        for (float time = 0.0f; time < 0.125f; time += Time.deltaTime)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        m_vibrationLeft     = 0.0f;
+        m_vibrationRight    = 0.0f;
+
+        yield return null;
     }
 
     public IEnumerator PulledCorutine(int score)
@@ -482,7 +614,7 @@ public class PlayerCharacter : MonoBehaviour
                 //float scaling = Mathf.PingPong(t, 1.0f) + 1.0f;
                 scaling = Mathf.Sin(currentTime * 12.0f) * 0.35f;
 
-                m_buildingObject.transform.localScale = m_buildingDefaultScale * (scaling + 1.0f);
+                m_buildingObject.transform.localScale = m_buildingScale * (scaling + 1.0f);
 
                 yield return new WaitForEndOfFrame();
             }
@@ -491,7 +623,7 @@ public class PlayerCharacter : MonoBehaviour
             m_bgmManager.PlaySE("se015_InCampany");
         }
 
-        m_buildingObject.transform.localScale = m_buildingDefaultScale;
+        m_buildingObject.transform.localScale = m_buildingScale;
     }
 
     public IEnumerator PulledCorutineAAA()
@@ -513,12 +645,12 @@ public class PlayerCharacter : MonoBehaviour
 
             float scaling = Mathf.PingPong(0.5f, t) + 1.0f;
 
-            m_buildingObject.transform.localScale = m_buildingDefaultScale * scaling;
+            m_buildingObject.transform.localScale = m_buildingScale * scaling;
 
             yield return null;
         }
 
-        m_buildingObject.transform.localScale = m_buildingDefaultScale;
+        m_buildingObject.transform.localScale = m_buildingScale;
     }
 
     public void BreakeRibbon()
@@ -562,6 +694,9 @@ public class PlayerCharacter : MonoBehaviour
 
             m_lineRenderer.SetPosition(1, caughtRibbon.playerCharacter.transform.position);
             m_lineRenderer.material = caughtRibbon.playerCharacter.ribbonLineMaterial;
+
+            m_rollRibbonRenderer.enabled    = true;
+            m_rollRibbonRenderer.material   = caughtRibbon.playerCharacter.ribbonLineMaterial;
         }
     }
 
@@ -577,7 +712,7 @@ public class PlayerCharacter : MonoBehaviour
         m_lineRenderer.enabled = false;
 
         //m_rigidbody.mass = 1.0f;
-
+        m_rollRibbonRenderer.enabled = false;
     }
 
     public void Collect()
@@ -630,6 +765,8 @@ public class PlayerCharacter : MonoBehaviour
         m_buildingObject.SetActive(false);
         m_collider.enabled = false;
         transform.localScale = m_dafaultScale;
+        m_isChangeBuildingSize = true;
+        m_rollRibbonRenderer.enabled = false;
 
         m_inBuildingTime = .0f;
     }
@@ -864,10 +1001,12 @@ public class PlayerCharacter : MonoBehaviour
 
         m_playerAbsorption         = transform.FindChild("CharacterAbsorption").gameObject.GetComponent<PlayerAbsorption>();
 
+        m_rollRibbonRenderer        = transform.FindChild("RollRibbon").GetComponent<MeshRenderer>();
+
         m_bgmManager                = BGMManager.instance;
 
         m_dafaultScale = transform.localScale;
-        m_buildingDefaultScale = m_buildingObject.transform.localScale;
+        m_buildingScale = m_buildingObject.transform.localScale;
 
 
         var playerIcons = FindObjectsOfType<PlayerIcon>();
@@ -910,11 +1049,38 @@ public class PlayerCharacter : MonoBehaviour
                 //m_dashDurationTime = .0f;
         }
 
+        //if(m_controlledRibbon)
+        //{
+        //    switch(m_controlledRibbon.moveDirectionState1)
+        //    {
+        //        case Ribbon.MoveDirectionState.Left:
+        //            m_vibrationLeft = 1.0f;
+        //            m_vibrationRight = 0.25f;
+        //            break;
+
+        //        case Ribbon.MoveDirectionState.Right:
+        //            m_vibrationLeft = 0.25f;
+        //            m_vibrationRight = 1.0f;
+        //            break;
+        //    }
+        //}
+
+        GamePad.SetVibration(m_playerIndex, m_vibrationLeft, m_vibrationRight);
+
         m_dashGauge.raito = 1 - (m_dashDurationTime / m_playerCharacterData.dashTime);
 
         m_lineRenderer.SetPosition(0, transform.position);
 
         m_isThisFrameCought = false;
+
+        m_buildingScale.y = 3 + (m_player.score * 0.25f);
+
+        if (m_isChangeBuildingSize)
+        {
+            m_buildingObject.transform.localScale = m_buildingScale;
+
+            m_isChangeBuildingSize = false;
+        }
 
         _UpdateAnimatorParameters();
     }
@@ -1224,6 +1390,19 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public PlayerIndex playerIndex
+    {
+        get
+        {
+            return m_playerIndex;
+        }
+
+        set
+        {
+            m_playerIndex = value;
+        }
+    }
+
     bool m_isDoCancel;
 
     bool m_isDash;
@@ -1262,7 +1441,21 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     Transform m_arm;
 
-    Vector3 m_buildingDefaultScale;
+    Vector3 m_buildingScale;
 
     LineRenderer m_lineRenderer;
+
+    bool m_isChangeBuildingSize;
+
+    float m_chargeTime;
+
+    float m_throwPower;
+    float m_throwSpeed;
+
+    MeshRenderer m_rollRibbonRenderer;
+
+    PlayerIndex m_playerIndex;
+
+    float m_vibrationLeft;
+    float m_vibrationRight;
 }

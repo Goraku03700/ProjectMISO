@@ -17,14 +17,15 @@ MonoBehaviour:
   ribbonSizeScailingTime: 1
   ribbonPullPower: 350
   ribbonCollectLength: 5
-  ribbonProjectionTime: 1
+  ribbonProjectionTime: 1.8
   ribbonPenaltyTime: 5
   ribbonShakeSpeed: 30
   ribbonViolentMoveSpeed: 75
   ribbonReboundPower: 30
   ribbonReboundCountRatio: 0.15
+  chargeTimeMax: 1
   throwPower: 300
-  throwSpeed: 600
+  throwSpeed: 500
   collectTime: 1
   knockbackPower: 50
   inBuildingTime: 5
