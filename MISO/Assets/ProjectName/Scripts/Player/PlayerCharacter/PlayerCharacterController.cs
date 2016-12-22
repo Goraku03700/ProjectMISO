@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
+using XInputDotNetPure;
 using System.Collections;
 
 /// <summary>
@@ -15,13 +16,15 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controllerData = Resources.Load("ScriptableObjects/PlayerCharacterControllerData") as PlayerCharacterControllerData;
 
         string findGameObjectName = "PlayerCharacter";
+        XInputDotNetPure.PlayerIndex playerIndex = XInputDotNetPure.PlayerIndex.One;
 
-        switch(gameObject.tag)
+        switch (gameObject.tag)
         {
             case "Player1":
                 {
                     findGameObjectName  += "1";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad1;
+                    playerIndex = XInputDotNetPure.PlayerIndex.One;
                 }
                 break;
 
@@ -29,6 +32,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "2";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad2;
+                    playerIndex = XInputDotNetPure.PlayerIndex.Two;
                 }
                 break;
 
@@ -36,6 +40,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "3";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad3;
+                    playerIndex = XInputDotNetPure.PlayerIndex.Three;
                 }
                 break;
 
@@ -43,6 +48,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "4";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad4;
+                    playerIndex = XInputDotNetPure.PlayerIndex.Four;
                 }
                 break;
 
@@ -55,6 +61,8 @@ public class PlayerCharacterController : MonoBehaviour {
 
         m_controlledPlayerCharacterObject   = GameObject.Find(findGameObjectName);
         m_controlledPlayerCharacter         = m_controlledPlayerCharacterObject.GetComponent<PlayerCharacter>();
+
+        m_controlledPlayerCharacter.playerIndex = playerIndex;
 
         Assert.IsNotNull(m_controlledPlayerCharacterObject);
         Assert.IsNotNull(m_controlledPlayerCharacter);
@@ -98,9 +106,13 @@ public class PlayerCharacterController : MonoBehaviour {
 
         //}
 
+        //GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+
         if (vertical2 <= -0.0f && isVertical2Down)
         {
             m_controlledPlayerCharacter.InputCharge();
+
+            //GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
         }
         else if(vertical2 >= 0.0f)
         {
@@ -186,6 +198,8 @@ public class PlayerCharacterController : MonoBehaviour {
                 //m_controlledPlayerCharacter.InputRelease();
             }
         }
+
+        
     }
 
     void _UpdateInputKeyboard()

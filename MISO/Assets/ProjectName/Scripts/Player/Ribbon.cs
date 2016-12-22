@@ -317,6 +317,8 @@ namespace Ribbons
                 m_playerCharacter.npcGetParticle.Play();
             }
 
+            m_animator.SetBool("isPulled", true);
+
             //int score = m_playerCharacter.player.score - tempScore;
 
             //if(addScore > 0)
@@ -328,6 +330,11 @@ namespace Ribbons
             m_playerCharacter.StartPulledCorutine(addScore, addPlayer);
 
             Destroy(gameObject);
+        }
+
+        public void CollectUpdate()
+        {
+            
         }
 
         public void Breake()
@@ -345,9 +352,11 @@ namespace Ribbons
                 }
             }
 
+            m_playerCharacter.BreakeRibbon();
+
             Destroy(gameObject);
 
-            m_playerCharacter.BreakeRibbon();
+
         }
 
         private enum AnimatorParametersID
@@ -388,6 +397,8 @@ namespace Ribbons
             m_meshObject            = meshTransform.gameObject;
             m_pullStick             = m_pullArrowGameObject.GetComponent<PullStick>();
             m_ribbonLine            = ribbonLineTransform.gameObject.GetComponent<RibbonLine>();
+
+            m_pullArrowDefaultLossyScale = m_pullArrowGameObject.transform.lossyScale;
 
             switch (gameObject.tag)
             {
@@ -484,6 +495,15 @@ namespace Ribbons
                 center.z = (transform.position.z + playerCharacter.transform.position.z) / 2.0f;
 
                 m_pullArrowGameObject.transform.position = center;
+
+                Vector3 lossScale = m_pullArrowGameObject.transform.lossyScale;
+                Vector3 localScale = m_pullArrowGameObject.transform.localScale;
+
+                m_pullArrowGameObject.transform.localScale = new Vector3(
+                        localScale.x / lossScale.x * m_pullArrowDefaultLossyScale.x,
+                        localScale.y / lossScale.y * m_pullArrowDefaultLossyScale.y,
+                        //localScale.y,
+                        localScale.z / lossScale.z * m_pullArrowDefaultLossyScale.z);
             }
             else
             {
@@ -749,6 +769,19 @@ namespace Ribbons
             }
         }
 
+        public float time
+        {
+            get
+            {
+                return m_time;
+            }
+
+            set
+            {
+                m_time = value;
+            }
+        }
+
         private float m_time;
         private float m_changeTime;
 
@@ -764,5 +797,12 @@ namespace Ribbons
         private bool m_isStarted;
 
         private GameObject m_meshObject;
+
+        private Vector3 m_pullArrowDefaultLossyScale;
+
+        public int caughtObjectCount
+        {
+            get{ return m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count; }
+        }
     }
 }

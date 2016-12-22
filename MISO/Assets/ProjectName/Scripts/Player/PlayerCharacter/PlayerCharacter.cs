@@ -4,6 +4,7 @@ using System;
 using Ribbons;
 using System.Collections;
 using System.Collections.Generic;
+using XInputDotNetPure;
 
 /// <summary>
 /// プレイヤーキャラクターオブジェクトの動作を実装するクラス。
@@ -281,6 +282,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_controlledRibbon.transform.position = position;
 
+        m_chargeTime = 0.0f;
+
         // 念のためリセット
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsRibbonLanding]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -304,9 +307,10 @@ public class PlayerCharacter : MonoBehaviour
 
         float power = m_chargeTime / m_playerCharacterData.chargeTimeMax;
 
-        Debug.Log(power.ToString());
+        //Debug.Log(power.ToString());
 
-        m_throwPower = power * m_playerCharacterData.throwPower;
+        //m_throwPower = power * m_playerCharacterData.throwPower;
+        m_throwPower = m_playerCharacterData.throwPower;
         m_throwSpeed = power * m_playerCharacterData.throwSpeed;
 
         m_lengthAdjustTime += Time.deltaTime;
@@ -317,7 +321,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_controlledRibbon.transform.localScale = new Vector3(ribbonSize, m_controlledRibbon.transform.localScale.y, ribbonSize);
 
-        Vector3 force = Vector3.up * m_throwPower + transform.forward * m_throwSpeed;
+        //Vector3 force = Vector3.up * m_throwPower + transform.forward * m_throwSpeed;
+        Vector3 force = transform.forward * m_throwSpeed;
 
         //force *= 2.0f;
 
@@ -330,6 +335,12 @@ public class PlayerCharacter : MonoBehaviour
         m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 2.0f;
 
         m_bgmManager.PlaySELoop("se000_AdjustRibbon");
+
+        //m_vibrationLeft = Mathf.Sin(Mathf.PI * 2 / t);
+        //m_vibrationRight = Mathf.Sin(Mathf.PI * 2 / t);
+
+        m_vibrationLeft = Mathf.PingPong(Time.time, 0.5f) + 0.5f;
+        m_vibrationRight = Mathf.PingPong(Time.time, 0.5f) + 0.5f;
 
         Assert.IsNotNull(controlledRibbon);
     }
@@ -353,6 +364,8 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         m_chargeTime = 0.0f;
+        m_vibrationLeft = 0.0f;
+        m_vibrationRight = 0.0f;
     }
 
     public void LengthAdjustEnter()
@@ -391,6 +404,22 @@ public class PlayerCharacter : MonoBehaviour
         {
             Vector3 vector = transform.position - m_controlledRibbon.transform.position;
 
+            if(m_controlledRibbon.caughtObjectCount > 0)
+            {
+                switch (m_controlledRibbon.moveDirectionState1)
+                {
+                    case Ribbon.MoveDirectionState.Left:
+                        m_vibrationLeft = 1.0f;
+                        m_vibrationRight = 0.25f;
+                        break;
+
+                    case Ribbon.MoveDirectionState.Right:
+                        m_vibrationLeft = 0.25f;
+                        m_vibrationRight = 1.0f;
+                        break;
+                }
+            }
+
             if (vector.magnitude < m_playerCharacterData.ribbonCollectLength)
             {
                 m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
@@ -398,6 +427,9 @@ public class PlayerCharacter : MonoBehaviour
                 m_controlledRibbon.Pulled();
                 m_sweatParticle.Stop();
                 m_controlledRibbon = null;
+
+                m_vibrationLeft = 0.0f;
+                m_vibrationRight = 0.0f;
             }
             else
             {
@@ -408,6 +440,12 @@ public class PlayerCharacter : MonoBehaviour
                 transform.LookAt(atPosition);
             }
         }
+    }
+
+    public void PullExit()
+    {
+        m_vibrationLeft = 0.0f;
+        m_vibrationRight = 0.0f;
     }
 
     public struct PulledCorutineArgs
@@ -451,6 +489,8 @@ public class PlayerCharacter : MonoBehaviour
         for (int i = 0; i < args.addScore; ++i)
         {
             currentTime = 0.0f;
+            //m_vibrationLeft = 0.0f;
+            //m_vibrationRight = 0.0f;
 
             while (currentTime < OneLoopTime)
             {
@@ -473,11 +513,19 @@ public class PlayerCharacter : MonoBehaviour
 
             m_player.score += 1;
             m_bgmManager.PlaySE("se015_InCampany");
+            //m_vibrationLeft = 1.0f;
+            //m_vibrationRight = 1.0f;
+
+            StartCoroutine(PulledControllerCorutine());
+
+            yield return new WaitForEndOfFrame();
         }
 
         for (int i = 0; i < args.inPlayerNum ; ++i)
         {
             currentTime = 0.0f;
+            //m_vibrationLeft = 0.0f;
+            //m_vibrationRight = 0.0f;
 
             while (currentTime < OneLoopTime)
             {
@@ -500,11 +548,37 @@ public class PlayerCharacter : MonoBehaviour
 
             //m_player.score += 1;
             m_bgmManager.PlaySE("se015_InCampany");
+
+            //m_vibrationLeft = 1.0f;
+            //m_vibrationRight = 1.0f;
+
+            StartCoroutine(PulledControllerCorutine());
+
+            yield return new WaitForEndOfFrame();
         }
+
+        //m_vibrationLeft = 0.0f;
+        //m_vibrationRight = 0.0f;
 
         m_isChangeBuildingSize = true;
 
         //m_buildingObject.transform.localScale = m_buildingScale;
+    }
+
+    public IEnumerator PulledControllerCorutine()
+    {
+        m_vibrationLeft     = 0.75f;
+        m_vibrationRight    = 0.75f;
+
+        for (float time = 0.0f; time < 0.125f; time += Time.deltaTime)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        m_vibrationLeft     = 0.0f;
+        m_vibrationRight    = 0.0f;
+
+        yield return null;
     }
 
     public IEnumerator PulledCorutine(int score)
@@ -620,6 +694,9 @@ public class PlayerCharacter : MonoBehaviour
 
             m_lineRenderer.SetPosition(1, caughtRibbon.playerCharacter.transform.position);
             m_lineRenderer.material = caughtRibbon.playerCharacter.ribbonLineMaterial;
+
+            m_rollRibbonRenderer.enabled    = true;
+            m_rollRibbonRenderer.material   = caughtRibbon.playerCharacter.ribbonLineMaterial;
         }
     }
 
@@ -635,7 +712,7 @@ public class PlayerCharacter : MonoBehaviour
         m_lineRenderer.enabled = false;
 
         //m_rigidbody.mass = 1.0f;
-
+        m_rollRibbonRenderer.enabled = false;
     }
 
     public void Collect()
@@ -689,6 +766,7 @@ public class PlayerCharacter : MonoBehaviour
         m_collider.enabled = false;
         transform.localScale = m_dafaultScale;
         m_isChangeBuildingSize = true;
+        m_rollRibbonRenderer.enabled = false;
 
         m_inBuildingTime = .0f;
     }
@@ -923,6 +1001,8 @@ public class PlayerCharacter : MonoBehaviour
 
         m_playerAbsorption         = transform.FindChild("CharacterAbsorption").gameObject.GetComponent<PlayerAbsorption>();
 
+        m_rollRibbonRenderer        = transform.FindChild("RollRibbon").GetComponent<MeshRenderer>();
+
         m_bgmManager                = BGMManager.instance;
 
         m_dafaultScale = transform.localScale;
@@ -968,6 +1048,24 @@ public class PlayerCharacter : MonoBehaviour
             //else
                 //m_dashDurationTime = .0f;
         }
+
+        //if(m_controlledRibbon)
+        //{
+        //    switch(m_controlledRibbon.moveDirectionState1)
+        //    {
+        //        case Ribbon.MoveDirectionState.Left:
+        //            m_vibrationLeft = 1.0f;
+        //            m_vibrationRight = 0.25f;
+        //            break;
+
+        //        case Ribbon.MoveDirectionState.Right:
+        //            m_vibrationLeft = 0.25f;
+        //            m_vibrationRight = 1.0f;
+        //            break;
+        //    }
+        //}
+
+        GamePad.SetVibration(m_playerIndex, m_vibrationLeft, m_vibrationRight);
 
         m_dashGauge.raito = 1 - (m_dashDurationTime / m_playerCharacterData.dashTime);
 
@@ -1292,6 +1390,19 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public PlayerIndex playerIndex
+    {
+        get
+        {
+            return m_playerIndex;
+        }
+
+        set
+        {
+            m_playerIndex = value;
+        }
+    }
+
     bool m_isDoCancel;
 
     bool m_isDash;
@@ -1340,4 +1451,11 @@ public class PlayerCharacter : MonoBehaviour
 
     float m_throwPower;
     float m_throwSpeed;
+
+    MeshRenderer m_rollRibbonRenderer;
+
+    PlayerIndex m_playerIndex;
+
+    float m_vibrationLeft;
+    float m_vibrationRight;
 }
