@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
+using XInputDotNetPure;
 using System.Collections;
 
 /// <summary>
@@ -15,13 +16,15 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controllerData = Resources.Load("ScriptableObjects/PlayerCharacterControllerData") as PlayerCharacterControllerData;
 
         string findGameObjectName = "PlayerCharacter";
+        XInputDotNetPure.PlayerIndex playerIndex = XInputDotNetPure.PlayerIndex.One;
 
-        switch(gameObject.tag)
+        switch (gameObject.tag)
         {
             case "Player1":
                 {
                     findGameObjectName  += "1";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad1;
+                    playerIndex = XInputDotNetPure.PlayerIndex.One;
                 }
                 break;
 
@@ -29,6 +32,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "2";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad2;
+                    playerIndex = XInputDotNetPure.PlayerIndex.Two;
                 }
                 break;
 
@@ -36,6 +40,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "3";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad3;
+                    playerIndex = XInputDotNetPure.PlayerIndex.Three;
                 }
                 break;
 
@@ -43,6 +48,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "4";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad4;
+                    playerIndex = XInputDotNetPure.PlayerIndex.Four;
                 }
                 break;
 
@@ -55,6 +61,8 @@ public class PlayerCharacterController : MonoBehaviour {
 
         m_controlledPlayerCharacterObject   = GameObject.Find(findGameObjectName);
         m_controlledPlayerCharacter         = m_controlledPlayerCharacterObject.GetComponent<PlayerCharacter>();
+
+        m_controlledPlayerCharacter.playerIndex = playerIndex;
 
         Assert.IsNotNull(m_controlledPlayerCharacterObject);
         Assert.IsNotNull(m_controlledPlayerCharacter);
@@ -91,17 +99,69 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
         m_controlledPlayerCharacter.InputDash(isPushDashKey);
 
-        //if (isPushCancelKey)
-        //    m_controlledPlayerCharacter.InputCancel();
+        bool isVertical2Down = m_prevFrameVertical2 - vertical2 > 0.0f;
 
-        if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
+        //if(vertical2 <= 1.0f)
+        //{
+
+        //}
+
+        //GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+
+        if (vertical2 <= -0.0f && isVertical2Down)
         {
             m_controlledPlayerCharacter.InputCharge();
+
+            //GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
         }
-        else if (MultiInput.GetButtonUp("Throw", m_joypadNumber))
+        else if(vertical2 >= 0.0f)
         {
             m_controlledPlayerCharacter.InputThrow();
         }
+
+        m_prevFrameVertical2 = vertical2;
+
+        //if(vertical2 < 0.125f && vertical2 > -0.125f)
+        //{
+        //    m_isCanceled = true;
+        //}
+
+        //if(vertical2 < -0.125f)
+        //{
+        //    if (m_isCanceled)
+        //    {
+        //        m_controlledPlayerCharacter.InputCharge();
+
+        //        m_isCanceled = false;
+        //    }
+        //}
+        //else if(vertical2 > -0.125f)
+        //{
+        //    m_controlledPlayerCharacter.InputThrow();
+        //}
+
+        //if(vertical2 < -0.125f)
+        //{
+        //    m_controlledPlayerCharacter.InputCharge(vertical2);
+        //}
+        //else if(vertical2 > -0.125f)
+        //{
+        //    m_controlledPlayerCharacter.InputThrow();
+        //}
+
+        //Debug.Log(horizontal2.ToString());
+
+        //if (isPushCancelKey)
+        //    m_controlledPlayerCharacter.InputCancel();
+
+        //if (MultiInput.GetButtonDown("Throw", m_joypadNumber))
+        //{
+        //    m_controlledPlayerCharacter.InputCharge();
+        //}
+        //else if (MultiInput.GetButtonUp("Throw", m_joypadNumber))
+        //{
+        //    m_controlledPlayerCharacter.InputThrow();
+        //}
 
         //if (_CheckStickRotation(vertical, horizontal))
         //{
@@ -114,7 +174,7 @@ public class PlayerCharacterController : MonoBehaviour {
         //}
 
         // pull
-        if(_CheckStickHalfRotation(horizontal2, vertical2, ref m_pullHalfRotationInputCheck))
+        if (_CheckStickHalfRotation(horizontal2, vertical2, ref m_pullHalfRotationInputCheck))
         {
             m_pullHalfRotationCount++;
 
@@ -138,6 +198,8 @@ public class PlayerCharacterController : MonoBehaviour {
                 //m_controlledPlayerCharacter.InputRelease();
             }
         }
+
+        
     }
 
     void _UpdateInputKeyboard()
@@ -302,6 +364,10 @@ public class PlayerCharacterController : MonoBehaviour {
     private int m_releaseHalfRotationInputCount;
 
     private PlayerCharacterControllerData m_controllerData;
+
+    private float m_prevFrameVertical2;
+
+    private bool m_isCanceled;
 
 #if UNITY_EDITOR
 

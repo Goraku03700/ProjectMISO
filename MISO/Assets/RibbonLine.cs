@@ -22,6 +22,7 @@ namespace Ribbons
 
             //m_lineRenderer.SetPosition(0, start);
             //m_lineRenderer.SetPosition(1, end);            
+
         }
 
         // Update is called once per frame
@@ -51,6 +52,12 @@ namespace Ribbons
 
             m_lineRenderer.SetPosition(0, start);
             m_lineRenderer.SetPosition(1, end);
+
+            float t = 1.0f - m_ribbon.time / m_ribbon.playerCharacter.playerCharacterData.ribbonPenaltyTime;
+
+            float width = t * m_defaultWidth;
+
+            m_lineRenderer.SetWidth(width, width);
         }
 
         [SerializeField]
@@ -58,6 +65,9 @@ namespace Ribbons
 
         Ribbon m_ribbon;
         LineRenderer m_lineRenderer;
+
+        [SerializeField]
+        float m_defaultWidth = 1.0f;
 
         public Transform startTransform
         {
