@@ -526,8 +526,8 @@ public class Production : MonoBehaviour {
         // lightShaftの初期化
         for (i = 0; i < ConstPlayerMax; i++)
         {
-            m_lightShaft[i].enabled = false;
-            m_lightShaft[i].range = 0.0f;
+            //m_lightShaft[i].enabled = false;
+           // m_lightShaft[i].range = 0.0f;
         }
         for(i=0; i<ConstPlayerMax; i++)
         {
@@ -769,7 +769,7 @@ public class Production : MonoBehaviour {
         }
 
         // 最後の女性の移動が完了したら次の状態に遷移
-        if (m_maxGirl == 0)
+        if (m_maxGirl == 0) // 0人の場合
         {
             m_resultState = ResultState.UpPodiumProduction;
             time = 0;
@@ -777,10 +777,20 @@ public class Production : MonoBehaviour {
             return;
 
         }
+
         if (m_girlLerpRate[m_saveTopPlayer, m_score[m_saveTopPlayer] - 1 ] >= 1.0f)
         {
             m_resultState = ResultState.UpPodiumProduction;
             time = 0;
+
+            // ライトの位置を保存(2位と3位の位置にライトを移動)
+            m_lightShaft[0].transform.localPosition = new Vector3(m_podium[1].transform.localPosition.x,
+                                                                  m_lightShaft[0].transform.localPosition.y,
+                                                                  m_podium[1].transform.localPosition.z);
+
+            m_lightShaft[1].transform.localPosition = new Vector3(m_podium[2].transform.localPosition.x,
+                                                                  m_lightShaft[1].transform.localPosition.y,
+                                                                  m_podium[2].transform.localPosition.z);
         }
     }
 
@@ -881,10 +891,28 @@ public class Production : MonoBehaviour {
         {
             m_directionalLight.intensity = m_endIntensity;
         }
-        
+
+        // ライトを動かす
+        Vector3 shaft_rot = m_lightShaft[0].transform.eulerAngles;
+
+        // ライト1つ目
+        float rot_x = Mathf.PingPong(Time.time * 60.0f, 90.0f + 30.0f) + 30.0f;
+        shaft_rot.x = rot_x;
+        shaft_rot.y = 90.0f;
+        shaft_rot.z = 90.0f;
+        m_lightShaft[0].transform.eulerAngles = shaft_rot;
+
+        // ライト2つ目
+        shaft_rot = m_lightShaft[1].transform.eulerAngles;
+        rot_x = Mathf.PingPong(Time.time * 60.0f + 90.0f + 30.0f, 90.0f + 30.0f) + 30.0f;
+        shaft_rot.x = rot_x;
+        shaft_rot.y = 90.0f;
+        shaft_rot.z = 90.0f;
+        m_lightShaft[1].transform.eulerAngles = shaft_rot;
+
 
         // 一定時間たったら次の時間に決める
-        if(m_intervalTime > m_podiumProductionWaitTime)
+        if (m_intervalTime > m_podiumProductionWaitTime)
         {
             m_resultState = ResultState.DecideRankProducution;
             time = 0;
@@ -1035,6 +1063,9 @@ public class Production : MonoBehaviour {
                 m_lightShaft[i].transform.localPosition = new Vector3(m_podium[i].transform.localPosition.x,
                                                                m_lightShaft[i].transform.localPosition.y,
                                                                m_podium[i].transform.localPosition.z);
+
+                // 回転もどす
+
                 m_lightShaft[i].range += 10.0f * Time.deltaTime;
                 if (m_lightShaft[i].range > 10.0f)
                 {

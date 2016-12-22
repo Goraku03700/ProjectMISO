@@ -65,25 +65,36 @@ public class PlayerScore : MonoBehaviour {
         m_time = 0.0f;
 
         m_downFlag = false;
+
     }
     
     // Update is called once per frame
     void Update () {
 
+
+        
+        //// スコアを少しずつ下げる
+        //if (m_downFlag)
+        //{
+        //    m_time += Time.deltaTime;
+
+        //    if (m_time > m_downSpeed)
+        //    {
+        //        m_saveScore--;
+        //        m_scoreText.text = m_saveScore.ToString();
+        //        m_time = 0.0f;
+
+        //        return;
+        //    }
+        //}
+
         m_scoreText.text = m_player.score.ToString();
-
-        // スコアを少しずつ下げる
-        if (m_downFlag)
-        {
-            m_time += Time.deltaTime;
-        }
-
 
     }
 
 
     /// <summary>
-    /// 数字を
+    /// 数字をだんだん減らす
     /// </summary>
     /// <param name="donwNum"></param>
     public void DownCount(int donwNum)
@@ -91,7 +102,7 @@ public class PlayerScore : MonoBehaviour {
         // カウントダウンフラグ
         m_downFlag = true;
 
-        // 数値を保存する
+        // 現在の数値を保存する
         m_saveScore = int.Parse(m_scoreText.text);
 
         m_time = 0.0f;

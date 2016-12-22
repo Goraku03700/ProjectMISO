@@ -29,6 +29,8 @@ public class Damage : MonoBehaviour {
 
     private Vector3 m_saveScale;
 
+    private PlayerScore m_scoreScript;
+
     //private bool[] m_dispFlag;
 
 	// Use this for initialization
@@ -46,8 +48,35 @@ public class Damage : MonoBehaviour {
 
         // 消す
         this.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
-  
 
+        // スコアのスクリプト取得
+        switch (this.tag)
+        {
+
+            case "Player1":
+                {
+                    m_scoreScript = GameObject.Find("Player1").GetComponent<PlayerScore>();
+                }
+                break;
+
+            case "Player2":
+                {
+                    m_scoreScript = GameObject.Find("Player2").GetComponent<PlayerScore>();
+                }
+                break;
+
+            case "Player3":
+                {
+                    m_scoreScript = GameObject.Find("Player3").GetComponent<PlayerScore>();
+                }
+                break;
+
+            case "Player4":
+                {
+                    m_scoreScript = GameObject.Find("Player4").GetComponent<PlayerScore>();
+                }
+                break;
+        }
 
     }
 	
@@ -86,6 +115,8 @@ public class Damage : MonoBehaviour {
                     if (m_time > m_dispTime)
                     {
                         m_damageState = DamageState.Small;
+
+                        //m_scoreScript.DownCount(5);
                     }
                 }
                 break;
