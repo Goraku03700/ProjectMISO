@@ -186,6 +186,8 @@
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\Scripts\sample.cs" />
     <Compile Include="Assets\ProjectName\Users\Fukuda\effect_sample\SimpleParticlePack\Scripts\ParticleTester.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\Magazine.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\MagazineCamera.cs" />
+    <Compile Include="Assets\ProjectName\Users\Nakao\Script\OpeningText.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\RayTest.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\RibbonEffect.cs" />
     <Compile Include="Assets\ProjectName\Users\Nakao\Script\RibbonEffectManager.cs" />

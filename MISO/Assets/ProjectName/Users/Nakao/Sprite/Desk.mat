@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Material 3
-  m_Shader: {fileID: 4800000, guid: 2a63c766a870c4444aaa29ccc67accc3, type: 3}
+  m_Name: Desk
+  m_Shader: {fileID: 4800000, guid: d84268709d11078d11005b9844295342, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 16dc68aeaf8c222448bbe842a9290d4d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 36167cc56708b4d03a29e4d6b8083743, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -64,21 +64,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _PageTex
-      second:
-        m_Texture: {fileID: 2800000, guid: 72a75280169bf45408021e7c6d676999, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _ParallaxMap
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
     - first:
-        name: _AlphaMask
-      second: 0.1
+        name: _ToonShade
+      second:
+        m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
     - first:
         name: _BumpScale
       second: 1
@@ -91,9 +88,6 @@ Material:
     - first:
         name: _DstBlend
       second: 0
-    - first:
-        name: _Flip
-      second: 1
     - first:
         name: _GlossMapScale
       second: 1
@@ -116,12 +110,6 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _Reverse
-      second: 1
-    - first:
-        name: _Shadow
-      second: 0.014
-    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -139,7 +127,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.46323532, g: 0.46323532, b: 0.46323532, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

@@ -119,7 +119,7 @@ public class testtitle : MonoBehaviour {
                 {
                     m_titlestate = TitleState.Finish;
                     m_titleui.Activate(false);
-                    Fade.ChangeScene("Select");
+                    Fade.ChangeScene("Opening");
                     BGMManager.instance.StopBGM(0.8f);
                     // 遷移SE鳴らす
                     if(!se017_startFlag)

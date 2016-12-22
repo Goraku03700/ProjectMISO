@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013729592048
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,8 +106,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_time: 0
   m_colorTime: 0.5
-  fadeintime: 2.5
-  fadeouttime: 2.5
+  fadeintime: 1
+  fadeouttime: 1
+  m_inRotationPerSecond: 720
+  m_outRotationPerSecond: 720
   m_ribbon: {fileID: 114000011223432138}
   sprites:
   - {fileID: 114000011223432138}
@@ -131,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 9c3136017ae7643498af34d1e18e727c, type: 2}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -201,7 +203,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fc3d2d649128d5d4381379cf24b5273f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
