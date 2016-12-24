@@ -74,6 +74,12 @@ public class TimeCount : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetData();
+            Fade.ChangeScene("Result");
+        }
+
         // 時間を測る
         if (isStart)
         {
