@@ -1674,7 +1674,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010154576742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1689,7 +1689,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010164757010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1704,7 +1704,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010232079942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1719,7 +1719,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010232621190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1731,6 +1731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 1
   m_movementAreaX: {x: 5, y: 5}
@@ -1746,6 +1748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 1
   m_movementAreaX: {x: 5, y: 5}
@@ -1764,7 +1768,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010420607710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1779,7 +1783,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010441667544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1794,7 +1798,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010586515556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1809,7 +1813,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010729891406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1821,6 +1825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 0
   m_movementAreaX: {x: 8, y: 8}
@@ -1839,7 +1845,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010810383336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1854,7 +1860,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010815550460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1869,7 +1875,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010821209912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1884,7 +1890,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010843367026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1899,7 +1905,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010929823752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1914,7 +1920,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010964403454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1929,7 +1935,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000010978650258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1944,7 +1950,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000011028661394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1956,6 +1962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 0
   m_movementAreaX: {x: 8, y: 8}
@@ -1974,7 +1982,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000011157321698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1989,7 +1997,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000011393595440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2001,6 +2009,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 0
   m_movementAreaX: {x: 8, y: 8}
@@ -2019,7 +2029,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000011485912962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2031,6 +2041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 0
   m_movementAreaX: {x: 8, y: 8}
@@ -2049,7 +2061,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000011729181498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2064,7 +2076,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000011747693724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2079,7 +2091,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000011973781908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2094,7 +2106,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000011992238074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2109,7 +2121,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000012035861800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2124,7 +2136,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000012362449214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2136,6 +2148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 0
   m_movementAreaX: {x: 8, y: 8}
@@ -2168,11 +2182,18 @@ MonoBehaviour:
   - {fileID: 114000010571301760, guid: b04b818e265c2ab45ac4e113b390cffd, type: 2}
   - {fileID: 114000011690784412, guid: c1ce0b00aaf3d5d40b0bce3158f16d0b, type: 2}
   - {fileID: 114000010743077890, guid: a69b667d9c4d7b345a7c739b85555ad2, type: 2}
+  - {fileID: 114000013203653906, guid: bc5d4c2f0f7a5e44d90c06097420671a, type: 2}
+  - {fileID: 114000013292931476, guid: 7cedf81421dafba4d866c64fde4ed418, type: 2}
+  - {fileID: 114000010689647894, guid: bcca4122789e49a42ab4e6197ed12fa0, type: 2}
+  - {fileID: 114000012915821078, guid: 067d6dd0f6a5e294e90447578a3f5937, type: 2}
+  - {fileID: 114000012813403400, guid: 09d105ba5b6d16c4386e40154d9b2a7b, type: 2}
   m_createRules_Normal: []
   m_createRules_Fever: []
   m_createRules_Continue: []
+  m_createRules_Rare: []
   m_girl_Count: 0
   m_countDownTime: 0
+  m_rareGirl_Count: 0
 --- !u!114 &114000012457922054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2187,7 +2208,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000012792532644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2199,6 +2220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 1
   m_movementAreaX: {x: 5, y: 5}
@@ -2217,7 +2240,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000012859801148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2232,7 +2255,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000013243753198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2247,7 +2270,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000013461988252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2262,7 +2285,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000013708251802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2277,7 +2300,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000013790181048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2292,7 +2315,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000013891204422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2307,7 +2330,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000014074230506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2322,7 +2345,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000014174996656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2337,7 +2360,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!114 &114000014214586442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2349,6 +2372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832ec5fc5bdfb2489b4e996c04ed427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rareNpc: {fileID: 114000010036811204, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16,
+    type: 2}
   m_appearancePoints: []
   m_fever: 1
   m_movementAreaX: {x: 5, y: 5}
@@ -2367,7 +2392,7 @@ MonoBehaviour:
   girlObject: {fileID: 114000013240174552, guid: 602612d04b0c4dd42ab65641c2665685,
     type: 2}
   m_girlObjects: []
-  m_range: 3
+  m_range: 8
 --- !u!212 &212000010052692890
 SpriteRenderer:
   m_ObjectHideFlags: 1

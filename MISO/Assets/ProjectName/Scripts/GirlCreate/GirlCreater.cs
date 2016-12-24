@@ -8,6 +8,9 @@ public class GirlCreater : MonoBehaviour {
 
     GirlCreateSystem m_parntGirlCreateSystem;
 
+    [SerializeField]
+    GirlNoPlayerCharacter m_rareNpc;
+
     public GirlCreateSystem m_ParntGirlCreateSystem
     {
         get { return m_parntGirlCreateSystem; }
@@ -91,6 +94,39 @@ public class GirlCreater : MonoBehaviour {
             */
 
             m_appearancePoints[num].CreateNoPlayerCharacter();
+            m_createGirlNumber++;
+        }
+        return true;
+
+        return false;
+    }
+
+    public bool CreateRareGirl(int createCount)
+    {
+        for (int i = 0; i < createCount; ++i)
+        {
+            int num = UnityEngine.Random.Range(0, m_appearancePoints.Count);
+            /*
+            for (int i = 0; i < appearancePoints.Length - 1; ++i)
+            {
+                if (appearancePoints[num].IsCreate == false)
+                {
+                    appearancePoints[num].IsCreate = true;
+                    m_createGirlNumber++;
+                    return true;
+                }
+                else
+                {
+                    num++;
+                    if(num > appearancePoints.Length - 1)
+                    {
+                        num = 0;
+                    }
+                }
+            }
+            */
+
+            m_appearancePoints[num].CreateRareNoPlayerCharacter(m_rareNpc);
             m_createGirlNumber++;
         }
         return true;

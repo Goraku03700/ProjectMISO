@@ -6,6 +6,7 @@ public class GirlAppearancePosition : MonoBehaviour
 {
     public GirlNoPlayerCharacter girlObject;   // 女性オブジェクト
 
+
     [SerializeField]
     List<GirlNoPlayerCharacter> m_girlObjects;
     [SerializeField, Header("生成位置の範囲設定(生成位置からrangeの値で生成)"),Tooltip("0.1なら生成位置から-0.1～0.1の範囲で生成")]
@@ -110,6 +111,22 @@ public class GirlAppearancePosition : MonoBehaviour
         m_girlObjects[m_girlObjects.Count - 1].m_ParntGirlAppearancePosition = this;
         m_girlObjects[m_girlObjects.Count - 1].m_MovementAreaX = m_movementAreaX;
         m_girlObjects[m_girlObjects.Count - 1].m_MovementAreaZ = m_movementAreaZ;
+        m_girlObjects[m_girlObjects.Count - 1].GetRandomPositionOnLevel();
+    }
+
+    public void CreateRareNoPlayerCharacter(GirlNoPlayerCharacter rareNPC)
+    {
+        Vector3 pos = new Vector3();
+
+        pos = this.transform.position;
+        pos.x += Random.Range(-m_range, m_range);
+        pos.z += Random.Range(-m_range, m_range);
+        isCreate = false;
+        m_girlObjects.Add((GirlNoPlayerCharacter)Instantiate(rareNPC, pos, this.transform.rotation));
+        m_girlObjects[m_girlObjects.Count - 1].m_ParntGirlAppearancePosition = this;
+        m_girlObjects[m_girlObjects.Count - 1].m_isRare = true;
+        m_girlObjects[m_girlObjects.Count - 1].m_MovementAreaX = new Vector2(-15,15);
+        m_girlObjects[m_girlObjects.Count - 1].m_MovementAreaZ = new Vector2(-14, 14);
         m_girlObjects[m_girlObjects.Count - 1].GetRandomPositionOnLevel();
     }
 }

@@ -8,6 +8,8 @@ public class TutorialEnd : MonoBehaviour {
 
     private Animator[] m_animePlayer;
 
+    private TimeCount m_timeCountScript;
+
     private bool flg;
 
 	// Use this for initialization
@@ -25,19 +27,13 @@ public class TutorialEnd : MonoBehaviour {
 
         flg = false;
 
+        // 時間をスタート
+        m_timeCountScript = GameObject.Find("Time").GetComponent<TimeCount>();
+        m_timeCountScript.StartTime();
     }
 
     // Update is called once per frame
     void Update() {
-
-        /*
-        if(!flg)
-        {
-            for(int i=0; i<4; i++)
-                m_animePlayer[i].Play("Base Layer.Movable.Move");
-            flg = true;
-        }
-        */
 
         // スタートが押されたか
         if (MultiInput.GetButtonDown("Pause", MultiInput.JoypadNumber.Pad1) || Input.GetKeyDown(KeyCode.Z))
@@ -65,8 +61,8 @@ public class TutorialEnd : MonoBehaviour {
         }
 
 
-        // 全員レディしたら
-        if (m_readyFlag[0] && m_readyFlag[1] && m_readyFlag[2] && m_readyFlag[3])
+        // 全員レディしたら　もしくは　残り時間が0になったら
+        if ((m_readyFlag[0] && m_readyFlag[1] && m_readyFlag[2] && m_readyFlag[3]) || (m_timeCountScript.GetTime() == 0))
         {
             Fade.ChangeScene("Play");
         }

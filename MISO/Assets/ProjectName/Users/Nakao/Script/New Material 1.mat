@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: New Material 1
-  m_Shader: {fileID: 4800000, guid: 2a63c766a870c4444aaa29ccc67accc3, type: 3}
+  m_Shader: {fileID: 4800000, guid: d6ca0f1846dff53428cc64c8bf679ef1, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 3705a165fd7d8a04eadd7aa8e3647ea2, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -64,21 +64,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _PageTex
-      second:
-        m_Texture: {fileID: 2800000, guid: 72a75280169bf45408021e7c6d676999, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _ParallaxMap
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: _AlphaMask
-      second: 0.055
     - first:
         name: _BumpScale
       second: 1
@@ -91,9 +82,6 @@ Material:
     - first:
         name: _DstBlend
       second: 0
-    - first:
-        name: _Flip
-      second: -320.6112
     - first:
         name: _GlossMapScale
       second: 1
@@ -115,12 +103,6 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
-    - first:
-        name: _Reverse
-      second: 1
-    - first:
-        name: _Shadow
-      second: 0.014
     - first:
         name: _SmoothnessTextureChannel
       second: 0

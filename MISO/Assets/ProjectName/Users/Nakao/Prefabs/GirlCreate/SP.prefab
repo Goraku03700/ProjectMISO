@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_status: 0
   m_time: 0
-  m_scale: 1
+  m_scale: 0.75
   m_movable: {fileID: 114000014286938260}
   m_girlMesh: {fileID: 1000011533978290}
   m_ribbonLine: {fileID: 120000012866303774}
@@ -1098,6 +1098,7 @@ MonoBehaviour:
   m_playerAbsorption: {fileID: 114000012979001354}
   m_getPlayerBillding: {fileID: 0}
   m_npcPos: {x: 0, y: 0, z: 0}
+  m_isRare: 0
 --- !u!114 &114000014286938260
 MonoBehaviour:
   m_ObjectHideFlags: 1
