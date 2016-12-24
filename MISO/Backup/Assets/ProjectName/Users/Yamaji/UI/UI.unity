@@ -203,6 +203,102 @@ Prefab:
       propertyPath: m_TagString
       value: Player4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013318888086, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05ab5b28929f0804097a2d538a1cc97a,
+        type: 3}
+    - target: {fileID: 114000012847027324, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0491071eae5ed8e44969ee36f1f90eaf,
+        type: 3}
+    - target: {fileID: 224000011513664610, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011513664610, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012261251998, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012261251998, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010225314592, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0491071eae5ed8e44969ee36f1f90eaf,
+        type: 3}
+    - target: {fileID: 114000010205942652, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05ab5b28929f0804097a2d538a1cc97a,
+        type: 3}
+    - target: {fileID: 114000013030543458, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0491071eae5ed8e44969ee36f1f90eaf,
+        type: 3}
+    - target: {fileID: 114000013806500892, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0491071eae5ed8e44969ee36f1f90eaf,
+        type: 3}
+    - target: {fileID: 224000013834408680, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013364979140, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013834408680, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013364979140, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010067131178, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05ab5b28929f0804097a2d538a1cc97a,
+        type: 3}
+    - target: {fileID: 114000010036592388, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05ab5b28929f0804097a2d538a1cc97a,
+        type: 3}
+    - target: {fileID: 1000013662662414, guid: 45333fc6a7bb30943a95a4ac9971fffc, type: 2}
+      propertyPath: m_Name
+      value: Damage4_Flame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011878294764, guid: 45333fc6a7bb30943a95a4ac9971fffc, type: 2}
+      propertyPath: m_Name
+      value: Damage4_Number
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45333fc6a7bb30943a95a4ac9971fffc, type: 2}
   m_IsPrefabParent: 0
