@@ -157,7 +157,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
  //       m_girlMesh.transform.rotation = 0.0f;_
         m_time += Time.deltaTime;
 
-        if(m_isScale)
+        if (m_girlMesh.transform.localScale != new Vector3(m_scale, m_scale, m_scale))
         {
             m_scaleTime += Time.deltaTime;
             if (m_scaleTime >= 0.25f)
@@ -177,8 +177,11 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_npcMotion.SetBool("Move", true);
                 }
                 m_isScale = false;
-                m_Aura = this.transform.FindChild("Aura").GetComponent<ParticleSystem>();
-                m_Aura.Play();
+                if (m_isRare)
+                {
+                    m_Aura = this.transform.FindChild("Aura").GetComponent<ParticleSystem>();
+                    m_Aura.Play();
+                }
             }
         }
 

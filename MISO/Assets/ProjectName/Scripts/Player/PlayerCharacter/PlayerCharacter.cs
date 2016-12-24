@@ -819,11 +819,13 @@ public class PlayerCharacter : MonoBehaviour
         m_playerIcon.ChangeIconNormal();
 
         m_wallCollider.enabled = true;
-
+        Color invisibleColor = new Color(1, 1, 1, 0.7f);
         for (int i = 0; i < m_meshRenderers.Length; ++i)
         {
             m_meshRenderers[i].material = m_invisibleMaterial;
+            m_meshRenderers[i].material.SetColor("_Color", invisibleColor);
         }
+        
     }
 
     //public void OutBuildingEnter()
@@ -862,13 +864,19 @@ public class PlayerCharacter : MonoBehaviour
         //{
         //    meshRenderer.materials[0] = m_invisibleMaterial;
         //}
-
         
     }
 
     public void InvisibleUpdate()
     {
         m_invisibleTime += Time.deltaTime;
+
+        Color invisibleColor = new Color(1,1,1,Mathf.PingPong(Time.time*15,1));
+        for (int i = 0; i < m_meshRenderers.Length; ++i)
+        {
+            m_meshRenderers[i].material.SetColor("_Color",invisibleColor);
+        }
+
 
         if(m_invisibleTime > m_playerCharacterData.invisibleTime)
         {
