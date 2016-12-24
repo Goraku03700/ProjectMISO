@@ -19,6 +19,8 @@ namespace Ribbons
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //m_ribbon.PullUpdate();
+
+            m_ribbon.CollectUpdate();
         }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

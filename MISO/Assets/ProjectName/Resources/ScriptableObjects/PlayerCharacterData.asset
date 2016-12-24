@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Name: PlayerCharacterData
   m_EditorClassIdentifier: 
   pullInputHalfRotation: 0
-  ribbonMaxScale: 2.5
+  ribbonMaxScale: 3
   ribbonMinScale: 1
   ribbonSizeScailingTime: 1
-  ribbonPullPower: 400
+  ribbonPullPower: 350
   ribbonCollectLength: 5
   ribbonProjectionTime: 1.8
   ribbonPenaltyTime: 5
   ribbonShakeSpeed: 30
   ribbonViolentMoveSpeed: 75
-  ribbonReboundPower: 32
-  ribbonReboundCountRatio: 0.11
-  chargeTimeMax: 1.5
+  ribbonReboundPower: 30
+  ribbonReboundCountRatio: 0.15
+  chargeTimeMax: 1
   throwPower: 300
   throwSpeed: 500
   collectTime: 1
@@ -35,7 +35,11 @@ MonoBehaviour:
   shakingInterval: 0
   walkSpeed: 50
   dashSpeed: 100
-  dashTime: 3
+  dashTime: 5
+  speedDownStartScore: 10
+  speedDownEndScore: 30
+  scoreWeight: 1.5
+  speedDownMax: 40
   invisibleTime: 3
   collectScoreMinus: 5
   ribbonPrefabPath: Prefabs/Ribbon
