@@ -59,6 +59,8 @@ namespace Ribbons
             rigidbody.useGravity    = true;
             m_isDoThrow             = true;
 
+            m_scale = transform.localScale;
+
             m_wallColliderObject.SetActive(true);
         }
 
@@ -329,12 +331,30 @@ namespace Ribbons
 
             m_playerCharacter.StartPulledCorutine(addScore, addPlayer);
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
+
+            m_absorpstion.startAbsorption(transform.position, m_playerCharacter.transform.position);
+
+            m_isPulled = true;
+            //m_pullStick.spriteRenderer.enabled = false;
+            m_pullStick.gameObject.SetActive(false);
         }
 
         public void CollectUpdate()
         {
-            
+            m_pullStick.gameObject.SetActive(false);
+
+            m_collectTime += Time.deltaTime;
+
+            m_absorpstion.SetEndPosition(m_playerCharacter.transform.position);
+            transform.position = m_absorpstion.GetLerpPointAtTime();
+
+            transform.localScale = Vector3.Lerp(m_scale, Vector3.zero, m_collectTime / 1.0f);
+
+            if (m_collectTime > 1.0f)
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void Breake()
@@ -389,6 +409,7 @@ namespace Ribbons
             Transform pullAllowTransform        = transform.FindChild("PullStick");
             Transform ribbonLineTransform       = transform.FindChild("RibbonLine");
             Transform meshTransform             = transform.FindChild("RibbonMesh");
+            Transform absorptionTransform       = transform.FindChild("CharacterAbsorption");
 
             m_colliderObject        = colliderTransform.gameObject;
             m_triggerColliderObject = triggerColliderTransform.gameObject;
@@ -397,6 +418,7 @@ namespace Ribbons
             m_meshObject            = meshTransform.gameObject;
             m_pullStick             = m_pullArrowGameObject.GetComponent<PullStick>();
             m_ribbonLine            = ribbonLineTransform.gameObject.GetComponent<RibbonLine>();
+            m_absorpstion           = absorptionTransform.GetComponent<PlayerAbsorption>();
 
             m_pullArrowDefaultLossyScale = m_pullArrowGameObject.transform.lossyScale;
 
@@ -473,7 +495,7 @@ namespace Ribbons
 
             direction.y = 0;
 
-            if(direction.magnitude > .0f)
+            if(direction.magnitude > .0f && !m_isPulled)
                 transform.forward = direction;
 
             if (m_animatorParameters.isGrounded)
@@ -482,19 +504,21 @@ namespace Ribbons
 
                 //Vector3 aa =  transform.rotation.eulerAngles;
 
-                
+
 
                 //Vector3 position = playerCharacter.transform.position;
 
                 //position.y += 5.0f;
 
-                Vector3 center;
+                //Vector3 center;
 
-                center.x = (transform.position.x + playerCharacter.transform.position.x) / 2.0f;
-                center.y = (transform.position.y + playerCharacter.transform.position.y) / 2.0f + 5.0f;
-                center.z = (transform.position.z + playerCharacter.transform.position.z) / 2.0f;
+                //center.x = (transform.position.x + playerCharacter.transform.position.x) / 2.0f;
+                //center.y = (transform.position.y + playerCharacter.transform.position.y) / 2.0f + 5.0f;
+                //center.z = (transform.position.z + playerCharacter.transform.position.z) / 2.0f;
 
-                m_pullArrowGameObject.transform.position = center;
+                //m_pullArrowGameObject.transform.position = center;
+
+                m_pullArrowGameObject.transform.position = m_playerCharacter.transform.position + Vector3.up * 4;
 
                 Vector3 lossScale = m_pullArrowGameObject.transform.lossyScale;
                 Vector3 localScale = m_pullArrowGameObject.transform.localScale;
@@ -804,5 +828,11 @@ namespace Ribbons
         {
             get{ return m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count; }
         }
+
+        private float m_collectTime;
+
+        PlayerAbsorption m_absorpstion;
+        private Vector3 m_scale;
+        bool m_isPulled;
     }
 }
