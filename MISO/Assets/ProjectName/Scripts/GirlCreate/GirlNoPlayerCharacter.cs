@@ -76,6 +76,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 	void Start () {
         m_status = State.Generation;
         m_time = 0.0f;
+        m_scaleTime = 0.0f;
         m_targetPosition = GetRandomPositionOnLevel();
         m_ribbonLine.enabled = false;
         m_rigidbody = GetComponent<Rigidbody>();
@@ -133,14 +134,18 @@ public class GirlNoPlayerCharacter : MonoBehaviour
     [SerializeField]
     Vector3 m_npcPos;
 
+    public bool m_isRare;
+
     bool m_isScale = true;
 
     float m_scaleTime;
 
+    ParticleSystem m_Aura;
+
     public Vector3 GetRandomPositionOnLevel()
     {
         m_time = 0.0f;
-        m_scaleTime = 0.0f;
+        
         m_beforeRotation = this.transform.rotation;
         m_beforePosition = this.transform.position;
         return new Vector3(Random.Range(m_movementAreaX.x, m_movementAreaX.y), 0, Random.Range(m_movementAreaZ.x, m_movementAreaZ.y));
@@ -172,6 +177,8 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_npcMotion.SetBool("Move", true);
                 }
                 m_isScale = false;
+                m_Aura = this.transform.FindChild("Aura").GetComponent<ParticleSystem>();
+                m_Aura.Play();
             }
         }
 
@@ -180,7 +187,11 @@ public class GirlNoPlayerCharacter : MonoBehaviour
             case State.Generation:
             {
                 
-                
+                if(m_isRare)
+                {
+                    m_particleSystem.startColor = new Color(1f,0.9f,0.33f);
+                    
+                }
                 if(m_time >= 1.0f)
                 {
                     m_status = State.Alive;
@@ -197,22 +208,24 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                     m_targetPosition = GetRandomPositionOnLevel();
                 }
                 m_rigidbody.velocity = Vector3.zero;
+
+                if(m_isRare)
+                {
+                    m_time += Time.deltaTime * 4;
+                }
+
                 // 目標地点の方向を向く
                 if(m_time > 1.0f)
                 {
                     m_time = 1.0f;
                 }
+                
                 Quaternion targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
                 transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, m_time);
 
                 // 前方に進む
                 transform.Translate(Vector3.forward * m_speed * Time.deltaTime);
-                //ここに移動を実装予定
-                if (m_time > 4.0f)
-                {
-                    //m_movable.direction = Vector3.Normalize(new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)));
-                    //m_time = 0.0f;
-                }
+                
 
                 if (m_isCaught)
                 {
@@ -271,7 +284,14 @@ public class GirlNoPlayerCharacter : MonoBehaviour
                 //取得をUIに通知
                 //m_girlMesh.SetActive(false);
                 //m_parntGirlAppearancePosition.IsDestroy = true;
-                m_parntGirlAppearancePosition.m_ParntGirlCreater.m_CreateGirlNumber--;
+                if (m_isRare)
+                {
+                    m_parntGirlAppearancePosition.m_ParntGirlCreater.m_ParntGirlCreateSystem.m_RareGirlCount--;
+                }
+                else
+                {
+                    m_parntGirlAppearancePosition.m_ParntGirlCreater.m_CreateGirlNumber--;
+                }
                 Destroy(m_girlMesh);
                 Destroy(this);
                 break;
@@ -364,6 +384,10 @@ public class GirlNoPlayerCharacter : MonoBehaviour
 
     public void Collect(Vector3 billPosition)
     {
+        if(m_isRare)
+        {
+            m_Aura.Stop();
+        }
         m_isAbsorption = true;
         billPosition += transform.up * 2;
         m_npcPos = this.transform.position;

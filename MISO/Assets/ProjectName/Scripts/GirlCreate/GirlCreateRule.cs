@@ -22,13 +22,7 @@ public class GirlCreateRule : MonoBehaviour
     [Tooltip("継続的な生成パターンか")]
     public bool m_continuePattern;
 
-	// Use this for initialization
-	void Start () {
+    [Tooltip("レアNPCのパターンか")]
+    public bool m_rarePattern;
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

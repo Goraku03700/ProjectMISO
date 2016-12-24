@@ -99,7 +99,283 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: default
+      takeName: default
+      firstFrame: 1
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/group1
+        weight: 1
+      - path: group/group1/pasted__pasted__polySurface8
+        weight: 1
+      - path: group/group1/pasted__pasted__polySurface12
+        weight: 1
+      - path: group/group1/pasted__polySurface5
+        weight: 1
+      - path: group/pasted__body
+        weight: 1
+      - path: group/pasted__group
+        weight: 1
+      - path: group/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: group/pasted__group3
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: group2/pasted__transform6
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza/pasted__L_kakato
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza/pasted__L_kakato/pasted__L_tumasaki
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza/pasted__R_kakato
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza/pasted__R_kakato/pasted__R_tumasaki
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm/pasted__L_hizi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm/pasted__L_hizi/pasted__L_tekubi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__neck
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__neck/pasted__head
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm/pasted__R_hizi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm/pasted__R_hizi/pasted__R_tekubi
+        weight: 1
+      - path: plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: rampage
+      takeName: rampage
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/group1
+        weight: 1
+      - path: group/group1/pasted__pasted__polySurface8
+        weight: 1
+      - path: group/group1/pasted__pasted__polySurface12
+        weight: 1
+      - path: group/group1/pasted__polySurface5
+        weight: 1
+      - path: group/pasted__body
+        weight: 1
+      - path: group/pasted__group
+        weight: 1
+      - path: group/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: group/pasted__group3
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: group2/pasted__transform6
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza/pasted__L_kakato
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza/pasted__L_kakato/pasted__L_tumasaki
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza/pasted__R_kakato
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza/pasted__R_kakato/pasted__R_tumasaki
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm/pasted__L_hizi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm/pasted__L_hizi/pasted__L_tekubi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__neck
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__neck/pasted__head
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm/pasted__R_hizi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm/pasted__R_hizi/pasted__R_tekubi
+        weight: 1
+      - path: plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      firstFrame: 1
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/group1
+        weight: 1
+      - path: group/group1/pasted__pasted__polySurface8
+        weight: 1
+      - path: group/group1/pasted__pasted__polySurface12
+        weight: 1
+      - path: group/group1/pasted__polySurface5
+        weight: 1
+      - path: group/pasted__body
+        weight: 1
+      - path: group/pasted__group
+        weight: 1
+      - path: group/pasted__group/pasted__pasted__body
+        weight: 1
+      - path: group/pasted__group3
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: group2/pasted__transform6
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza/pasted__L_kakato
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__L_leg/pasted__L_hiza/pasted__L_kakato/pasted__L_tumasaki
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza/pasted__R_kakato
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__R_leg/pasted__R_hiza/pasted__R_kakato/pasted__R_tumasaki
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm/pasted__L_hizi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__L_arm/pasted__L_hizi/pasted__L_tekubi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__neck
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__neck/pasted__head
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm/pasted__R_hizi
+        weight: 1
+      - path: group2/pasted__transform6/pasted__root/pasted__Up_body/pasted__chest/pasted__R_arm/pasted__R_hizi/pasted__R_tekubi
+        weight: 1
+      - path: plbone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
