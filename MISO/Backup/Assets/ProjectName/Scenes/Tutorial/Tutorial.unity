@@ -2271,7 +2271,7 @@ Prefab:
     - target: {fileID: 114000011551640118, guid: 66fdad13293a38c46ae48bc46aeea821,
         type: 2}
       propertyPath: m_countDownStartTime
-      value: 0
+      value: -999
       objectReference: {fileID: 0}
     - target: {fileID: 114000011551640118, guid: 66fdad13293a38c46ae48bc46aeea821,
         type: 2}
