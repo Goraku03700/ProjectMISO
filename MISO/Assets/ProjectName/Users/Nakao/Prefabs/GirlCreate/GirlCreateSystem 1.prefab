@@ -2187,6 +2187,9 @@ MonoBehaviour:
   - {fileID: 114000010689647894, guid: bcca4122789e49a42ab4e6197ed12fa0, type: 2}
   - {fileID: 114000012915821078, guid: 067d6dd0f6a5e294e90447578a3f5937, type: 2}
   - {fileID: 114000012813403400, guid: 09d105ba5b6d16c4386e40154d9b2a7b, type: 2}
+  - {fileID: 114000010296225210, guid: 305edca8279876245833eb83a61a58d6, type: 2}
+  - {fileID: 114000014085485044, guid: fa52f2e05e90245438448935b105cd0e, type: 2}
+  - {fileID: 114000010050616592, guid: 98c8d7a4d25ecb1408754ceb5f96858c, type: 2}
   m_createRules_Normal: []
   m_createRules_Fever: []
   m_createRules_Continue: []
