@@ -55,9 +55,9 @@ public class TimeCount : MonoBehaviour {
 
         m_endEffect.m_CountDownTime = m_countDownStartTime;
 
-        m_timeNiddle = GameObject.Find("TimeNiddle");
+        //m_timeNiddle = GameObject.Find("TimeNiddle");
 
-        m_timeNiddleScript = m_timeNiddle.GetComponent<TimeNiddle>();
+        //m_timeNiddleScript = m_timeNiddle.GetComponent<TimeNiddle>();
 
 
 	}
@@ -65,6 +65,10 @@ public class TimeCount : MonoBehaviour {
     void Awake()
     {
         m_girlCreateSystem.m_Limit = timeInit;
+
+        m_timeNiddle = GameObject.Find("TimeNiddle");
+
+        m_timeNiddleScript = m_timeNiddle.GetComponent<TimeNiddle>();
     }
 	
 	// Update is called once per frame
@@ -139,7 +143,7 @@ public class TimeCount : MonoBehaviour {
 
     public float GetTime()
     {
-        return timeInit;
+        return timeInit-nowTime;
     }
 }
 

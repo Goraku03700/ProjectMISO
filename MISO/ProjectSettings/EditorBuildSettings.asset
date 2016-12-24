@@ -20,6 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ProjectName/Scenes/Play/Play.unity
   - enabled: 1
-    path: Assets/ProjectName/Scenes/Tutorial/Tutorial.unity
+    path: Assets/ProjectName/Scenes/Tutorial/TutorialOld.unity
   - enabled: 1
     path: Assets/ProjectName/Scenes/Opening/Opening.unity
+  - enabled: 1
+    path: Assets/ProjectName/Scenes/Tutorial/Tutorial.unity
