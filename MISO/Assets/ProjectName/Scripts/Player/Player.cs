@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// プレイヤーのスコアなどを格納するオブジェクト
@@ -36,4 +37,20 @@ public class Player : MonoBehaviour {
             m_score = value;
         }
     }
+
+    private List<bool> m_caughtGirlList;
+
+    public List<bool> caughtGirlList
+    {
+        get
+        {
+            return m_caughtGirlList;
+        }
+
+        set
+        {
+            m_caughtGirlList = value;
+        }
+    }
+
 }

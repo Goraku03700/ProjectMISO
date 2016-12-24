@@ -16,7 +16,7 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controllerData = Resources.Load("ScriptableObjects/PlayerCharacterControllerData") as PlayerCharacterControllerData;
 
         string findGameObjectName = "PlayerCharacter";
-        XInputDotNetPure.PlayerIndex playerIndex = XInputDotNetPure.PlayerIndex.One;
+        //XInputDotNetPure.PlayerIndex playerIndex = XInputDotNetPure.PlayerIndex.One;
 
         switch (gameObject.tag)
         {
@@ -24,7 +24,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName  += "1";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad1;
-                    playerIndex = XInputDotNetPure.PlayerIndex.One;
+                    m_playerIndex = XInputDotNetPure.PlayerIndex.One;
                 }
                 break;
 
@@ -32,7 +32,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "2";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad2;
-                    playerIndex = XInputDotNetPure.PlayerIndex.Two;
+                    m_playerIndex = XInputDotNetPure.PlayerIndex.Two;
                 }
                 break;
 
@@ -40,7 +40,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "3";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad3;
-                    playerIndex = XInputDotNetPure.PlayerIndex.Three;
+                    m_playerIndex = XInputDotNetPure.PlayerIndex.Three;
                 }
                 break;
 
@@ -48,7 +48,7 @@ public class PlayerCharacterController : MonoBehaviour {
                 {
                     findGameObjectName += "4";
                     m_joypadNumber = MultiInput.JoypadNumber.Pad4;
-                    playerIndex = XInputDotNetPure.PlayerIndex.Four;
+                    m_playerIndex = XInputDotNetPure.PlayerIndex.Four;
                 }
                 break;
 
@@ -62,7 +62,7 @@ public class PlayerCharacterController : MonoBehaviour {
         m_controlledPlayerCharacterObject   = GameObject.Find(findGameObjectName);
         m_controlledPlayerCharacter         = m_controlledPlayerCharacterObject.GetComponent<PlayerCharacter>();
 
-        m_controlledPlayerCharacter.playerIndex = playerIndex;
+        m_controlledPlayerCharacter.playerIndex = m_playerIndex;
 
         Assert.IsNotNull(m_controlledPlayerCharacterObject);
         Assert.IsNotNull(m_controlledPlayerCharacter);
@@ -70,7 +70,8 @@ public class PlayerCharacterController : MonoBehaviour {
 	
 	void Update ()
     {
-        _UpdateInputJoypad();
+        //_UpdateInputJoypad();
+        _UpdateInputXInput();
 
 #if UNITY_EDITOR
 
@@ -200,6 +201,73 @@ public class PlayerCharacterController : MonoBehaviour {
         }
 
         
+    }
+
+    void _UpdateInputXInput()
+    {
+        XInputDotNetPure.GamePadState gamePadState = XInputDotNetPure.GamePad.GetState(m_playerIndex);
+
+        float horizontal = gamePadState.ThumbSticks.Left.X;
+        float vertical = gamePadState.ThumbSticks.Left.Y;
+
+        float horizontal2 = gamePadState.ThumbSticks.Right.X;
+        float vertical2 = gamePadState.ThumbSticks.Right.Y;
+
+        m_controlledPlayerCharacter.InputStick(horizontal, vertical);
+
+        bool isPushCancelKey = gamePadState.Buttons.LeftShoulder == ButtonState.Pressed;
+        bool isPushDashKey = gamePadState.Buttons.RightShoulder == ButtonState.Pressed;
+
+        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+        m_controlledPlayerCharacter.InputDash(isPushDashKey);
+
+        bool isVertical2Down = m_prevFrameVertical2 - vertical2 > 0.0f;
+
+        //if(vertical2 <= 1.0f)
+        //{
+
+        //}
+
+        //GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+
+        if (vertical2 <= -0.0f && isVertical2Down)
+        {
+            m_controlledPlayerCharacter.InputCharge();
+
+            //GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+        }
+        else if (vertical2 >= 0.0f)
+        {
+            m_controlledPlayerCharacter.InputThrow();
+        }
+
+        m_prevFrameVertical2 = vertical2;
+
+        // pull
+        if (_CheckStickHalfRotation(horizontal2, vertical2, ref m_pullHalfRotationInputCheck))
+        {
+            m_pullHalfRotationCount++;
+
+            if (m_pullHalfRotationCount >= m_controllerData.pullHalfRotation)
+            {
+                m_pullHalfRotationCount = 0;
+
+                m_controlledPlayerCharacter.InputPull();
+            }
+        }
+
+        // breake
+        if (_CheckStickHalfRotation(horizontal, vertical, ref m_releaseHalfRotationInputCheck))
+        {
+            m_releaseHalfRotationInputCount++;
+
+            if (m_releaseHalfRotationInputCount >= m_controllerData.releaseHalfRotation)
+            {
+                m_releaseHalfRotationInputCount = 0;
+
+                //m_controlledPlayerCharacter.InputRelease();
+            }
+        }
     }
 
     void _UpdateInputKeyboard()
@@ -379,4 +447,6 @@ public class PlayerCharacterController : MonoBehaviour {
 
     [SerializeField]
     private MultiInput.JoypadNumber m_joypadNumber;
+
+    private XInputDotNetPure.PlayerIndex m_playerIndex;
 }

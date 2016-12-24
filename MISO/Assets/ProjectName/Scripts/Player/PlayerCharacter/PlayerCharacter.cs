@@ -41,6 +41,49 @@ public class PlayerCharacter : MonoBehaviour
         Collect,
     }
 
+    public int GetPlayerNumber()
+    {
+        int playerNumber = 0;
+
+        switch (gameObject.tag)
+        {
+            case "Player1":
+                {
+                    playerNumber = 1;
+                }
+                break;
+
+            case "Player2":
+                {
+                    playerNumber = 2;
+
+                }
+                break;
+
+            case "Player3":
+                {
+                    playerNumber = 3;
+
+                }
+                break;
+
+            case "Player4":
+                {
+                    playerNumber = 4;
+
+                }
+                break;
+
+            default:
+                {
+                    Debug.LogAssertion("タグが設定されていません");
+                    break;
+                }
+        }       // end of switch(gameObject.tag)
+
+        return playerNumber;
+    }
+
     public void InputStick(float horizontal, float vertical)
     {
         if (horizontal != .0f || vertical != .0f)
@@ -536,7 +579,7 @@ public class PlayerCharacter : MonoBehaviour
             }
 
             m_player.score += 1;
-            m_bgmManager.PlaySE("se015_InCampany");
+            m_bgmManager.PlaySELoop("se015_InCampany");
             //m_vibrationLeft = 1.0f;
             //m_vibrationRight = 1.0f;
 
@@ -720,7 +763,13 @@ public class PlayerCharacter : MonoBehaviour
             m_lineRenderer.material = caughtRibbon.playerCharacter.ribbonLineMaterial;
 
             m_rollRibbonRenderer.enabled    = true;
-            m_rollRibbonRenderer.material   = caughtRibbon.playerCharacter.ribbonLineMaterial;
+
+            m_rollRibbonRenderer.materials[0] = caughtRibbon.playerCharacter.ribbonMaterials[caughtRibbon.playerCharacter.GetPlayerNumber() - 1];
+            m_rollRibbonRenderer.materials[1] = caughtRibbon.playerCharacter.ribbonMaterials[caughtRibbon.playerCharacter.GetPlayerNumber() - 1];
+            m_rollRibbonRenderer.material = caughtRibbon.playerCharacter.ribbonMaterials[caughtRibbon.playerCharacter.GetPlayerNumber() - 1];
+
+
+            transform.LookAt(caughtRibbon.playerCharacter.transform);
         }
     }
 
