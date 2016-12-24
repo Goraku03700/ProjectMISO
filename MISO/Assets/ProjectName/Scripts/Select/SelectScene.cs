@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using XInputDotNetPure;
 
 public class SelectScene : MonoBehaviour {
 
@@ -65,8 +66,14 @@ public class SelectScene : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        XInputDotNetPure.GamePadState pad1 = GamePad.GetState(PlayerIndex.One);
+        XInputDotNetPure.GamePadState pad2 = GamePad.GetState(PlayerIndex.Two);
+        XInputDotNetPure.GamePadState pad3 = GamePad.GetState(PlayerIndex.Three);
+        XInputDotNetPure.GamePadState pad4 = GamePad.GetState(PlayerIndex.Four);
+
+
         // BGM鳴らす
-        if(!bgm004_startFlag)
+        if (!bgm004_startFlag)
         {
             //BGMManager.instance.PlayBGM("bgm004_GameSelect", 1.0f);
             bgm004_startFlag = true;
@@ -84,7 +91,8 @@ public class SelectScene : MonoBehaviour {
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.Z) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad1))
+        //if (Input.GetKeyDown(KeyCode.Z) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad1))
+        if ((pad1.Buttons.Start == ButtonState.Pressed) || Input.GetKeyDown(KeyCode.Z))
         {
             m_readyFlag[0] = true;
             readyText[0].text = "OK!";
@@ -93,7 +101,7 @@ public class SelectScene : MonoBehaviour {
         }
 
 
-        if (Input.GetKeyDown(KeyCode.X) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad2))
+        if ((pad2.Buttons.Start == ButtonState.Pressed) || Input.GetKeyDown(KeyCode.X))
         {
             m_readyFlag[1] = true;
             readyText[1].text = "OK!";
@@ -101,7 +109,7 @@ public class SelectScene : MonoBehaviour {
             GameObject.Find("PlayerCharacter2").GetComponent<Animator>().SetBool("isGlad", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.C) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad3))
+        if ((pad3.Buttons.Start == ButtonState.Pressed) || Input.GetKeyDown(KeyCode.C))
         {
             m_readyFlag[2] = true;
             readyText[2].text = "OK!";
@@ -109,7 +117,7 @@ public class SelectScene : MonoBehaviour {
             GameObject.Find("PlayerCharacter3").GetComponent<Animator>().SetBool("isGlad", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.V) || MultiInput.GetButtonDown("Pause",MultiInput.JoypadNumber.Pad4))
+        if ((pad4.Buttons.Start == ButtonState.Pressed) || Input.GetKeyDown(KeyCode.V))
         {
             m_readyFlag[3] = true;
             readyText[3].text = "OK!";
