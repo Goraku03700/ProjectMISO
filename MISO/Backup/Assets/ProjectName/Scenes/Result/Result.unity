@@ -58631,10 +58631,10 @@ MonoBehaviour:
   m_girlColumnMax: 999
   m_podiumPrefab: {fileID: 0}
   m_podiumSeedMax:
-  - 1
-  - 1.4
-  - 0.6
-  - 1.8
+  - 0.8
+  - 1.2
+  - 0.4
+  - 1.5
   m_podiumUpDownProdcutionTime: 4
   m_podiumProductionWaitTime: 5
   m_podiumDecideRankWaitTime: 0.5
@@ -58656,8 +58656,8 @@ MonoBehaviour:
   - {fileID: 1568698341}
   - {fileID: 188004338}
   m_directionalLight: {fileID: 328820708}
-  m_darkSpeed: 0.3
-  m_endIntensity: 0.5
+  m_darkSpeed: 0.6
+  m_endIntensity: 0.3
   m_lightShaft:
   - {fileID: 2014708259}
   - {fileID: 859956930}
@@ -58696,8 +58696,8 @@ MonoBehaviour:
   skyboxChangeAngle: 0.03
   skyboxAxis: {x: 0, y: 1, z: 0}
   m_startColor: {r: 0.5955882, g: 0.5955882, b: 0.5955882, a: 0}
-  m_endColor: {r: 0.25735295, g: 0.26870677, b: 0.26870677, a: 0}
-  m_changeColorSpeed: 0.1
+  m_endColor: {r: 0.29411763, g: 0.29411763, b: 0.29411763, a: 0}
+  m_changeColorSpeed: 0.2
 --- !u!1 &1568698340
 GameObject:
   m_ObjectHideFlags: 0
