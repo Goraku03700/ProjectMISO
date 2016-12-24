@@ -116,6 +116,10 @@ public class Production : MonoBehaviour {
     private bool se024_startFlag;
     private bool bgm003_startFlag;
 
+    private Animator[] m_playerAnimator;
+    private Animator[,] m_girlAnimator;
+    private SkyboxControl m_skyboxControl;
+
     [SerializeField]
     Texture tex;
 
@@ -247,58 +251,30 @@ public class Production : MonoBehaviour {
         }
 
 
-
-
-
-        /**** マジックナンバー使用中 ****/
         // オブジェクトのロード
         // プレイヤー
         m_player = new GameObject[ConstPlayerMax];
-        m_player[0] = GameObject.Find("Player01");
-        m_player[1] = GameObject.Find("Player02");
-        m_player[2] = GameObject.Find("Player03");
-        m_player[3] = GameObject.Find("Player04");
+        for (i = 0; i < ConstPlayerMax; i++)
+            m_player[i] = GameObject.Find("Player0" + (i + 1).ToString()); 
+
 
         // 会社
         m_company = new GameObject[ConstPlayerMax];
-        m_company[0] = GameObject.Find("Company01");
-        m_company[1] = GameObject.Find("Company02");
-        m_company[2] = GameObject.Find("Company03");
-        m_company[3] = GameObject.Find("Company04");
+        for (i = 0; i < ConstPlayerMax; i++)
+            m_company[i] = GameObject.Find("Company0" + (i + 1).ToString());
+
 
         // 表彰台
         m_podium = new GameObject[ConstPlayerMax];
-        m_podium[0] = GameObject.Find("Podium01");
-        m_podium[1] = GameObject.Find("Podium02");
-        m_podium[2] = GameObject.Find("Podium03");
-        m_podium[3] = GameObject.Find("Podium04");
-        
+        for (i = 0; i < ConstPlayerMax; i++)
+            m_podium[i] = GameObject.Find("Podium0" + (i + 1).ToString());
+
+
         // スコアのテキスト
         m_scoreText = new Text[ConstPlayerMax];
-        m_scoreText[0] = GameObject.Find("ScoreText01").GetComponent<Text>();
-        m_scoreText[1] = GameObject.Find("ScoreText02").GetComponent<Text>();
-        m_scoreText[2] = GameObject.Find("ScoreText03").GetComponent<Text>();
-        m_scoreText[3] = GameObject.Find("ScoreText04").GetComponent<Text>();
+        for (i = 0; i < ConstPlayerMax; i++)
+            m_scoreText[i] = GameObject.Find("ScoreText0" + (i + 1).ToString()).GetComponent<Text>();
 
-        // ランキングのテキスト
-        /*
-        m_rankingText = new Text[ConstPlayerMax];
-        m_rankingText[0] = GameObject.Find("RankingText01").GetComponent<Text>();
-        m_rankingText[1] = GameObject.Find("RankingText02").GetComponent<Text>();
-        m_rankingText[2] = GameObject.Find("RankingText03").GetComponent<Text>();
-        m_rankingText[3] = GameObject.Find("RankingText04").GetComponent<Text>();
-        */
-
-        // パーティクルシステム
-        /*
-        m_confettiParticleParent = GameObject.Find("ConfettiParticle");
-        m_confettiParticle1 = GameObject.Find("ConfettiParticle1").GetComponent<ParticleSystem>();
-        m_confettiParticle2 = GameObject.Find("ConfettiParticle2").GetComponent<ParticleSystem>();
-        m_confettiParticle3 = GameObject.Find("ConfettiParticle3").GetComponent<ParticleSystem>();
-        m_confettiParticle1.Stop();
-        m_confettiParticle2.Stop();
-        m_confettiParticle3.Stop();
-        */
 
         // パーティクルのオブジェクトを探す
         m_confettiParticleParent = new GameObject[ConstPlayerMax];
@@ -319,15 +295,6 @@ public class Production : MonoBehaviour {
         }
 
         // 王冠
-        /*
-        m_Crown = new GameObject[(int)CrownKind.Max];
-        m_Crown[(int)CrownKind.Gold] = GameObject.Find("CrownGold");
-        m_Crown[(int)CrownKind.Silver] = GameObject.Find("CrownSilver");
-        m_Crown[(int)CrownKind.Bronze] = GameObject.Find("CrownBronze");
-        m_Crown[(int)CrownKind.Gold].SetActive(false);
-        m_Crown[(int)CrownKind.Silver].SetActive(false);
-        m_Crown[(int)CrownKind.Bronze].SetActive(false);
-        */
 
         m_crownGold = new GameObject[ConstPlayerMax];
         m_crownSilver = new GameObject[ConstPlayerMax];
@@ -549,12 +516,26 @@ public class Production : MonoBehaviour {
 
         m_fadeObject = GameObject.FindObjectOfType<Fade>();
 
+
+        // コンポーネント取得
+        m_playerAnimator = new Animator[ConstPlayerMax];
+        for (i = 0; i < ConstPlayerMax; i++)
+            m_playerAnimator[i] = GameObject.Find("Player0" + (i + 1).ToString()).GetComponent<Animator>();
+
+        m_girlAnimator = new Animator[ConstPlayerMax, max];
+        for (i = 0; i < ConstPlayerMax; i++)
+            for (j = 0; j < m_score[i]; j++)
+                m_girlAnimator[i, j] = m_girl[i, j].GetComponent<Animator>();
+
+        m_skyboxControl = this.GetComponent<SkyboxControl>();
+
+
+
+
     }
 
     // Update is called once per frame
     void Update() {
-
-
 
         switch (m_resultState)
         {
@@ -639,9 +620,10 @@ public class Production : MonoBehaviour {
         {
 
             // 歩きモーションにする
-            if(!m_player[i].GetComponent<Animator>().GetBool("isWalk"))
+            //if(!m_player[i].GetComponent<Animator>().GetBool("isWalk"))
+            if (!m_playerAnimator[i].GetBool("isWalk"))
             {
-                m_player[i].GetComponent<Animator>().SetBool("isWalk", true);
+                m_playerAnimator[i].SetBool("isWalk", true);
             }
 
             // 終着点設定
@@ -662,7 +644,7 @@ public class Production : MonoBehaviour {
             // 全員のモーション止める
             for (i = 0; i < ConstPlayerMax; i++)
             {
-                m_player[i].GetComponent<Animator>().SetBool("isWalk", false);
+                m_playerAnimator[i].SetBool("isWalk", false);
             }
 
             // seとめる
@@ -708,8 +690,8 @@ public class Production : MonoBehaviour {
 
 
                             // アニメーション開始
-                            m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", true);
-
+                            //m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", true);
+                            m_girlAnimator[i, j].SetBool("isWalk", true);
                             break;
                         }
                     }
@@ -753,7 +735,7 @@ public class Production : MonoBehaviour {
                         m_girlLerpRate[i, j] = 1.0f;
 
                         // モーション止める
-                        m_girl[i, j].GetComponent<Animator>().SetBool("isWalk", false);
+                        m_girlAnimator[i, j].SetBool("isWalk", false);
 
                     }
 
@@ -885,7 +867,7 @@ public class Production : MonoBehaviour {
 
 
         // 暗くする
-        this.GetComponent<SkyboxControl>().Dark();
+        m_skyboxControl.Dark();
         m_directionalLight.intensity -= m_darkSpeed * Time.deltaTime;
         if(m_directionalLight.intensity < m_endIntensity)
         {
@@ -1018,12 +1000,12 @@ public class Production : MonoBehaviour {
                 // アニメーション開始
                 if (m_playerRanking[i] == 0)
                 {
-                    m_player[i].GetComponent<Animator>().SetBool("isGlad", true);
+                    m_playerAnimator[i].SetBool("isGlad", true);
                 }
 
                 if (m_playerRanking[i] != 0)
                 {
-                    m_player[i].GetComponent<Animator>().SetBool("isSad", true);
+                    m_playerAnimator[i].SetBool("isSad", true);
                 }
 
             }
