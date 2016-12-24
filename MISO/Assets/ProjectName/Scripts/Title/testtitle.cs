@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using XInputDotNetPure;
 /// <summary>
 /// 主なタイトルのクラス
 /// </summary>
@@ -52,7 +53,13 @@ public class testtitle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        switch(m_titlestate)
+
+        XInputDotNetPure.GamePadState pad1 = GamePad.GetState(PlayerIndex.One);
+        XInputDotNetPure.GamePadState pad2 = GamePad.GetState(PlayerIndex.Two);
+        XInputDotNetPure.GamePadState pad3 = GamePad.GetState(PlayerIndex.Three);
+        XInputDotNetPure.GamePadState pad4 = GamePad.GetState(PlayerIndex.Four);
+
+        switch (m_titlestate)
         {
             case TitleState.Start:  //タイトル開始時
                 m_titlestate = TitleState.Ribbon;
@@ -115,7 +122,11 @@ public class testtitle : MonoBehaviour {
                     bgm000_startFlag = true;
                 }
 
-                if (Input.GetKeyDown(KeyCode.A) || MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad1) || MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad2) || MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad3) || MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad4))    //入力で次の遷移に。
+                if (Input.GetKeyDown(KeyCode.A) || 
+                    (pad1.Buttons.Start == ButtonState.Pressed) ||
+                    (pad2.Buttons.Start == ButtonState.Pressed) ||
+                    (pad3.Buttons.Start == ButtonState.Pressed) ||
+                    (pad1.Buttons.Start == ButtonState.Pressed))   //入力で次の遷移に。
                 {
                     m_titlestate = TitleState.Finish;
                     m_titleui.Activate(false);

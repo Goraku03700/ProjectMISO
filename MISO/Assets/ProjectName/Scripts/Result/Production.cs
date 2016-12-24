@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using XInputDotNetPure;
 //using System;
 
 public class Production : MonoBehaviour {
@@ -1086,15 +1087,21 @@ public class Production : MonoBehaviour {
     /// </summary>
     private void _WaitKey()
     {
+
+        XInputDotNetPure.GamePadState pad1 = GamePad.GetState(PlayerIndex.One);
+        XInputDotNetPure.GamePadState pad2 = GamePad.GetState(PlayerIndex.Two);
+        XInputDotNetPure.GamePadState pad3 = GamePad.GetState(PlayerIndex.Three);
+        XInputDotNetPure.GamePadState pad4 = GamePad.GetState(PlayerIndex.Four);
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             Fade.ChangeScene("Title");
         }
 
-        if(MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad1) ||
-            MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad2) ||
-             MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad3) ||
-              MultiInput.GetButtonDown("Throw", MultiInput.JoypadNumber.Pad4))
+        if((pad1.Buttons.Start == ButtonState.Pressed) ||
+            (pad2.Buttons.Start == ButtonState.Pressed) ||
+             (pad3.Buttons.Start == ButtonState.Pressed) ||
+              (pad4.Buttons.Start == ButtonState.Pressed))
         {
             Fade.ChangeScene("Title");
         }
