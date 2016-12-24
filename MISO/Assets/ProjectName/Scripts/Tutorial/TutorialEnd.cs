@@ -29,11 +29,18 @@ public class TutorialEnd : MonoBehaviour {
 
         // 時間をスタート
         m_timeCountScript = GameObject.Find("Time").GetComponent<TimeCount>();
-        m_timeCountScript.StartTime();
+        //m_timeCountScript.StartTime();
     }
 
     // Update is called once per frame
     void Update() {
+
+        // 時間経過開始
+        if (!flg)
+        {
+            m_timeCountScript.StartTime();
+            flg = true;
+        }
 
         // スタートが押されたか
         if (MultiInput.GetButtonDown("Pause", MultiInput.JoypadNumber.Pad1) || Input.GetKeyDown(KeyCode.Z))
@@ -60,9 +67,11 @@ public class TutorialEnd : MonoBehaviour {
             m_readyFlag[3] = true;
         }
 
+        Debug.Log(m_timeCountScript.GetTime());
+
 
         // 全員レディしたら　もしくは　残り時間が0になったら
-        if ((m_readyFlag[0] && m_readyFlag[1] && m_readyFlag[2] && m_readyFlag[3]) || (m_timeCountScript.GetTime() == 0))
+        if ((m_readyFlag[0] && m_readyFlag[1] && m_readyFlag[2] && m_readyFlag[3]) || (m_timeCountScript.GetTime() <= 0.0f))
         {
             Fade.ChangeScene("Play");
         }

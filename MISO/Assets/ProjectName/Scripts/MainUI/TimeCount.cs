@@ -143,7 +143,7 @@ public class TimeCount : MonoBehaviour {
 
     public float GetTime()
     {
-        return timeInit;
+        return timeInit-nowTime;
     }
 }
 
