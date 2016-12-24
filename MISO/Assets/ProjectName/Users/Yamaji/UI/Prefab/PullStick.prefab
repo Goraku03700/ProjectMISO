@@ -101,10 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af4f3a3d4d6b0442acd56bd00aa36e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_slopeSpeed: 150
-  m_slopeMax: 50
-  m_slopeTime: 1
-  m_slopeWaitTime: 0.2
+  m_slopeSpeed: 0
+  m_slopeMax: 0
+  m_slopeTime: 0
+  m_slopeWaitTime: 0
 --- !u!114 &114000014009103220
 MonoBehaviour:
   m_ObjectHideFlags: 1

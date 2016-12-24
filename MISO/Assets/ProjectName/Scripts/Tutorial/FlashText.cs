@@ -45,7 +45,9 @@ public class FlashText : MonoBehaviour {
         {
             case TextState.Normal:
                 {
-                    color.a = Mathf.PingPong(Time.time * m_speed, 1.0f);
+                    float length = Time.time * m_speed;
+                    float col = Mathf.PingPong(length, 1.5f);
+                    color.a = col;
                 }
                 break;
 
@@ -82,6 +84,7 @@ public class FlashText : MonoBehaviour {
     public void DecideText()
     {
         m_textState = TextState.Decide;
+       // m_time = 0.0f;
     }
 
 }
