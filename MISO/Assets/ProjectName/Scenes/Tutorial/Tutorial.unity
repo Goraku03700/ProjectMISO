@@ -711,7 +711,7 @@ Prefab:
     - target: {fileID: 114000012436028598, guid: 3d5277bb534e9cf45871165cbf71e209,
         type: 2}
       propertyPath: m_createRules.Array.size
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000013161880366, guid: 3d5277bb534e9cf45871165cbf71e209, type: 2}
       propertyPath: m_LocalPosition.x
@@ -826,6 +826,30 @@ Prefab:
       propertyPath: m_createRules.Array.data[17]
       value: 
       objectReference: {fileID: 114000012813403400, guid: 09d105ba5b6d16c4386e40154d9b2a7b,
+        type: 2}
+    - target: {fileID: 114000012436028598, guid: 3d5277bb534e9cf45871165cbf71e209,
+        type: 2}
+      propertyPath: m_createRules.Array.data[1]
+      value: 
+      objectReference: {fileID: 114000011072394774, guid: d37defec3ab4bf34c9e56bda893315e9,
+        type: 2}
+    - target: {fileID: 114000012436028598, guid: 3d5277bb534e9cf45871165cbf71e209,
+        type: 2}
+      propertyPath: m_createRules.Array.data[2]
+      value: 
+      objectReference: {fileID: 114000013030805000, guid: a55fdb6a589829042a679bd854f20af2,
+        type: 2}
+    - target: {fileID: 114000012436028598, guid: 3d5277bb534e9cf45871165cbf71e209,
+        type: 2}
+      propertyPath: m_createRules.Array.data[3]
+      value: 
+      objectReference: {fileID: 114000011413451148, guid: 5bab7dbeaada07c4e91381b308d28885,
+        type: 2}
+    - target: {fileID: 114000012436028598, guid: 3d5277bb534e9cf45871165cbf71e209,
+        type: 2}
+      propertyPath: m_createRules.Array.data[4]
+      value: 
+      objectReference: {fileID: 114000010896556660, guid: 6dade98bca3096a41a751ef525061649,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d5277bb534e9cf45871165cbf71e209, type: 2}

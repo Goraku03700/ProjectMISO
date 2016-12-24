@@ -13,10 +13,11 @@ public class TutorialEnd : MonoBehaviour {
 
     private bool flg;
 
+    private bool[] se026_startFlag;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
 
         m_readyFlag = new bool[4];
@@ -33,6 +34,10 @@ public class TutorialEnd : MonoBehaviour {
         // 時間をスタート
         m_timeCountScript = GameObject.Find("Time").GetComponent<TimeCount>();
         //m_timeCountScript.StartTime();
+
+        se026_startFlag = new bool[4];
+        for (int i = 0; i < 4; i++)
+            se026_startFlag[i] = false;
     }
 
     // Update is called once per frame
@@ -56,24 +61,51 @@ public class TutorialEnd : MonoBehaviour {
         {
             GameObject.Find("Ready1").GetComponent<Ready>().DispReady();
             m_readyFlag[0] = true;
+
+            if (!se026_startFlag[0])
+            {
+                BGMManager.instance.PlaySE("se026_PlayerPrepareFinish");
+                se026_startFlag[0] = true;
+            }
         }
 
         if ((pad2.Buttons.Start == ButtonState.Pressed) || Input.GetKeyDown(KeyCode.X))
         {
             GameObject.Find("Ready2").GetComponent<Ready>().DispReady();
             m_readyFlag[1] = true;
+
+            if (!se026_startFlag[1])
+            {
+                BGMManager.instance.PlaySE("se026_PlayerPrepareFinish");
+                se026_startFlag[1] = true;
+            }
+
         }
 
         if ((pad3.Buttons.Start == ButtonState.Pressed) || Input.GetKeyDown(KeyCode.C))
         {
             GameObject.Find("Ready3").GetComponent<Ready>().DispReady();
             m_readyFlag[2] = true;
+
+            if (!se026_startFlag[2])
+            {
+                BGMManager.instance.PlaySE("se026_PlayerPrepareFinish");
+                se026_startFlag[2] = true;
+            }
+
         }
 
         if ((pad4.Buttons.Start == ButtonState.Pressed) || Input.GetKeyDown(KeyCode.V))
         {
             GameObject.Find("Ready4").GetComponent<Ready>().DispReady();
             m_readyFlag[3] = true;
+
+            if (!se026_startFlag[3])
+            {
+                BGMManager.instance.PlaySE("se026_PlayerPrepareFinish");
+                se026_startFlag[3] = true;
+            }
+
         }
 
         Debug.Log(m_timeCountScript.GetTime());
