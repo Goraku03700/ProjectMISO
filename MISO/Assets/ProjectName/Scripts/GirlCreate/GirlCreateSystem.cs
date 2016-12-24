@@ -49,6 +49,7 @@ public class GirlCreateSystem : MonoBehaviour {
     public List<GirlCreateRule> m_createRules_Normal;
     public List<GirlCreateRule> m_createRules_Fever;
     public List<GirlCreateRule> m_createRules_Continue;
+    public List<GirlCreateRule> m_createRules_Rare;
 
     [SerializeField]
     int m_girl_Count;
@@ -62,7 +63,15 @@ public class GirlCreateSystem : MonoBehaviour {
         set {m_girl_Count = value ;}
     }
 
-    
+    [SerializeField]
+    int m_rareGirl_Count;
+
+
+    public int m_RareGirlCount
+    {
+        get { return m_rareGirl_Count; }
+        set { m_rareGirl_Count = value; }
+    }
 
 
 	// Use this for initialization
@@ -92,6 +101,10 @@ public class GirlCreateSystem : MonoBehaviour {
             {
                 m_createRules_Fever.Add((GirlCreateRule)Instantiate(m_createRules[i]));
             }
+            else if(m_createRules[i].m_rarePattern)
+            {
+                m_createRules_Rare.Add((GirlCreateRule)Instantiate(m_createRules[i]));
+            }
             else
             {
                 m_createRules_Normal.Add((GirlCreateRule)Instantiate(m_createRules[i]));
@@ -120,6 +133,33 @@ public class GirlCreateSystem : MonoBehaviour {
                     }
 
                 }
+            }
+        }
+
+        for (int i = 0; i < m_createRules_Rare.Count; ++i)
+        {
+            if(m_createRules_Rare[i].m_createTime>m_limit && m_createRules_Rare[i].m_rarePattern)
+            {
+                if (m_createRules_Rare[i].m_decisionCount > m_rareGirl_Count)
+                {
+                    int j = Random.Range(0, 1);
+                    switch(j)
+                    {
+                        case 0:
+                            {
+                                int k = Random.Range(0, m_girlCreateAreaList.Count);
+                                m_girlCreateAreaList[k].CreateRareGirl(1);
+                                break;
+                            }
+                        case 1:
+                            {
+                                int k = Random.Range(0, m_girlFeverCreateAreaList.Count);
+                                m_girlFeverCreateAreaList[k].CreateRareGirl(1);
+                                break;
+                            }
+                    }
+                }
+                m_createRules_Rare[i].m_rarePattern = false;
             }
         }
 
