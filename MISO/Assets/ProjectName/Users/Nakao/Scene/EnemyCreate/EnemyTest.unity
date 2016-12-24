@@ -265,6 +265,7 @@ MonoBehaviour:
   m_normal: 0
   m_fever: 0
   m_continuePattern: 0
+  m_rarePattern: 0
 --- !u!4 &410610607
 Transform:
   m_ObjectHideFlags: 1
@@ -516,6 +517,8 @@ MonoBehaviour:
   - 21
   m_magazine: {fileID: 1352216950}
   m_openingText: {fileID: 1325041820}
+  m_skipText: {fileID: 0}
+  m_skipColors: []
 --- !u!1 &894109865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1072,7 @@ MonoBehaviour:
   m_normal: 0
   m_fever: 0
   m_continuePattern: 0
+  m_rarePattern: 0
 --- !u!4 &1749417767
 Transform:
   m_ObjectHideFlags: 1
