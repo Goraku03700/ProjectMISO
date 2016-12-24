@@ -314,7 +314,15 @@ namespace Ribbons
                 girl.Collect(m_playerCharacter.playerFire.transform.position);
 
                 //m_playerCharacter.player.score++;
-                addScore += 1;
+
+                if(girl.m_isRare)
+                {
+                    addScore += 5;
+                }
+                else
+                {
+                    addScore += 1;
+                }
 
                 m_playerCharacter.npcGetParticle.Play();
             }
@@ -353,6 +361,11 @@ namespace Ribbons
 
             if (m_collectTime > 1.0f)
             {
+                if(caughtObjectCount == 0)
+                {
+                    BGMManager.instance.PlaySE("se015_InCampany");
+                }
+
                 Destroy(gameObject);
             }
         }

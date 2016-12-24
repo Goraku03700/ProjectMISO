@@ -536,7 +536,7 @@ public class PlayerCharacter : MonoBehaviour
             }
 
             m_player.score += 1;
-            m_bgmManager.PlaySE("se015_InCampany");
+            m_bgmManager.PlaySELoop("se015_InCampany");
             //m_vibrationLeft = 1.0f;
             //m_vibrationRight = 1.0f;
 
@@ -721,6 +721,8 @@ public class PlayerCharacter : MonoBehaviour
 
             m_rollRibbonRenderer.enabled    = true;
             m_rollRibbonRenderer.material   = caughtRibbon.playerCharacter.ribbonLineMaterial;
+
+            transform.LookAt(caughtRibbon.playerCharacter.transform);
         }
     }
 
