@@ -88,21 +88,37 @@ public class PlayerCharacter : MonoBehaviour
     {
         m_isDash = false;
 
-        if(m_animatorStateInfo.shortNameHash == Animator.StringToHash("Move"))
+        float downSpeed = 0.0f;
+
+        if (m_animatorStateInfo.shortNameHash == Animator.StringToHash("Move"))
         {
+            if(m_player.score > m_playerCharacterData.speedDownStartScore && m_player.score < m_playerCharacterData.speedDownEndScore)
+            {
+                //float t = m_player.score / m_playerCharacterData.speedDownScoreMax;
+
+                //downSpeed = (m_playerCharacterData.walkSpeed - m_playerCharacterData.walkMinSpeed) / (m_playerCharacterData.speedDownStartScore - m_playerCharacterData.speedDownEndScore);
+
+                //downSpeed = m_player.score * -downSpeed;
+
+                downSpeed = m_player.score * m_playerCharacterData.scoreWeight;
+            }
+            else if(m_player.score >= m_playerCharacterData.speedDownEndScore)
+            {
+                downSpeed = m_playerCharacterData.speedDownMax;
+            }
+
             if (isDash)
             {
                 if (m_rigidbody.velocity.magnitude > 0.25f &&
                     m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Tired"))
                 {
-
-                    m_dashGauge.gaugeRenderer.enabled = true;
-                    m_dashGauge.backRenderer.enabled = true;
-                    m_dashGauge.frameRenderer.enabled = true;
+                    m_dashGauge.gaugeRenderer.enabled   = true;
+                    m_dashGauge.backRenderer.enabled    = true;
+                    m_dashGauge.frameRenderer.enabled   = true;
 
                     m_sanddustParticle.Play();
 
-                    m_movable.speed = m_playerCharacterData.dashSpeed;
+                    m_movable.speed = m_playerCharacterData.dashSpeed - downSpeed;
 
                     m_dashDurationTime += Time.deltaTime;
 
@@ -124,7 +140,7 @@ public class PlayerCharacter : MonoBehaviour
             {
                 m_sanddustParticle.Stop();
 
-                m_movable.speed = m_playerCharacterData.walkSpeed;
+                m_movable.speed = m_playerCharacterData.walkSpeed - downSpeed;
 
                 //m_dashDurationTime = 0.0f;
 
@@ -326,21 +342,25 @@ public class PlayerCharacter : MonoBehaviour
 
         //force *= 2.0f;
 
+        Vector3 start = transform.position + transform.forward * 3.0f;
+
+        start.y += 4.5f;
+
         //Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 1.0f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, .0f, m_playerCharacterData.ribbonProjectionTime);
-        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(transform.position + new Vector3(.0f, 4.5f, 1.0f), force, m_controlledRibbon.rigidbody.mass, Physics.gravity, 1.0f, m_playerCharacterData.ribbonProjectionTime);
+        Vector3 point = TakashiCompany.Unity.Util.TrajectoryCalculate.Force(start, force, m_controlledRibbon.rigidbody.mass, Physics.gravity, 1.0f, m_playerCharacterData.ribbonProjectionTime);
 
         point.y = m_ribbonRandingProjection.transform.position.y;
 
         m_ribbonRandingProjection.transform.position    = point;
-        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 2.0f;
+        m_ribbonRandingProjection.transform.localScale  = new Vector3(ribbonSize, ribbonSize, 1) / 1.25f;
 
         m_bgmManager.PlaySELoop("se000_AdjustRibbon");
 
         //m_vibrationLeft = Mathf.Sin(Mathf.PI * 2 / t);
         //m_vibrationRight = Mathf.Sin(Mathf.PI * 2 / t);
 
-        m_vibrationLeft = Mathf.PingPong(Time.time, 0.5f) + 0.5f;
-        m_vibrationRight = Mathf.PingPong(Time.time, 0.5f) + 0.5f;
+        //m_vibrationLeft = Mathf.PingPong(Time.time, 0.5f) + 0.0f;
+        //m_vibrationRight = Mathf.PingPong(Time.time, 0.5f) + 0.0f;
 
         Assert.IsNotNull(controlledRibbon);
     }
@@ -376,8 +396,12 @@ public class PlayerCharacter : MonoBehaviour
         //        m_playerCharacterData.throwPower,
         //        m_playerCharacterData.throwSpeed);
 
+        Vector3 start = transform.position + transform.forward * 3.0f;
+
+        start.y += 4.5f;
+
         m_controlledRibbon.Throw(
-                transform.position + new Vector3(.0f, 4.5f, 1.0f),
+                start,
                 transform.rotation,
                 m_throwPower,
                 m_throwSpeed);
@@ -409,13 +433,13 @@ public class PlayerCharacter : MonoBehaviour
                 switch (m_controlledRibbon.moveDirectionState1)
                 {
                     case Ribbon.MoveDirectionState.Left:
-                        m_vibrationLeft = 1.0f;
-                        m_vibrationRight = 0.25f;
+                        m_vibrationLeft = 0.5f;
+                        m_vibrationRight = 0.0f;
                         break;
 
                     case Ribbon.MoveDirectionState.Right:
-                        m_vibrationLeft = 0.25f;
-                        m_vibrationRight = 1.0f;
+                        m_vibrationLeft = 0.0f;
+                        m_vibrationRight = 0.5f;
                         break;
                 }
             }
@@ -1091,6 +1115,11 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         _UpdateAnimatorParameters();
+    }
+
+    void OnDestroy()
+    {
+        GamePad.SetVibration(m_playerIndex, .0f, .0f);
     }
 
     private enum AnimatorParametersID

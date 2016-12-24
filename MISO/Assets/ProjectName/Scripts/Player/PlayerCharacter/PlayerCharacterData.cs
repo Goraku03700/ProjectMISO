@@ -52,9 +52,25 @@ public class PlayerCharacterData : ScriptableObject
 
     public float walkSpeed;
 
+    //public float walkMinSpeed;
+
     public float dashSpeed;
 
     public float dashTime;
+
+    //public float speedDownScoreMax;
+
+    //public float speedMin;
+
+    //public float speedDown;
+
+    public int speedDownStartScore;
+
+    public int speedDownEndScore;
+
+    public float scoreWeight;
+
+    public float speedDownMax;
 
     public float invisibleTime;
 
