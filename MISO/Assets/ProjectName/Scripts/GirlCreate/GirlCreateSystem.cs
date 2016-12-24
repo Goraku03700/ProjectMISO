@@ -179,12 +179,14 @@ public class GirlCreateSystem : MonoBehaviour {
             }
         }
 
+        for (int j = 0; j < m_girlCreateAreaList.Count; ++j)
+        {
+            m_GirlCount += m_girlCreateAreaList[j].m_CreateGirlNumber;
+        }
+
         for (int i = 0; i < m_createRules_Normal.Count; ++i)
         {
-            for (int j = 0; j < m_girlCreateAreaList.Count; ++j)
-            {
-                m_GirlCount += m_girlCreateAreaList[j].m_CreateGirlNumber;
-            }
+            
 
             if (m_girl_Count < m_createRules_Normal[i].m_decisionCount && m_createRules_Normal[i].m_normal && m_createRules_Normal[i].m_createTime >= m_limit)
             {
