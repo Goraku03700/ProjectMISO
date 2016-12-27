@@ -12,7 +12,7 @@ public class PlayerFire : MonoBehaviour {
         playerTransform.rotation = Quaternion.Inverse(this.transform.rotation);
         playerRigidbody.velocity = Vector3.zero;
         playerRigidbody.angularVelocity = Vector3.zero;
-        playerRigidbody.AddForce(-this.transform.forward * m_pushPower + Vector3.up * m_pushPower);
+        playerRigidbody.AddForce(-this.transform.forward * m_pushPower + Vector3.up * 400);
         playerRigidbody.mass = 1.0f;
         BGMManager.instance.PlaySE("se016_OutCampany");
     }
