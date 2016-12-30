@@ -97,7 +97,7 @@ public class PlayerCharacterController : MonoBehaviour {
         bool isPushCancelKey = MultiInput.GetButtonDown("Cancel", m_joypadNumber);
         bool isPushDashKey = MultiInput.GetButton("Dash", m_joypadNumber);
 
-        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+        //m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
         m_controlledPlayerCharacter.InputDash(isPushDashKey);
 
         bool isVertical2Down = m_prevFrameVertical2 - vertical2 > 0.0f;
@@ -109,16 +109,19 @@ public class PlayerCharacterController : MonoBehaviour {
 
         //GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
 
-        if (vertical2 <= -0.0f && isVertical2Down)
+        if(!isPushCancelKey)
         {
-            m_controlledPlayerCharacter.InputCharge();
+            if (vertical2 <= -0.0f && isVertical2Down)
+            {
+                m_controlledPlayerCharacter.InputCharge();
 
-            //GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
-        }
-        else if(vertical2 >= 0.0f)
-        {
-            m_controlledPlayerCharacter.InputThrow();
-        }
+                //GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+            }
+            else if (vertical2 >= 0.0f)
+            {
+                m_controlledPlayerCharacter.InputThrow();
+            }
+        }        
 
         m_prevFrameVertical2 = vertical2;
 
@@ -218,7 +221,6 @@ public class PlayerCharacterController : MonoBehaviour {
         bool isPushCancelKey = gamePadState.Buttons.LeftShoulder == ButtonState.Pressed;
         bool isPushDashKey = gamePadState.Buttons.RightShoulder == ButtonState.Pressed;
 
-        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
         m_controlledPlayerCharacter.InputDash(isPushDashKey);
 
         bool isVertical2Down = m_prevFrameVertical2 - vertical2 > 0.0f;
@@ -230,6 +232,7 @@ public class PlayerCharacterController : MonoBehaviour {
 
         //GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
 
+
         if (vertical2 <= -0.0f && isVertical2Down)
         {
             m_controlledPlayerCharacter.InputCharge();
@@ -240,6 +243,9 @@ public class PlayerCharacterController : MonoBehaviour {
         {
             m_controlledPlayerCharacter.InputThrow();
         }
+
+        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+
 
         m_prevFrameVertical2 = vertical2;
 
