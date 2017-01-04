@@ -1095,7 +1095,7 @@ public class Production : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Fade.ChangeScene("Title");
+            Fade.ChangeScene("Ending");
         }
 
         if((pad1.Buttons.Start == ButtonState.Pressed) ||
@@ -1103,7 +1103,7 @@ public class Production : MonoBehaviour {
              (pad3.Buttons.Start == ButtonState.Pressed) ||
               (pad4.Buttons.Start == ButtonState.Pressed))
         {
-            Fade.ChangeScene("Title");
+            Fade.ChangeScene("Ending");
         }
 
 

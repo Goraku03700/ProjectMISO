@@ -108,8 +108,6 @@ public class TutorialEnd : MonoBehaviour {
 
         }
 
-        Debug.Log(m_timeCountScript.GetTime());
-
 
         // 全員レディしたら　もしくは　残り時間が0になったら
         if ((m_readyFlag[0] && m_readyFlag[1] && m_readyFlag[2] && m_readyFlag[3]) || (m_timeCountScript.GetTime() <= 0.0f))

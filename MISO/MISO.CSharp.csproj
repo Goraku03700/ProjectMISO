@@ -122,6 +122,7 @@
     <Compile Include="Assets\Invisible.cs" />
     <Compile Include="Assets\OutBuilding.cs" />
     <Compile Include="Assets\PlayerAbsorption.cs" />
+    <Compile Include="Assets\ProjectName\Scripts\Ending\Ending.cs" />
     <Compile Include="Assets\ProjectName\Scripts\Fade\Fade.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameEffect\Ase.cs" />
     <Compile Include="Assets\ProjectName\Scripts\GameEffect\MainUI\FeverTextControl.cs" />
