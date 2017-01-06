@@ -290,9 +290,16 @@ namespace Ribbons
                     //playerCharacter.player.score -= m_playerCharacter.playerCharacterData.collectScoreMinus;
 
                     //int addScore = Math.Abs(playerCharacter.player.score);
-                    addScore += playerCharacter.player.score;
 
-                    playerCharacter.player.score = 0;
+                    if(playerCharacter.player.score > 0)
+                    {
+                        addScore += playerCharacter.player.score;
+
+                        playerCharacter.damage.DispDamage(playerCharacter.player.score);
+
+                        playerCharacter.player.score = 0;
+
+                    }
 
                     //m_playerCharacter.player.score += addScore;
                 }
@@ -302,6 +309,8 @@ namespace Ribbons
 
                     //m_playerCharacter.player.score += m_playerCharacter.playerCharacterData.collectScoreMinus;
                     addScore += m_playerCharacter.playerCharacterData.collectScoreMinus;
+
+                    m_playerCharacter.damage.DispDamage(m_playerCharacter.playerCharacterData.collectScoreMinus);
                 }
 
                 addPlayer += 1;

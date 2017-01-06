@@ -867,8 +867,6 @@ public class PlayerCharacter : MonoBehaviour
         m_rollRibbonRenderer.enabled = false;
 
         m_inBuildingTime = .0f;
-
-        // m_damage.DispDamage();
     }
 
     public void InBuildingUpdate()
@@ -1515,6 +1513,19 @@ public class PlayerCharacter : MonoBehaviour
         set
         {
             m_playerIndex = value;
+        }
+    }
+
+    public Damage damage
+    {
+        get
+        {
+            return m_damage;
+        }
+
+        set
+        {
+            m_damage = value;
         }
     }
 
