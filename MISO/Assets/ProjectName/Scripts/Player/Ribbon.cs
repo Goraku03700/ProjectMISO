@@ -78,6 +78,7 @@ namespace Ribbons
                 {
                     m_colliderObject.SetActive(true);
                     m_triggerColliderObject.SetActive(true);
+                    m_wallColliderObject.SetActive(true);
                     //m_pullArrow.spriteRenderer.enabled = true;
 
                     playerCharacter.OnRibbonLanding();
@@ -272,6 +273,12 @@ namespace Ribbons
                 }
             }
 
+            m_time += Time.deltaTime;
+
+            if (m_time > m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
+            {
+                Breake();
+            }
         }
 
         public void Pulled()
@@ -492,6 +499,8 @@ namespace Ribbons
 
             m_moveDirectionState = UnityEngine.Random.value < .5f ? MoveDirectionState.Left : MoveDirectionState.Right;
 
+            m_wallColliderObject.SetActive(false);
+
             switch (m_moveDirectionState)
             {
                 case MoveDirectionState.Right:
@@ -653,13 +662,6 @@ namespace Ribbons
                             m_rigidbody.AddForce((transform.right * -1) * violenetPower, ForceMode.Force);
                             break;
                     }
-                }
-
-                m_time += Time.deltaTime;
-
-                if(m_time > m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
-                {
-                    Breake();
                 }
             }
 

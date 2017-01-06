@@ -9626,7 +9626,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: d5a6901f44ee35c42960226e9db95e68, type: 2}
+  - {fileID: 2100000, guid: b87574299650e884680243c933193400, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -9643,7 +9643,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3be92454018705d41897083f84d1f8b4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.403}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000013358200834
