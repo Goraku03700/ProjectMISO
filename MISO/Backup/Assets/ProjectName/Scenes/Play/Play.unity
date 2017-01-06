@@ -2019,10 +2019,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1000012527828594, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16, type: 2}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ab78b4a84ca03f45a1d0f290e0e0b16, type: 2}
   m_IsPrefabParent: 0

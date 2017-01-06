@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using XInputDotNetPure;
 
 public class MagazineCamera : MonoBehaviour {
     Transform m_cameraTransform;
@@ -89,21 +90,30 @@ public class MagazineCamera : MonoBehaviour {
 
     bool m_next;
 
+    GamePadState[] m_padState;
+
 	// Use this for initialization
 	void Start () {
         m_cameraTransform = this.transform;
         m_state = State.standby;
         m_cameraTransform.eulerAngles = new Vector3(m_startQuaternion_X,0,0);
         m_cameraTransform.position = m_startPosition;
+        m_padState = new GamePadState[4];
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        m_skipText.color = Color.Lerp(m_skipColors[0], m_skipColors[1], Mathf.PingPong(Time.time, 1));
-        if (MultiInput.GetButtonDown("Pause", MultiInput.JoypadNumber.Pad1) || MultiInput.GetButtonDown("Pause", MultiInput.JoypadNumber.Pad2) || MultiInput.GetButtonDown("Pause", MultiInput.JoypadNumber.Pad3) || MultiInput.GetButtonDown("Pause", MultiInput.JoypadNumber.Pad4))
-        {
-            Fade.ChangeScene("Select");
+        for (int i = 0; i < 4; ++i )
+        { 
+            m_padState[i] = GamePad.GetState(PlayerIndex.One+i);
+            if(m_padState[i].Buttons.Start == ButtonState.Pressed)
+            {
+                Fade.ChangeScene("Select");
+            }
+
         }
+        m_skipText.color = Color.Lerp(m_skipColors[0], m_skipColors[1], Mathf.PingPong(Time.time, 1));
+        
         switch(m_state)
         {
             case State.standby:
