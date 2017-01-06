@@ -273,6 +273,12 @@ namespace Ribbons
                 }
             }
 
+            m_time += Time.deltaTime;
+
+            if (m_time > m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
+            {
+                Breake();
+            }
         }
 
         public void Pulled()
@@ -656,13 +662,6 @@ namespace Ribbons
                             m_rigidbody.AddForce((transform.right * -1) * violenetPower, ForceMode.Force);
                             break;
                     }
-                }
-
-                m_time += Time.deltaTime;
-
-                if(m_time > m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
-                {
-                    Breake();
                 }
             }
 
