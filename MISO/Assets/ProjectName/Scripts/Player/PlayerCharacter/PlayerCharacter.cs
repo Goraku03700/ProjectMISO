@@ -41,6 +41,49 @@ public class PlayerCharacter : MonoBehaviour
         Collect,
     }
 
+    public int GetPlayerNumber()
+    {
+        int playerNumber = 0;
+
+        switch (gameObject.tag)
+        {
+            case "Player1":
+                {
+                    playerNumber = 1;
+                }
+                break;
+
+            case "Player2":
+                {
+                    playerNumber = 2;
+
+                }
+                break;
+
+            case "Player3":
+                {
+                    playerNumber = 3;
+
+                }
+                break;
+
+            case "Player4":
+                {
+                    playerNumber = 4;
+
+                }
+                break;
+
+            default:
+                {
+                    Debug.LogAssertion("タグが設定されていません");
+                    break;
+                }
+        }       // end of switch(gameObject.tag)
+
+        return playerNumber;
+    }
+
     public void InputStick(float horizontal, float vertical)
     {
         if (horizontal != .0f || vertical != .0f)
@@ -247,13 +290,14 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputCancel(bool isPush)
     {
-        m_animatorParameters.isPushCancelKey = isPush;
+        //m_animatorParameters.isPushCancelKey = isPush;
 
         if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.SizeAdjust")
             && isPush)
         {
             //m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]);
             m_isDoCancel = true;
+            m_animator.SetTrigger("cancel");
         }
 
         //m_animatorParameters.isPushCancelKey = isPush;
@@ -305,6 +349,9 @@ public class PlayerCharacter : MonoBehaviour
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsPulled]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.IsBreak]);
         m_animator.ResetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputCancel]);
+        m_animator.ResetTrigger("cancel");
+
+        m_isDoCancel = false;
 
         Assert.IsNotNull(ribbonObject);
         Assert.IsNotNull(m_controlledRibbon);
@@ -360,7 +407,7 @@ public class PlayerCharacter : MonoBehaviour
         //m_vibrationRight = Mathf.Sin(Mathf.PI * 2 / t);
 
         //m_vibrationLeft = Mathf.PingPong(Time.time, 0.5f) + 0.0f;
-        //m_vibrationRight = Mathf.PingPong(Time.time, 0.5f) + 0.0f;
+        //m_vibrationRight = Mathf.PingPong(Time.time, 0.5f) + 0.0f;        
 
         Assert.IsNotNull(controlledRibbon);
     }
@@ -370,18 +417,23 @@ public class PlayerCharacter : MonoBehaviour
         if(m_isDoCancel)
         {
             m_animatorParameters.isPushThrowKey = false;
+            m_isDoCancel = false;
+            m_ribbonRandingProjection.SetActive(false);
 
-            if(m_controlledRibbon)
+            if (m_controlledRibbon)
             {
                 Destroy(m_controlledRibbon.gameObject);
-                m_isDoCancel = false;
-                m_ribbonRandingProjection.SetActive(false);
+                m_controlledRibbon = null;
             }
+
+            m_animator.Play("Base Layer.Movable.Move");
         }
         else
         {
             m_ribbonRandingProjection.SetActive(false);
         }
+
+        m_isDoCancel = false;
 
         m_chargeTime = 0.0f;
         m_vibrationLeft = 0.0f;
@@ -395,6 +447,14 @@ public class PlayerCharacter : MonoBehaviour
         //        transform.rotation,
         //        m_playerCharacterData.throwPower,
         //        m_playerCharacterData.throwSpeed);
+
+        if(m_controlledRibbon == null)
+        {
+            m_animator.Play("Base Layer.Movable.Move");
+            //"Base Layer.CaughtRibbon.Caught";
+            m_isDoCancel = false;
+            return;
+        }
 
         Vector3 start = transform.position + transform.forward * 3.0f;
 
@@ -720,7 +780,13 @@ public class PlayerCharacter : MonoBehaviour
             m_lineRenderer.material = caughtRibbon.playerCharacter.ribbonLineMaterial;
 
             m_rollRibbonRenderer.enabled    = true;
-            m_rollRibbonRenderer.material   = caughtRibbon.playerCharacter.ribbonLineMaterial;
+
+            m_rollRibbonRenderer.materials[0] = caughtRibbon.playerCharacter.ribbonMaterials[caughtRibbon.playerCharacter.GetPlayerNumber() - 1];
+            m_rollRibbonRenderer.materials[1] = caughtRibbon.playerCharacter.ribbonMaterials[caughtRibbon.playerCharacter.GetPlayerNumber() - 1];
+            m_rollRibbonRenderer.material = caughtRibbon.playerCharacter.ribbonMaterials[caughtRibbon.playerCharacter.GetPlayerNumber() - 1];
+
+
+            transform.LookAt(caughtRibbon.playerCharacter.transform);
         }
     }
 
@@ -1440,6 +1506,7 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    [SerializeField]
     bool m_isDoCancel;
 
     bool m_isDash;

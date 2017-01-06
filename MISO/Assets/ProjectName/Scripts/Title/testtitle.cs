@@ -28,6 +28,8 @@ public class testtitle : MonoBehaviour {
     TitleUI m_titleui;
     [SerializeField]
     Animator m_titlePlayerAnimator; 
+    
+    //private Text m_titleText;
 
     // BGM・SE用
     private bool bgm000_startFlag;

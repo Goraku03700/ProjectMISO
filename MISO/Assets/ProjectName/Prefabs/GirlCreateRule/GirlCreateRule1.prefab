@@ -53,8 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_createTime: 160
   m_validTime: 0
-  m_decisionCount: 10
+  m_decisionCount: 15
   m_generationCount: 2
   m_normal: 1
   m_fever: 0
   m_continuePattern: 0
+  m_rarePattern: 0
