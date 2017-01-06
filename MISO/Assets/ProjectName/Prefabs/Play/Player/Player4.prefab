@@ -1030,7 +1030,7 @@ Transform:
   m_GameObject: {fileID: 1000010523405336}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014100624696}
@@ -1588,7 +1588,7 @@ Transform:
   - {fileID: 224000013722858548}
   - {fileID: 4000010513131626}
   m_Father: {fileID: 4000014100624696}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!4 &4000012945383660
 Transform:
   m_ObjectHideFlags: 1
@@ -1672,7 +1672,7 @@ Transform:
   m_Children:
   - {fileID: 4000011736638806}
   m_Father: {fileID: 4000014100624696}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!4 &4000013709059156
 Transform:
   m_ObjectHideFlags: 1
@@ -1773,8 +1773,8 @@ Transform:
   - {fileID: 4000011757407794}
   - {fileID: 4000011110813916}
   - {fileID: 4000010892656748}
-  - {fileID: 4000013681731908}
   - {fileID: 4000012937936784}
+  - {fileID: 4000013681731908}
   - {fileID: 4000010040433018}
   - {fileID: 4000011671970440}
   m_Father: {fileID: 4000011734740748}
@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e695047b79c23f44ebd18a12d7b31a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pushPower: 500
+  m_pushPower: 1000
 --- !u!114 &114000011349838486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2077,6 +2077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerCharacterDataPath: ScriptableObjects/PlayerCharacterData
+  m_isDoCancel: 0
   m_ribbonMaterials:
   - {fileID: 2100000, guid: cca06e7c7ada28645ad6aaf8c4840a51, type: 2}
   - {fileID: 2100000, guid: e09fa7d3628012c4fbfe38f171d221b0, type: 2}
@@ -2092,6 +2093,7 @@ MonoBehaviour:
   m_ribbonLineMaterial: {fileID: 2100000, guid: 0e1e71eab475f8a40a148a5adabeb341,
     type: 2}
   m_arm: {fileID: 4000010032373062}
+  m_damage: {fileID: 0}
 --- !u!114 &114000012357281818
 MonoBehaviour:
   m_ObjectHideFlags: 1

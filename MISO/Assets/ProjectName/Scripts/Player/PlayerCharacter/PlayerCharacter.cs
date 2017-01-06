@@ -174,7 +174,7 @@ public class PlayerCharacter : MonoBehaviour
                         m_dashDurationTime = m_playerCharacterData.dashTime;
                     }
 
-                    //m_bgmManager.PlaySE();
+                    m_bgmManager.PlaySELoop("se013_Dash");
 
                     m_isDash = true;
                 }
@@ -186,6 +186,13 @@ public class PlayerCharacter : MonoBehaviour
                 m_movable.speed = m_playerCharacterData.walkSpeed - downSpeed;
 
                 //m_dashDurationTime = 0.0f;
+
+                //m_bgmManager.StopSE();
+
+                //m_bgmManager.Stop
+                //m_bgmManager.PlaySELoopSpatial("");
+
+                m_bgmManager.StopSE("se013_Dash");
 
                 m_isDash = false;
             }
@@ -467,6 +474,7 @@ public class PlayerCharacter : MonoBehaviour
                 m_throwSpeed);
 
         m_bgmManager.PlaySE("se001_ThrowJustRibbon");
+        m_bgmManager.StopSE("se000_AdjustRibbon");
     }
 
     public void LengthAdjustUpdate()
@@ -859,6 +867,8 @@ public class PlayerCharacter : MonoBehaviour
         m_rollRibbonRenderer.enabled = false;
 
         m_inBuildingTime = .0f;
+
+        // m_damage.DispDamage();
     }
 
     public void InBuildingUpdate()
@@ -1100,6 +1110,8 @@ public class PlayerCharacter : MonoBehaviour
         m_playerAbsorption         = transform.FindChild("CharacterAbsorption").gameObject.GetComponent<PlayerAbsorption>();
 
         m_rollRibbonRenderer        = transform.FindChild("RollRibbon").GetComponent<MeshRenderer>();
+
+        //m_damage                    = GameObject.Find()
 
         m_bgmManager                = BGMManager.instance;
 
@@ -1562,4 +1574,7 @@ public class PlayerCharacter : MonoBehaviour
 
     float m_vibrationLeft;
     float m_vibrationRight;
+
+    [SerializeField]
+    Damage m_damage;
 }

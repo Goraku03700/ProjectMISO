@@ -1107,7 +1107,7 @@ Transform:
   m_GameObject: {fileID: 1000011360397802}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010295312068}
@@ -2040,6 +2040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerCharacterDataPath: ScriptableObjects/PlayerCharacterData
+  m_isDoCancel: 0
   m_ribbonMaterials:
   - {fileID: 2100000, guid: cca06e7c7ada28645ad6aaf8c4840a51, type: 2}
   - {fileID: 2100000, guid: e09fa7d3628012c4fbfe38f171d221b0, type: 2}
@@ -2055,6 +2056,7 @@ MonoBehaviour:
   m_ribbonLineMaterial: {fileID: 2100000, guid: bcb8f2479ff41e94eab6170d0804422e,
     type: 2}
   m_arm: {fileID: 4000014118174056}
+  m_damage: {fileID: 0}
 --- !u!114 &114000011354760502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2155,7 +2157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e695047b79c23f44ebd18a12d7b31a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pushPower: 500
+  m_pushPower: 1000
 --- !u!120 &120000010174922870
 LineRenderer:
   m_ObjectHideFlags: 1
