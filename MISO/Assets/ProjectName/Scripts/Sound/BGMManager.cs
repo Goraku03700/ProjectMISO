@@ -437,6 +437,18 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
         this.seSources.ForEach(s => s.Stop());
     }
 
+    public void StopSE(string seName)
+    {
+        for (int i = 0; i < this.seSources.Count; ++i)
+        {
+            if (this.seSources[i].clip.name == seName && this.seSources[i].isPlaying)
+            {
+                this.seSources[i].Stop();
+                return;
+            }
+        }
+    }
+
     public void PlayBGM(string bgmName , float time)
     {
         if (!this.bgmDict.ContainsKey(bgmName)) throw new ArgumentException(bgmName + " not found", "bgmName");
