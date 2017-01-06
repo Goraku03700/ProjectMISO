@@ -244,10 +244,10 @@ public class Production : MonoBehaviour {
         }
         else
         {
-            m_score[0] = 20;
-            m_score[1] = 25;
-            m_score[2] = 25;
-            m_score[3] = 20;
+            m_score[0] = 0;//20;
+            m_score[1] = 0;// 25;
+            m_score[2] = 0;// 25;
+            m_score[3] = 0;// 20;
 
         }
 
@@ -697,15 +697,16 @@ public class Production : MonoBehaviour {
                         }
                     }
 
-
-                    // SE再生
-                    BGMManager.instance.PlaySE("se025_NPCGoPlayer");
                 }
 
                 m_scoreText[i].enabled = true;
                 m_scoreText[i].text = "？人";
 
             }
+
+            // SE再生
+            BGMManager.instance.PlaySE("se025_NPCGoPlayer");
+            Debug.Log("再生");
 
             m_girlColumnCnt++;
 
@@ -752,10 +753,20 @@ public class Production : MonoBehaviour {
         }
 
         // 最後の女性の移動が完了したら次の状態に遷移
+
         if (m_maxGirl == 0) // 0人の場合
         {
             m_resultState = ResultState.UpPodiumProduction;
             time = 0;
+
+            // ライトの位置を保存(2位と3位の位置にライトを移動)
+            m_lightShaft[0].transform.localPosition = new Vector3(m_podium[1].transform.localPosition.x,
+                                                                  m_lightShaft[0].transform.localPosition.y,
+                                                                  m_podium[1].transform.localPosition.z);
+
+            m_lightShaft[1].transform.localPosition = new Vector3(m_podium[2].transform.localPosition.x,
+                                                                  m_lightShaft[1].transform.localPosition.y,
+                                                                  m_podium[2].transform.localPosition.z);
 
             return;
 
@@ -1079,6 +1090,7 @@ public class Production : MonoBehaviour {
         if (m_intervalTime > 5)
         {
             m_resultState = ResultState.WaitKey;
+            m_intervalTime = 0.0f;
         }
     }
 
@@ -1088,10 +1100,13 @@ public class Production : MonoBehaviour {
     private void _WaitKey()
     {
 
+   
         XInputDotNetPure.GamePadState pad1 = GamePad.GetState(PlayerIndex.One);
         XInputDotNetPure.GamePadState pad2 = GamePad.GetState(PlayerIndex.Two);
         XInputDotNetPure.GamePadState pad3 = GamePad.GetState(PlayerIndex.Three);
         XInputDotNetPure.GamePadState pad4 = GamePad.GetState(PlayerIndex.Four);
+
+        m_intervalTime += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -1101,7 +1116,8 @@ public class Production : MonoBehaviour {
         if((pad1.Buttons.Start == ButtonState.Pressed) ||
             (pad2.Buttons.Start == ButtonState.Pressed) ||
              (pad3.Buttons.Start == ButtonState.Pressed) ||
-              (pad4.Buttons.Start == ButtonState.Pressed))
+              (pad4.Buttons.Start == ButtonState.Pressed) ||
+               (m_intervalTime >= 3.0f))
         {
             Fade.ChangeScene("Ending");
         }

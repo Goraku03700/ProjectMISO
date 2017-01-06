@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Damage : MonoBehaviour {
 
@@ -31,6 +32,8 @@ public class Damage : MonoBehaviour {
 
     private PlayerScore m_scoreScript;
 
+    private Text m_text;
+
     //private bool[] m_dispFlag;
 
 	// Use this for initialization
@@ -56,24 +59,28 @@ public class Damage : MonoBehaviour {
             case "Player1":
                 {
                     m_scoreScript = GameObject.Find("Player1").GetComponent<PlayerScore>();
+                    m_text = GameObject.Find("Damage1_Number").GetComponent<Text>();
                 }
                 break;
 
             case "Player2":
                 {
                     m_scoreScript = GameObject.Find("Player2").GetComponent<PlayerScore>();
+                    m_text = GameObject.Find("Damage2_Number").GetComponent<Text>();
                 }
                 break;
 
             case "Player3":
                 {
                     m_scoreScript = GameObject.Find("Player3").GetComponent<PlayerScore>();
+                    m_text = GameObject.Find("Damage3_Number").GetComponent<Text>();
                 }
                 break;
 
             case "Player4":
                 {
                     m_scoreScript = GameObject.Find("Player4").GetComponent<PlayerScore>();
+                    m_text = GameObject.Find("Damage4_Number").GetComponent<Text>();
                 }
                 break;
         }
@@ -82,7 +89,6 @@ public class Damage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 
         Vector3 objScale = this.transform.localScale;
 
@@ -147,12 +153,15 @@ public class Damage : MonoBehaviour {
     /// <summary>
     /// ダメージエフェクト表示
     /// </summary>
-    public void DispDamage()
+    public void DispDamage(int num)
     {
         if (m_damageState == DamageState.None)
         {
             m_damageState = DamageState.Big;
             m_time = 0.0f;
+
+            // 減らす数値
+            m_text.text = "-" + num.ToString();
         }
     }
 }
