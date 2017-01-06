@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 53ecd56d8df4c104c99c1412e058f85f, type: 3}
   - {fileID: 8300000, guid: 89091428bac64564bb373be112f18c23, type: 3}
   - {fileID: 8300000, guid: 11fc3cb8f6c3fa34087df2afb9e24c94, type: 3}
+  - {fileID: 8300000, guid: 6f13e15a681895a47ac0a37f6519c8ce, type: 3}
   SEList:
   - {fileID: 8300000, guid: e686760a110fbd0449d312774f619e98, type: 3}
   - {fileID: 8300000, guid: dfd1c1aa66594544898f4a551c9ff715, type: 3}
@@ -81,6 +82,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 78dd8102477defd42ab8ca9f86e73df8, type: 3}
   - {fileID: 8300000, guid: e053bcc5fc7986a4e83eaeeb51966b50, type: 3}
   - {fileID: 8300000, guid: 974a7bd10e1fb5449a6bbf83804f4edc, type: 3}
+  - {fileID: 8300000, guid: 128ec79722092974db2eadc8037fc7df, type: 3}
+  - {fileID: 8300000, guid: 15ff4a4b234d4644c8599eed3f1e3b5a, type: 3}
   MaxSE: 100
   mixer: {fileID: 24100000, guid: cf21b0116ef5a104e9941f7af4d67906, type: 2}
   keisuu: 0
