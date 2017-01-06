@@ -244,10 +244,10 @@ public class Production : MonoBehaviour {
         }
         else
         {
-            m_score[0] = 0;//20;
-            m_score[1] = 0;// 25;
-            m_score[2] = 0;// 25;
-            m_score[3] = 0;// 20;
+            m_score[0] = 20;
+            m_score[1] = 25;
+            m_score[2] = 25;
+            m_score[3] = 20;
 
         }
 
