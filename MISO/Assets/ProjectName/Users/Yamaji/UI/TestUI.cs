@@ -51,7 +51,7 @@ public class TestUI : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A))
         {
-            GameObject.Find("Damage1").GetComponent<Damage>().DispDamage(5);
+            GameObject.Find("Damage1").GetComponent<Damage>().DispDamage(0);
         }
 
         if (Input.GetKey(KeyCode.S))
