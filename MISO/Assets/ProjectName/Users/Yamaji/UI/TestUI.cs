@@ -51,22 +51,22 @@ public class TestUI : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A))
         {
-            GameObject.Find("Damage1").GetComponent<Damage>().DispDamage();
+            GameObject.Find("Damage1").GetComponent<Damage>().DispDamage(5);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            GameObject.Find("Damage2").GetComponent<Damage>().DispDamage();
+            GameObject.Find("Damage2").GetComponent<Damage>().DispDamage(5);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            GameObject.Find("Damage3").GetComponent<Damage>().DispDamage();
+            GameObject.Find("Damage3").GetComponent<Damage>().DispDamage(5);
         }
 
         if (Input.GetKey(KeyCode.F))
         {
-            GameObject.Find("Damage4").GetComponent<Damage>().DispDamage();
+            GameObject.Find("Damage4").GetComponent<Damage>().DispDamage(5);
         }
 
 
