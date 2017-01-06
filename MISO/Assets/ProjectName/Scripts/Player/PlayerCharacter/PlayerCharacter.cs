@@ -129,6 +129,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputDash(bool isDash)
     {
+        m_beforeIsDash = m_isDash;
         m_isDash = false;
 
         float downSpeed = 0.0f;
@@ -192,7 +193,8 @@ public class PlayerCharacter : MonoBehaviour
                 //m_bgmManager.Stop
                 //m_bgmManager.PlaySELoopSpatial("");
 
-                m_bgmManager.StopSE("se013_Dash");
+                if(m_beforeIsDash)
+                    m_bgmManager.StopSE("se013_Dash");
 
                 m_isDash = false;
             }
@@ -867,8 +869,6 @@ public class PlayerCharacter : MonoBehaviour
         m_rollRibbonRenderer.enabled = false;
 
         m_inBuildingTime = .0f;
-
-        // m_damage.DispDamage();
     }
 
     public void InBuildingUpdate()
@@ -1518,6 +1518,19 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public Damage damage
+    {
+        get
+        {
+            return m_damage;
+        }
+
+        set
+        {
+            m_damage = value;
+        }
+    }
+
     [SerializeField]
     bool m_isDoCancel;
 
@@ -1577,4 +1590,6 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField]
     Damage m_damage;
+
+    bool m_beforeIsDash;
 }
