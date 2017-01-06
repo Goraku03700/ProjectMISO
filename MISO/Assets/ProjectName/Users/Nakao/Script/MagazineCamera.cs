@@ -99,6 +99,7 @@ public class MagazineCamera : MonoBehaviour {
         m_cameraTransform.eulerAngles = new Vector3(m_startQuaternion_X,0,0);
         m_cameraTransform.position = m_startPosition;
         m_padState = new GamePadState[4];
+        BGMManager.instance.PlayBGM("bgm_Intro",0f);
 	}
 	
 	// Update is called once per frame
@@ -108,6 +109,10 @@ public class MagazineCamera : MonoBehaviour {
             m_padState[i] = GamePad.GetState(PlayerIndex.One+i);
             if(m_padState[i].Buttons.Start == ButtonState.Pressed)
             {
+                if(Fade.instance.FadeEnd())
+                {
+                    BGMManager.instance.PlaySE("se_IntroFeadout");
+                }
                 Fade.ChangeScene("Select");
             }
 
@@ -140,6 +145,7 @@ public class MagazineCamera : MonoBehaviour {
                     {
                         m_state = State.titlepage;
                         m_magazine.TurnOver();
+                        BGMManager.instance.PlaySE("se_TurnMagagine");
                     }
                     break;
                 }
@@ -220,6 +226,7 @@ public class MagazineCamera : MonoBehaviour {
                                 m_titlePageTime = 0.0f;
                                 m_waitTime = 0.0f;
                                 m_magazine.TurnOver();
+                                BGMManager.instance.PlaySE("se_TurnMagagine");
                                 m_pageCount--;
                             }
                             /*
@@ -245,6 +252,7 @@ public class MagazineCamera : MonoBehaviour {
                             m_openingText.NextText();
                             m_state = State.close;
                             m_magazine.TurnBack();
+                            BGMManager.instance.PlaySE("se_IntroFeadout");
                         }
 
                     }
