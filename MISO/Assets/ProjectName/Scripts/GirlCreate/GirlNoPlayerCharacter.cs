@@ -383,6 +383,11 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_ribbonLine.enabled = false;
         m_ribbon_Wind.SetActive(false);
         m_rigidbody.velocity = Vector3.zero;
+
+        if (Mathf.Abs(transform.position.x) > 32.5f || Mathf.Abs(transform.position.z) > 22.5f)
+        {
+            transform.position = Vector3.zero;
+        }
     }
 
     public void Collect(Vector3 billPosition)

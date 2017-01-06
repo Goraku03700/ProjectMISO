@@ -78,6 +78,7 @@ namespace Ribbons
                 {
                     m_colliderObject.SetActive(true);
                     m_triggerColliderObject.SetActive(true);
+                    m_wallColliderObject.SetActive(true);
                     //m_pullArrow.spriteRenderer.enabled = true;
 
                     playerCharacter.OnRibbonLanding();
@@ -491,6 +492,8 @@ namespace Ribbons
             //GetComponent<HingeJoint>().connectedBody = m_playerCharacter.rigidbody;
 
             m_moveDirectionState = UnityEngine.Random.value < .5f ? MoveDirectionState.Left : MoveDirectionState.Right;
+
+            m_wallColliderObject.SetActive(false);
 
             switch (m_moveDirectionState)
             {

@@ -813,6 +813,11 @@ public class PlayerCharacter : MonoBehaviour
 
         //m_rigidbody.mass = 1.0f;
         m_rollRibbonRenderer.enabled = false;
+
+        if(Mathf.Abs(transform.position.x) > 32.5f || Mathf.Abs(transform.position.z) > 22.5f)
+        {
+            transform.position = Vector3.zero;
+        }
     }
 
     public void Collect()
