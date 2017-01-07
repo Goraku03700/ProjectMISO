@@ -38,10 +38,20 @@ public class Fade : SingletonMonoBehaviour<Fade>{
     public Material m_rend;
     void Start()
     {
-        this._InitializeSingleton();
+        if(Fade.instance == null)
+        {
+            this._InitializeSingleton();
+            DontDestroyOnLoad(this);
+            m_state = State.End;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         
-        m_state = State.End;
-        DontDestroyOnLoad(this.gameObject);
+       // DontDestroyOnLoad(this);
+       // m_state = State.End;
+        
         //m_rend = sprites[1].GetComponent<CanvasRenderer>().GetMaterial(0);
       //  m_rends[0].GetMaterial(0).shader = Shader.Find("UI/Mask");
        // m_rends[1].material.shader = Shader.Find("UI/Mask");
