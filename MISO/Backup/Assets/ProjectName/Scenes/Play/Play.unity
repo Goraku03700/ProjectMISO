@@ -401,6 +401,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011385764890, guid: 8a3de46780d6a8140bf44ea2d69748eb, type: 2}
+      propertyPath: m_Name
+      value: TimeNakao
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a3de46780d6a8140bf44ea2d69748eb, type: 2}
   m_IsPrefabParent: 0

@@ -201,22 +201,33 @@ namespace Ribbons
 
             m_isDoViolentMove = true;
 
-            float dot = Vector3.Dot(transform.forward, direction);
+            float dot = Vector3.Dot(m_playerCharacter.transform.forward * -1.0f, direction);
 
-            if(dot < 0)
+            Vector3 force;
+
+            if (dot < 0)
             {
+                if(m_moveDirectionState == MoveDirectionState.Left)
+                {
+                    m_pullStick.ChangeStickLeft();
+                }
+
                 m_moveDirectionState = MoveDirectionState.Right;
 
-                m_pullStick.ChangeStickLeft();
+                force = transform.right.normalized;
+
             }
             else
             {
+                if(m_moveDirectionState == MoveDirectionState.Right)
+                {
+                    m_pullStick.ChangeStickRight();
+                }
+
                 m_moveDirectionState = MoveDirectionState.Left;
 
-                m_pullStick.ChangeStickRight();
+                force = (transform.right * -1.0f).normalized;
             }
-
-            Vector3 force = (transform.right * dot).normalized;
 
             m_rigidbody.AddForce(force * m_playerCharacter.playerCharacterData.ribbonViolentMoveSpeed, ForceMode.Force);
         }

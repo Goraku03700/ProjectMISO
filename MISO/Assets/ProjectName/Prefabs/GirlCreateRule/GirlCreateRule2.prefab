@@ -54,7 +54,7 @@ MonoBehaviour:
   m_createTime: 140
   m_validTime: 0
   m_decisionCount: 15
-  m_generationCount: 3
+  m_generationCount: 2
   m_normal: 1
   m_fever: 0
   m_continuePattern: 0
