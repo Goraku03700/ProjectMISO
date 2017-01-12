@@ -66,7 +66,7 @@ public class TimeCount : MonoBehaviour {
 
         m_key_HoldTime = new float[4];
 
-        m_keyHoldLimit = 5.0f;
+     //   m_keyHoldLimit = 5.0f;
 
         //m_timeNiddle = GameObject.Find("TimeNiddle");
 
