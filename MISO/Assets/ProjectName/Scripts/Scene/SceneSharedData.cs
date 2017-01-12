@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using System.Collections.Generic;
 
 /// <summary>
 /// シーン間でデータを共有するためのオブジェクトです。

@@ -1298,7 +1298,7 @@ MonoBehaviour:
   - {r: 0, g: 0.32941177, b: 0.92549026, a: 1}
   - {r: 0, g: 0.9176471, b: 0.21176472, a: 1}
   - {r: 0.82745105, g: 0.93725497, b: 0, a: 1}
-  m_speed: 15
+  m_speed: 8
   m_rotationSmooth: 40
   m_targetPosition: {x: 0, y: 0, z: 0}
   m_ribbon_Wind: {fileID: 1000012370863870}
