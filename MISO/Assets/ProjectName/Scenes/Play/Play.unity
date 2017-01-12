@@ -1393,6 +1393,11 @@ Prefab:
     - target: {fileID: 114000013746299378, guid: 45333fc6a7bb30943a95a4ac9971fffc,
         type: 2}
       propertyPath: timeInit
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013746299378, guid: 45333fc6a7bb30943a95a4ac9971fffc,
+        type: 2}
+      propertyPath: m_keyHoldLimit
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []

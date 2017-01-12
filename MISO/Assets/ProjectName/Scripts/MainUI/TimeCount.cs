@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using XInputDotNetPure;
 
 public class TimeCount : MonoBehaviour {
 
@@ -12,6 +13,9 @@ public class TimeCount : MonoBehaviour {
 
     [SerializeField]
     private float m_feverStartTime;
+
+    [SerializeField]
+    private float m_keyHoldLimit;
 
     [SerializeField]
     GameEndEffect m_endEffect;
@@ -39,7 +43,10 @@ public class TimeCount : MonoBehaviour {
 
     private bool m_isFever;
 
+    private float[] m_key_HoldTime;
+
     public GirlCreateSystem m_girlCreateSystem;
+    GamePadState[] m_padState;
 
 	// Use this for initializationm
 	void Start () {
@@ -54,6 +61,12 @@ public class TimeCount : MonoBehaviour {
         m_isFever = false;
 
         m_endEffect.m_CountDownTime = m_countDownStartTime;
+
+        m_padState = new GamePadState[4];
+
+        m_key_HoldTime = new float[4];
+
+        m_keyHoldLimit = 5.0f;
 
         //m_timeNiddle = GameObject.Find("TimeNiddle");
 
@@ -78,6 +91,25 @@ public class TimeCount : MonoBehaviour {
         {
             SetData();
             Fade.ChangeScene("Result");
+        }
+
+        for (int i = 0; i < 4; ++i)
+        {
+            m_padState[i] = GamePad.GetState(PlayerIndex.One + i);
+            if (m_padState[i].Buttons.Start == ButtonState.Pressed)
+            {
+                m_key_HoldTime[i] += Time.deltaTime;
+                if (Fade.instance.FadeEnd() && m_key_HoldTime[i] > m_keyHoldLimit)
+                {
+                    SetData();
+                    Fade.ChangeScene("Result");
+                }
+            }
+            else
+            {
+                m_key_HoldTime[i] = 0.0f;
+            }
+
         }
 
         // 時間を測る
