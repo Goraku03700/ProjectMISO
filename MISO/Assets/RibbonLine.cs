@@ -55,7 +55,15 @@ namespace Ribbons
 
             float t = 1.0f - m_ribbon.time / m_ribbon.playerCharacter.playerCharacterData.ribbonPenaltyTime;
 
+            if (t < 0.0f)
+                t = 0.0f;
+
             float width = t * m_defaultWidth;
+
+            if(width < 0)
+            {
+                width = 0.1f;
+            }
 
             m_lineRenderer.SetWidth(width, width);
         }

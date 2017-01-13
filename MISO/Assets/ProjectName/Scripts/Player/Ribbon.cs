@@ -109,6 +109,9 @@ namespace Ribbons
             direction.Normalize();
 
             m_pullForce = direction * power;
+
+            // 2
+            rigidbody.AddForce(m_pullForce, ForceMode.Force);
         }
 
         public void Shake(float horizontal)
@@ -230,6 +233,18 @@ namespace Ribbons
             }
 
             m_rigidbody.AddForce(force * m_playerCharacter.playerCharacterData.ribbonViolentMoveSpeed, ForceMode.Force);
+        }
+
+        public void Rebound()
+        {
+            //m_isDoRebound = true;
+
+            float ratio = 1.0f - ((1 - m_triggerCollider.coughtPlayerCharacters.Count) * m_playerCharacter.playerCharacterData.ribbonPlayerReboundCountRatio);
+
+            float reboundPower = (ratio * m_playerCharacter.playerCharacterData.ribbonPlayerReboundPower);
+
+            //m_rigidbody.MovePosition(transform.position + (transform.forward * m_playerCharacter.playerCharacterData.ribbonReboundPower));
+            m_rigidbody.AddForce(transform.forward * reboundPower, ForceMode.Force);
         }
 
         public void PullEnter()
@@ -420,9 +435,28 @@ namespace Ribbons
 
             m_playerCharacter.BreakeRibbon();
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
 
+            m_absorpstion.startAbsorption(transform.position, m_playerCharacter.transform.position);
+            m_animator.SetTrigger("isBreaked");
 
+        }
+
+        public void BreakUpdate()
+        {
+            m_pullStick.gameObject.SetActive(false);
+
+            m_collectTime += Time.deltaTime;
+
+            m_absorpstion.SetEndPosition(m_playerCharacter.transform.position);
+            transform.position = m_absorpstion.GetLerpPointAtTime();
+
+            transform.localScale = Vector3.Lerp(m_scale, Vector3.zero, m_collectTime / 1.0f);
+
+            if (m_collectTime > 1.0f)
+            {
+                Destroy(gameObject);
+            }
         }
 
         private enum AnimatorParametersID
@@ -621,7 +655,8 @@ namespace Ribbons
 
             if(m_isDoPull)
             {
-                rigidbody.AddForce(m_pullForce, ForceMode.Force);
+                //rigidbody.AddForce(m_pullForce, ForceMode.Force);
+                //rigidbody.MovePosition(m_pullForce + transform.position);
 
                 m_isDoPull = false;
             }
@@ -633,14 +668,22 @@ namespace Ribbons
                 m_isDoShake = false;
             }
 
+            //if(m_isDoRebound)
+            //{
+            //    m_rigidbody.MovePosition(transform.position + (transform.forward * reboundPower));
+            //    m_isDoRebound = false;
+            //}
+
             if(m_animatorParameters.isGrounded)
             {
                 int objectsCount = m_triggerCollider.coughtGirls.Count + m_triggerCollider.coughtPlayerCharacters.Count;
 
-                if(objectsCount > 0)
+                if(m_triggerCollider.coughtGirls.Count > 0)
                 {
-                    float reboundPower = ((objectsCount * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio) * m_playerCharacter.playerCharacterData.ribbonReboundPower);
+                    float ratio = 1.0f + (1 - m_triggerCollider.coughtGirls.Count) * m_playerCharacter.playerCharacterData.ribbonReboundCountRatio;
+                    float reboundPower = (ratio * m_playerCharacter.playerCharacterData.ribbonReboundPower);
                     m_rigidbody.AddForce(transform.forward * reboundPower, ForceMode.Force);
+                    //m_rigidbody.MovePosition(transform.position + (transform.forward * reboundPower));
                 }
 
                 if (m_triggerCollider.coughtPlayerCharacters.Count < 1)
@@ -875,5 +918,7 @@ namespace Ribbons
         PlayerAbsorption m_absorpstion;
         private Vector3 m_scale;
         bool m_isPulled;
+
+        bool m_isDoRebound;
     }
 }

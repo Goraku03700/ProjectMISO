@@ -26,6 +26,10 @@ public class PlayerCharacterData : ScriptableObject
 
     public float ribbonViolentMoveSpeed;
 
+    public float ribbonPlayerReboundPower;
+
+    public float ribbonPlayerReboundCountRatio;
+
     public float ribbonReboundPower;
 
     public float ribbonReboundCountRatio;

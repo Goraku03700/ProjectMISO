@@ -21,8 +21,10 @@ MonoBehaviour:
   ribbonPenaltyTime: 5
   ribbonShakeSpeed: 30
   ribbonViolentMoveSpeed: 75
+  ribbonPlayerReboundPower: 400
+  ribbonPlayerReboundCountRatio: 0.1
   ribbonReboundPower: 32
-  ribbonReboundCountRatio: 0.11
+  ribbonReboundCountRatio: 0.1
   chargeTimeMax: 1.5
   throwPower: 300
   throwSpeed: 500

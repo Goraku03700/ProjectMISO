@@ -211,9 +211,27 @@ public class PlayerCharacter : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
 
             m_caughtRibbon.Breake();
+            //m_caughtRibbon.Rebound();
 
             m_caughtRibbon = null;
         }        
+    }
+
+    public void InputRebound()
+    {
+        if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
+            m_caughtRibbon != null)
+        {
+            //m_animator.SetTrigger(m_animatorParametersHashs[(int)AnimatorParametersID.InputRelease]);
+
+            //gameObject.layer = LayerMask.NameToLayer("PlayerCharacter");
+
+            //m_caughtRibbon.Breake();
+            m_caughtRibbon.Rebound();
+
+            //m_caughtRibbon = null;
+
+        }
     }
 
     public void InputCharge()

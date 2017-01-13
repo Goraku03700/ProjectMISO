@@ -191,7 +191,7 @@ public class PlayerCharacterController : MonoBehaviour {
         }
 
         // breake
-        if (_CheckStickHalfRotation(horizontal, vertical, ref m_releaseHalfRotationInputCheck))
+        if (_CheckStickHalfRotation(horizontal2, vertical2, ref m_releaseHalfRotationInputCheck))
         {
             m_releaseHalfRotationInputCount++;
 
@@ -199,7 +199,7 @@ public class PlayerCharacterController : MonoBehaviour {
             {
                 m_releaseHalfRotationInputCount = 0;
 
-                //m_controlledPlayerCharacter.InputRelease();
+                m_controlledPlayerCharacter.InputRelease();
             }
         }
 
@@ -269,9 +269,25 @@ public class PlayerCharacterController : MonoBehaviour {
 
             if (m_releaseHalfRotationInputCount >= m_controllerData.releaseHalfRotation)
             {
-                m_releaseHalfRotationInputCount = 0;
+                m_releaseHalfRotationInputCount     = 0;
+                m_releaseHalfRotationInputCount2    = 0;
 
                 //m_controlledPlayerCharacter.InputRelease();
+                m_controlledPlayerCharacter.InputRebound();
+            }
+        }
+
+        if (_CheckStickHalfRotation(horizontal2, vertical2, ref m_releaseHalfRotationInputCheck2))
+        {
+            m_releaseHalfRotationInputCount2++;
+
+            if (m_releaseHalfRotationInputCount2 >= m_controllerData.releaseHalfRotation)
+            {
+                m_releaseHalfRotationInputCount     = 0;
+                m_releaseHalfRotationInputCount2    = 0;
+
+                //m_controlledPlayerCharacter.InputRelease();
+                m_controlledPlayerCharacter.InputRebound();
             }
         }
     }
@@ -434,8 +450,10 @@ public class PlayerCharacterController : MonoBehaviour {
     private int m_pullHalfRotationCount;
 
     private HalfRotationInputCheck m_releaseHalfRotationInputCheck;
+    private HalfRotationInputCheck m_releaseHalfRotationInputCheck2;
 
     private int m_releaseHalfRotationInputCount;
+    private int m_releaseHalfRotationInputCount2;
 
     private PlayerCharacterControllerData m_controllerData;
 
