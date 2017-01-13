@@ -291,15 +291,29 @@ public class PlayerCharacter : MonoBehaviour
 
     public void InputPull()
     {
-        if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.Pull"))
+        if (m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.Pull") || m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Throw.Pulling"))
         {
             if (m_controlledRibbon != null)
             {
                 m_controlledRibbon.Pull(transform.position, m_playerCharacterData.ribbonPullPower);
 
+                //StartCoroutine("PullAnimationCorutine");
+                //StartCoroutine(PullAnimationCorutine());
+                //m_animator.Play("Base Layer.Throw.Pull", 0, 0.0f);
+                m_animator.SetTrigger("pull");
+
                 m_bgmManager.PlaySE("se005_CatchRibbon");
             }
         }
+    }
+
+    public IEnumerator PullAnimationCorutine()
+    {
+        m_animator.speed = 1.0f;
+
+        yield return new WaitForSeconds(1.0f);
+
+        m_animator.speed = 0.01f;
     }
 
     public void InputCancel()
@@ -510,9 +524,23 @@ public class PlayerCharacter : MonoBehaviour
         m_bgmManager.PlaySE("se003_PutOnRibbon");
     }
 
+    bool m_isPullEnterAfterFrame;
+
+    public void PullEnter()
+    {
+        m_isPullEnterAfterFrame = true;
+    }
+
     public void PullUpdate()
     {
-        if(m_controlledRibbon != null)
+        if(m_isPullEnterAfterFrame)
+        {
+            m_isPullEnterAfterFrame = false;
+
+            //m_animator.speed = 0.01f;
+        }
+
+        if (m_controlledRibbon != null)
         {
             Vector3 vector = transform.position - m_controlledRibbon.transform.position;
 
@@ -542,6 +570,8 @@ public class PlayerCharacter : MonoBehaviour
 
                 m_vibrationLeft = 0.0f;
                 m_vibrationRight = 0.0f;
+
+                m_animator.speed = 1.0f;
             }
             else
             {
@@ -558,6 +588,8 @@ public class PlayerCharacter : MonoBehaviour
     {
         m_vibrationLeft = 0.0f;
         m_vibrationRight = 0.0f;
+        m_animator.speed = 1.0f;
+        //StopAllCoroutines();
     }
 
     public struct PulledCorutineArgs
@@ -774,6 +806,7 @@ public class PlayerCharacter : MonoBehaviour
             //Destroy(m_controlledRibbon.gameObject);
             m_controlledRibbon = null;
             m_playerIcon.ChangeIconNormal();
+            m_animator.speed = 1.0f;
         }
     }
 

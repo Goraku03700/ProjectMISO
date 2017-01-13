@@ -299,18 +299,12 @@ namespace Ribbons
                 }
             }
 
-            var screenPosition = Camera.main.ViewportToScreenPoint(transform.position);
-
-
-
-            screenPosition.z = 0;
-
-            m_time += Time.deltaTime;
-
-            if (m_time > m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
+            if (m_time >= m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
             {
                 Breake();
             }
+
+            m_time += Time.deltaTime;
         }
 
         public void Pulled()
@@ -320,8 +314,14 @@ namespace Ribbons
             //int tempScore = m_playerCharacter.player.score;
             int addScore = 0;
             int addPlayer = 0;
-             
-            foreach(var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
+
+            //if (m_time + Time.deltaTime >= m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
+            //{
+            //    Breake();
+            //    return;
+            //}
+
+            foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
                 if (playerCharacter.player.score - m_playerCharacter.playerCharacterData.collectScoreMinus < 0)
                 {

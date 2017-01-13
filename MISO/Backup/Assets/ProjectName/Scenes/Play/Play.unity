@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.57508564, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692504, g: 0.4967869, b: 0.57508504, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1125,6 +1125,11 @@ Prefab:
       propertyPath: m_damage
       value: 
       objectReference: {fileID: 920337770}
+    - target: {fileID: 136000013609782866, guid: f22cf58988bc63646ab51980ab3df6f0,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22cf58988bc63646ab51980ab3df6f0, type: 2}
   m_IsPrefabParent: 0
@@ -1754,6 +1759,16 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: d5e545a4d88211a42b7fe6b60335d882, type: 2}
+    - target: {fileID: 65000010238919118, guid: 0f4b980fe24203b45a9e83b9bdf26ca5,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136000013549618338, guid: 0f4b980fe24203b45a9e83b9bdf26ca5,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f4b980fe24203b45a9e83b9bdf26ca5, type: 2}
   m_IsPrefabParent: 0
@@ -1943,6 +1958,11 @@ Prefab:
       propertyPath: m_damage
       value: 
       objectReference: {fileID: 920337771}
+    - target: {fileID: 136000012543093140, guid: 56007ee8d1581ff49b4b1311a1e73f72,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56007ee8d1581ff49b4b1311a1e73f72, type: 2}
   m_IsPrefabParent: 0
@@ -2269,6 +2289,11 @@ Prefab:
       propertyPath: m_damage
       value: 
       objectReference: {fileID: 920337772}
+    - target: {fileID: 136000011877470708, guid: 2bfc17de90e6c32418272494045b676c,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bfc17de90e6c32418272494045b676c, type: 2}
   m_IsPrefabParent: 0
