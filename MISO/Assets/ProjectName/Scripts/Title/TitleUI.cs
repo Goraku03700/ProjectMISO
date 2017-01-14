@@ -30,7 +30,7 @@ public class TitleUI : MonoBehaviour {
         m_startscale = this.transform.localScale;
         m_nowscale = m_startscale;
         m_meshrender = GetComponent<MeshRenderer>();
-        m_meshrender.enabled = false;
+        //m_meshrender.enabled = false;
         m_scalebigflg = true;
         m_scalesmallflg = false;
 	}
@@ -46,7 +46,7 @@ public class TitleUI : MonoBehaviour {
     /// <param name="active">true:表示する false:表示しない</param>
     public void Activate(bool active)
     {
-        m_meshrender.enabled = active;
+        //m_meshrender.enabled = active;
     }
 
     /// <summary>

@@ -81,6 +81,7 @@
     <Compile Include="Assets\Break.cs" />
     <Compile Include="Assets\Builboard.cs" />
     <Compile Include="Assets\Caught.cs" />
+    <Compile Include="Assets\CircleDeployer.cs" />
     <Compile Include="Assets\Collect.cs" />
     <Compile Include="Assets\Fantasy Skybox FREE\Demo\Scripts\GE_FantasySkyboxFREE_Demo.cs" />
     <Compile Include="Assets\Fantasy Skybox FREE\Demo\Scripts\GE_FantasySkyboxFREE_UIs.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_DemoPlaySound.cs" />
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_OpenOtherScene.cs" />
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
+    <Compile Include="Assets\ImageRandomizer.cs" />
     <Compile Include="Assets\Invisible.cs" />
     <Compile Include="Assets\OutBuilding.cs" />
     <Compile Include="Assets\PlayerAbsorption.cs" />
@@ -221,6 +223,7 @@
     <Compile Include="Assets\Start.cs" />
     <Compile Include="Assets\TestBezier.cs" />
     <Compile Include="Assets\Tired.cs" />
+    <Compile Include="Assets\TitleCaption.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlink.cs" />
     <Compile Include="Assets\UnityChan\Scripts\AutoBlinkforSD.cs" />
     <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />
