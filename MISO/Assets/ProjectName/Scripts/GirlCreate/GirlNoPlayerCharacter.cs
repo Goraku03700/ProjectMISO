@@ -381,6 +381,7 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_status            = State.Alive;
         m_npcMotion.SetBool("Caught", false);
         m_ribbonLine.enabled = false;
+        m_npcMotion.SetBool("Move", true);
         m_ribbon_Wind.SetActive(false);
         m_rigidbody.velocity = Vector3.zero;
 
@@ -402,7 +403,10 @@ public class GirlNoPlayerCharacter : MonoBehaviour
         m_bezier = new Bezier(m_npcPos, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.4f) + Vector3.up * 6f, Vector3.Lerp(m_npcPos, m_getPlayerBillding.transform.position, 0.6f) + Vector3.up * 6f, m_getPlayerBillding.transform.position);
         m_playerAbsorption.startAbsorption(this.transform.position,billPosition);
         //m_bezier.ResetBezier(transform.position, Vector3.Lerp(transform.position, billPosition, 0.4f) + Vector3.up * 2, Vector3.Lerp(transform.position, billPosition, 0.6f) + Vector3.up * 2, billPosition);
+        m_isColelct = true;
     }
+
+    public bool m_isColelct;
 }
 /*10
 2.25

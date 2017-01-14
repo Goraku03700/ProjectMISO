@@ -813,9 +813,9 @@ public class PlayerCharacter : MonoBehaviour
     public void CaughtRibbon(Ribbon caughtRibbon)
     {
         //if(isCaught)
-        if(m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
-            m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Release") &&
-            m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Invisible"))
+        //if(m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
+        //    m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Release") &&
+        //    m_animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Invisible"))
         {
             //@todo Change SetTrigger
             m_animator.Play("Base Layer.CaughtRibbon.Caught");
@@ -826,9 +826,15 @@ public class PlayerCharacter : MonoBehaviour
 
             if (m_controlledRibbon)
             {
-                m_controlledRibbon.Breake();
+                //m_animator.SetTrigger("isBreaked");
+
+                //m_controlledRibbon.Breake();
 
                 //Destroy(m_controlledRibbon.gameObject);
+
+                {
+                    m_controlledRibbon.BreakeTriggerNoAbsorption();
+                }
 
                 m_controlledRibbon = null;
             }
@@ -849,6 +855,11 @@ public class PlayerCharacter : MonoBehaviour
 
             transform.LookAt(caughtRibbon.playerCharacter.transform);
         }
+    }
+
+    public void CaughtExit()
+    {
+        m_isThisFrameCought = false;
     }
 
     public void CatchRelease()
@@ -886,6 +897,7 @@ public class PlayerCharacter : MonoBehaviour
         m_collider.enabled      = false;
         m_wallCollider.enabled  = false;
         m_lineRenderer.enabled  = false;
+        m_isCollected = true;
     }
 
     public void CollectUpdate()
@@ -957,7 +969,8 @@ public class PlayerCharacter : MonoBehaviour
             m_meshRenderers[i].material = m_invisibleMaterial;
             m_meshRenderers[i].material.SetColor("_Color", invisibleColor);
         }
-        
+
+        m_isCollected = false;
     }
 
     //public void OutBuildingEnter()
@@ -1237,8 +1250,6 @@ public class PlayerCharacter : MonoBehaviour
 
         m_lineRenderer.SetPosition(0, transform.position);
 
-        m_isThisFrameCought = false;
-
         m_buildingScale.y = 3 + (m_player.score * 0.25f);
 
         if (m_isChangeBuildingSize)
@@ -1474,9 +1485,10 @@ public class PlayerCharacter : MonoBehaviour
     {
         get
         {
-            return 
-                !(m_animatorStateInfo.shortNameHash == Animator.StringToHash("Caught") ||
-                m_animatorStateInfo.shortNameHash == Animator.StringToHash("Collect"));
+            return !(m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Caught") ||
+                m_animatorStateInfo.fullPathHash == Animator.StringToHash("Base Layer.CaughtRibbon.Collect"));
+                //!(m_animatorStateInfo.shortNameHash == Animator.StringToHash("Caught") ||
+                //m_animatorStateInfo.shortNameHash == Animator.StringToHash("Collect"));
         }
     }
 
@@ -1548,6 +1560,8 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+ //   public bool isCa
+
     public Material ribbonLineMaterial
     {
         get
@@ -1586,6 +1600,8 @@ public class PlayerCharacter : MonoBehaviour
             m_damage = value;
         }
     }
+
+    public bool m_isCollected { get; private set; }
 
     [SerializeField]
     bool m_isDoCancel;

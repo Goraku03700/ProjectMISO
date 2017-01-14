@@ -294,37 +294,33 @@ public class PlayerCharacterController : MonoBehaviour {
 
     void _UpdateInputKeyboard()
     {
-        float horizontal    = Input.GetAxis("Horizontal");
-        float vertical      = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
         m_controlledPlayerCharacter.InputStick(horizontal, vertical);
 
-        //bool isPushThrowKey     = Input.GetKey(KeyCode.Z);
-        bool isPushCancelKey    = Input.GetKeyDown(KeyCode.X); 
+        bool isPushCancelKey = Input.GetKey(KeyCode.V);
+        bool isPushDashKey = Input.GetKey(KeyCode.C);
 
-        //m_controlledPlayerCharacter.InputThrow(isPushThrowKey);
-        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+        m_controlledPlayerCharacter.InputDash(isPushDashKey);
 
-        m_controlledPlayerCharacter.InputDash(Input.GetKey(KeyCode.C));
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            m_controlledPlayerCharacter.InputPull();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z))
         {
             m_controlledPlayerCharacter.InputCharge();
+
+            //GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
         }
         else if (Input.GetKeyUp(KeyCode.Z))
         {
             m_controlledPlayerCharacter.InputThrow();
         }
 
-        if(_CheckStickRotation(vertical, horizontal))
+        m_controlledPlayerCharacter.InputCancel(isPushCancelKey);
+
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            m_controlledPlayerCharacter.InputRelease();
             m_controlledPlayerCharacter.InputPull();
+            m_controlledPlayerCharacter.InputRebound();
         }
     }
 

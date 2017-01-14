@@ -102,7 +102,7 @@ public class TimeCount : MonoBehaviour {
                 if (Fade.instance.FadeEnd() && m_key_HoldTime[i] > m_keyHoldLimit)
                 {
                     SetData();
-                    Fade.ChangeScene("Result");
+                    Fade.ChangeScene("Title");
                 }
             }
             else

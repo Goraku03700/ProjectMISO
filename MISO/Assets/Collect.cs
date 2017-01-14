@@ -14,6 +14,8 @@ namespace Ribbons
             m_ribbon = animator.gameObject.GetComponent<Ribbon>();
 
             //m_ribbon.PullEnter();
+
+            m_ribbon.CollectEnter();
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

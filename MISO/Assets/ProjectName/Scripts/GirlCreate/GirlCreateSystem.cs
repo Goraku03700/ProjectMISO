@@ -127,7 +127,7 @@ public class GirlCreateSystem : MonoBehaviour {
             {
                 for (int j = 0; j < m_girlCreateAreaList.Count; ++j )
                 {
-                    if(m_girlCreateAreaList[j].m_CreateGirlNumber <= 0)
+                    if(m_girlCreateAreaList[j].m_CreateGirlNumber <= m_createRules_Continue[i].m_decisionCount)
                     {
                         m_girlCreateAreaList[j].CreateGirl(m_createRules_Continue[i].m_generationCount);
                     }

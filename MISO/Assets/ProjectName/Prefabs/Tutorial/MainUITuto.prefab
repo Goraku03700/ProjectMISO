@@ -1433,6 +1433,7 @@ MonoBehaviour:
   timeInit: 30
   m_countDownStartTime: -999
   m_feverStartTime: -999
+  m_keyHoldLimit: 999
   m_endEffect: {fileID: 0}
   m_fever: {fileID: 0}
   m_clock: {fileID: 114000012739139858}
@@ -2263,7 +2264,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 009733871256d084cad54dfa75cc2ad7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 87b7b258f4bea3241bcdd28cdd747ced, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2893,7 +2894,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -163.3, y: 5.2}
-  m_SizeDelta: {x: 1491, y: 177}
+  m_SizeDelta: {x: 1635, y: 150}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224000011302282086
 RectTransform:

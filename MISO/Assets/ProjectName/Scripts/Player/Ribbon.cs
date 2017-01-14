@@ -290,21 +290,39 @@ namespace Ribbons
 
             foreach (var girl in m_triggerCollider.coughtGirls)
             {
-                direction = transform.position - girl.transform.position;
-
-                if (direction.magnitude > m_triggerCollider.collider.radius * 4)
+                if(girl)
                 {
-                    girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
-                    girl.transform.position = transform.position;
-                }
+                    direction = transform.position - girl.transform.position;
+
+                    if (direction.magnitude > m_triggerCollider.collider.radius * 4)
+                    {
+                        girl.transform.position = transform.position + (direction.normalized * m_triggerCollider.collider.radius * .75f);
+                        girl.transform.position = transform.position;
+                    }
+                }                
             }
 
             if (m_time >= m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
             {
-                Breake();
+                if (m_animatorParameters.isPulled == false)
+                {
+                    //Breake();
+                    m_animator.SetTrigger("isBreaked");
+
+                }
             }
 
             m_time += Time.deltaTime;
+        }
+
+        IEnumerator BreakeCorutine()
+        {
+            yield return new WaitForEndOfFrame();
+
+            if(m_animatorParameters.isPulled)
+            {
+                Breake();
+            }
         }
 
         public void Pulled()
@@ -312,14 +330,23 @@ namespace Ribbons
             m_animatorParameters.isPulled = true;
 
             //int tempScore = m_playerCharacter.player.score;
-            int addScore = 0;
-            int addPlayer = 0;
 
             //if (m_time + Time.deltaTime >= m_playerCharacter.playerCharacterData.ribbonPenaltyTime)
             //{
             //    Breake();
             //    return;
             //}
+
+            m_animator.SetBool("isPulled", true);
+
+            
+        }
+
+        public void CollectEnter()
+        {
+            int addScore = 0;
+            int addPlayer = 0;
+
 
             foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
             {
@@ -330,7 +357,7 @@ namespace Ribbons
 
                     //int addScore = Math.Abs(playerCharacter.player.score);
 
-                    if(playerCharacter.player.score > 0)
+                    if (playerCharacter.player.score > 0)
                     {
                         addScore += playerCharacter.player.score;
 
@@ -359,23 +386,24 @@ namespace Ribbons
 
             foreach (var girl in m_triggerCollider.coughtGirls)
             {
-                girl.Collect(m_playerCharacter.playerFire.transform.position);
-
-                //m_playerCharacter.player.score++;
-
-                if(girl.m_isRare)
+                if(!girl.m_isColelct)
                 {
-                    addScore += 5;
-                }
-                else
-                {
-                    addScore += 1;
-                }
+                    girl.Collect(m_playerCharacter.playerFire.transform.position);
 
-                m_playerCharacter.npcGetParticle.Play();
+                    //m_playerCharacter.player.score++;
+
+                    if (girl.m_isRare)
+                    {
+                        addScore += 5;
+                    }
+                    else
+                    {
+                        addScore += 1;
+                    }
+
+                    m_playerCharacter.npcGetParticle.Play();
+                }                
             }
-
-            m_animator.SetBool("isPulled", true);
 
             //int score = m_playerCharacter.player.score - tempScore;
 
@@ -418,18 +446,31 @@ namespace Ribbons
             }
         }
 
+        public void BreakeTrigger()
+        {
+            m_animator.SetTrigger("isBreaked");
+        }
+
+        public void BreakeTriggerNoAbsorption()
+        {
+            m_animator.SetTrigger("isBreaked");
+            m_isNoAbsorption = true;
+        }
+
         public void Breake()
         {
             if(m_triggerCollider.coughtPlayerCharacters != null)
             {
                 foreach (var playerCharacter in m_triggerCollider.coughtPlayerCharacters)
                 {
-                    playerCharacter.CatchRelease();
+                    if (playerCharacter != null)
+                        playerCharacter.CatchRelease();
                 }
 
                 foreach (var girl in m_triggerCollider.coughtGirls)
                 {
-                    girl.CatchRibbonRelease();
+                    if(girl != null)
+                        girl.CatchRibbonRelease();
                 }
             }
 
@@ -437,9 +478,18 @@ namespace Ribbons
 
             //Destroy(gameObject);
 
-            m_absorpstion.startAbsorption(transform.position, m_playerCharacter.transform.position);
-            m_animator.SetTrigger("isBreaked");
+            if(m_isNoAbsorption == false)
+                m_absorpstion.startAbsorption(transform.position, m_playerCharacter.transform.position);
+        }
 
+        public void BreakeEnter()
+        {
+            Breake();
+
+            if(m_isNoAbsorption)
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void BreakUpdate()
@@ -920,5 +970,6 @@ namespace Ribbons
         bool m_isPulled;
 
         bool m_isDoRebound;
+        private bool m_isNoAbsorption;
     }
 }

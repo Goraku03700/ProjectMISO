@@ -61,10 +61,12 @@ namespace Ribbons
                     PlayerCharacter playerCharacter = collider.gameObject.GetComponent<PlayerCharacter>();
 
 
-                    if (playerCharacter.animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
-                        playerCharacter.animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Release") &&
-                        playerCharacter.animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Invisible") &&
-                        !playerCharacter.isThisFrameCought)
+                    //if (playerCharacter.animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Caught") &&
+                    //    playerCharacter.animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Release") &&
+                    //    playerCharacter.animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Invisible") &&
+                    //    !playerCharacter.isThisFrameCought &&
+                    //    playerCharacter.animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.CaughtRibbon.Caught"))
+                    if(playerCharacter.animatorStateInfo.fullPathHash != Animator.StringToHash("Base Layer.Movable.Invisible"))
                     {
                         playerCharacter.CaughtRibbon(m_parentRibbon);
                         coughtPlayerCharacters.Add(playerCharacter);
@@ -77,11 +79,14 @@ namespace Ribbons
 
                 var girl = collider.gameObject.transform.parent.GetComponent<GirlNoPlayerCharacter>();
 
-                girl.CatchRibbon(m_parentRibbon.playerCharacter);
+                //if(!girl.IsCaught)
+                {
+                    girl.CatchRibbon(m_parentRibbon.playerCharacter);
 
-                m_ribbonEffectManager.CreateRibbonEffect(transform.position, m_parentRibbon.playerCharacter);
+                    m_ribbonEffectManager.CreateRibbonEffect(transform.position, m_parentRibbon.playerCharacter);
 
-                coughtGirls.Add(girl);
+                    coughtGirls.Add(girl);
+                }                
             }
 
             //else if(collider.gameObject.layer == LayerMask.NameToLayer("Girl"))

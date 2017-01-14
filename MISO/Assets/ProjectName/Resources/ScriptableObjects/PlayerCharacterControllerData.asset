@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   halfRotationUpperLimit: 0.75
   halfRotationLowerLimit: 0.1
-  pullHalfRotation: 0
-  releaseHalfRotation: 0
+  pullHalfRotation: 2
+  releaseHalfRotation: 2
