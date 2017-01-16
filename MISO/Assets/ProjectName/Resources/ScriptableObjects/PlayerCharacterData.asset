@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: PlayerCharacterData
   m_EditorClassIdentifier: 
   pullInputHalfRotation: 0
-  ribbonMaxScale: 2.5
+  ribbonMaxScale: 2.2
   ribbonMinScale: 1
   ribbonSizeScailingTime: 1
-  ribbonPullPower: 520
+  ribbonPullPower: 560
   ribbonCollectLength: 5
   ribbonProjectionTime: 1.8
   ribbonPenaltyTime: 5
@@ -26,8 +26,8 @@ MonoBehaviour:
   ribbonReboundPower: 16
   ribbonReboundCountRatio: 0.1
   chargeTimeMax: 1.5
-  throwPower: 300
-  throwSpeed: 500
+  throwPower: 210
+  throwSpeed: 590
   collectTime: 1
   knockbackPower: 50
   inBuildingTime: 5
